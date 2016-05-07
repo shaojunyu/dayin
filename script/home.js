@@ -158,11 +158,12 @@ function centerDiv(sign) {
 //表单错误提示框显示函数
 function showError(message) {
 	var promptBox = document.querySelector(".prompt-box");
+	promptBox.innerHTML = "";
 	promptBox.innerHTML = message;
 	promptBox.style.top = "0px";
 	setTimeout(function() {
 		promptBox.style.top = "-80px";
-	}, 2000);
+	}, 4000);
 }
 
 //检测IE版本
@@ -195,6 +196,12 @@ addLoadEvent(function(){
 	var xidC = document.querySelector("div.identify-code>p>i"); //叉叉
 	var signOut = document.querySelector("#sign-out");
 	var sO = document.querySelector(".so");
+	var promptB = document.querySelector(".prompt-box");
+
+	var phone = document.querySelector("#phone");
+	var pw_f = document.querySelector("#pw-f");
+	var pw_r = document.querySelector("#pw-r");
+
 
 	window.resize = function() {
 		if(signInBox.style.display === "block") {
@@ -290,26 +297,242 @@ addLoadEvent(function(){
 
 	//登录框显示隐藏
 	addHandler(signIn, "click", function() {
+		promptB.style.display = "block";
 		showDiv(cover, signInBox);
 	});
 	addHandler(xbtnIn, "click", function() {
+		document.querySelector("#login").reset();
+		promptB.style.display = "none";
 		hideDiv(cover, signInBox);
 	});
 
 	//注册框显示隐藏
 	addHandler(signUp, "click", function() {
+		promptB.style.display = "block";
 		showDiv(cover, signUpBox);
 	});
 	addHandler(xbtnUp, "click", function() {
+		document.querySelector("#signup").reset();
+		promptB.style.display = "none";
 		hideDiv(cover, signUpBox);
 	});
 
 	//验证码登录框显示隐藏
 	addHandler(useidc, "click", function() {
+		promptB.style.display = "block";
 		hideDiv(cover, signInBox);
 		showDiv(cover, idBox);
 	});
 	addHandler(xidC, "click", function() {
+		document.querySelector("#identify-form").reset();
+		promptB.style.display = "none";
 		hideDiv(cover, idBox);
+	});
+});
+
+
+
+//表单验证
+$(document).ready(function() {
+	//发送验证码
+	$(".get").click(function(){
+		var user = $(".idc-user").val();
+	    var data = {cellphone:user};        	
+
+        var resp = $.ajax({
+        	url:"../dayin/api/sendSmscode",
+        	contentType:"application/json",
+        	dataType:"json",
+        	type:"POST",
+        	data:JSON.stringify(data),
+        	success:function(data) {
+        		console.log("data");
+        	}
+        });
+	});
+
+	$(".send").click(function(){
+		var user = $("#phone").val();
+	    var data = {cellphone:user};        	
+
+        var resp = $.ajax({
+        	url:"../dayin/api/sendSmscode",
+        	contentType:"application/json",
+        	dataType:"json",
+        	type:"POST",
+        	data:JSON.stringify(data),
+        	success:function(data) {
+        		console.log("data");
+        	}
+        });
+	});
+
+	$.validator.addMethod("mobile", function(value, element, params) {
+		var tel = /^1[3|4|5|7|8]\d{9}$/;
+    	return this.optional(element) || (tel.test(value));
+	}, "请填写正确的手机号");
+
+	//登录
+	$("#login").validate({
+	    rules: {
+	    	phonein: {
+	    		required: true,
+	    		mobile: true
+	    	},
+	    	passwordin: {
+	    		required: true,
+	    		minlength: 6
+	    	}
+	    },
+	    messages: {
+	    	passwordin: {
+	    		required: "请输入密码",
+	    		minlength: "密码长度不小于6位"
+	    	},
+	    	phonein: {
+	    		required: "请输入手机号"
+	    	}
+	    },
+	    submitHandler: function(form){
+	    	var user = $(".user").val();
+	    	var passw = $(".pw").val();
+	    	var data = {cellphone:user,password:passw};        	
+
+        	var resp = $.ajax({
+        		url:"../dayin/api/login",
+        		contentType:"application/json",
+        		dataType:"json",
+        		type:"POST",
+        		data:JSON.stringify(data),
+        		success:function(data) {
+        			if(data.success) {
+        				location.reload(true);
+        			}
+        			else {
+        				showError(data.msg);
+        			}
+        		}
+        	});
+        },
+        showErrors: function(errorMap, errorList) {
+        	if(errorList && errorList.length > 0){  //如果存在错误信息
+        		var msg = errorList[0].message;
+        		showError(msg);
+        	}
+        }
+	});
+
+	//注册
+	$("#signup").validate({
+		rules: {
+	    	phoneup: {
+	    		required: true,
+	    		mobile: true
+	    	},
+	    	passwordup: {
+	    		required: true,
+	    		minlength: 6
+	    	},
+	    	passwordcheck: {
+	    		required: true,
+	    		equalTo: "#pw-f"
+	    	},
+	    	identifyup: {
+	    		required: true
+	    	}
+	    },
+	    messages: {
+	    	passwordup: {
+	    		required: "请输入密码",
+	    		minlength: "密码长度不小于6位"
+	    	},
+	    	phoneup: {
+	    		required: "请输入手机号"
+	    	},
+	    	passwordcheck: {
+	    		required: "请再次输入密码",
+	    		equalTo: "两次输入的密码不相符"
+	    	},
+	    	identifyup: {
+	    		required: "请输入验证码"
+	    	}
+	    },
+	    submitHandler: function(form){
+        	var user = $("#phone").val();
+	    	var passw = $("#pw-f").val();
+	    	var school = $(".school").find("option:selected").text();
+	    	var data = {cellphone:user,password:passw,school:school};
+	    	console.log(data);        	
+
+        	var resp = $.ajax({
+        		url:"../dayin/api/signup",
+        		contentType:"application/json",
+        		dataType:"json",
+        		type:"POST",
+        		data:JSON.stringify(data),
+        		success:function(data) {
+        			if(data.success) {
+        				location.reload(true);
+        			}
+        			else {
+        				showError(data.msg);
+        			}
+        		}
+        	});
+        },
+        showErrors: function(errorMap, errorList) {
+        	if(errorList && errorList.length > 0){  //如果存在错误信息
+        		var msg = errorList[0].message;
+        		showError(msg);
+        	}
+        }
+	});
+
+	//验证码登录
+	$("#identify-form").validate({
+		rules: {
+	    	phoneid: {
+	    		required: true,
+	    		mobile: true
+	    	},
+	    	idc: {
+	    		required: true
+	    	}
+	    },
+	    messages: {
+	    	phoneid: {
+	    		required: "请输入手机号"
+	    	},
+	    	idc: {
+	    		required: "请输入验证码"
+	    	}
+	    },
+	    submitHandler: function(form){
+        	var user = $(".idc-user").val();
+	    	var idcode = $(".id-code").val();
+	    	var data = {cellphone:user,idcode:idcode};        	
+
+        	var resp = $.ajax({
+        		url:"../dayin/api/login",
+        		contentType:"application/json",
+        		dataType:"json",
+        		type:"POST",
+        		data:JSON.stringify(data),
+        		success:function(data) {
+        			if(data.success) {
+        				location.reload(true);
+        			}
+        			else {
+        				showError(data.msg);
+        			}
+        		}
+        	});
+        },
+        showErrors: function(errorMap, errorList) {
+        	if(errorList && errorList.length > 0){  //如果存在错误信息
+        		var msg = errorList[0].message;
+        		showError(msg);
+        	}
+        }
 	});
 });

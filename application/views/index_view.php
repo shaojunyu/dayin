@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">   
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>九九打印</title>
@@ -39,9 +39,9 @@
     <div class="sign-in">  <!-- 登录框 -->
         <p>登录<i></i></p>
         <div class="user-pic"><img src="images/yh.png"></div>
-        <form action="" class="in">
-            <input type="text" class="user" placeholder="手机号">
-            <input type="password" class="pw" placeholder="密码">
+        <form class="in" id="login">
+            <input type="text" autocomplete="off" class="user" name="phonein" placeholder="手机号">
+            <input type="password" class="pw" name="passwordin" placeholder="密码">
             <div class="useidc clearfix"><span>使用手机验证码登录</span></div>
             <input type="submit" class="submit" value="确 定">
         </form>
@@ -50,9 +50,9 @@
     <div class="identify-code">  <!-- 验证码登录框 -->
         <p>验证码登录<i></i></p>
         <div class="user-pic"><img src="images/yh.png"></div>
-        <form action="" class="idcode-in">
-            手机号：<input type="text" class="idc-user"><br />
-            验证码：<input type="text" class="id-code">
+        <form class="idcode-in" id="identify-form">
+            手机号：<input type="text" class="idc-user" name="phoneid"><br />
+            验证码：<input type="text" class="id-code" name="idc">
             <input type="button" value="获取验证码" class="get"><br />
             <input type="submit" class="idc-submit" value="确 定">
         </form>
@@ -60,15 +60,15 @@
 
     <div class="sign-up">  <!-- 注册框 -->
         <p>注册<i></i></p>
-        <form action="" class="up">
+        <form class="up" id="signup">
             <label for="phone">手机号码：</label>
-            <input type="text" id="phone"><br />
+            <input type="text" autocomplete="off" id="phone" name="phoneup"><br />
             <label for="pw-f">密码：</label>
-            <input type="password" id="pw-f"><br />
+            <input type="password" id="pw-f" name="passwordup"><br />
             <label for="pw-r">确认密码：</label>
-            <input type="password" id="pw-r"><br />
+            <input type="password" id="pw-r" name="passwordcheck"><br />
             <label for="identify">验证码：</label>
-            <input type="text" id="identify">
+            <input type="text" id="identify" name="identifyup">
             <input type="button" class="send" value="发送验证码"><br />
             <div class="school-box">
                 <label>学校：</label>
@@ -129,7 +129,8 @@
         <p class="copyright">&copy;2016 九九打印版权所有 鄂ICP备15018392号</p>
     </footer>
 </div>
-
+<script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="script/jquery.validate.min.js"></script>
 <script type="text/javascript" src="script/home.js"></script>
 </body>
 </html>
