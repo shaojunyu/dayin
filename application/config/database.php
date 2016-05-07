@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'rm-bp18d6653xw9767hmo.mysql.rds.aliyuncs.com',
+	'username' => 'dayin',
+	'password' => '99dayin',
+	'database' => 'dayin',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
