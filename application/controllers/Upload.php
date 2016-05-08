@@ -17,7 +17,7 @@ class Upload extends CI_Controller{
     }
 
     public function index(){
-        //$this->load->view('upload_view');
-        var_dump($this->session->userdata('cellphone'));
+        $this->load->view('upload_view');
+        //var_dump($this->session->userdata('cellphone'));
     }
 }
