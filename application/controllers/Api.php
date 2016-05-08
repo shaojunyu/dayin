@@ -52,6 +52,17 @@ class Api extends CI_Controller{
         }
     }
 
+    /**
+     * function logout
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function logout(){
+        $this->session->sess_destroy();
+        $this->echo_msg(true);
+    }
+
     public function loginBySmscode(){
         $this->check_post_data(array('cellphone','smscode'));
 
