@@ -200,6 +200,23 @@ class Api extends CI_Controller{
             $this->echo_msg(true,'no');
         }
     }
+
+    /**
+     * function uploadACK 文件上传成功，前端回掉
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function uploadACK(){
+        $this->check_post_data(array('fileName','fileMD5'));
+        //文件加入购物车
+        $this->load->model('Cart_model','Cart');
+        if ($this->Cart->add_item($this->post_data->fileName,$this->post_data->fileMD5)){
+            $this->echo_msg(true,'添加成功');
+        }else{
+            $this->echo_msg(false,'添加失败，稍后重试');
+        }
+    }
 /*
  * ----------------------------------------------------------------------------------------
  * 以下是private函数，供本类调用

@@ -48,7 +48,6 @@ class User_model extends CI_Model{
             ));
             $this->userInfo2session($cellphone);
         }catch (Exception $e){
-
         }
 
         if ($this->db->affected_rows() == 1){
