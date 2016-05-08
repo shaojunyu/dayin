@@ -305,6 +305,32 @@ function addFile(filename, size) {
     var parent = document.querySelector(".scroll-bar");
     newelem.setAttribute("data-md5", newElem[filename][1]);
     newelem.className = str;
-    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + ' 大小：' + size + 'kb</p>' + '<i></i>';
+    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + ' 大小：' + size + 'kb</p>' + '<i></i>';    
     parent.insertBefore(newelem, next);
+    addDelEvent(newelem);
+}
+
+//添加删除事件
+function addDelEvent(elem) {
+    var i = elem.querySelector("i");
+    addHandler(i, "click", function() {
+        console.log("click");
+        var self = $(this);
+        var md5 = $(this).parent().attr("data-md5");
+        console.log(md5);
+        var data = {fileMD5: md5};
+        $.ajax({
+            url: "./api/deleteItem",
+            contentType: "application/json",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(data),
+            success: function(data) {
+                self.parent().remove();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                showError("删除失败");
+            }
+        });
+    });
 }
