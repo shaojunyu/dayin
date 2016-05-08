@@ -137,7 +137,7 @@ class Api extends CI_Controller{
     }
 
     public function getUploadToken(){
-        $username = $this->session->userdata('username');
+        //$username = $this->session->userdata('username');
 
         require_once APPPATH.'third_party/oss_php_sdk_20140625/sdk.class.php';
         $id= 'GtzMAvDTnxg72R04';
@@ -151,7 +151,7 @@ class Api extends CI_Controller{
         $expiration = $this->gmt_iso8601($end);
 
         $oss_sdk_service = new alioss($id, $key, $host);
-        $dir = 'user_upload/'.$this->session->userdata('userId').'/';
+        $dir = 'user_upload/'.$this->session->userdata('cellphone').'/';
 
         //最大文件大小.用户可以自己设置
         $condition = array(0=>'content-length-range', 1=>0, 2=>1048576000);
