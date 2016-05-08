@@ -145,22 +145,23 @@ var uploader = new plupload.Uploader({
 
                 fileReader.onload = function (e) {
                     console.log('read chunk nr', currentChunk + 1, 'of', chunks);
-                    spark.append(e.target.result);                   // Append array buffer
+                    spark.append(e.target.result); // Append array buffer
                     currentChunk++;
-                
+                    
                     if (currentChunk < chunks) {
+                        newElem[file.name][0].getElementsByTagName("p")[1].innerHTML = "校验中...  " + 100 * (Math.round(currentChunk/chunks)) + "%";
                         loadNext();
                     } else {
                         newElem[file.name][1] = spark.end();
                         var success = sendMD5(spark.end()); //校验md5值
 
-                        if(success) {
-                            //var 
+                        if(success) {  //已有文件
                             addFile(file.name, file.size);
-                            removeC(newElem[file.name]);
+                            removeC(newElem[file.name][0]);
                             delete newElem[file.name];
+                            showError("上传成功");
                         }
-                        else {
+                        else {  //获取token并上传文件
                             set_upload_param(uploader, file.name, false);   
                         }
                     }
@@ -181,11 +182,11 @@ var uploader = new plupload.Uploader({
             set_upload_param(up, file.name, true);
         },
 
-        UploadProgress: function(up, file) {
-            console.log(file.percent);
+        UploadProgress: function(up, file) { //文件上传中
+            newElem[file.name][0].getElementsByTagName("p")[1].innerHTML = "上传中：" + file.percent + "%";
         },
 
-        FileUploaded: function(up, file, info) {
+        FileUploaded: function(up, file, info) { //上传完成后
             if (info.status == 200)
             {
                 var filename = file.name;
@@ -198,7 +199,15 @@ var uploader = new plupload.Uploader({
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function(data) {
-                        
+                        if(data.success) {
+                            addFile(file.name, file.size);
+                            removeC(newElem[file.name][0]);
+                            delete newElem[file.name];
+                            showError("上传成功");
+                        }
+                        else {
+                            showError(data.msg);
+                        }
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){  
                         showError("请求失败");
@@ -209,13 +218,17 @@ var uploader = new plupload.Uploader({
             }
             else if (info.status == 203)
             {
-
                 console.log(info.response);
+                showError("上传失败，请重试");
+                removeC(newElem[file.name][0]);
+                delete newElem[file.name];
                 //document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '上传到OSS成功，但是oss访问用户设置的上传回调服务器失败，失败原因是:' + info.response;
             }
             else
             {
-                console.log(info.response);
+                showError("上传失败，请重试");
+                removeC(newElem[file.name][0]);
+                delete newElem[file.name];
                 //document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = info.response;
             } 
         }
@@ -224,6 +237,7 @@ var uploader = new plupload.Uploader({
 
 uploader.init();
 
+//发送文件md5值
 function sendMD5(md5) {
     var data = {fileMD5: md5};
     $.ajax({
@@ -245,6 +259,7 @@ function sendMD5(md5) {
     });
 }
 
+//上传过程创建的进度div
 function createNew(name) {
     var newelem = document.createElement("div");
     var next = document.querySelector("#file");
@@ -256,11 +271,13 @@ function createNew(name) {
     return newelem;
 }
 
+//移除div
 function removeC(elem) {
     var parent = document.querySelector(".scroll-bar");
     parent.removeChild(elem);
 }
 
+//文件上传成功后显示在页面上
 function addFile(filename, size) {
     var reg = /\.(\w+)$/;
     var str = filename.match(reg);
@@ -276,10 +293,10 @@ function addFile(filename, size) {
     }
 
     str = str[0].slice(1);
-    if(str == "docx") {
-        str = "doc";
+    if(str == "docx" || str == "doc") {
+        str = "word";
     }
-    else if(str == "pptx") {
+    else if(str == "pptx" || str == "ppt") {
         str = "ppt";
     }
 
@@ -288,6 +305,6 @@ function addFile(filename, size) {
     var parent = document.querySelector(".scroll-bar");
     newelem.setAttribute("data-md5", newElem[filename][1]);
     newelem.className = str;
-    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间: ' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + ' 大小: ' + size + '</p>' + '<i></i>';
+    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + ' 大小：' + size + 'kb</p>' + '<i></i>';
     parent.insertBefore(newelem, next);
 }

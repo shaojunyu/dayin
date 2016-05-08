@@ -38,16 +38,6 @@
                 <p>上传时间：2016/4/26 23:59 大小：300kb</p>
                 <i></i>
             </div>
-            <div class="ppt" data-md5="">
-                <p>abdsbsa.ppt</p>
-                <p>上传时间：2016/4/26 23:59 大小：300kb</p>
-                <i></i>
-            </div>
-            <div class="ppt" data-md5="">
-                <p>abdsbsa.ppt</p>
-                <p>上传时间：2016/4/26 23:59 大小：300kb</p>
-                <i></i>
-            </div>
             <p class="continue-add" id="file"><span id="ul">上传文件</span></p>
         </div>
     </div>
