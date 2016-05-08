@@ -16,6 +16,9 @@ class Cart_model extends CI_Model{
     }
 
     public function add_item($fileName,$fileMD5){
+        if(!$this->session->userdata('cellphone')){
+            return false;
+        }
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $this->db->where('fileName',$fileName);
         $this->db->where('fileMd5',$fileMD5);
@@ -36,7 +39,13 @@ class Cart_model extends CI_Model{
         }
     }
 
-    public function delete_item(){
-
+    public function delete_item($fileMD5){
+        if(!$this->session->userdata('cellphone')){
+            return false;
+        }
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->where('fileMd5',$fileMD5);
+        $this->db->delete('cart');
+        return true;
     }
 }

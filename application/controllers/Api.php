@@ -18,9 +18,11 @@ class Api extends CI_Controller{
                 $this->post_data = json_decode($this->input->raw_input_stream);
             }else{
                 $this->echo_msg(false,'json formate data required!');
+                exit();
             }
         } else {
             $this->echo_msg(false,'post data required!');
+            exit();
         }
     }
 
@@ -216,6 +218,23 @@ class Api extends CI_Controller{
         }else{
             $this->echo_msg(false,'添加失败，稍后重试');
         }
+    }
+
+    /**
+     * function deleteItem 删除购物车中一项
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function deleteItem(){
+        $this->check_post_data(array('fileMD5'));
+        $this->load->model('Cart_model','Cart');
+        if ($this->Cart->delete_item($this->post_data->fileMD5)) {
+            $this->echo_msg(true, '删除成功');
+        }else{
+            $this->echo_msg(false,'删除失败，稍后重试');
+        }
+
     }
 /*
  * ----------------------------------------------------------------------------------------
