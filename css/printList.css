@@ -715,6 +715,7 @@ p.toPay, p.cancel, p.add-print {
 	background-color: #7ab8f4;
 	border-radius: 10px;
 	letter-spacing: 2px;
+	outline: none;
 }
 .mystore {
 	width: 100%;

@@ -35,20 +35,20 @@
         <div class="scroll-bar clearfix">
             <div class="word">
                 <p>abdsbsa.doc</p>
-                <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                <p>上传时间：2016/4/26 23:59 大小：300kb</p>
                 <i></i>
             </div>
             <div class="ppt">
                 <p>abdsbsa.ppt</p>
-                <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                <p>上传时间：2016/4/26 23:59 大小：300kb</p>
                 <i></i>
             </div>
             <div class="ppt">
                 <p>abdsbsa.ppt</p>
-                <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                <p>上传时间：2016/4/26 23:59 大小：300kb</p>
                 <i></i>
             </div>
-            <p class="continue-add">上传文件</p>
+            <p class="continue-add" id="file">上传文件</p>
         </div>
     </div>
 
@@ -138,6 +138,9 @@
 </footer>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="script/plupload.full.min.js"></script>
+<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/spark-md5.min.js"></script>
+<script type="text/javascript" src="script/upload.js"></script>
 <script type="text/javascript" src="script/myself.js"></script>
 </body>
 </html>

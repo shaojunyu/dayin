@@ -93,7 +93,7 @@
 
     <div class="print">
         <img src="images/desc.png">
-        <a href="javascript:void(0)">Print</a>
+        <a href="javascript:void(0)" id="print-btn">Print</a>
     </div>
 
     <img src="images/newhand.gif" class="down">
@@ -136,6 +136,7 @@
 </div>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.validate.min.js"></script>
+<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/md5.js"></script>
 <script type="text/javascript" src="script/home.js"></script>
 </body>
 </html>
