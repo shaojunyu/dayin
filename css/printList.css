@@ -669,9 +669,11 @@ p.toPay, p.cancel, p.add-print {
 	height: 48px;
 	display: inline-block;
 	color: #336598;
-	padding-left: 40px;
 	position: relative;
 	padding-right: 35px;
+}
+.scroll-bar div.word, .scroll-bar div.ppt {
+	padding-left: 40px;
 }
 .scroll-bar div:hover {
 	background-color: #acd6fe;
@@ -716,6 +718,9 @@ p.toPay, p.cancel, p.add-print {
 	border-radius: 10px;
 	letter-spacing: 2px;
 	outline: none;
+}
+#ul {
+	display: block;
 }
 .mystore {
 	width: 100%;

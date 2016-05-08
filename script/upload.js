@@ -12,42 +12,7 @@ g_object_name = ''
 g_object_name_type = ''
 now = timestamp = Date.parse(new Date()) / 1000; 
 
-function send_request()
-{
-    var xmlhttp = null;
-    if (window.XMLHttpRequest)
-    {
-        xmlhttp=new XMLHttpRequest();
-    }
-    else if (window.ActiveXObject)
-    {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-  
-    if (xmlhttp!=null)
-    {
-        serverUrl = './php/get.php'
-        xmlhttp.open( "GET", serverUrl, false );
-        xmlhttp.send( null );
-        return xmlhttp.responseText
-    }
-    else
-    {
-        alert("Your browser does not support XMLHTTP.");
-    }
-};
-
-function check_object_radio() {
-    var tt = document.getElementsByName('myradio');
-    for (var i = 0; i < tt.length ; i++ )
-    {
-        if(tt[i].checked)
-        {
-            g_object_name_type = tt[i].value;
-            break;
-        }
-    }
-}
+var newElem = {};
 
 function get_signature()
 {
@@ -55,15 +20,24 @@ function get_signature()
     now = timestamp = Date.parse(new Date()) / 1000; 
     if (expire < now + 3)
     {
-        body = send_request()
-        var obj = eval ("(" + body + ")");
-        host = obj['host']
-        policyBase64 = obj['policy']
-        accessid = obj['accessid']
-        signature = obj['signature']
-        expire = parseInt(obj['expire'])
-        callbackbody = obj['callback'] 
-        key = obj['dir']
+        $.ajax({
+            url: './api/getUploadToken',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: '{}',
+            async: false,
+            success: function(data) {
+                console.log(data);
+                host = data['host'];
+                policyBase64 = data['policy'];
+                accessid = data['accessid'];
+                signature = data['signature'];
+                expire = parseInt(data['expire']);
+                callbackbody = data['callback']; 
+                key = data['dir'];
+            }
+        });
         return true;
     }
     return false;
@@ -123,9 +97,10 @@ function set_upload_param(up, filename, ret)
     {
         ret = get_signature()
     }
-    g_object_name = key;
-    if (filename != '') { suffix = get_suffix(filename)
-        calculate_object_name(filename)
+    g_object_name = key + filename;
+    if (filename != '') { 
+        suffix = get_suffix(filename);
+        calculate_object_name(filename);
     }
     new_multipart_params = {
         'key' : g_object_name,
@@ -140,13 +115,14 @@ function set_upload_param(up, filename, ret)
         'url': host,
         'multipart_params': new_multipart_params
     });
-
     up.start();
+
 }
 
 var uploader = new plupload.Uploader({
-    browse_button : 'file', //触发文件选择对话框的按钮，为那个元素id
-    url : 'upload.php', //服务器端的上传页面地址
+    browse_button : 'ul', //触发文件选择对话框的按钮，为那个元素id
+    url : 'http://oss.aliyuncs.com', //服务器端的上传页面地址
+    container: 'file',
     filters: {
       mime_types : [ //只允许上传图片和zip文件
         { title : "Word files", extensions : "doc,docx" }, 
@@ -154,48 +130,99 @@ var uploader = new plupload.Uploader({
       ],
       max_file_size : '50mb', //最大只能上传50mb的文件
       prevent_duplicates : true //不允许选取重复文件
+    },
+    init: {
+        FilesAdded: function(up,files) {
+            plupload.each(files, function(file){
+                var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
+                chunkSize = 2097152,                         // Read in chunks of 2MB
+                chunks = Math.ceil(file.size / chunkSize),
+                currentChunk = 0,
+                spark = new SparkMD5.ArrayBuffer(),
+                fileReader = new FileReader();
+                
+                var div = createNew(file.name);
+
+                fileReader.onload = function (e) {
+                    console.log('read chunk nr', currentChunk + 1, 'of', chunks);
+                    spark.append(e.target.result);                   // Append array buffer
+                    currentChunk++;
+                
+                    if (currentChunk < chunks) {
+                        loadNext();
+                    } else {
+                        newElem[file.name][1] = spark.end();
+                        var success = sendMD5(spark.end()); //校验md5值
+
+                        if(success) {
+                            //var 
+                            addFile(file.name, file.size);
+                            removeC(newElem[file.name]);
+                            delete newElem[file.name];
+                        }
+                        else {
+                            set_upload_param(uploader, file.name, false);   
+                        }
+                    }
+                };
+                fileReader.onerror = function () {
+                    console.warn('oops, something went wrong.');
+                };
+                function loadNext() {
+                    var start = currentChunk * chunkSize,
+                        end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
+                    fileReader.readAsArrayBuffer(blobSlice.call(file.getNative(), start, end));
+                }
+                loadNext();
+            });
+        },
+
+        BeforeUpload: function(up, file) {
+            set_upload_param(up, file.name, true);
+        },
+
+        UploadProgress: function(up, file) {
+            console.log(file.percent);
+        },
+
+        FileUploaded: function(up, file, info) {
+            if (info.status == 200)
+            {
+                var filename = file.name;
+                var fileMd5 = newElem[filename][1];
+                var data = {fileName: filename, fileMD5: fileMd5};
+                $.ajax({
+                    url: './api/uploadACK',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function(data) {
+                        
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){  
+                        showError("请求失败");
+                    }
+                });
+                console.log("200");
+                //document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = 'upload to oss success, object name:' + get_uploaded_object_name(file.name) + ' 回调服务器返回的内容是:' + info.response;
+            }
+            else if (info.status == 203)
+            {
+
+                console.log(info.response);
+                //document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '上传到OSS成功，但是oss访问用户设置的上传回调服务器失败，失败原因是:' + info.response;
+            }
+            else
+            {
+                console.log(info.response);
+                //document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = info.response;
+            } 
+        }
     }
 });
 
 uploader.init();
-uploader.bind('FilesAdded',function(uploader,files){
-    plupload.each(files,function(file){
-        var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
-        chunkSize = 2097152,                             // Read in chunks of 2MB
-        chunks = Math.ceil(file.size / chunkSize),
-        currentChunk = 0,
-        spark = new SparkMD5.ArrayBuffer(),
-        fileReader = new FileReader();
-            
-        fileReader.onload = function (e) {
-            console.log('read chunk nr', currentChunk + 1, 'of', chunks);
-            spark.append(e.target.result);                   // Append array buffer
-            currentChunk++;
-        
-            if (currentChunk < chunks) {
-                loadNext();
-            } else {
-                //console.info('computed hash', spark.end());  // Compute hash
-                var success = sendMD5(spark.end()); //校验md5值
-                if(success) {
-
-                }
-                else {
-                    uploader.start();
-                }
-            }
-        };
-        fileReader.onerror = function () {
-            console.warn('oops, something went wrong.');
-        };
-        function loadNext() {
-            var start = currentChunk * chunkSize,
-                end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
-            fileReader.readAsArrayBuffer(blobSlice.call(file.getNative(), start, end));
-        }
-        loadNext();
-    });
-});
 
 function sendMD5(md5) {
     var data = {fileMD5: md5};
@@ -216,4 +243,51 @@ function sendMD5(md5) {
             showError("请求失败");  
         }
     });
+}
+
+function createNew(name) {
+    var newelem = document.createElement("div");
+    var next = document.querySelector("#file");
+    var parent = document.querySelector(".scroll-bar");
+    newelem.innerHTML = '<p>' + name + '</p>' + '<p>校验中...' + '</p>';
+    parent.insertBefore(newelem, next);
+    newElem[name] = [];
+    newElem[name][0] = newelem;
+    return newelem;
+}
+
+function removeC(elem) {
+    var parent = document.querySelector(".scroll-bar");
+    parent.removeChild(elem);
+}
+
+function addFile(filename, size) {
+    var reg = /\.(\w+)$/;
+    var str = filename.match(reg);
+    var date = new Date();
+    var hours = date.getHours();
+    var seconds = date.getMinutes();
+
+    if(hours < 10) {
+        hours = '0' + hours;
+    }
+    if(seconds < 10) {
+        seconds = '0' + seconds;
+    }
+
+    str = str[0].slice(1);
+    if(str == "docx") {
+        str = "doc";
+    }
+    else if(str == "pptx") {
+        str = "ppt";
+    }
+
+    var newelem = document.createElement("div");
+    var next = document.querySelector("#file");
+    var parent = document.querySelector(".scroll-bar");
+    newelem.setAttribute("data-md5", newElem[filename][1]);
+    newelem.className = str;
+    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间: ' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + ' 大小: ' + size + '</p>' + '<i></i>';
+    parent.insertBefore(newelem, next);
 }
