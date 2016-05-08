@@ -145,7 +145,7 @@ class Api extends CI_Controller{
         $id= 'GtzMAvDTnxg72R04';
         $key= 'VhD2czcwLVAaE7DReDG4uEVSgtaSYK';
         $host = 'http://99dayin.oss-cn-hangzhou.aliyuncs.com';
-        $callback_body = '{"callbackUrl":"http://121.43.155.4:12345/","callbackHost":"121.43.155.4","callbackBody":"filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}","callbackBodyType":"application/json"}';
+        $callback_body = '{"callbackUrl":"http://hook.99dayin.com/uploadcallback","callbackHost":"hook.99dayin.com","callbackBody":"filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}","callbackBodyType":"application/json"}';
         $base64_callback_body = base64_encode($callback_body);
         $now = time();
         $expire = 30; //设置该policy超时时间是10s. 即这个policy过了这个有效时间，将不能访问
