@@ -81,7 +81,7 @@ class Api extends CI_Controller{
                 exit();
             }
             try{
-                $this->User->signup($this->post_data->cellphone,$this->post_data->password,$this->post_data->smscode);
+                $this->User->signup($this->post_data->cellphone,$this->post_data->password,$this->post_data->school);
                 $this->echo_msg(true,'注册成功');
             }catch (Exception $e){
                 $this->echo_msg(false,$e->getMessage());
