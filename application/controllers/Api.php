@@ -182,6 +182,24 @@ class Api extends CI_Controller{
         $response['dir'] = $dir;
         echo json_encode($response);
     }
+
+
+    /**
+     * function confirmMD5 检查文件是否已存在
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function confirmMD5(){
+        $this->check_post_data(array('fileMD5'));
+        $this->db->where('fileMD5',$this->post_data->fileMD5);
+        $this->db->get('file_info')->result_array();
+        if ($this->db->affected_rows() >= 1){
+            $this->echo_msg(true,'yes');
+        }else{
+            $this->echo_msg(true,'no');
+        }
+    }
 /*
  * ----------------------------------------------------------------------------------------
  * 以下是private函数，供本类调用
