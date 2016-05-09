@@ -35,98 +35,176 @@
             <div>
                 <span class="row-1">序号</span>
                 <span class="row-2">文件名</span>
-                <span class="row-3">单/双面</span>
-                <span class="row-4">横/竖</span>
-                <span class="row-5">每面ppt数量</span>
-                <span class="row-6">大小</span>
-                <span class="row-7">单价</span>
-                <span class="row-8">份数</span>
-                <span class="row-9">总价</span>
-                <span class="row-10">备注</span>
-                <span class="row-11">操作</span>
+                <span class="row-3">页数</span>
+                <span class="row-4">单/双面</span>
+                <span class="row-5">横/竖</span>
+                <span class="row-6">每面ppt数量</span>
+                <span class="row-7">大小</span>
+                <span class="row-8">单价</span>
+                <span class="row-9">份数</span>
+                <span class="row-10">总价</span>
+                <span class="row-11">备注</span>
+                <span class="row-12">操作</span>
             </div>
         </div>
 
         <div class="scroll-box">
-            <div class="no-1">
+            <div data-md5="1">
                 <span class="row-1">1</span>
-                <span class="row-2 word">dansjudnasnxdasubcasbc.doc</span>
-						<span class="row-3">
-							<select class="face">
-                                <option value="单面">单面</option>
-                                <option value="双面">双面</option>
-                            </select>
-						</span>
-						<span class="row-4">
-							<select class="direction">
-                                <option value="横">横</option>
-                                <option value="竖">竖</option>
-                            </select>
-						</span>
-						<span class="row-5">
-							<select class="page-num">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-						</span>
-						<span class="row-6">
-							<select class="size">
-                                <option value="A4">A4</option>
-                                <option value="A3">A3</option>
-                                <option value="B3">B3</option>
-                            </select>
-						</span>
-                <span class="row-7">12</span>
-                <span class="row-8"><input type="text"></span>
-                <span class="row-9">60</span>
-                <span class="row-10"><input type="text"></span>
-                <span class="row-11">删除</span>
+                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
+                <span class="row-3">4</span>
+				<span class="row-4">
+					<select class="face" class="row-3">
+                        <option value="单面">单面</option>
+                        <option value="双面">双面</option>
+                    </select>
+				</span>
+				<span class="row-5">
+					<select class="direction">
+                        <option value="横">横</option>
+                        <option value="竖">竖</option>
+                    </select>
+				</span>
+				<span class="row-6">
+					<select class="page-num">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+				</span>
+				<span class="row-7">
+					<select class="size">
+                        <option value="A4">A4</option>
+                        <option value="B4">B4</option>
+                    </select>
+				</span>
+                <span class="row-8">0.1</span>
+                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
+                <span class="row-10">0.1</span>
+                <span class="row-11"><input type="text" class="remark"></span>
+                <span class="row-12">删除</span>
             </div>
-            <div class="no-2">
+
+            <div data-md5="2">
                 <span class="row-1">2</span>
-                <span class="row-2 ppt">bdcbfsdhcbfashcsbhcbsj.ppt</span>
-						<span class="row-3">
-							<select class="face">
-                                <option value="单面">单面</option>
-                                <option value="双面">双面</option>
-                            </select>
-						</span>
-						<span class="row-4">
-							<select class="direction">
-                                <option value="横">横</option>
-                                <option value="竖">竖</option>
-                            </select>
-						</span>
-						<span class="row-5">
-							<select class="page-num">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-						</span>
-						<span class="row-6">
-							<select class="size">
-                                <option value="A4">A4</option>
-                                <option value="A3">A3</option>
-                                <option value="B3">B3</option>
-                            </select>
-						</span>
-                <span class="row-7">12</span>
-                <span class="row-8"><input type="text"></span>
-                <span class="row-9">60</span>
-                <span class="row-10"><input type="text"></span>
-                <span class="row-11">删除</span>
+                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
+                <span class="row-3">4</span>
+                <span class="row-4">
+                    <select class="face" class="row-3">
+                        <option value="单面">单面</option>
+                        <option value="双面">双面</option>
+                    </select>
+                </span>
+                <span class="row-5">
+                    <select class="direction">
+                        <option value="横">横</option>
+                        <option value="竖">竖</option>
+                    </select>
+                </span>
+                <span class="row-6">
+                    <select class="page-num">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </span>
+                <span class="row-7">
+                    <select class="size">
+                        <option value="A4">A4</option>
+                        <option value="B4">B4</option>
+                    </select>
+                </span>
+                <span class="row-8">0.1</span>
+                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
+                <span class="row-10">0.1</span>
+                <span class="row-11"><input type="text" class="remark"></span>
+                <span class="row-12">删除</span>
             </div>
 
+            <div data-md5="3">
+                <span class="row-1">3</span>
+                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
+                <span class="row-3">4</span>
+                <span class="row-4">
+                    <select class="face" class="row-3">
+                        <option value="单面">单面</option>
+                        <option value="双面">双面</option>
+                    </select>
+                </span>
+                <span class="row-5">
+                    <select class="direction">
+                        <option value="横">横</option>
+                        <option value="竖">竖</option>
+                    </select>
+                </span>
+                <span class="row-6">
+                    <select class="page-num">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </span>
+                <span class="row-7">
+                    <select class="size">
+                        <option value="A4">A4</option>
+                        <option value="B4">B4</option>
+                    </select>
+                </span>
+                <span class="row-8">0.1</span>
+                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
+                <span class="row-10">0.1</span>
+                <span class="row-11"><input type="text" class="remark"></span>
+                <span class="row-12">删除</span>
+            </div>
 
-            <div class="add"><a href="javascript:void(0)">继续添加文件</a></div>
+            <div data-md5="4">
+                <span class="row-1">4</span>
+                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
+                <span class="row-3">4</span>
+                <span class="row-4">
+                    <select class="face" class="row-3">
+                        <option value="单面">单面</option>
+                        <option value="双面">双面</option>
+                    </select>
+                </span>
+                <span class="row-5">
+                    <select class="direction">
+                        <option value="横">横</option>
+                        <option value="竖">竖</option>
+                    </select>
+                </span>
+                <span class="row-6">
+                    <select class="page-num">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </span>
+                <span class="row-7">
+                    <select class="size">
+                        <option value="A4">A4</option>
+                        <option value="B4">B4</option>
+                    </select>
+                </span>
+                <span class="row-8">0.1</span>
+                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
+                <span class="row-10">0.1</span>
+                <span class="row-11"><input type="text" class="remark"></span>
+                <span class="row-12">删除</span>
+            </div>
+            <div class="add"><a href="upload">继续添加文件</a></div>
         </div>
 
         <p class="total">总价：<span class="money">120</span>元</p>
@@ -134,8 +212,8 @@
         <div class="topay">
             <span>收货方式：</span>
 					<span class="delivery">
-						<input type="checkbox" class="pick" checked="checked" name="deliv" value="pickup">到店自取
-						<input type="checkbox" class="todoor" name="deliv" value="todoor">送货上门
+                        <input type="checkbox" class="todoor" checked="checked" name="deliv" value="todoor">送货上门
+						<input type="checkbox" class="pick" name="deliv" value="pickup">到店自取
 					</span>
             <select name="store" id="print-store">
                 <option value="0">请选择打印店</option>
@@ -190,7 +268,7 @@
                 <input type="text" class="phone" placeholder="联系电话">
             </div>
 
-            <input type="button" class="pay" value="去结算">
+            <input type="button" class="pay" value="生成订单">
         </div>
     </div>
 </div>

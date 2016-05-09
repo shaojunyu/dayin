@@ -215,7 +215,7 @@ nav ul li ul#sign-out li {
 	border-color: #32659a;
 }
 .door {
-	display: none;
+	display: inline-block;
 }
 .door select, .door input {
 	height: 30px;
@@ -252,6 +252,7 @@ nav ul li ul#sign-out li {
 	margin-left: 30px;
 	font-size: 1.1em;
 	color: #32659a;
+	display: none;
 }
 
 
@@ -295,7 +296,7 @@ nav ul li ul#sign-out li {
 	text-align: center;
 	background-color: #c0e5ff;
 }
-.scroll-box .row-11 {
+.scroll-box .row-12 {
 	cursor: pointer;
 	color: #983434;
 }
@@ -323,16 +324,16 @@ nav ul li ul#sign-out li {
 	width: 20%;
 }
 .row-3 {
-	width: 8%;
+	width: 4%;
 }
 .row-4 {
-	width: 6%;
+	width: 8%;
 }
 .row-5 {
-	width: 12%;
+	width: 6%;
 }
 .row-6 {
-	width: 5%;
+	width: 12%;
 }
 .row-7 {
 	width: 5%;
@@ -344,10 +345,13 @@ nav ul li ul#sign-out li {
 	width: 5%;
 }
 .row-10 {
-	width: 11%;
+	width: 5%;
 }
 .row-11 {
-	width: 11%;
+	width: 9%;
+}
+.row-12 {
+	width: 9%;
 }
 
 
@@ -967,6 +971,9 @@ p.toPay, p.cancel, p.add-print {
 	.wrapper .right {
 		width: 82%;
 	}
+	.pay {
+		width: 120px;
+	}
 }
 @media screen and (min-width: 2000px) {
 	body {
@@ -983,5 +990,8 @@ p.toPay, p.cancel, p.add-print {
 	}
 	.nav {
 		width: 400px;
+	}
+	.pay {
+		width: 140px;
 	}
 }
