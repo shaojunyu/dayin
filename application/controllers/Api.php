@@ -145,7 +145,7 @@ class Api extends CI_Controller{
         $id= 'GtzMAvDTnxg72R04';
         $key= 'VhD2czcwLVAaE7DReDG4uEVSgtaSYK';
         $host = 'http://99dayin.oss-cn-hangzhou.aliyuncs.com';
-        $callback_body = '{"callbackUrl":"http://hook.99dayin.com/uploadcallback","callbackHost":"hook.99dayin.com","callbackBody":"filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}","callbackBodyType":"application/json"}';
+        $callback_body = '{"callbackUrl":"http://hook.99dayin.com/uploadcallback","callbackHost":"hook.99dayin.com","callbackBody":"filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}","callbackBodyType":"application/x-www-form-urlencoded"}';
         $base64_callback_body = base64_encode($callback_body);
         $now = time();
         $expire = 30; //设置该policy超时时间是10s. 即这个policy过了这个有效时间，将不能访问
@@ -215,6 +215,11 @@ class Api extends CI_Controller{
         $this->load->model('Cart_model','Cart');
         if ($this->Cart->add_item($this->post_data->fileName,$this->post_data->fileMD5)){
             $this->echo_msg(true,'添加成功');
+            $this->db->insert('user_upload',array(
+                'cellphone'=>$this->session->userdata('cellphone'),
+                'fileName'=>$this->post_data->fileName,
+                'fileMD5'=>$this->post_data->fileMD5
+            ));
         }else{
             $this->echo_msg(false,'添加失败，稍后重试');
         }
