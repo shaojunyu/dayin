@@ -8,6 +8,19 @@ function showError(message) {
 	}, 2000);
 }
 
+//添加事件监听
+function addHandler(element, type, handler) {
+	if(element.addEventListener) {
+		element.addEventListener(type, handler, false);
+	}
+	else if(element.attachEvent) {
+		element.attachEvent("on" + type, handler);
+	}
+	else {
+		element["on" + type] = handler;
+	}
+}
+
 $(document).ready(function() {
 	//导航栏个人中心二级菜单显示和隐藏
 	$("#sign-out").mouseover(function() {
@@ -42,6 +55,30 @@ $(document).ready(function() {
 		$(".every-folder").css({"background-color":"#fff", "color":"#336598"});
 		$(this).css({"background-color":"#acd6fe", "color":"#fff"});
 	});
+
+	//删除打印车文件
+	var del = document.querySelectorAll(".scroll-bar i");
+	for(var i = 0; i < del.length; i++) {
+		addHandler(del[i], "click", function() {
+			console.log("click");
+			var md5 = $(this).attr("data-md5");
+			var data = {fileMD5: md5};
+			$.ajax({
+				url: "./api/deleteItem",
+	        	contentType: "application/json",
+	        	dataType: "json",
+	        	type: "POST",
+	        	data: JSON.stringify(data),
+	        	success: function(data) {
+	        		console.log(data);
+	        		$(this).remove();
+	        	},
+	        	error: function(XMLHttpRequest, textStatus, errorThrown) {
+	        		showError("删除失败");
+	        	}
+			});
+		});
+	}
 
 	//打印车出现和隐藏
 	$(".print-car").click(function() {
