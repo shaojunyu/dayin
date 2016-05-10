@@ -59,15 +59,15 @@ function shipment(total) {
 
 //改变参数时发送Ajax请求
 function sendMsg(data, str) {
-	$.ajax({
-		url:"./api/printSettings",
-	    contentType:"application/json",
-	    dataType:"json",
-	    type:"POST",
-	    data:JSON.stringify(data),
-	    success:function(data) {
-	    	if(data.success) {
-	    		if(str == "删除") {
+	if(str == "删除") {
+		$.ajax({
+			url:"./api/deleteItem",
+		    contentType:"application/json",
+		    dataType:"json",
+		    type:"POST",
+		    data:JSON.stringify(data),
+		    success:function(data) {
+		    	if(data.success) {
 					var md5 = data.fileMD5;
 					var allDiv = document.querySelectorAll(".scroll-box div");
 					var data_md5;
@@ -79,18 +79,32 @@ function sendMsg(data, str) {
 						}
 					}
 				}
+		   		else {
+		       		showError(data.msg);
+		    	}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				showError("删除失败");
+			}
+		});
+		return;
+	}
+	$.ajax({
+		url:"./api/printSettings",
+	    contentType:"application/json",
+	    dataType:"json",
+	    type:"POST",
+	    data:JSON.stringify(data),
+	    success:function(data) {
+	    	if(data.success) {
+	    		
 	    	}
 	   		else {
 	        	showError(data.msg);
 	        }
 	    },
 		error: function(XMLHttpRequest, textStatus, errorThrown){
-			if(str == "删除") {
-				showError("删除失败");
-			}
-			else {
-		    	showError("修改失败，请重设" + str);
-		    }
+			showError("修改失败，请重设" + str);
 		}
 	});
 }
@@ -137,7 +151,7 @@ $(document).ready(function() {
 	for(var i = 0; i < row_3.length; i++) {
 		var pages = parseInt(row_3[i].innerHTML);
 		if(divClass[i].className == "ppt") {
-			var pptPerPage = $(this).find("option:selected").text();
+			var pptPerPage = divClass[i].querySelector("");
 			pptPerPage = parseInt(pptPerPage);
 			pages = Math.ceil(pages / pptPerPage);
 			console.log(pages);
