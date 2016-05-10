@@ -317,6 +317,10 @@ nav ul li ul#sign-out li {
 	background: url(../images/spite.png) no-repeat;
 	background-position: 3px -290px;
 }
+.pdf {
+	background: url(../images/spite.png) no-repeat;
+	background-position: 0 -245px;
+}
 .row-1 {
 	width: 5%;
 }
@@ -686,7 +690,7 @@ p.toPay, p.cancel, p.add-print {
 	position: relative;
 	padding-right: 35px;
 }
-.scroll-bar div.word, .scroll-bar div.ppt {
+.scroll-bar div.word, .scroll-bar div.ppt, .scroll-bar div.pdf {
 	padding-left: 40px;
 }
 .scroll-bar div:hover {

@@ -144,6 +144,14 @@ $(document).ready(function() {
 	//打印面数
 	$(".face").change(function() {
 		var isTwoSides = $(this).find("option:selected").text();
+		isTwoSides = isTwoSides.replace(/[\r\n]/g,"");
+		isTwoSides = isTwoSides.split(' ').join('');
+		if(isTwoSides == "单面") {
+			isTwoSides = "NO";
+		}
+		else {
+			isTwoSides = "YES";
+		}
 		var parent = $(this).parent().parent();
 		var filePages = parseInt(parent.find(".row-3").text());
 		var md5 = parent.attr("data-md5");
@@ -152,6 +160,8 @@ $(document).ready(function() {
 			isTwoSides: isTwoSides
 		};
 		var size = parent.find(".size").find("option:selected").text(); //获取大小
+		size = size.replace(/[\r\n]/g,"");
+		size = size.split(' ').join('');
 		var amout = parent.find(".amout").val(); //获取打印份数
 		countMoney(amout, size, isTwoSides, filePages, parent);
 		sendMsg(data, "单双面");
@@ -160,6 +170,14 @@ $(document).ready(function() {
 	//打印大小
 	$(".size").change(function() {
 		var itSize = $(this).find("option:selected").text();
+		itSize = itSize.replace(/[\r\n]/g,"");
+		itSize = itSize.split(' ').join('');
+		if(itSize == "A4") {
+			itSize = "A4";
+		}
+		else {
+			itSize = "B4";
+		}
 		var parent = $(this).parent().parent();
 		var filePages = parseInt(parent.find(".row-3").text());
 		var md5 = parent.attr("data-md5");
@@ -168,6 +186,8 @@ $(document).ready(function() {
 			paperSize: itSize
 		};
 		var sides = parent.find(".face").find("option:selected").text(); //获取单双面
+		sides = sides.replace(/[\r\n]/g,"");
+		sides = sides.split(' ').join('');
 		var amout = parent.find(".amout").val(); //获取打印份数
 		countMoney(amout, itSize, sides, filePages, parent);
 		sendMsg(data, "大小");
@@ -179,7 +199,11 @@ $(document).ready(function() {
 		var filePages = parseInt(parent.find(".row-3").text());
 		var md5 = parent.attr("data-md5");
 		var size = parent.find(".size").find("option:selected").text();
+		size = size.replace(/[\r\n]/g,"");
+		size = size.split(' ').join('');
 		var isTwoSide = parent.find(".face").find("option:selected").text();
+		isTwoSide = isTwoSide.replace(/[\r\n]/g,"");
+		isTwoSide = isTwoSide.split(' ').join('');
 		var amout = $(this).val();
 		var data = {};
 		amout = parseInt(amout);
@@ -202,6 +226,14 @@ $(document).ready(function() {
 		var parent = $(this).parent().parent();
 		var md5 = parent.attr("data-md5");
 		var direction = $(this).find("option:selected").text();
+		direction = direction.replace(/[\r\n]/g,"");
+		direction = direction.split(' ').join('');
+		if(direction == "横") {
+			direction = "horizontal";
+		}
+		else {
+			direction = "vertical";
+		}
 		var data = {
 			fileMD5: md5,
 			direction: direction
@@ -214,6 +246,7 @@ $(document).ready(function() {
 		var parent = $(this).parent().parent();
 		var md5 = parent.attr("data-md5");
 		var pptPerPage = $(this).find("option:selected").text();
+		pptPerPage = parseInt(pptPerPage);
 		var data = {
 			fileMD5: md5,
 			pptPerPage: pptPerPage
@@ -226,6 +259,10 @@ $(document).ready(function() {
 		var parent = $(this).parent().parent();
 		var md5 = parent.attr("data-md5");
 		var remark = $(this).val();
+		if(remark.length > 100) {
+			$(this).val("");
+			showError("请不要输入超过100个字符");
+		}
 		var data = {
 			fileMD5: md5,
 			remark: remark
