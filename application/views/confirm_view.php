@@ -82,7 +82,7 @@
 					<select class="face" class="row-3">
                         <option value="单面" <?php if ($item['isTwoSides'] == "NO"){ echo 'SELECTED';}?> >单面
                         </option>
-                        <option value="双面" <?php if ($item['isTwoSides'] == "YSE"){ echo 'SELECTED';}?> >双面
+                        <option value="双面" <?php if ($item['isTwoSides'] == "YES"){ echo 'SELECTED';}?> >双面
                         </option>
                     </select>
 				</span>
