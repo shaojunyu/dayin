@@ -239,7 +239,30 @@ class Api extends CI_Controller{
         }else{
             $this->echo_msg(false,'删除失败，稍后重试');
         }
+    }
 
+    public function printSettings(){
+        $this->check_post_data(array('fileMD5'));
+        $this->load->model('Cart_model','Cart');
+        if (isset($this->post_data->paperSize)){
+            $res = $this->Cart->printSettings($this->post_data->fileMD5,'paperSize',$this->post_data->paperSize);
+        }elseif (isset($this->post_data->isTwoSides)){
+            $res = $this->Cart->printSettings($this->post_data->fileMD5,'isTwoSides',$this->post_data->isTwoSides);
+        }elseif (isset($this->post_data->amout)){
+            $res = $this->Cart->printSettings($this->post_data->fileMD5,'amout',$this->post_data->amout);
+        }elseif (isset($this->post_data->pptPerPage)){
+            $res = $this->Cart->printSettings($this->post_data->fileMD5,'pptPerPage',$this->post_data->pptPerPage);
+        }elseif (isset($this->post_data->direction)) {
+            $res = $this->Cart->printSettings($this->post_data->fileMD5, 'direction', $this->post_data->direction);
+        }elseif (isset($this->post_data->remark)){
+            $res = $this->Cart->printSettings($this->post_data->fileMD5,'remark',$this->post_data->remark);
+        }
+
+        if ($res){
+            $this->echo_msg(true,'修改成功');
+        }else{
+            $this->echo_msg(false,'修改失败');
+        }
     }
 /*
  * ----------------------------------------------------------------------------------------
