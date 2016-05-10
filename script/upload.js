@@ -305,7 +305,7 @@ function addFile(filename, size) {
     var parent = document.querySelector(".scroll-bar");
     newelem.setAttribute("data-md5", newElem[filename][1]);
     newelem.className = str;
-    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + ' 大小：' + size + 'kb</p>' + '<i></i>';    
+    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + '</p>' + '<i></i>';    
     parent.insertBefore(newelem, next);
     addDelEvent(newelem);
 }
@@ -327,6 +327,7 @@ function addDelEvent(elem) {
             data: JSON.stringify(data),
             success: function(data) {
                 self.parent().remove();
+                showError("删除成功");
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 showError("删除失败");
