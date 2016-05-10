@@ -14,6 +14,7 @@ class Confirm extends CI_Controller{
         if (!$this->session->userdata('cellphone')){
             header('Location: '.base_url());
         }
+
     }
 
     public function index(){

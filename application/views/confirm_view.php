@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>九九打印</title>
+    <title>九九打印-打印设定</title>
     <link rel="stylesheet" href="css/printList.css">
 </head>
 <body>
@@ -42,168 +42,89 @@
                 <span class="row-7">大小</span>
                 <span class="row-8">单价</span>
                 <span class="row-9">份数</span>
-                <span class="row-10">总价</span>
+                <span class="row-10">小计</span>
                 <span class="row-11">备注</span>
                 <span class="row-12">操作</span>
             </div>
         </div>
 
         <div class="scroll-box">
-            <div data-md5="1">
-                <span class="row-1">1</span>
-                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
-                <span class="row-3">4</span>
+            <?php
+
+    $this->db->where('cellphone',$this->session->userdata('cellphone'));
+    $res = $this->db->get('cart')->result_array();
+            if (count($res) == 0){
+                header('Location: '.base_url('/upload'));
+                return;
+            }
+            $i = 1;
+    foreach ($res as $item) {
+        if (strripos($item['fileName'], '.doc')) {
+            $class = 'word';
+        } elseif (strripos($item['fileName'], '.ppt')) {
+            $class = 'ppt';
+        } else {
+            $class = 'ppt';
+        }
+
+        $this->db->where('fileMD5',$item['fileMD5']);
+        $r = $this->db->get('file_info')->result_array();
+        $r = $r[0];
+        //$r = $r[0];
+        $pages = $r['pages'];
+        ?>
+        <div data-md5="<?php echo $item['fileMD5']; ?>">
+            <span class="row-1"><?php echo $i; ?></span>
+            <span class="row-2 <?php echo $class; ?>"
+                  title="<?php echo $item['fileName']; ?>"><?php echo $item['fileName']; ?></span>
+            <span class="row-3"><?php echo $pages;  ?></span>
 				<span class="row-4">
 					<select class="face" class="row-3">
-                        <option value="单面">单面</option>
-                        <option value="双面">双面</option>
+                        <option value="单面" <?php if ($item['isTwoSides'] == "NO"){ echo 'SELECTED';}?> >单面
+                        </option>
+                        <option value="双面" <?php if ($item['isTwoSides'] == "YSE"){ echo 'SELECTED';}?> >双面
+                        </option>
                     </select>
 				</span>
 				<span class="row-5">
 					<select class="direction">
-                        <option value="横">横</option>
-                        <option value="竖">竖</option>
+                        <option value="horizontal" <?php if ($item['direction'] == 'horizontal') {
+                            echo 'SELECTED';
+                        } ?> >横
+                        </option>
+                        <option value="vertical" <?php if ($item['direction'] == 'vertical') {
+                            echo 'SELECTED';
+                        } ?> >竖
+                        </option>
                     </select>
 				</span>
 				<span class="row-6">
+                    <?php if ($class == 'ppt'){ ?>
 					<select class="page-num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <option value="1" <?php if ($item['pptPerPage']== 1 ){ echo 'SELECTED'; }?> >1</option>
+                        <option value="4" <?php if ($item['pptPerPage']== 4 ){ echo 'SELECTED'; }?> >4</option>
+                        <option value="6" <?php if ($item['pptPerPage']== 6 ){ echo 'SELECTED'; }?> >6</option>
+                        <option value="9" <?php if ($item['pptPerPage']== 9 ){ echo 'SELECTED'; }?> >9</option>
                     </select>
+                    <?php }else{ echo '\\';}?>
 				</span>
 				<span class="row-7">
 					<select class="size">
-                        <option value="A4">A4</option>
-                        <option value="B4">B4</option>
+                        <option value="A4" <?php if ($item['paperSize']== 'A4' ){ echo 'SELECTED'; }?> >A4</option>
+                        <option value="B4" <?php if ($item['paperSize']== 'B4' ){ echo 'SELECTED'; }?> >B4</option>
                     </select>
 				</span>
-                <span class="row-8">0.1</span>
-                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
-                <span class="row-10">0.1</span>
-                <span class="row-11"><input type="text" class="remark"></span>
-                <span class="row-12">删除</span>
-            </div>
-
-            <div data-md5="2">
-                <span class="row-1">2</span>
-                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
-                <span class="row-3">4</span>
-                <span class="row-4">
-                    <select class="face" class="row-3">
-                        <option value="单面">单面</option>
-                        <option value="双面">双面</option>
-                    </select>
-                </span>
-                <span class="row-5">
-                    <select class="direction">
-                        <option value="横">横</option>
-                        <option value="竖">竖</option>
-                    </select>
-                </span>
-                <span class="row-6">
-                    <select class="page-num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </span>
-                <span class="row-7">
-                    <select class="size">
-                        <option value="A4">A4</option>
-                        <option value="B4">B4</option>
-                    </select>
-                </span>
-                <span class="row-8">0.1</span>
-                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
-                <span class="row-10">0.1</span>
-                <span class="row-11"><input type="text" class="remark"></span>
-                <span class="row-12">删除</span>
-            </div>
-
-            <div data-md5="3">
-                <span class="row-1">3</span>
-                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
-                <span class="row-3">4</span>
-                <span class="row-4">
-                    <select class="face" class="row-3">
-                        <option value="单面">单面</option>
-                        <option value="双面">双面</option>
-                    </select>
-                </span>
-                <span class="row-5">
-                    <select class="direction">
-                        <option value="横">横</option>
-                        <option value="竖">竖</option>
-                    </select>
-                </span>
-                <span class="row-6">
-                    <select class="page-num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </span>
-                <span class="row-7">
-                    <select class="size">
-                        <option value="A4">A4</option>
-                        <option value="B4">B4</option>
-                    </select>
-                </span>
-                <span class="row-8">0.1</span>
-                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
-                <span class="row-10">0.1</span>
-                <span class="row-11"><input type="text" class="remark"></span>
-                <span class="row-12">删除</span>
-            </div>
-
-            <div data-md5="4">
-                <span class="row-1">4</span>
-                <span class="row-2 word" title="dansjudnasnxdasubcasbc.doc">dansjudnasnxdasubcasbc.doc</span>
-                <span class="row-3">4</span>
-                <span class="row-4">
-                    <select class="face" class="row-3">
-                        <option value="单面">单面</option>
-                        <option value="双面">双面</option>
-                    </select>
-                </span>
-                <span class="row-5">
-                    <select class="direction">
-                        <option value="横">横</option>
-                        <option value="竖">竖</option>
-                    </select>
-                </span>
-                <span class="row-6">
-                    <select class="page-num">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </span>
-                <span class="row-7">
-                    <select class="size">
-                        <option value="A4">A4</option>
-                        <option value="B4">B4</option>
-                    </select>
-                </span>
-                <span class="row-8">0.1</span>
-                <span class="row-9"><input type="text" class="amout" placeholder="1"></span>
-                <span class="row-10">0.1</span>
-                <span class="row-11"><input type="text" class="remark"></span>
-                <span class="row-12">删除</span>
-            </div>
+            <span class="row-8">0.1</span>
+            <span class="row-9"><input type="text" class="amout" placeholder="<?php echo $item['amout']; ?>"></span>
+            <span class="row-10">0.1</span>
+            <span class="row-11"><input type="text" class="remark"></span>
+            <span class="row-12">删除</span>
+        </div>
+        <?php
+        $i++;
+        }
+            //end foreach
+            ?>
             <div class="add"><a href="upload">继续添加文件</a></div>
         </div>
 
