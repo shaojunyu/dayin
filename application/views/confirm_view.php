@@ -115,7 +115,7 @@
                     </select>
 				</span>
             <span class="row-8">0.1</span>
-            <span class="row-9"><input type="text" class="amout" placeholder="<?php echo $item['amout']; ?>"></span>
+            <span class="row-9"><input type="text" class="amout" placeholder="<?php echo $item['amount']; ?>"></span>
             <span class="row-10">0.1</span>
             <span class="row-11"><input type="text" class="remark"></span>
             <span class="row-12">删除</span>
