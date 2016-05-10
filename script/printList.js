@@ -31,7 +31,7 @@ function countMoney(amout, size, isTwoSide, filePages, parent) {
 		per = perMoney[2];
 	}
 	total *= filePages;
-	total = total.toFixed(2);
+	total = total.toFixed(3);
 	parent.find(".row-10").text(total);
 	parent.find(".row-8").text(per);
 	shipment(total);
@@ -132,11 +132,19 @@ $(document).ready(function() {
 	});
 
 	//初始总价计算
+	var divClass = document.querySelectorAll(".scroll-box div");
 	var row_3 = $(".scroll-box div .row-3");
 	for(var i = 0; i < row_3.length; i++) {
 		var pages = parseInt(row_3[i].innerHTML);
-		pages *= 0.1;
-		pages = pages.toFixed(2);
+		if(divClass[i].className == "ppt") {
+			var pptPerPage = $(this).find("option:selected").text();
+			pptPerPage = parseInt(pptPerPage);
+			pages = Math.ceil(pages / pptPerPage);
+			console.log(pages);
+		}
+		pages /= 2;
+		pages *= 0.15;
+		pages = pages.toFixed(3);
 		row_3[i].parentNode.querySelector(".row-10").innerHTML = pages;
 	}
 
@@ -215,7 +223,7 @@ $(document).ready(function() {
 			countMoney(amout, size, isTwoSide, filePages, parent);
 			data = {
 				fileMD5: md5,
-				amout: amout
+				amout: amount
 			};
 			sendMsg(data, "份数");
 		}
@@ -262,6 +270,7 @@ $(document).ready(function() {
 		if(remark.length > 100) {
 			$(this).val("");
 			showError("请不要输入超过100个字符");
+			return;
 		}
 		var data = {
 			fileMD5: md5,

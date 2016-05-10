@@ -126,7 +126,8 @@ var uploader = new plupload.Uploader({
     filters: {
       mime_types : [ //只允许上传图片和zip文件
         { title : "Word files", extensions : "doc,docx" }, 
-        { title : "PPT files", extensions : "ppt,pptx" }
+        { title : "PPT files", extensions : "ppt,pptx" },
+        { title : "PDF files", extensions : "pdf" }
       ],
       max_file_size : '50mb', //最大只能上传50mb的文件
       prevent_duplicates : true //不允许选取重复文件
