@@ -59,36 +59,6 @@ function shipment(total) {
 
 //改变参数时发送Ajax请求
 function sendMsg(data, str) {
-	if(str == "删除") {
-		$.ajax({
-			url:"./api/deleteItem",
-		    contentType:"application/json",
-		    dataType:"json",
-		    type:"POST",
-		    data:JSON.stringify(data),
-		    success:function(data) {
-		    	if(data.success) {
-					var md5 = data.fileMD5;
-					var allDiv = document.querySelectorAll(".scroll-box div");
-					var data_md5;
-					for(var i = 0; i < allDiv.length; i++) {
-						data_md5 = allDiv[i].getAttribute("data-md5"); 
-						if(md5 == data_md5) {
-							removeC(allDiv[i]);
-							reSort();
-						}
-					}
-				}
-		   		else {
-		       		showError(data.msg);
-		    	}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown){
-				showError("删除失败");
-			}
-		});
-		return;
-	}
 	$.ajax({
 		url:"./api/printSettings",
 	    contentType:"application/json",
@@ -321,7 +291,7 @@ $(document).ready(function() {
 		var data = {
 			fileMD5: md5
 		};
-		sendMsg(data, "删除");
+		delMsg(data);
 	});
 
 	//设置div滚动条样式
@@ -339,3 +309,36 @@ $(document).ready(function() {
 	    disableFadeOut: false //是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
 	});
 });
+
+//删除
+function delMsg(Data) {
+	$.ajax({
+		url:"./api/deleteItem",
+	    contentType:"application/json",
+	    dataType:"json",
+	    type:"POST",
+	    data:JSON.stringify(Data),
+	    success:function(data) {
+	    	if(data.success) {
+				var md5 = Data.fileMD5;
+				var allDiv = document.querySelectorAll(".scroll-box div");
+				var data_md5;
+				for(var i = 0; i < allDiv.length; i++) {
+					(function(m){
+						var i = m;
+						if(md5 == allDiv[i].getAttribute("data-md5")) {
+							removeC(allDiv[i]);
+							reSort();
+						}
+					})(i);
+				}
+	    	}
+	   		else {
+	        	showError(data.msg);
+	        }
+	    },
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			showError("删除失败");
+		}
+	});
+}
