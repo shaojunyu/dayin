@@ -206,6 +206,9 @@ var uploader = new plupload.Uploader({
                             showError("上传成功");
                         }
                         else {
+                            addFile(file.name, file.size);
+                            removeC(newElem[file.name][0]);
+                            delete newElem[file.name];
                             showError(data.msg);
                         }
                     },
@@ -316,9 +319,11 @@ function addDelEvent(elem) {
     addHandler(i, "click", function() {
         console.log("click");
         var self = $(this);
+        console.log(self);
         var md5 = $(this).parent().attr("data-md5");
         console.log(md5);
         var data = {fileMD5: md5};
+        console.log(data);
         $.ajax({
             url: "./api/deleteItem",
             contentType: "application/json",
@@ -335,3 +340,15 @@ function addDelEvent(elem) {
         });
     });
 }
+
+$(document).ready(function() {
+    var uploadBox = document.querySelector(".scroll-bar");
+    var uploadFile = uploadBox.querySelectorAll("div");
+    console.log(uploadFile);
+    if(uploadFile) {
+        var len = uploadFile.length;
+        for(var i = 0; i < len; i++) {
+            addDelEvent(uploadFile[i]);
+        }
+    }
+});
