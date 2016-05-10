@@ -90,7 +90,7 @@ class Cart_model extends CI_Model{
                 }
                 break;
 
-            case 'amout':
+            case 'amount':
                 if ($setting_value > 0){
                     $this->db->where('cellphone',$this->session->userdata('cellphone'));
                     $this->db->where('fileMD5',$fileMD5);

@@ -244,12 +244,13 @@ class Api extends CI_Controller{
     public function printSettings(){
         $this->check_post_data(array('fileMD5'));
         $this->load->model('Cart_model','Cart');
+        $res = false;
         if (isset($this->post_data->paperSize)){
             $res = $this->Cart->printSettings($this->post_data->fileMD5,'paperSize',$this->post_data->paperSize);
         }elseif (isset($this->post_data->isTwoSides)){
             $res = $this->Cart->printSettings($this->post_data->fileMD5,'isTwoSides',$this->post_data->isTwoSides);
-        }elseif (isset($this->post_data->amout)){
-            $res = $this->Cart->printSettings($this->post_data->fileMD5,'amout',$this->post_data->amout);
+        }elseif (isset($this->post_data->amount)){
+            $res = $this->Cart->printSettings($this->post_data->fileMD5,'amount',$this->post_data->amount);
         }elseif (isset($this->post_data->pptPerPage)){
             $res = $this->Cart->printSettings($this->post_data->fileMD5,'pptPerPage',$this->post_data->pptPerPage);
         }elseif (isset($this->post_data->direction)) {
