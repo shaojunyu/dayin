@@ -33,15 +33,29 @@
 <div class="myself-wrap clearfix">
     <div class="upload-box">
         <div class="scroll-bar clearfix">
-            <div class="word" data-md5="">
-                <p>abdsbsa.doc</p>
-                <p>上传时间：2016/4/26 23:59 大小：300kb</p>
+    <?php
+    $this->db->where('cellphone',$this->session->userdata('cellphone'));
+    $res = $this->db->get('cart')->result_array();
+    foreach ($res as $item){
+        if (strripos($item['fileName'],'.doc')){
+            $class = 'word';
+        }elseif (strripos($item['fileName'],'.ppt')){
+            $class = 'ppt';
+        }else{
+            $class = 'ppt';
+        }
+        //var_dump($item);
+    ?>
+
+            <div class="<?php echo $class;?>" data-md5="<?php echo $item['fileMD5'];?>">
+                <p><?php echo $item['fileName'];?></p>
+                <p>上传时间：<?php echo $item['createAt'];?></p>
                 <i></i>
             </div>
+<?php    }?>
             <p class="continue-add" id="file"><span id="ul">上传文件</span></p>
         </div>
     </div>
-
     <div class="mystore clearfix">
         <p class="search-box">
             <input type="text" class="search" placeholder="输入文库号查找文库">
