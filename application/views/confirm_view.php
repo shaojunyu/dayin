@@ -189,7 +189,7 @@
                 <input type="text" class="phone" placeholder="联系电话">
             </div>
 
-            <input type="button" class="pay" value="生成订单">
+            <input type="button" class="pay" value="提交订单">
         </div>
     </div>
 </div>

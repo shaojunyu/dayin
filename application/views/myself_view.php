@@ -26,6 +26,11 @@
     </nav>
 </header>
 
+<div class="cover"></div> <!-- 背景模糊遮罩 -->
+<div id="pay">
+    
+</div>
+
 <div class="prompt-box"></div> <!-- 表单错误提示框 -->
 
 <div class="container clearfix">
