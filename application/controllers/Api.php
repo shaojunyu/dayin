@@ -312,7 +312,12 @@ class Api extends CI_Controller{
      */
     public function createOrder(){
         $this->needSession();
-        $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
+        if($this->post_data->deliveryMode == 'self'){
+            $this->check_post_data(array('shop','total'));
+        }else{
+            $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
+        }
+
 
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $res = $this->db->get('cart')->result_array();
