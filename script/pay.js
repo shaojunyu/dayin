@@ -6,6 +6,16 @@ function showError(message) {
 	promptBox.style.top = "-80px";
 }
 
+//加密函数
+function secret(url) {
+	var date = new Date();
+	var seconds = Math.round(date.getTime()/1000);
+	var md5_str = seconds + "99dayin.com";
+	md5_str = calcMD5(md5_str);
+	url += "?time=" + seconds + "&token=" + md5_str;
+	return url;
+}
+
 $(document).ready(function() {
 	setTimeout(function loop() {
 		var order_id = document.querySelector(".trade-r").innerHTML;
@@ -19,8 +29,11 @@ $(document).ready(function() {
 		    success:function(data) {
 		        if(data.success) {
 		            showError("支付成功，请关闭当前页面");
-		            window.close();
-		            document.close();
+		            setTimeout(function() {
+			            window.close();
+			            document.close();
+			            showError("支付成功，请关闭当前页面");
+			        }, 2000);
 		        }else {
 		            //
 		        }
