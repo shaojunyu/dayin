@@ -361,6 +361,39 @@ class Api extends CI_Controller{
         $this->db->update('order',array('state'=>'CANCELED'));
         $this->echo_msg(true,'');
     }
+
+    /**
+     * function copyOrder 加印订单
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function copyOrder(){
+        $this->needSession();
+        $this->check_post_data(array('orderId'));
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->where('Id',$this->post_data->orderId);
+        $res = $this->db->get('order')->result_array();
+        if (count($res) == 1){
+            $res = $res[0];
+            $this->db->insert('order',array(
+                'cellphone'=>$res['cellphone'],
+                'shop'=>$res['shop'],
+                'area'=>$res['area'],
+                'buildingNum'=>$res['buildingNum'],
+                'roomNum'=>$res['roomNum'],
+                'receiver'=>$res['receiver'],
+                'receiverPhone'=>$res['receiverPhone'],
+                'deliveryMode'=>$res['deliveryMode'],
+                'total'=>$res['total'],
+                'state'=>'UNPAID',
+                'content'=>$res['content']
+            ));
+            $this->echo_msg(true,false);
+        }else{
+            $this->echo_msg(false,false);
+        }
+    }
 /*
  * ----------------------------------------------------------------------------------------
  * 以下是private函数，供本类调用
