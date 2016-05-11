@@ -290,18 +290,25 @@ class Api extends CI_Controller{
         $this->db->where('fileMD5',$this->post_data->fileMD5);
         $res = $this->db->get('file_info')->result_array();
         if (count($res) == 0){
-            $this->echo_msg(true,'文件正在解析中');
+            $this->echo_msg(true,'processing');
         }else{
             $res = $res[0];
             $pages = $res['pages'];
             if ($pages == 0){
-                $this->echo_msg(true,'文件解析失败，请检查后重新上传');
+                $this->echo_msg(true,'fail');
             }else{
-                $this->echo_msg(true,'文件解析完成');
+                $this->echo_msg(true,'done');
             }
         }
     }
 
+    /**
+     * function createOrder 创建订单
+     *
+     * @param
+     * @return
+     * @author yushaojun
+     */
     public function createOrder(){
         $this->needSession();
         $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
@@ -327,7 +334,7 @@ class Api extends CI_Controller{
             'receiverPhone'=>$this->post_data->receiverPhone,
             'deliveryMode'=>$this->post_data->deliveryMode,
             'total'=>$total,
-            'state'=>'UNPAID',
+            'state.UNPAID'=>date('Y-m-d H:i:s'),
             'content'=>json_encode($res)
         ));
 
@@ -337,6 +344,22 @@ class Api extends CI_Controller{
 
         $this->echo_msg(true,'');
         //var_dump($this->post_data);
+    }
+
+    /**
+     * function cancelOrder 取消订单
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function cancelOrder(){
+    	$this->needSession();
+    	$this->check_post_data(array('orderId'));
+        $this->db->where('Id',$this->post_data->orderId);
+        $this->db->where('state.PAID',null);
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->update('order',array('state'=>'CANCELED'));
+        $this->echo_msg(true,'');
     }
 /*
  * ----------------------------------------------------------------------------------------
@@ -350,7 +373,7 @@ class Api extends CI_Controller{
      * @return
      * @author yushaojun
      */
-    public function needSession(){
+    private function needSession(){
         if ( $this->session->userdata('cellphone') == null ){
             exit('api false');
         }else{

@@ -27,4 +27,5 @@ class orderState{
     const PRINTED = 'PRINTED';
     const DELIVERING = 'DELIVERING';
     const DONE = 'DONE';
+    const CANCELED = 'CANCELED';
 }
