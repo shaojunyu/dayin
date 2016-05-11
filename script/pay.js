@@ -18,17 +18,17 @@ function secret(url) {
 
 $(document).ready(function() {
 	setTimeout(function loop() {
-		var order_id = document.querySelector(".trade-r").innerHTML;
+		var order_id = document.querySelector(".order-num span").innerHTML;
 		order_id = {orderId: order_id};
 		$.ajax({
-			url: "./api/isPaid",
+			url: secret("./api/isPaid"),
 		    type: "POST",
 		    contentType:"application/json",
 		    dataType:"json",
 		    data: JSON.stringify(order_id),
 		    success:function(data) {
 		        if(data.success) {
-		            showError("支付成功，请关闭当前页面");
+		            showError("支付成功，当前页面即将关闭");
 		            setTimeout(function() {
 			            window.close();
 			            document.close();

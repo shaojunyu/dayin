@@ -19,7 +19,7 @@
         <p class="money">￥<?php echo $charge->__toArray()['amount'] / 100;?></p>
         <hr />
         <p class="online">99打印在线支付</p>
-        <p class="order-num">订单编号：<?php echo $orderId;?></p>
+        <p class="order-num">订单编号：<span><?php echo $orderId;?></span></p>
         <hr />
         <p class="trade clearfix">
             <span class="trade-l">交易单号</span>
@@ -37,6 +37,7 @@
     &copy;武汉巧然电子科技有限公司
 </footer>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/md5.js"></script>
 <script type="text/javascript" src="script/pay.js"></script>
 </body>
 </html>

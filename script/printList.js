@@ -8,35 +8,15 @@ function showError(message) {
 	}, 2000);
 }
 
-//计算钱数
-/*function countMoney(amout, size, isTwoSide, filePages, parent) {
-	var total = 0;
-	var per = 0;
-	console.log(amout + size + isTwoSide);
-	if(!amout) {
-		amout = 1;
-	}
-	amout = parseInt(amout);
-	if(size == paperSizeArr[0]) {
-		if(isTwoSide == sidesArr[0]) {
-			total = amout * perMoney[0];
-			per = perMoney[0];	
-		}
-		else {
-			total = amout * perMoney[1];
-			per = perMoney[1];
-		}
-	}
-	else {
-		total = amout * perMoney[2];
-		per = perMoney[2];
-	}
-	total *= filePages;
-	total = total.toFixed(3);
-	parent.find(".row-10").text(total);
-	parent.find(".row-8").text(per);
-	//shipment(total);
-}*/
+//加密函数
+function secret(url) {
+	var date = new Date();
+	var seconds = Math.round(date.getTime()/1000);
+	var md5_str = seconds + "99dayin.com";
+	md5_str = calcMD5(md5_str);
+	url += "?time=" + seconds + "&token=" + md5_str;
+	return url;
+}
 
 //移除div
 function removeC(elem) {

@@ -219,6 +219,7 @@
     </footer>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/md5.js"></script>
 <script type="text/javascript" src="script/person.js"></script>
 </body>
 </html>
