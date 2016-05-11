@@ -35,8 +35,8 @@
         请选择支付方式~
     </div>
     <div class="wx-zfb">
-        <a class="wx" href="javascript:void(0)">微信支付</a>
-        <a class="zfb" href="javascript:void(0)">支付宝支付</a>
+        <a class="wx" target="_blank" href="javascript:void(0)">微信支付</a>
+        <a class="zfb" target="_blank" href="javascript:void(0)">支付宝支付</a>
     </div>
 </div>
 <div id="paying">

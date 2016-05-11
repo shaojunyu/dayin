@@ -105,7 +105,7 @@
     </div>
     <footer class="clearfix">
         <div class="footbox">
-            <p><a href="base.html" target="_blank">关于文库</a></p>
+            <p><a href="doc/base.html" target="_blank">关于文库</a></p>
             <p><a href="base.html" target="_blank">文库简介</a></p>
             <p><a href="base.html" target="_blank">使用说明</a></p>
             <p><a href="base.html" target="_blank">鼓励分享</a></p>
