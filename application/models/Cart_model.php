@@ -26,10 +26,18 @@ class Cart_model extends CI_Model{
         if ($this->db->affected_rows() == 1){
             return true;
         }else{
+            if (strripos($fileName, '.doc')) {
+                $pptPerPage = 1;
+            } elseif (strripos($fileName, '.ppt')) {
+                $pptPerPage = 6;
+            } else {
+                $pptPerPage = 1;
+            }
             $this->db->insert('cart',array(
                 'cellphone'=>$this->session->userdata('cellphone'),
                 'fileName'=>$fileName,
-                'fileMD5'=>$fileMD5
+                'fileMD5'=>$fileMD5,
+                'pptPerPage'=>$pptPerPage
             ));
             if ($this->db->affected_rows() == 1){
                 return true;
@@ -169,7 +177,7 @@ class Cart_model extends CI_Model{
             $price = 0;
             $sub_total = 0;
 
-            $paper_count =  (int)( ($item['pages'] + 1) / (($item['isTwoSides'] == 'YES') ? 2 : 1));
+            $paper_count =  ceil( $item['pages']  / $item['pptPerPage'] / (($item['isTwoSides'] == 'YES') ? 2 : 1));
             switch ($item['paperSize']){
                 case 'A4':
                     if ($item['isTwoSides'] == 'YES'){
@@ -190,7 +198,7 @@ class Cart_model extends CI_Model{
             $this->db->where('cellphone',$this->session->userdata('cellphone'));
             $this->db->where('fileMD5',$fileMD5);
             $this->db->update('cart',array('price'=>$price,'subTotal'=>$sub_total));
-            return array('price'=>$paper_count,'subTotal'=>$sub_total);
+            return array('price'=>$price,'subTotal'=>$sub_total);
         }else{
             return false;
         }
