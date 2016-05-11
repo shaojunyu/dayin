@@ -1,0 +1,453 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+html {
+	width: 100%;
+	height: 100%;
+}
+body {
+	width: 100%;
+	height: 100%;
+	min-width: 1340px;
+	font-size: 14px;
+	font-family: "Microsoft Yahei","微软雅黑",sans-serif;
+}
+a {
+	text-decoration: none;
+	color: #000;
+	outline: none;
+}
+ul, li {
+	list-style: none;
+}
+img {
+	border: 0;
+}
+/* 清浮动 */
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+	zoom: 1;
+}
+
+
+/* header */
+header {
+	width: 100%;
+	height: 70px;
+	min-width: 1340px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 111;
+	background-color: rgba(255,255,255,0.7);
+	-moz-box-shadow:0px 2px 5px #333333;
+	-webkit-box-shadow:0px 2px 5px #333333;
+	box-shadow:0px 2px 5px #333333;
+}
+header .logo {
+	display: inline-block;
+	height: 70px;
+	padding: 15px 0px;
+	margin-left: 6em;
+}
+header .logo:active {
+	color: #000;
+}
+.logo p, .logo img {
+	float: left;
+}
+.logo p {
+	color: rgba(0,0,0,0.6);
+	font-size: 1.428em;
+	line-height: 40px;
+	margin-left: 5px;
+}
+
+/* nav */
+nav {
+	float: right;
+	margin-right: 7em;
+}
+nav ul li {
+	float: left;
+	font-size: 1.5em;
+	margin-left: 1.667em;
+	height: 30px;
+	margin-top: 20px;
+}
+nav ul li a {
+	color: rgba(0,0,0,0.5);
+	display: inline-block;
+}
+nav ul li a:hover {
+	color: rgba(0,0,0,1);
+}
+nav ul li.person-box {
+	margin-top: 15px;
+	width: 150px;
+	height: 80px;
+}
+nav ul li.person-box a {
+	background-color: #0099ff;
+	color: #fff;
+	padding: 6px;
+}
+.so {
+	display: none;
+	margin-top: 0.6em;
+}
+nav ul li ul#sign-out li {
+	font-size: 1em;
+	margin: 2px 0px 0px 0px;
+	padding: 0;
+}
+
+/* prompt-box */
+.prompt-box {
+	width: 350px;
+	font-size: 1.4em;
+	height: 80px;
+	line-height: 80px;
+	background-color: #f69743;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 1px;
+	position: fixed;
+	top: -80px;
+	left: 50%;
+	margin-left: -175px;
+	z-index: 999;
+	transition: top 0.1s;
+}
+
+.word {
+	background: url(../images/spite.png) no-repeat;
+	background-position: 0 -435px;
+}
+.ppt {
+	background: url(../images/spite.png) no-repeat;
+	background-position: 3px -290px;
+}
+.pdf {
+	background: url(../images/spite.png) no-repeat;
+	background-position: 0 -245px;
+}
+
+
+.nav {
+	width: 320px;
+	margin: 50px auto;
+	padding-top: 50px;
+}
+.nav div {
+	width: 100;
+	background-color: #e0e0e0;
+	padding: 5px;
+	border-radius: 2em;
+}
+.nav div span {
+	display: inline-block;
+	float: left;
+	width: 50%;
+	font-size: 1.4em;
+	text-align: center;
+	color: #afafaf;
+	line-height: 34px;
+	cursor: pointer;
+}
+#clicked {
+	background-color: #0099ff;
+	border-radius: 2em;
+	color: #fff;
+}
+.myself-wrap {
+	width: 100%;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	background-color: rgba(255,255,255,0.7);
+	margin: 0px 0px 200px 0px;
+}
+.upload-box {
+	width: 65%;
+	margin: 0 auto;
+}
+.scroll-bar {
+	width: 100%;
+	height: 500px;
+	padding-left: 1%;
+}
+.scroll-bar div {
+	width: 48.5%;
+	height: 48px;
+	display: inline-block;
+	color: #336598;
+	position: relative;
+	padding-right: 35px;
+}
+.scroll-bar div.word, .scroll-bar div.ppt, .scroll-bar div.pdf {
+	padding-left: 40px;
+}
+.scroll-bar div:hover {
+	background-color: #acd6fe;
+}
+.scroll-bar div i {
+	width: 23px;
+	height: 23px;
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	background: url(../images/spite.png) no-repeat;
+	background-position: 0 -47px;
+	cursor: pointer;
+}
+.scroll-bar div p {
+	display: inline-block;
+	width: 100%;
+	float: left;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.scroll-bar div p:first-child {
+	font-size: 1.25em;
+	line-height: 25px;
+	cursor: pointer;
+}
+.scroll-bar div p:last-child {
+	font-size: 1em;
+	line-height: 23px;
+}
+.continue-add {
+	width: 55%;
+	margin: 10px auto;
+	text-align: center;
+	font-size: 1.4em;
+	line-height: 50px;
+	color: #fff;
+	cursor: pointer;
+	background-color: #7ab8f4;
+	border-radius: 10px;
+	letter-spacing: 2px;
+	outline: none;
+}
+#ul {
+	display: block;
+}
+.mystore {
+	width: 100%;
+	padding: 0px 2%;
+	height: 700px;
+	display: none;
+}
+.all-store, .folder, .file-list {
+	border-right: 1px solid #0099ff;
+	border-top: 1px solid #0099ff;
+	border-bottom: 1px solid #0099ff;
+	float: left;
+	height: 600px;
+}
+.all-store {
+	width: 15%;
+	border-left: 1px solid #0099ff;
+}
+.all-store p {
+	line-height: 50px;
+	font-size: 1.4em;
+	text-align: center;
+	cursor: pointer;
+	color: #336598;
+}
+.all-store p:first-child {
+	background-color: #0099ff;
+	color: #fff;
+}
+.folder {
+	width: 15%;
+}
+.folder p {
+	line-height: 45px;
+	font-size: 1.3em;
+	text-align: center;
+	cursor: pointer;
+	color: #336598;
+}
+.folder p:first-child {
+	background-color: #acd6fe;
+	color: #fff;
+}
+.file-list {
+	width: 70%;
+	padding: 1% 0.5%;
+}
+.file-list .file-scroll {
+	width: 100% !important;
+	float: none;
+}
+.file-scroll div:hover {
+	background-color: #acd6fe;
+}
+.file-scroll p {
+	display: inline-block;
+	width: 100%;
+	float: left;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.file-scroll div p:first-child {
+	font-size: 1.25em;
+	line-height: 25px;
+	cursor: pointer;
+}
+.file-scroll div p:last-child {
+	font-size: 1em;
+	line-height: 23px;
+}
+.file-list .file-scroll div {
+	width: 48.5%;
+	height: 48px;
+	display: inline-block;
+	color: #336598;
+	padding-left: 40px;
+	position: relative;
+	padding-right: 35px;
+}
+.file-scroll div i {
+	width: 23px;
+	height: 23px;
+	position: absolute;
+	top: 12px;
+	right: 10px;
+	cursor: pointer;
+}
+.file-scroll input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+}
+.mystore p.search-box {
+	text-align: right;
+	line-height: 30px;
+	padding-right: 50px;
+	margin: 0px 0px 15px 0px;
+}
+.search-box input {
+	font-family: "Microsoft Yahei", sans-serif;
+}
+.search {
+	border: 1px solid #0099ff;
+	font-size: 1.1em;
+	color: #0099ff;
+	height: 31px;
+	width: 200px;
+	vertical-align: middle;
+	text-indent: 3px;
+}
+.join {
+	background-color: #0099ff;
+	font-size: 1.2em;
+	color: #fff;
+	padding: 3px;
+	line-height: 25px;
+	border: 1px solid #0099ff;
+	border-radius: 3px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.to-order {
+	width: 55%;
+	margin: 10px auto;
+	text-align: center;
+	color: #fff;
+	background-color: #7ab8f4;
+	border: 1px solid #7ab8f4;
+	display: block;
+	font: normal 100 1.4em/50px "Microsoft Yahei", sans-serif;
+	padding: 0px 10px;
+	letter-spacing: 2px;
+	cursor: pointer;
+	border-radius: 5px;
+	outline: none;
+}
+
+
+
+
+/* footer */
+footer {
+	width: 100%;
+	position: relative;
+	margin-top: -180px;
+	min-height: 180px;
+	background-color: #333;
+	background-image: url(../images/bg-logo.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 18% 100%;
+}
+.footbox {
+	float: left;
+	width: 16%;
+	padding-top: 10px;
+}
+footer div:first-child {
+	margin-left: 20%;
+}
+.footbox p {
+	text-align: center;
+	line-height: 2em;
+}
+footer a {
+	color: #999;
+	font-size: 1.1em;
+}
+.footbox p:first-child a {
+	color: #fff;
+	font-size: 1.2em;
+}
+footer a:hover {
+	text-decoration: underline;
+}
+footer .ewm {
+	float: left;
+	width: 16%;
+	height: 100%;
+	padding-top: 1.3em;
+	padding-left: 1.3em;
+}
+.ewm img {
+	width: 55%;
+}
+.copyright {
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -9.9em;
+	color: #ccc;
+	line-height: 25px;
+	font-size: 0.9em;
+}
+
+
+@media screen and (min-width: 1500px) {
+	body {
+		font-size: 17px;
+	}
+}
+@media screen and (min-width: 2000px) {
+	body {
+		font-size: 19px;
+	}
+	.nav {
+		width: 400px;
+	}
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>九九打印</title>
-    <link rel="stylesheet" href="css/printList.css">
+    <link rel="stylesheet" href="css/upload.css">
 </head>
 <body>
 <header class="clearfix">
