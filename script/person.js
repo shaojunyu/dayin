@@ -79,6 +79,7 @@ $(document).ready(function() {
 
 	//支付框
 	var toPay = document.querySelectorAll(".toPay");
+	var cancel = document.querySelectorAll(".cancel");
 	var cover = document.querySelector(".cover");
 	var pay = document.querySelector("#pay");
 	var paying = document.querySelector("#paying");
@@ -138,6 +139,16 @@ $(document).ready(function() {
 		location.reload(true);
 	});
 
+	//取消订单
+	var cancel_len = 0;
+	if(cancel) {
+		cancel_len = cancel.length;
+	}
+	for(var i = 0; i < cancel_len; i++) {
+		addHandler(cancel[i], "click", function() { //给每一个去付款添加点击事件
+			
+		});
+	}
 
 
 	//设置div滚动条样式

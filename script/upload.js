@@ -13,6 +13,9 @@ g_object_name_type = ''
 now = timestamp = Date.parse(new Date()) / 1000; 
 
 var newElem = {};
+var file_status = ["processing", "failed", "done"];
+var status_list = [];
+
 
 function get_signature()
 {
@@ -318,13 +321,9 @@ function addFile(filename, size) {
 function addDelEvent(elem) {
     var i = elem.querySelector("i");
     addHandler(i, "click", function() {
-        console.log("click");
         var self = $(this);
-        console.log(self);
         var md5 = $(this).parent().attr("data-md5");
-        console.log(md5);
         var data = {fileMD5: md5};
-        console.log(data);
         $.ajax({
             url: "./api/deleteItem",
             contentType: "application/json",
@@ -345,11 +344,47 @@ function addDelEvent(elem) {
 $(document).ready(function() {
     var uploadBox = document.querySelector(".scroll-bar");
     var uploadFile = uploadBox.querySelectorAll("div");
-    console.log(uploadFile);
     if(uploadFile) {
         var len = uploadFile.length;
         for(var i = 0; i < len; i++) {
             addDelEvent(uploadFile[i]);
         }
     }
+
+    //文件解析
+    
+    setTimeout(function loop() { //隔1s轮询一次
+        if(status_list.length) {
+            status_list[0]
+            
+
+            var status;
+            $.ajax({
+                url: './api/getProgess',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(status),
+                dataType: 'json',
+                success: function(data) {
+                    if(data.msg == file_status[1]){
+                        showError("解析失败");
+                    }
+                    else if(data.msg == file_status[2]) {
+                        showError("解析成功");
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    showError("请求失败，请刷新重试");
+                }
+            });
+        }
+        setTimeout(loop, 1000);
+    }, 1000);
+
+
+    //去下单
+    $(".to-order").click(function() {
+
+    });
+
 });

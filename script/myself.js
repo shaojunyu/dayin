@@ -60,7 +60,6 @@ $(document).ready(function() {
 	var del = document.querySelectorAll(".scroll-bar i");
 	for(var i = 0; i < del.length; i++) {
 		addHandler(del[i], "click", function() {
-			console.log("click");
 			var md5 = $(this).attr("data-md5");
 			var data = {fileMD5: md5};
 			$.ajax({
@@ -70,7 +69,6 @@ $(document).ready(function() {
 	        	type: "POST",
 	        	data: JSON.stringify(data),
 	        	success: function(data) {
-	        		console.log(data);
 	        		$(this).remove();
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -79,15 +77,6 @@ $(document).ready(function() {
 			});
 		});
 	}
-
-	//文件解析
-	
-
-
-	//去下单
-	$(".to-order").click(function() {
-
-	});
 
 
 	//设置div滚动条样式

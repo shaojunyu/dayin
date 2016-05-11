@@ -47,7 +47,7 @@
         //var_dump($item);
     ?>
 
-            <div class="<?php echo $class;?>" data-md5="<?php echo $item['fileMD5'];?>">
+            <div class="<?php echo $class;?>" data-status="processing" data-md5="<?php echo $item['fileMD5'];?>">
                 <p><?php echo $item['fileName'];?></p>
                 <p>上传时间：<?php echo $item['createAt'];?></p>
                 <i></i>
