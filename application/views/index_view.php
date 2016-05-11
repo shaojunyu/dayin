@@ -106,27 +106,27 @@
     <footer class="clearfix">
         <div class="footbox">
             <p><a href="doc/base.html" target="_blank">关于文库</a></p>
-            <p><a href="base.html" target="_blank">文库简介</a></p>
-            <p><a href="base.html" target="_blank">使用说明</a></p>
-            <p><a href="base.html" target="_blank">鼓励分享</a></p>
+            <p><a href="doc/base.html" target="_blank">文库简介</a></p>
+            <p><a href="doc/base.html" target="_blank">使用说明</a></p>
+            <p><a href="doc/base.html" target="_blank">鼓励分享</a></p>
         </div>
         <div class="footbox">
-            <p><a href="orderServe.html" target="_blank">订单服务</a></p>
-            <p><a href="orderServe.html" target="_blank">购买指南</a></p>
-            <p><a href="orderServe.html" target="_blank">支付方式</a></p>
-            <p><a href="orderServe.html" target="_blank">送货政策</a></p>
+            <p><a href="doc/orderServe.html" target="_blank">订单服务</a></p>
+            <p><a href="doc/orderServe.html" target="_blank">购买指南</a></p>
+            <p><a href="doc/orderServe.html" target="_blank">支付方式</a></p>
+            <p><a href="doc/orderServe.html" target="_blank">送货政策</a></p>
         </div>
         <div class="footbox">
-            <p><a href="company.html" target="_blank">关于公司</a></p>
-            <p><a href="company.html" target="_blank">公司简介</a></p>
-            <p><a href="company.html" target="_blank">加入我们</a></p>
-            <p><a href="company.html" target="_blank">联系我们</a></p>
+            <p><a href="doc/company.html" target="_blank">关于公司</a></p>
+            <p><a href="doc/company.html" target="_blank">公司简介</a></p>
+            <p><a href="doc/company.html" target="_blank">加入我们</a></p>
+            <p><a href="doc/company.html" target="_blank">联系我们</a></p>
         </div>
         <div class="footbox">
-            <p><a href="aboutUs.html" target="_blank">关于我们</a></p>
-            <p><a href="aboutUs.html" target="_blank">新浪微博</a></p>
-            <p><a href="aboutUs.html" target="_blank">官方微博</a></p>
-            <p><a href="aboutUs.html" target="_blank">官方贴吧</a></p>
+            <p><a href="doc/aboutUs.html" target="_blank">关于我们</a></p>
+            <p><a href="doc/aboutUs.html" target="_blank">新浪微博</a></p>
+            <p><a href="doc/aboutUs.html" target="_blank">官方微博</a></p>
+            <p><a href="doc/aboutUs.html" target="_blank">官方贴吧</a></p>
         </div>
         <div class="ewm">
             <img src="images/ewm.png">
