@@ -24,7 +24,7 @@ function get_signature()
     if (expire < now + 3)
     {
         $.ajax({
-            url: './api/getUploadToken',
+            url: secret('./api/getUploadToken'),
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
@@ -203,7 +203,7 @@ var uploader = new plupload.Uploader({
                 var fileMd5 = newElem[filename][1];
                 var data = {fileName: filename, fileMD5: fileMd5};
                 $.ajax({
-                    url: './api/uploadACK',
+                    url: secret('./api/uploadACK'),
                     type: 'POST',
                     data: JSON.stringify(data),
                     dataType: 'json',
@@ -255,7 +255,7 @@ uploader.init();
 function sendMD5(md5) {
     var data = {fileMD5: md5};
     $.ajax({
-        url: "./api/confirmMD5",
+        url: secret("./api/confirmMD5"),
         type: "POST",
         contentType:"application/json",
         dataType:"json",
@@ -358,7 +358,7 @@ function addDelEvent(elem) {
         var md5 = $(this).parent().attr("data-md5");
         var data = {fileMD5: md5};
         $.ajax({
-            url: "./api/deleteItem",
+            url: secret("./api/deleteItem"),
             contentType: "application/json",
             dataType: "json",
             type: "POST",
@@ -418,7 +418,7 @@ $(document).ready(function() {
             var md5 = newElem[file_name][1];
             var status = {fileMD5: md5};
             $.ajax({
-                url: './api/getProgess',
+                url: secret('./api/getProgess'),
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(status),

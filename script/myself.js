@@ -73,7 +73,7 @@ $(document).ready(function() {
 			var md5 = $(this).attr("data-md5");
 			var data = {fileMD5: md5};
 			$.ajax({
-				url: "./api/deleteItem",
+				url: secret("./api/deleteItem"),
 	        	contentType: "application/json",
 	        	dataType: "json",
 	        	type: "POST",

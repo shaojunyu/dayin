@@ -175,7 +175,7 @@ $(document).ready(function() {
 			var order_id = parent.querySelector(".order-num span").innerHTML;
 			order_id = {orderId: order_id};
 			$.ajax({
-				url: "./api/cancelOrder",
+				url: secret("./api/cancelOrder"),
 		        type: "POST",
 		        contentType:"application/json",
 		        dataType:"json",

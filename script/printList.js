@@ -49,7 +49,7 @@ function shipment() {
 //改变参数时发送Ajax请求
 function sendMsg(data, str, parent) {
 	$.ajax({
-		url:"./api/printSettings",
+		url:secret("./api/printSettings"),
 	    contentType:"application/json",
 	    dataType:"json",
 	    type:"POST",
@@ -289,7 +289,7 @@ $(document).ready(function() {
 //删除
 function delMsg(Data) {
 	$.ajax({
-		url:"./api/deleteItem",
+		url:secret("./api/deleteItem"),
 	    contentType:"application/json",
 	    dataType:"json",
 	    type:"POST",
@@ -322,7 +322,7 @@ function delMsg(Data) {
 //提交订单
 function submitOrder(Data) {
 	$.ajax({
-		url:"./api/createOrder",
+		url:secret("./api/createOrder"),
 	    contentType:"application/json",
 	    dataType:"json",
 	    type:"POST",
