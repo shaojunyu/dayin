@@ -54,7 +54,7 @@ function reSort() {
 }
 
 //计算总价
-function shipment(total) {
+function shipment() {
 	var everyTotal = document.querySelectorAll(".scroll-box .row-10");
 	var all = 0;
 	var temp = 0;
@@ -82,6 +82,7 @@ function sendMsg(data, str, parent) {
 	    		if(data.subTotal) {
 	    			parent.find(".row-10").text(data.subTotal);
 	    		}
+	    		shipment();
 	    	}
 	   		else {
 	        	showError(data.msg);
@@ -129,6 +130,7 @@ $(document).ready(function() {
 		}
 	});
 
+	shipment();
 
 	//监听改变订单信息事件
 	//打印面数
@@ -347,7 +349,7 @@ function submitOrder(Data) {
 	    data:JSON.stringify(Data),
 	    success:function(data) {
 	    	if(data.success) {
-				location.href = "myself";
+				//location.href = "myself";
 	    	}
 	   		else {
 	        	showError(data.msg);
@@ -387,7 +389,54 @@ function test(way) {
 			data.area = area;
 		}
 		//楼栋号
-		var buildingNum
+		var buildingNum = $("#Ban").find("option:selected").text();
+		buildingNum = delSpace(buildingNum);
+		if(buildingNum == "楼栋") {
+			showError("请选择楼栋");
+			return;
+		}
+		else {
+			data.buildingNum = buildingNum;
+		}
+		//宿舍号
+		var roomNum = $(".room").val();
+		if(!roomNum) {
+			showError("请输入宿舍号");
+			return;
+		}
+		else if(roomNum.length >= 10) {
+			$(".room").val("");
+			showError("请输入合理的宿舍号");
+			return;
+		}
+		else {
+			data.roomNum = roomNum;
+		}
+		//收货人
+		var receiver = $(".receiver").val();
+		if(!receiver) {
+			showError("请输入收货人姓名");
+			return;
+		}
+		else if(receiver.length >= 20) {
+			$(".receiver").val("");
+			showError("请输入正确的姓名");
+			return;
+		}
+		else {
+			data.receiver = receiver;
+		}
+		//收货人手机
+		var receiverPhone = $(".phone").val();
+		var tel = /^1[3|4|5|7|8]\d{9}$/;
+		if(tel.test(receiverPhone)) {
+			data.receiverPhone = receiverPhone;
+		}
+		else {
+			showError("请输入正确的手机号");
+			$(".phone").val("");
+			return;
+		}
 	}
 
 	submitOrder(data);
