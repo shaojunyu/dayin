@@ -345,7 +345,6 @@ class Api extends CI_Controller{
 
             $this->db->insert('order',array(
                 'cellphone'=>$this->session->userdata('cellphone'),
-                'shop'=>$this->post_data->shop,
                 'area'=>$this->post_data->area,
                 'buildingNum'=>$this->post_data->buildingNum,
                 'roomNum'=>$this->post_data->roomNum,
