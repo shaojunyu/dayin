@@ -87,7 +87,7 @@
             ?>
                 <div class="nodo">
 							<span class="order-1">
-								<p class="order-num">订单编号：<?php echo $order['Id'];?></p>
+								<p class="order-num">订单编号：<sapn><?php echo $order['Id'];?></sapn></p>
 								<p class="address">收货地址：
                                     <?php
                                     if ($order['deliveryMode'] == 'self'){
