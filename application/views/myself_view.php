@@ -52,6 +52,17 @@
         <a class="pay-problem" href="javascript:void(0)">支付遇到问题</a>
     </div>
 </div>
+<div id="cancel-submit">
+    <div class="cancel-top">
+        确认删除<span>X</span>
+    </div>
+    <div class="cancel-info">
+        确认取消此订单？
+    </div>
+    <div class="cancel-sub">
+        <a class="cancel-btn" href="javascript:void(0)">确认删除</a>
+    </div>
+</div>
 
 <div class="prompt-box"></div> <!-- 表单错误提示框 -->
 
