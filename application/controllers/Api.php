@@ -312,37 +312,55 @@ class Api extends CI_Controller{
      */
     public function createOrder(){
         $this->needSession();
-        if($this->post_data->deliveryMode == 'self'){
-            $this->check_post_data(array('shop','total'));
-        }else{
-            $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
-        }
-
-
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $res = $this->db->get('cart')->result_array();
         if (count($res) == 0){
             $this->echo_msg(false,'购物车为空');
             exit();
         }
-        $total = 0;
-        foreach ($res as $e){
-            $total += $e['subTotal'];
+
+        if($this->post_data->deliveryMode == 'self'){
+            $this->check_post_data(array('shop','total'));
+            $total = 0;
+
+            foreach ($res as $e){
+                $total += $e['subTotal'];
+            }
+
+            $this->db->insert('order',array(
+                'cellphone'=>$this->session->userdata('cellphone'),
+                'shop'=>$this->post_data->shop,
+                'deliveryMode'=>$this->post_data->deliveryMode,
+                'total'=>$total,
+                'state'=>'UNPAID',
+                'content'=>json_encode($res)
+            ));
+        }else{
+            $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
+            $total = 0;
+
+            foreach ($res as $e){
+                $total += $e['subTotal'];
+            }
+
+            $this->db->insert('order',array(
+                'cellphone'=>$this->session->userdata('cellphone'),
+                'shop'=>$this->post_data->shop,
+                'area'=>$this->post_data->area,
+                'buildingNum'=>$this->post_data->buildingNum,
+                'roomNum'=>$this->post_data->roomNum,
+                'receiver'=>$this->post_data->receiverPhone,
+                'receiverPhone'=>$this->post_data->receiverPhone,
+                'deliveryMode'=>$this->post_data->deliveryMode,
+                'total'=>$total,
+                'state'=>'UNPAID',
+                'content'=>json_encode($res)
+            ));
         }
 
-        $this->db->insert('order',array(
-            'cellphone'=>$this->session->userdata('cellphone'),
-            'shop'=>$this->post_data->shop,
-            'area'=>$this->post_data->area,
-            'buildingNum'=>$this->post_data->buildingNum,
-            'roomNum'=>$this->post_data->roomNum,
-            'receiver'=>$this->post_data->receiverPhone,
-            'receiverPhone'=>$this->post_data->receiverPhone,
-            'deliveryMode'=>$this->post_data->deliveryMode,
-            'total'=>$total,
-            'state'=>'UNPAID',
-            'content'=>json_encode($res)
-        ));
+
+
+
 
         //删除购物车
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
