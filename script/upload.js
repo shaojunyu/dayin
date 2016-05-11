@@ -384,7 +384,7 @@ $(document).ready(function() {
     }
 
     //文件解析
-    setTimeout(function loop() { //隔1s轮询一次
+    setTimeout(function loop() { //隔2s轮询一次
         if(status_list.length) {
             var now_status = status_list[0].getAttribute("data-status");
             var file_name = status_list[0].querySelector("p:first-child").innerHTML;
@@ -419,14 +419,18 @@ $(document).ready(function() {
                 }
             });
         }
-        setTimeout(loop, 1000);
-    }, 1000);
+        setTimeout(loop, 2000);
+    }, 2000);
 
 
     //去下单
     $(".to-order").click(function() {
-        if(status_list.length == 0) {
+        var len = document.querySelectorAll(".scroll-bar div").length;
+        if(status_list.length == 0 && len > 1) {
             location.href = "confirm";
+        }
+        else if(len == 1) {
+            showError("请选择打印文件");
         }
         else {
             showError("请稍后，正在处理中...");

@@ -9,8 +9,8 @@ function showError(message) {
 }
 
 //计算钱数
-function countMoney(amout, size, isTwoSide, filePages, parent) {
-	/*var total = 0;
+/*function countMoney(amout, size, isTwoSide, filePages, parent) {
+	var total = 0;
 	var per = 0;
 	console.log(amout + size + isTwoSide);
 	if(!amout) {
@@ -35,8 +35,8 @@ function countMoney(amout, size, isTwoSide, filePages, parent) {
 	total = total.toFixed(3);
 	parent.find(".row-10").text(total);
 	parent.find(".row-8").text(per);
-	//shipment(total);*/
-}
+	//shipment(total);
+}*/
 
 //移除div
 function removeC(elem) {
@@ -53,13 +53,21 @@ function reSort() {
 	}
 }
 
-//计算包含运费的钱
-/*function shipment(total) {
-
-}*/
+//计算总价
+function shipment(total) {
+	var everyTotal = document.querySelectorAll(".scroll-box .row-10");
+	var all = 0;
+	var temp = 0;
+	for(var i = 0; i < everyTotal.length; i++) {
+		temp = parseFloat(everyTotal[i].innerHTML);
+		all += temp;
+	}
+	all = all.toFixed(3);
+	$(".money").text(all);
+}
 
 //改变参数时发送Ajax请求
-function sendMsg(data, str) {
+function sendMsg(data, str, parent) {
 	$.ajax({
 		url:"./api/printSettings",
 	    contentType:"application/json",
@@ -68,14 +76,19 @@ function sendMsg(data, str) {
 	    data:JSON.stringify(data),
 	    success:function(data) {
 	    	if(data.success) {
-	    		
+	    		if(data.price) {
+	    			parent.find(".row-8").text(data.price);
+	    		}
+	    		if(data.subTotal) {
+	    			parent.find(".row-10").text(data.subTotal);
+	    		}
 	    	}
 	   		else {
 	        	showError(data.msg);
 	        }
 	    },
 		error: function(XMLHttpRequest, textStatus, errorThrown){
-			showError("修改失败，请重设" + str);
+			showError("修改失败，请刷新重设" + str);
 		}
 	});
 }
@@ -141,8 +154,8 @@ $(document).ready(function() {
 		size = size.replace(/[\r\n]/g,"");
 		size = size.split(' ').join('');
 		var amout = parent.find(".amout").val(); //获取打印份数
-		countMoney(amout, size, istwosides, filePages, parent);
-		sendMsg(data, "单双面");
+		//countMoney(amout, size, istwosides, filePages, parent);
+		sendMsg(data, "单双面", parent);
 	});
 
 	//打印大小
@@ -161,8 +174,8 @@ $(document).ready(function() {
 		sides = sides.replace(/[\r\n]/g,"");
 		sides = sides.split(' ').join('');
 		var amout = parent.find(".amout").val(); //获取打印份数
-		countMoney(amout, itSize, sides, filePages, parent);
-		sendMsg(data, "大小");
+		//countMoney(amout, itSize, sides, filePages, parent);
+		sendMsg(data, "大小", parent);
 	});
 
 	//打印份数
@@ -184,12 +197,12 @@ $(document).ready(function() {
 			$(this).val('');
 		}
 		else {
-			countMoney(amout, size, isTwoSide, filePages, parent);
+			//countMoney(amout, size, isTwoSide, filePages, parent);
 			data = {
 				fileMD5: md5,
 				amout: amount
 			};
-			sendMsg(data, "份数");
+			sendMsg(data, "份数", parent);
 		}
 	});
 
@@ -210,7 +223,7 @@ $(document).ready(function() {
 			fileMD5: md5,
 			direction: direction
 		};
-		sendMsg(data, "方向");
+		sendMsg(data, "方向", parent);
 	});
 
 	//每页ppt数量
@@ -223,7 +236,7 @@ $(document).ready(function() {
 			fileMD5: md5,
 			pptPerPage: pptPerPage
 		};
-		sendMsg(data, "每面ppt数");
+		sendMsg(data, "每面ppt数", parent);
 	});
 
 	//备注
@@ -240,7 +253,7 @@ $(document).ready(function() {
 			fileMD5: md5,
 			remark: remark
 		};
-		sendMsg(data, "备注");
+		sendMsg(data, "备注", parent);
 	});
 
 	//生成订单
@@ -250,17 +263,18 @@ $(document).ready(function() {
 			return;
 		}
 		//列表中是否有文件
-		var fileNum = document.querySelectorAll(".scroll-box div");
+		/*var fileNum = document.querySelectorAll(".scroll-box div");
 		if(fileNum.length <= 1) {
 			showError("请选择文件");
 			return;
-		}
+		}*/
 		
+		showError("提交中，请稍候...");
 		if($(".pick").prop("checked") == true) { //到店自取
-
+			test("get");
 		}
 		else if($(".todoor").prop("checked") == true) { //送货上门
-
+			test("send");
 		}
 	});
 
@@ -321,4 +335,67 @@ function delMsg(Data) {
 			showError("删除失败");
 		}
 	});
+}
+
+//提交订单
+function submitOrder(Data) {
+	$.ajax({
+		url:"./api/createOrder",
+	    contentType:"application/json",
+	    dataType:"json",
+	    type:"POST",
+	    data:JSON.stringify(Data),
+	    success:function(data) {
+	    	if(data.success) {
+				location.href = "myself";
+	    	}
+	   		else {
+	        	showError(data.msg);
+	        }
+	    },
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			showError("提交失败，请重试");
+		}
+	});
+}
+
+//验证信息是否正确
+function test(way) {
+	var data = {};
+	if(way == "get") { //到店自取
+		var print_store = $("#print-store").find("option:selected").text();
+		print_store = delSpace(print_store);
+		if(print_store == "请选择打印店") {
+			showError("请选择打印店");
+			return ;
+		}
+		else {
+			data.shop = print_store;
+			data.deliveryMode = "self";
+		}
+	}
+	else { //送货上门
+		data.deliveryMode = "delivery";
+		//校区
+		var area = $("#school-area").find("option:selected").text();
+		area = delSpace(area);
+		if(area == "请选择校区") {
+			showError("请选择校区");
+			return;
+		}
+		else {
+			data.area = area;
+		}
+		//楼栋号
+		var buildingNum
+	}
+
+	submitOrder(data);
+}
+
+//去空格及回车符
+function delSpace(str) {
+	str = str.replace(/[\r\n]/g,"");
+	str = str.split(' ').join('');
+	return str;
 }
