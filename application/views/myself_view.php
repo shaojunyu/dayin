@@ -28,7 +28,29 @@
 
 <div class="cover"></div> <!-- 背景模糊遮罩 -->
 <div id="pay">
-    
+    <div class="pay-way">
+        支付方式<span>X</span>
+    </div>
+    <div class="chioce">
+        请选择支付方式~
+    </div>
+    <div class="wx-zfb">
+        <a class="wx" href="javascript:void(0)">微信支付</a>
+        <a class="zfb" href="javascript:void(0)">支付宝支付</a>
+    </div>
+</div>
+<div id="paying">
+    <div class="inpay">
+        支付中<span>X</span>
+    </div>
+    <div class="inpay-info">
+        <p>您将转至支付页面进行支付！</p>
+        <p>请您在新打开的支付页面进行支付，支付完成前请不要关闭此窗口。</p>
+    </div>
+    <div class="pay-status">
+        <a class="pay-done" href="javascript:void(0)">已完成支付</a>
+        <a class="pay-problem" href="javascript:void(0)">支付遇到问题</a>
+    </div>
 </div>
 
 <div class="prompt-box"></div> <!-- 表单错误提示框 -->

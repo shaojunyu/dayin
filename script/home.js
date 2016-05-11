@@ -419,6 +419,11 @@ $(document).ready(function() {
 	    	return this.optional(element) || (tel.test(value));
 		}, "请填写正确的手机号");
 
+		$.validator.addMethod("psword", function(value, element, params) {
+			var tel = /^1[3|4|5|7|8]\d{9}$/;
+	    	return this.optional(element) || (tel.test(value));
+		}, "请填写正确的手机号");
+
 		//登录
 		$("#login").validate({
 		    rules: {

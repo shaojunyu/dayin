@@ -8,6 +8,52 @@ function showError(message) {
 	}, 2000);
 }
 
+//添加事件监听
+function addHandler(element, type, handler) {
+	if(element.addEventListener) {
+		element.addEventListener(type, handler, false);
+	}
+	else if(element.attachEvent) {
+		element.attachEvent("on" + type, handler);
+	}
+	else {
+		element["on" + type] = handler;
+	}
+}
+
+//显示浮层
+function showDiv(cover, sign) {
+	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
+	var offsetH = (pageH - sign.offsetHeight) / 2;
+	if((scrollAnimate.count % 2) == 1) {
+		sign.style.top = pageH + offsetH + "px";
+	}
+	else {
+		sign.style.top = offsetH + "px";
+	}
+	cover.style.display = "block";
+	sign.style.display = "block";
+	scrollAnimate.timer = 1;
+}
+//隐藏浮层
+function hideDiv(cover, sign) {
+	cover.style.display = "none";
+	sign.style.display = "none";
+	scrollAnimate.timer = 0;
+}
+//居中显示浮层
+function centerDiv(sign) {
+	var pageW = document.documentElement.clientWidth || document.body.clientWidth;
+	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
+	if((scrollAnimate.count % 2) == 0) {
+		sign.style.top = (pageH - sign.offsetHeight) / 2 + "px";
+	}
+	else {
+		sign.style.top = pageH + (pageH - sign.offsetHeight) / 2 + "px";
+	}
+	sign.style.left = (pageW - sign.offsetWidth) / 2 + "px";
+}
+
 $(document).ready(function() {
 	$("#sign-out").mouseover(function() {
 		$(".so").css("display", "block");
@@ -44,6 +90,67 @@ $(document).ready(function() {
 		$(".save-info").css("display", "none");
 		$(".edit-info").css("display", "block");
 	});
+
+	//支付框
+	var toPay = document.querySelectorAll(".toPay");
+	var cover = document.querySelector(".cover");
+	var pay = document.querySelector("#pay");
+	var paying = document.querySelector("#paying");
+	var payX = pay.querySelector(".pay-way span");
+	var payingX = paying.querySelector(".inpay span");
+	var wx = document.querySelector(".wx");
+	var zfb = document.querySelector(".zfb");
+	var payDone = document.querySelector(".pay-done");
+	var payProblem = document.querySelector(".pay-problem");
+
+	window.resize = function() {
+		if(pay.style.display === "block") {
+			centerDiv(pay);
+		}
+		else if(paying.style.display === "block") {
+			centerDiv(paying);
+		}
+	};
+
+	//支付框的显示
+	var len = 0;
+	if(toPay) {
+		len = toPay.length;
+	}
+	for(var i = 0; i < len; i++) {
+		addHandler(toPay[i], "click", function() { //给每一个去付款添加点击事件
+			showDiv(cover, pay);
+		});
+	}
+	addHandler(payX, "click", function() { //支付框的隐藏
+		hideDiv(cover, pay);
+	});
+	addHandler(wx, "click", function() { //微信支付弹出支付中
+		hideDiv(cover, pay);
+		showDiv(cover, paying);
+		//跳转
+	});
+	addHandler(zfb, "click", function() { //支付宝支付弹出支付中
+		hideDiv(cover, pay);
+		showDiv(cover, paying);
+		//跳转
+	});
+
+	//支付中框的隐藏, 并刷新页面
+	addHandler(payingX, "click", function() {
+		hideDiv(cover, paying);
+		location.reload(true);
+	});
+	addHandler(payDone, "click", function() {
+		hideDiv(cover, paying);
+		location.reload(true);
+	});
+	addHandler(payProblem, "click", function() {
+		hideDiv(cover, paying);
+		location.reload(true);
+	});
+
+
 
 	//设置div滚动条样式
 	$(".order-list").slimScroll({
