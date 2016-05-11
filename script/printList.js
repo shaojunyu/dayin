@@ -439,6 +439,7 @@ function test(way) {
 		}
 	}
 
+	data.total = $(".money").text();
 	submitOrder(data);
 }
 
