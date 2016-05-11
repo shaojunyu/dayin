@@ -12,7 +12,7 @@ class Order_model extends CI_Model{
     }
 
     public function create_order(){
-
+        
     }
 
     public function update_order_state(){
@@ -27,4 +27,5 @@ class orderState{
     const PRINTED = 'PRINTED';
     const DELIVERING = 'DELIVERING';
     const DONE = 'DONE';
+    const CANCELED = 'CANCELED';
 }

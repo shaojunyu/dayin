@@ -49,7 +49,7 @@
         </div>
 
         <div class="scroll-box">
-            <?php
+<?php
 
     $this->db->where('cellphone',$this->session->userdata('cellphone'));
     $res = $this->db->get('cart')->result_array();
@@ -66,12 +66,33 @@
         } else {
             $class = 'ppt';
         }
+        //page信息是否已存在
+        if ($item['pages'] != 0){
+            $pages = $item['pages'];
+        }else{
+            $this->db->where('fileMD5',$item['fileMD5']);
+            $r = $this->db->get('file_info')->result_array();
 
-        $this->db->where('fileMD5',$item['fileMD5']);
-        $r = $this->db->get('file_info')->result_array();
-        $r = $r[0];
-        //$r = $r[0];
-        $pages = $r['pages'];
+            if (count($r) == 0){//没有该文件的信息,删除购物车条目
+                
+                $this->Cart->delete_item($item['fileMD5']);
+                continue;
+            }else{//pages信息写入cart表
+                $r = $r[0];
+                $pages = $r['pages'];
+                //如果pages 0 文件解析出错
+                if ($pages == 0){
+                    $this->Cart->delete_item($item['fileMD5']);
+                    continue;
+                }else{
+                    $this->db->where('fileMD5',$item['fileMD5']);
+                    $this->db->update('cart',array('pages'=>$pages));
+                }
+
+            }
+
+        }
+
         ?>
         <div data-md5="<?php echo $item['fileMD5']; ?>">
             <span class="row-1"><?php echo $i; ?></span>
@@ -115,7 +136,7 @@
                     </select>
 				</span>
             <span class="row-8">0.15</span>
-            <span class="row-9"><input type="text" class="amout" placeholder="<?php echo $item['amount']; ?>"></span>
+            <span class="row-9"><input type="text" class="amout" placeholder="" value="<?php echo $item['amount']; ?>"></span>
             <span class="row-10">0.15</span>
             <span class="row-11"><input type="text" class="remark"></span>
             <span class="row-12">删除</span>

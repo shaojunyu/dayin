@@ -20,6 +20,7 @@ class Test extends CI_Controller{
 //      echo $user->login('123456','123456');
 //      $user->userInfo2session('123456');
 //      var_dump($this->session->userdata());
-	$this->load->view('welcome_message');
+	//$this->load->view('welcome_message');
+	echo date('Y-m-d H:i:s');
     }
 }
