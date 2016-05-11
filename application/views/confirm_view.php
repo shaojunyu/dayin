@@ -120,7 +120,7 @@
                     </select>
 				</span>
 				<span class="row-6">
-                    <?php if ($class == 'ppt'){ ?>
+                    <?php if ($class == 'ppt' or $class == 'pdf'){ ?>
 					<select class="page-num">
                         <option value="1" <?php if ($item['pptPerPage']== 1 ){ echo 'SELECTED'; }?> >1</option>
                         <option value="4" <?php if ($item['pptPerPage']== 4 ){ echo 'SELECTED'; }?> >4</option>
@@ -135,9 +135,23 @@
                         <option value="B4" <?php if ($item['paperSize']== 'B4' ){ echo 'SELECTED'; }?> >B4</option>
                     </select>
 				</span>
-            <span class="row-8"><?php echo $item['price'];?></span>
+            <span class="row-8">
+                <?php
+                if ($item['price'] == null){//单价
+                    $price_info = $this->Cart->calculate_price($item['fileMD5']);
+                    echo $price_info['price'];
+                }else{
+                    echo $item['price']; //单价
+                }
+                ?></span>
             <span class="row-9"><input type="text" class="amout" placeholder="" value="<?php echo $item['amount']; ?>"></span>
-            <span class="row-10"><?php echo $item['subTotal'];?></span>
+            <span class="row-10"><?php
+                if ($item['subTotal'] == null){
+                    echo $price_info['subTotal'];
+                }else{
+                    echo $item['subTotal'];
+                }
+                ?></span>
             <span class="row-11"><input type="text" class="remark"></span>
             <span class="row-12">删除</span>
         </div>

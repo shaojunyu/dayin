@@ -198,7 +198,7 @@ class Api extends CI_Controller{
         $this->db->where('fileMD5',$this->post_data->fileMD5);
         $this->db->get('file_info')->result_array();
         if ($this->db->affected_rows() >= 1){
-            $this->echo_msg(true,'yes');
+            $this->echo_msg(true,'no');
         }else{
             $this->echo_msg(true,'no');
         }
@@ -215,6 +215,7 @@ class Api extends CI_Controller{
         $this->check_post_data(array('fileName','fileMD5'));
         //文件加入购物车
         $this->load->model('Cart_model','Cart');
+
         if ($this->Cart->add_item($this->post_data->fileName,$this->post_data->fileMD5)){
             $this->echo_msg(true,'添加成功');
             $this->db->insert('user_upload',array(
@@ -392,6 +393,31 @@ class Api extends CI_Controller{
             $this->echo_msg(true,false);
         }else{
             $this->echo_msg(false,false);
+        }
+    }
+
+
+    /**
+     * function isPaid 是否已支付
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function isPaid(){
+        $this->needSession();
+        $this->check_post_data(array('orderId'));
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->where('Id',$this->post_data->orderId);
+        $res = $this->db->get('order')->result_array();
+        if (count($res) == 1){
+            $res = $res[0];
+            if ($res['state'] == 'PAID'){
+                $this->echo_msg(true,'已支付');
+            }else{
+                $this->echo_msg(false,'未支付');
+            }
+        }else{
+            $this->echo_msg(false,'未支付');
         }
     }
 /*
