@@ -10,7 +10,7 @@ function showError(message) {
 
 //计算钱数
 function countMoney(amout, size, isTwoSide, filePages, parent) {
-	var total = 0;
+	/*var total = 0;
 	var per = 0;
 	console.log(amout + size + isTwoSide);
 	if(!amout) {
@@ -35,7 +35,7 @@ function countMoney(amout, size, isTwoSide, filePages, parent) {
 	total = total.toFixed(3);
 	parent.find(".row-10").text(total);
 	parent.find(".row-8").text(per);
-	//shipment(total);
+	//shipment(total);*/
 }
 
 //移除div
@@ -116,37 +116,6 @@ $(document).ready(function() {
 		}
 	});
 
-	//初始总价计算
-	var divClass = document.querySelectorAll(".scroll-box div");
-	var row_3 = $(".scroll-box div .row-3");
-	for(var i = 0; i < row_3.length; i++) {
-		var pages = parseInt(row_3[i].innerHTML);
-		var ppt = divClass[i].querySelector(".page-num");
-		var row8 = divClass[i].querySelector(".row-8");
-		if(ppt) {
-			var index = ppt.selectedIndex;
-			var pptPerPage = ppt.options[index].text;
-			pptPerPage = parseInt(pptPerPage);
-			pages = Math.ceil(pages / pptPerPage);
-		}
-		pages /= 2;
-
-		var fac = divClass[i].querySelector(".face");
-		var facIndex = fac.selectedIndex;
-		var facValue = fac.options[facIndex].text;
-		facValue = facValue.replace(/[\r\n]/g,"");
-		facValue = facValue.split(' ').join('');
-		if(facValue == sidesArr[0]) {
-			pages *= 0.1;
-			row8.innerHTML = 0.1;
-		}
-		else {
-			pages *= 0.15;
-			row8.innerHTML = 0.15;
-		}
-		pages = pages.toFixed(3);
-		row_3[i].parentNode.querySelector(".row-10").innerHTML = pages;
-	}
 
 	//监听改变订单信息事件
 	//打印面数
