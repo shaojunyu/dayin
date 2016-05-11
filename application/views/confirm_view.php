@@ -64,7 +64,7 @@
         } elseif (strripos($item['fileName'], '.ppt')) {
             $class = 'ppt';
         } else {
-            $class = 'ppt';
+            $class = 'pdf';
         }
         //page信息是否已存在
         if ($item['pages'] != 0){
@@ -135,9 +135,9 @@
                         <option value="B4" <?php if ($item['paperSize']== 'B4' ){ echo 'SELECTED'; }?> >B4</option>
                     </select>
 				</span>
-            <span class="row-8">0.15</span>
+            <span class="row-8"><?php echo $item['price'];?></span>
             <span class="row-9"><input type="text" class="amout" placeholder="" value="<?php echo $item['amount']; ?>"></span>
-            <span class="row-10">0.15</span>
+            <span class="row-10"><?php echo $item['subTotal'];?></span>
             <span class="row-11"><input type="text" class="remark"></span>
             <span class="row-12">删除</span>
         </div>

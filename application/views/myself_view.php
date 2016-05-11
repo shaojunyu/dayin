@@ -57,14 +57,12 @@
 
 <div class="container clearfix">
     <div class="person-info">
-        <p class="user">用户1234</p>
+        <p class="user">用户<?php echo $this->session->userdata('cellphone');?></p>
         <p class="user-info">个人信息</p>
-        <p class="phone-num">手机：12345678910</p>
-        <p class="school-info">学校：华中科技大学</p>
-        <p class="receipt-info">收货信息</p>
-        <p class="recv-phone">电话：12345678910</p>
-        <p class="recv-address clearfix"><span>收货地址：</span><span class="now-address">韵苑22栋503</span><input type="text" class="change-address" placeholder="输入新地址"></p>
-        <input type="button" class="edit-info" value="编辑信息">
+        <p class="phone-num">手机：<?php echo $this->session->userdata('cellphone');?></p>
+        <p class="school-info">学校：<?php echo $this->session->userdata('school');?></p>
+
+
         <input type="button" class="save-info" value="保存修改">
     </div>
     <div class="order-info">
@@ -167,7 +165,7 @@
                                     </span></p>
 							</span>
 							<span class="order-2">
-								<p class="add-print"><span>加印</span></p>
+								<p class="add-print"><span></span></p>
 							</span>
                     <p class="status">总价：<?php echo $order['total'];?>元&nbsp;&nbsp;&nbsp;&nbsp;收货方式：
                         <?php

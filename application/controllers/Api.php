@@ -255,12 +255,10 @@ class Api extends CI_Controller{
         $this->check_post_data(array('fileMD5'));
         $this->load->model('Cart_model','Cart');
         $res = false;
-        $m = '';
         if (isset($this->post_data->paperSize)){
             $res = $this->Cart->printSettings($this->post_data->fileMD5,'paperSize',$this->post_data->paperSize);
         }elseif (isset($this->post_data->isTwoSides)){
             $res = $this->Cart->printSettings($this->post_data->fileMD5,'isTwoSides',$this->post_data->isTwoSides);
-            $m = 'isTwoSides';
         }elseif (isset($this->post_data->amount)){
             $res = $this->Cart->printSettings($this->post_data->fileMD5,'amount',$this->post_data->amount);
         }elseif (isset($this->post_data->pptPerPage)){
@@ -272,9 +270,11 @@ class Api extends CI_Controller{
         }
 
         if ($res){
-            $this->echo_msg(true,'修改成功');
+            $price_info = $this->Cart->calculate_price($this->post_data->fileMD5);
+            echo json_encode(array("success"=>true,'price'=>$price_info['price'],'subTotal'=>$price_info['subTotal']));
+            //$this->echo_msg(true,'修改成功');
         }else{
-            $this->echo_msg(false,'修改失败'.$m);
+            $this->echo_msg(false,'修改失败');
         }
     }
 
@@ -360,6 +360,39 @@ class Api extends CI_Controller{
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $this->db->update('order',array('state'=>'CANCELED'));
         $this->echo_msg(true,'');
+    }
+
+    /**
+     * function copyOrder 加印订单
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function copyOrder(){
+        $this->needSession();
+        $this->check_post_data(array('orderId'));
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->where('Id',$this->post_data->orderId);
+        $res = $this->db->get('order')->result_array();
+        if (count($res) == 1){
+            $res = $res[0];
+            $this->db->insert('order',array(
+                'cellphone'=>$res['cellphone'],
+                'shop'=>$res['shop'],
+                'area'=>$res['area'],
+                'buildingNum'=>$res['buildingNum'],
+                'roomNum'=>$res['roomNum'],
+                'receiver'=>$res['receiver'],
+                'receiverPhone'=>$res['receiverPhone'],
+                'deliveryMode'=>$res['deliveryMode'],
+                'total'=>$res['total'],
+                'state'=>'UNPAID',
+                'content'=>$res['content']
+            ));
+            $this->echo_msg(true,false);
+        }else{
+            $this->echo_msg(false,false);
+        }
     }
 /*
  * ----------------------------------------------------------------------------------------

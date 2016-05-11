@@ -68,10 +68,10 @@ class Cart_model extends CI_Model{
                     if ($this->db->affected_rows() == 1){
                         return true;
                     }else{
-                        return false;
+                        return true;
                     }
                 }else{
-                    return false;
+                    return true;
                 }
                 break;
 
@@ -83,7 +83,7 @@ class Cart_model extends CI_Model{
                     if ($this->db->affected_rows() == 1){
                         return true;
                     }else{
-                        return false;
+                        return true;
                     }
                 }else{
                     return false;
@@ -98,7 +98,7 @@ class Cart_model extends CI_Model{
                     if ($this->db->affected_rows() == 1){
                         return true;
                     }else{
-                        return false;
+                        return true;
                     }
                 }else{
                     return false;
@@ -113,7 +113,7 @@ class Cart_model extends CI_Model{
                     if ($this->db->affected_rows() == 1){
                         return true;
                     }else{
-                        return false;
+                        return true;
                     }
                 }else{
                     return false;
@@ -128,7 +128,7 @@ class Cart_model extends CI_Model{
                     if ($this->db->affected_rows() == 1){
                         return true;
                     }else{
-                        return false;
+                        return true;
                     }
                 }else{
                     return false;
@@ -142,13 +142,60 @@ class Cart_model extends CI_Model{
                 if ($this->db->affected_rows() == 1){
                     return true;
                 }else{
-                    return false;
+                    return true;
                 }
                 break;
             default:
                 return false;
         }
     }
+
+
+    /**
+     * function calculate_price 计算单价和小计，更新数据库
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function calculate_price($fileMD5){
+        if(!$this->session->userdata('cellphone')){
+            return false;
+        }
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->where('fileMD5',$fileMD5);
+        $item = $this->db->get('cart')->result_array();
+        if (count($item) == 1){
+            $item = $item[0];
+            $price = 0;
+            $sub_total = 0;
+
+            $paper_count =  (int)( ($item['pages'] + 1) / (($item['isTwoSides'] == 'YES') ? 2 : 1));
+            switch ($item['paperSize']){
+                case 'A4':
+                    if ($item['isTwoSides'] == 'YES'){
+                        $price = $paper_count * 0.15;
+                    }else{
+                        $price = $paper_count * 0.1;
+                    }
+                    break;
+                case 'B4':
+                    $price = $paper_count * 0.4;
+                    break;
+                default:
+                    $price = $paper_count * 0.15;
+            }
+            $sub_total = $price * $item['amount'];
+
+            //更新数据库
+            $this->db->where('cellphone',$this->session->userdata('cellphone'));
+            $this->db->where('fileMD5',$fileMD5);
+            $this->db->update('cart',array('price'=>$price,'subTotal'=>$sub_total));
+            return array('price'=>$paper_count,'subTotal'=>$sub_total);
+        }else{
+            return false;
+        }
+    }
+
 }
 
 class SettingValues{
