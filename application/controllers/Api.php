@@ -336,7 +336,7 @@ class Api extends CI_Controller{
                 'content'=>json_encode($res)
             ));
         }else{
-            $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
+            $this->check_post_data(array('area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
             $total = 0;
 
             foreach ($res as $e){
