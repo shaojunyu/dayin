@@ -81,6 +81,7 @@
             //$this->db->where('statePAID',null);
             $this->db->where('state != ','CANCELED');
             $this->db->where('state != ','DONE');
+            $this->db->order_by('Id', 'DESC');
             $res = $this->db->get('order')->result_array();
             foreach ($res as $order){
                 //var_dump($this->session->userdata('cellphone'));
@@ -142,6 +143,7 @@
                 <?php
                 $this->db->where('cellphone',$this->session->userdata('cellphone'));
                 $this->db->where('state','DONE');
+                $this->db->order_by('Id', 'DESC');
                 $res = $this->db->get('order')->result_array();
                 foreach ($res as $order){
                 ?>
