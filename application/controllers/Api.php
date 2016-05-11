@@ -334,7 +334,7 @@ class Api extends CI_Controller{
             'receiverPhone'=>$this->post_data->receiverPhone,
             'deliveryMode'=>$this->post_data->deliveryMode,
             'total'=>$total,
-            'state.UNPAID'=>date('Y-m-d H:i:s'),
+            'state'=>'UNPAID',
             'content'=>json_encode($res)
         ));
 
@@ -356,7 +356,7 @@ class Api extends CI_Controller{
     	$this->needSession();
     	$this->check_post_data(array('orderId'));
         $this->db->where('Id',$this->post_data->orderId);
-        $this->db->where('state.PAID',null);
+        $this->db->where('state !=','PAID');
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $this->db->update('order',array('state'=>'CANCELED'));
         $this->echo_msg(true,'');
