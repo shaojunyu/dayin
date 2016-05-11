@@ -349,7 +349,7 @@ function submitOrder(Data) {
 	    data:JSON.stringify(Data),
 	    success:function(data) {
 	    	if(data.success) {
-				//location.href = "myself";
+				location.href = "myself";
 	    	}
 	   		else {
 	        	showError(data.msg);
@@ -439,6 +439,7 @@ function test(way) {
 		}
 	}
 
+	data.total = $(".money").text();
 	submitOrder(data);
 }
 
