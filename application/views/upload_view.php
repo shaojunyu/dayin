@@ -13,12 +13,12 @@
     </a>
     <nav>
         <ul>
-            <li><a href="index.html">首页</a></li>
+            <li><a href="/dayin">首页</a></li>
             <li><a href="base.html" target="_blank">简介</a></li>
             <li><a href="javascript:void(0)">我的文库</a></li>
             <li class="person-box">
                 <ul id="sign-out" class="clearfix">
-                    <li><a href="javascript:void(0)" class="person">个人中心</a></li>
+                    <li><a href="myself" class="person">个人中心</a></li>
                     <li><a href="javascript:void(0)" class="so">退出登录</a></li>
                 </ul>
             </li>
@@ -42,7 +42,7 @@
         }elseif (strripos($item['fileName'],'.ppt')){
             $class = 'ppt';
         }else{
-            $class = 'ppt';
+            $class = 'pdf';
         }
         //var_dump($item);
     ?>
@@ -54,6 +54,7 @@
             </div>
 <?php    }?>
             <p class="continue-add" id="file"><span id="ul">上传文件</span></p>
+            <input type="button" class="to-order" value="去下单">
         </div>
     </div>
     <div class="mystore clearfix">
@@ -88,26 +89,7 @@
         </div>
     </div>
 
-    <div class="print-car-box">
-        <div class="print-car">
-            <div id="triangle" class="hide"></div>
-            <p class="car">打印车</p>
-            <p class="see">（点击查看已选文件）</p>
-        </div>
-        <input type="button" class="to-order" value="去下单">
-        <div class="car-scroll">
-            <div class="word">
-                <p>abdsbsa.doc</p>
-                <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
-                <i></i>
-            </div>
-            <div class="ppt">
-                <p>abdsbsa.doc</p>
-                <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
-                <i></i>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 <footer class="clearfix">

@@ -12,6 +12,7 @@ function showError(message) {
 function countMoney(amout, size, isTwoSide, filePages, parent) {
 	var total = 0;
 	var per = 0;
+	console.log(amout + size + isTwoSide);
 	if(!amout) {
 		amout = 1;
 	}
@@ -34,7 +35,7 @@ function countMoney(amout, size, isTwoSide, filePages, parent) {
 	total = total.toFixed(3);
 	parent.find(".row-10").text(total);
 	parent.find(".row-8").text(per);
-	shipment(total);
+	//shipment(total);
 }
 
 //移除div
@@ -53,9 +54,9 @@ function reSort() {
 }
 
 //计算包含运费的钱
-function shipment(total) {
+/*function shipment(total) {
 
-}
+}*/
 
 //改变参数时发送Ajax请求
 function sendMsg(data, str) {
@@ -120,14 +121,29 @@ $(document).ready(function() {
 	var row_3 = $(".scroll-box div .row-3");
 	for(var i = 0; i < row_3.length; i++) {
 		var pages = parseInt(row_3[i].innerHTML);
-		if(divClass[i].className == "ppt") {
-			var pptPerPage = divClass[i].querySelector("");
+		var ppt = divClass[i].querySelector(".page-num");
+		var row8 = divClass[i].querySelector(".row-8");
+		if(ppt) {
+			var index = ppt.selectedIndex;
+			var pptPerPage = ppt.options[index].text;
 			pptPerPage = parseInt(pptPerPage);
 			pages = Math.ceil(pages / pptPerPage);
-			console.log(pages);
 		}
 		pages /= 2;
-		pages *= 0.15;
+
+		var fac = divClass[i].querySelector(".face");
+		var facIndex = fac.selectedIndex;
+		var facValue = fac.options[facIndex].text;
+		facValue = facValue.replace(/[\r\n]/g,"");
+		facValue = facValue.split(' ').join('');
+		if(facValue == sidesArr[0]) {
+			pages *= 0.1;
+			row8.innerHTML = 0.1;
+		}
+		else {
+			pages *= 0.15;
+			row8.innerHTML = 0.15;
+		}
 		pages = pages.toFixed(3);
 		row_3[i].parentNode.querySelector(".row-10").innerHTML = pages;
 	}
@@ -138,6 +154,7 @@ $(document).ready(function() {
 		var isTwoSides = $(this).find("option:selected").text();
 		isTwoSides = isTwoSides.replace(/[\r\n]/g,"");
 		isTwoSides = isTwoSides.split(' ').join('');
+		var istwosides = isTwoSides;
 		if(isTwoSides == "单面") {
 			isTwoSides = "NO";
 		}
@@ -155,7 +172,7 @@ $(document).ready(function() {
 		size = size.replace(/[\r\n]/g,"");
 		size = size.split(' ').join('');
 		var amout = parent.find(".amout").val(); //获取打印份数
-		countMoney(amout, size, isTwoSides, filePages, parent);
+		countMoney(amout, size, istwosides, filePages, parent);
 		sendMsg(data, "单双面");
 	});
 
@@ -164,12 +181,6 @@ $(document).ready(function() {
 		var itSize = $(this).find("option:selected").text();
 		itSize = itSize.replace(/[\r\n]/g,"");
 		itSize = itSize.split(' ').join('');
-		if(itSize == "A4") {
-			itSize = "A4";
-		}
-		else {
-			itSize = "B4";
-		}
 		var parent = $(this).parent().parent();
 		var filePages = parseInt(parent.find(".row-3").text());
 		var md5 = parent.attr("data-md5");

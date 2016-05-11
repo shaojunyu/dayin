@@ -364,12 +364,14 @@ $(document).ready(function() {
 		$(".so").click(function() {
 			$.ajax({
 				url: "./api/logout",
-				type: "GET",
+				data:'{}',
+				contentType: 'application/json',
+				type: "POST",
 				success:function(data) {
 	        		location.reload(true);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
-	        		showError("请求失败");  
+	        		showError("请求失败");
 	    		}
 			});
 		});
@@ -418,6 +420,11 @@ $(document).ready(function() {
 			var tel = /^1[3|4|5|7|8]\d{9}$/;
 	    	return this.optional(element) || (tel.test(value));
 		}, "请填写正确的手机号");
+
+		$.validator.addMethod("psword", function(value, element, params) {
+			var tel = /^[A-Za-z0-9]+$/;
+	    	return this.optional(element) || (tel.test(value));
+		}, "密码请输入字母或数字");
 
 		//登录
 		$("#login").validate({
@@ -481,7 +488,8 @@ $(document).ready(function() {
 		    	},
 		    	passwordup: {
 		    		required: true,
-		    		minlength: 6
+		    		minlength: 6,
+		    		psword: true
 		    	},
 		    	passwordcheck: {
 		    		required: true,
