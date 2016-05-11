@@ -64,7 +64,7 @@ $(document).ready(function() {
 	});
 
 	//编辑地址信息
-	$(".edit-info").click(function() {
+	/*$(".edit-info").click(function() {
 		$(".now-address").css("display", "none");
 		$(".change-address").css("display", "inline-block");
 		$(".edit-info").css("display", "none");
@@ -76,7 +76,7 @@ $(document).ready(function() {
 		$(".now-address").css("display", "inline-block");
 		$(".save-info").css("display", "none");
 		$(".edit-info").css("display", "block");
-	});
+	});*/
 
 	//支付框
 	var toPay = document.querySelectorAll(".toPay span");
@@ -108,7 +108,19 @@ $(document).ready(function() {
 	for(var i = 0; i < len; i++) {
 		addHandler(toPay[i], "click", function() { //给每一个去付款添加点击事件
 			showDiv(cover, pay);
-			
+			var orderid = getOrderId(this);
+			var wx_pay = {
+				orderId: orderid,
+				channel: "wx_pub_qr"
+			};
+			var zfb_pay = {
+				orderId: orderid,
+				channel: "alipay_pc_direct"
+			};
+			wx_pay = window.btoa(JSON.stringify(wx_pay));
+			zfb_pay = window.btoa(JSON.stringify(zfb_pay));
+			wx.setAttribute("href", "pay?pay="+wx_pay);
+			zfb.setAttribute("href", "pay?pay="+zfb_pay);
 		});
 	}
 	addHandler(payX, "click", function() { //支付框的隐藏
@@ -167,7 +179,7 @@ $(document).ready(function() {
 		            }
 		        },
 		        error: function(XMLHttpRequest, textStatus, errorThrown){  
-		            showError("取消失败");  
+		            showError("取消失败"); 
 		        }
 			});
 		});
@@ -191,6 +203,8 @@ $(document).ready(function() {
 });
 
 
-function getOrderId() {
-
+function getOrderId(orderId) {
+	var parent = orderId.parentNode.parentNode.parentNode;
+	var order_id = parent.querySelector(".order-num span").innerHTML;
+	return order_id;
 }
