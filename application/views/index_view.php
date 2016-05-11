@@ -25,10 +25,10 @@
                     <a href="javascript:void(0)" class="sign_up">注册</a>
                 </li>
                 <?php } else{?>
-                <li><a href="javascript:void(0)">我的文库</a></li>
+                <li><a href="upload">我的文库</a></li>
                 <li class="person-box">
                     <ul id="sign-out" class="clearfix">
-                        <li><a href="javascript:void(0)" class="person">个人中心</a></li>
+                        <li><a href="myself" class="person">个人中心</a></li>
                         <li><a href="javascript:void(0)" class="so">退出登录</a></li>
                     </ul>
                 </li>

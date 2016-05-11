@@ -25,32 +25,18 @@ function addHandler(element, type, handler) {
 function showDiv(cover, sign) {
 	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
 	var offsetH = (pageH - sign.offsetHeight) / 2;
-	if((scrollAnimate.count % 2) == 1) {
-		sign.style.top = pageH + offsetH + "px";
-	}
-	else {
-		sign.style.top = offsetH + "px";
-	}
 	cover.style.display = "block";
 	sign.style.display = "block";
-	scrollAnimate.timer = 1;
 }
 //隐藏浮层
 function hideDiv(cover, sign) {
 	cover.style.display = "none";
 	sign.style.display = "none";
-	scrollAnimate.timer = 0;
 }
 //居中显示浮层
 function centerDiv(sign) {
 	var pageW = document.documentElement.clientWidth || document.body.clientWidth;
 	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
-	if((scrollAnimate.count % 2) == 0) {
-		sign.style.top = (pageH - sign.offsetHeight) / 2 + "px";
-	}
-	else {
-		sign.style.top = pageH + (pageH - sign.offsetHeight) / 2 + "px";
-	}
 	sign.style.left = (pageW - sign.offsetWidth) / 2 + "px";
 }
 
@@ -129,11 +115,13 @@ $(document).ready(function() {
 		hideDiv(cover, pay);
 		showDiv(cover, paying);
 		//跳转
+
 	});
 	addHandler(zfb, "click", function() { //支付宝支付弹出支付中
 		hideDiv(cover, pay);
 		showDiv(cover, paying);
 		//跳转
+		
 	});
 
 	//支付中框的隐藏, 并刷新页面

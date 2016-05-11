@@ -998,41 +998,20 @@ p.toPay, p.cancel, p.add-print {
 	vertical-align: middle;
 	cursor: pointer;
 }
-.print-car-box {
-	position: fixed;
-	bottom: -300px;
-	left: 50%;
-	width: 600px;
-	height: 400px;
-	margin-left: -300px;
-	border: 2px solid #71dcfe;
-	background-color: #fff;
-	z-index: 11;
-	transition: bottom 0.5s;
-	padding-top: 120px;
-}
 .to-order {
-	position: absolute;
-	top: 30px;
-	right: 40px;
-	height: 40px;
-	font: normal 100 21px/40px "Microsoft Yahei", sans-serif;
+	width: 55%;
+	margin: 10px auto;
+	text-align: center;
 	color: #fff;
-	background-color: #43aef6;
-	border: 1px solid #43aef6;
+	background-color: #7ab8f4;
+	border: 1px solid #7ab8f4;
+	display: block;
+	font: normal 100 1.4em/50px "Microsoft Yahei", sans-serif;
 	padding: 0px 10px;
 	letter-spacing: 2px;
 	cursor: pointer;
 	border-radius: 5px;
 	outline: none;
-}
-.print-car {
-	position: absolute;
-	top: 10px;
-	left: 50%;
-	width: 200px;
-	margin-left: -100px;
-	cursor: pointer;
 }
 .hide {
 	width: 0;
@@ -1050,61 +1029,9 @@ p.toPay, p.cancel, p.add-print {
 	border-left: 11px solid transparent;
 	border-right: 11px solid transparent;
 }
-.print-car p {
-	text-align: center;
-	color: #71dcfe;
-}
-.car {
-	font-size: 23px;
-}
 .see {
 	font-size: 1em;
 }
-.car-scroll {
-	width: 100%;
-}
-.car-scroll div {
-	width: 92%;
-	height: 48px;
-	display: inline-block;
-	color: #336598;
-	padding-left: 40px;
-	margin-left: 3%;
-	position: relative;
-	padding-right: 35px;
-}
-.car-scroll div:hover {
-	background-color: #acd6fe;
-}
-.car-scroll div i {
-	width: 23px;
-	height: 23px;
-	position: absolute;
-	top: 12px;
-	right: 10px;
-	background: url(../images/spite.png) no-repeat;
-	background-position: 0 -47px;
-	cursor: pointer;
-}
-.car-scroll div p {
-	display: inline-block;
-	width: 100%;
-	float: left;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-	overflow: hidden;
-}
-.car-scroll div p:first-child {
-	font-size: 1.25em;
-	line-height: 25px;
-	cursor: pointer;
-}
-.car-scroll div p:last-child {
-	font-size: 1em;
-	line-height: 23px;
-}
-
 
 
 
