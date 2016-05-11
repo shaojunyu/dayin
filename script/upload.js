@@ -360,6 +360,11 @@ function addDelEvent(elem) {
     });
 }
 
+//提示重名
+function sameName() {
+    
+}
+
 $(document).ready(function() {
     var uploadBox = document.querySelector(".scroll-bar");
     var uploadFile = uploadBox.querySelectorAll("div");
