@@ -8,7 +8,7 @@
 class Pay extends CI_Controller{
 
     private $pingpp_charge;
-    
+
 
     public function index(){
 
