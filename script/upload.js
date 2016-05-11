@@ -168,7 +168,10 @@ var uploader = new plupload.Uploader({
                             showError("上传成功");
                         }
                         else {  //获取token并上传文件
-                            set_upload_param(uploader, file.name, false);   
+                            var isSame = sameName(file.name);
+                            if(!isSame) {
+                                set_upload_param(uploader, file.name, false);   
+                            }
                         }
                     }
                 };
@@ -361,8 +364,16 @@ function addDelEvent(elem) {
 }
 
 //提示重名
-function sameName() {
-    
+function sameName(filename) {
+    var havenName = document.querySelectorAll(".scroll-bar div p:first-child");
+    var len = havenName.length;
+    for(var i = 0; i < len; i++) {
+        if(havenName[i].innerHTML == filename) {
+            showError("文件重复");
+            return false;
+        }
+    }
+    return true;
 }
 
 $(document).ready(function() {
@@ -431,10 +442,10 @@ $(document).ready(function() {
     //去下单
     $(".to-order").click(function() {
         var len = document.querySelectorAll(".scroll-bar div").length;
-        if(status_list.length == 0 && len > 1) {
+        if(status_list.length == 0 && len > 0) {
             location.href = "confirm";
         }
-        else if(len == 1) {
+        else if(len == 0) {
             showError("请选择打印文件");
         }
         else {
