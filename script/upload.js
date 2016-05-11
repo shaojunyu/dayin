@@ -140,6 +140,10 @@ var uploader = new plupload.Uploader({
     init: {
         FilesAdded: function(up,files) {
             plupload.each(files, function(file){
+                var isSame = sameName(file.name);
+                if(!isSame) {
+                    return;
+                }
                 var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
                 chunkSize = 2097152,                         // Read in chunks of 2MB
                 chunks = Math.ceil(file.size / chunkSize),
@@ -168,10 +172,7 @@ var uploader = new plupload.Uploader({
                             showError("上传成功");
                         }
                         else {  //获取token并上传文件
-                            var isSame = sameName(file.name);
-                            if(!isSame) {
-                                set_upload_param(uploader, file.name, false);   
-                            }
+                            set_upload_param(uploader, file.name, false);   
                         }
                     }
                 };
