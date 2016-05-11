@@ -40,6 +40,7 @@ function centerDiv(sign) {
 	sign.style.left = (pageW - sign.offsetWidth) / 2 + "px";
 }
 
+
 $(document).ready(function() {
 	$("#sign-out").mouseover(function() {
 		$(".so").css("display", "block");
@@ -78,8 +79,8 @@ $(document).ready(function() {
 	});
 
 	//支付框
-	var toPay = document.querySelectorAll(".toPay");
-	var cancel = document.querySelectorAll(".cancel");
+	var toPay = document.querySelectorAll(".toPay span");
+	var cancel = document.querySelectorAll(".cancel span");
 	var cover = document.querySelector(".cover");
 	var pay = document.querySelector("#pay");
 	var paying = document.querySelector("#paying");
@@ -107,6 +108,7 @@ $(document).ready(function() {
 	for(var i = 0; i < len; i++) {
 		addHandler(toPay[i], "click", function() { //给每一个去付款添加点击事件
 			showDiv(cover, pay);
+			
 		});
 	}
 	addHandler(payX, "click", function() { //支付框的隐藏
@@ -146,7 +148,28 @@ $(document).ready(function() {
 	}
 	for(var i = 0; i < cancel_len; i++) {
 		addHandler(cancel[i], "click", function() { //给每一个去付款添加点击事件
-			
+			var self = this;
+			var parent = self.parentNode.parentNode.parentNode;
+			var order_id = parent.querySelector(".order-num span").innerHTML;
+			order_id = {orderId: order_id};
+			$.ajax({
+				url: "./api/cancelOrder",
+		        type: "POST",
+		        contentType:"application/json",
+		        dataType:"json",
+		        data: JSON.stringify(order_id),
+		        success:function(data) {
+		            if(data.success) {
+		            	document.querySelector(".order-list").removeChild(parent);
+		                showError("取消成功");
+		            }else {
+		                showError(data.msg);
+		            }
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){  
+		            showError("取消失败");  
+		        }
+			});
 		});
 	}
 
@@ -166,3 +189,8 @@ $(document).ready(function() {
 	    disableFadeOut: false //是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
 	});
 });
+
+
+function getOrderId() {
+
+}

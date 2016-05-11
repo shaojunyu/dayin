@@ -13,7 +13,7 @@ g_object_name_type = ''
 now = timestamp = Date.parse(new Date()) / 1000; 
 
 var newElem = {};
-var file_status = ["processing", "failed", "done"];
+var file_status = ["processing", "fail", "done"];
 var status_list = [];
 
 
@@ -96,11 +96,13 @@ function get_uploaded_object_name(filename)
 
 function set_upload_param(up, filename, ret)
 {
+    var date = new Date();
+    date = date.getSeconds();
     if (ret == false)
     {
         ret = get_signature()
     }
-    g_object_name = key + filename;
+    g_object_name = key + date +filename;
     if (filename != '') { 
         suffix = get_suffix(filename);
         calculate_object_name(filename);
@@ -160,7 +162,7 @@ var uploader = new plupload.Uploader({
                         var success = sendMD5(spark.end()); //校验md5值
 
                         if(success) {  //已有文件
-                            addFile(file.name, file.size);
+                            addFile(file.name);
                             removeC(newElem[file.name][0]);
                             delete newElem[file.name];
                             showError("上传成功");
@@ -203,16 +205,17 @@ var uploader = new plupload.Uploader({
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function(data) {
+                        var self_md5 = newElem[file.name][1];
                         if(data.success) {
-                            addFile(file.name, file.size);
                             removeC(newElem[file.name][0]);
                             delete newElem[file.name];
+                            createStatus(file.name, self_md5);
                             showError("上传成功");
                         }
                         else {
-                            addFile(file.name, file.size);
                             removeC(newElem[file.name][0]);
                             delete newElem[file.name];
+                            createStatus(file.name, self_md5);
                             showError(data.msg);
                         }
                     },
@@ -278,6 +281,20 @@ function createNew(name) {
     return newelem;
 }
 
+//解析过程的进度div
+function createStatus(name, md5) {
+    var newelem = document.createElement("div");
+    var next = document.querySelector("#file");
+    var parent = document.querySelector(".scroll-bar");
+    newelem.innerHTML = '<p>' + name + '</p>' + '<p>后台解析中...' + '</p>';
+    newelem.setAttribute("data-status", file_status[0]);
+    parent.insertBefore(newelem, next);
+    newElem[name] = [];
+    newElem[name][0] = newelem;
+    newElem[name][1] = md5;
+    status_list.push(newelem);
+}
+
 //移除div
 function removeC(elem) {
     var parent = document.querySelector(".scroll-bar");
@@ -285,7 +302,7 @@ function removeC(elem) {
 }
 
 //文件上传成功后显示在页面上
-function addFile(filename, size) {
+function addFile(filename) {
     var reg = /\.(\w+)$/;
     var str = filename.match(reg);
     var date = new Date();
@@ -300,6 +317,8 @@ function addFile(filename, size) {
     }
 
     str = str[0].slice(1);
+    str = str.toLowerCase();
+    console.log(str);
     if(str == "docx" || str == "doc") {
         str = "word";
     }
@@ -351,14 +370,26 @@ $(document).ready(function() {
         }
     }
 
+    //文件状态初始化
+    var div_len = uploadFile.length;
+    for(var i = 0; i < div_len; i++) {
+        var file_Name;
+        if(uploadFile[i].getAttribute("data-status") == file_status[0]) {
+            file_Name = uploadFile[i].querySelector("p:first-child").innerHTML;
+            status_list.push(uploadFile[i]);
+            newElem[file_Name] = [];
+            newElem[file_Name][0] = uploadFile[i];
+            newElem[file_Name][1] = uploadFile[i].getAttribute("data-md5");
+        }
+    }
+
     //文件解析
-    
     setTimeout(function loop() { //隔1s轮询一次
         if(status_list.length) {
-            status_list[0]
-            
-
-            var status;
+            var now_status = status_list[0].getAttribute("data-status");
+            var file_name = status_list[0].querySelector("p:first-child").innerHTML;
+            var md5 = newElem[file_name][1];
+            var status = {fileMD5: md5};
             $.ajax({
                 url: './api/getProgess',
                 type: 'POST',
@@ -366,10 +397,20 @@ $(document).ready(function() {
                 data: JSON.stringify(status),
                 dataType: 'json',
                 success: function(data) {
-                    if(data.msg == file_status[1]){
+                    if(data.msg == file_status[0]) {
+                        //
+                    }
+                    else if(data.msg == file_status[1]){
+                        removeC(status_list[0]);
+                        status_list.splice(0,1);
+                        delete newElem[file_name];
                         showError("解析失败");
                     }
                     else if(data.msg == file_status[2]) {
+                        removeC(status_list[0]);
+                        status_list.splice(0,1);
+                        addFile(file_name);
+                        delete newElem[file_name];
                         showError("解析成功");
                     }
                 },
@@ -384,7 +425,12 @@ $(document).ready(function() {
 
     //去下单
     $(".to-order").click(function() {
-
+        if(status_list.length == 0) {
+            location.href = "confirm";
+        }
+        else {
+            showError("请稍后，正在处理中...");
+        }
     });
-
+    
 });
