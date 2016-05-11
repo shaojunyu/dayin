@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="order-list">
-                <div>
+                <div class="nodo">
 							<span class="order-1">
 								<p class="order-num">订单编号：1234253453</p>
 								<p class="address">收货地址：韵苑22栋503</p>
@@ -91,7 +91,7 @@
                     <p class="status">总价：120元&nbsp;&nbsp;&nbsp;&nbsp;收货方式：送货上门&nbsp;&nbsp;&nbsp;&nbsp;支付状态：未支付</p>
                     <hr />
                 </div>
-                <div>
+                <div class="done">
 							<span class="order-1">
 								<p class="order-num">订单编号：1234253453</p>
 								<p class="address">收货地址：韵苑22栋503</p>
