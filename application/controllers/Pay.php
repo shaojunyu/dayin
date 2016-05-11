@@ -16,9 +16,12 @@ class Pay extends CI_Controller{
             http_response_code(400);
             exit('bad request');
         }
-
-        $orderId = $this->input->get('orderId');
-        $channel = $this->input->get('channel');
+        $pay_info = $this->input->get('pay');
+        //echo base64_decode($pay_info);
+        $pay_info = json_decode(base64_decode($pay_info),true);
+        //var_dump($pay_info);
+        $orderId = $pay_info['orderId'];
+        $channel = $pay_info['channel'];
         if ($orderId == null or $channel == null or !in_array($channel,array('wx_pub_qr','alipay_pc_direct'))){
             http_response_code(400);
             exit('bad request');
