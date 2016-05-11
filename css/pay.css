@@ -49,6 +49,25 @@ header img {
 	padding-top: 18px;
 }
 
+/* prompt-box */
+.prompt-box {
+	width: 350px;
+	font-size: 1.4em;
+	height: 80px;
+	line-height: 80px;
+	background-color: #f69743;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 1px;
+	position: fixed;
+	top: -80px;
+	left: 50%;
+	margin-left: -175px;
+	z-index: 999;
+	transition: top 0.1s;
+}
+
+
 .container {
 	width: 920px;
 	height: 1020px;

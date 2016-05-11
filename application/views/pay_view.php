@@ -9,6 +9,7 @@
 <header>
     <img src="images/logo_pay.png" alt="微信支付">
 </header>
+<div class="prompt-box"></div> <!-- 表单错误提示框 -->
 <div class="container">
     <img src="http://qr.liantu.com/api.php?el=h&text=<?php echo $charge->__toArray()['credential']->__toArray()['wx_pub_qr']; ?>">
     <p class="info">请使用微信扫描<br />二维码以完成支付</p>
@@ -35,5 +36,7 @@
 <footer>
     &copy;武汉巧然电子科技有限公司
 </footer>
+<script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="script/pay.js"></script>
 </body>
 </html>
