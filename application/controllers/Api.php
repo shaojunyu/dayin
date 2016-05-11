@@ -193,6 +193,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function confirmMD5(){
+        $this->needSession();
         $this->check_post_data(array('fileMD5'));
         $this->db->where('fileMD5',$this->post_data->fileMD5);
         $this->db->get('file_info')->result_array();
@@ -210,6 +211,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function uploadACK(){
+        $this->needSession();
         $this->check_post_data(array('fileName','fileMD5'));
         //文件加入购物车
         $this->load->model('Cart_model','Cart');
@@ -232,6 +234,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function deleteItem(){
+        $this->needSession();
         $this->check_post_data(array('fileMD5'));
         $this->load->model('Cart_model','Cart');
         if ($this->Cart->delete_item($this->post_data->fileMD5)) {
@@ -241,7 +244,14 @@ class Api extends CI_Controller{
         }
     }
 
+    /**
+     * function printSettings 打印设定
+     * @param
+     * @return
+     * @author yushaojun
+     */
     public function printSettings(){
+        $this->needSession();
         $this->check_post_data(array('fileMD5'));
         $this->load->model('Cart_model','Cart');
         $res = false;
@@ -267,11 +277,86 @@ class Api extends CI_Controller{
             $this->echo_msg(false,'修改失败'.$m);
         }
     }
+
+    /**
+     * function getProgess
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function getProgess(){
+        $this->needSession();
+        $this->check_post_data(array('fileMD5'));
+        $this->db->where('fileMD5',$this->post_data->fileMD5);
+        $res = $this->db->get('file_info')->result_array();
+        if (count($res) == 0){
+            $this->echo_msg(true,'文件正在解析中');
+        }else{
+            $res = $res[0];
+            $pages = $res['pages'];
+            if ($pages == 0){
+                $this->echo_msg(true,'文件解析失败，请检查后重新上传');
+            }else{
+                $this->echo_msg(true,'文件解析完成');
+            }
+        }
+    }
+
+    public function createOrder(){
+        $this->needSession();
+        $this->check_post_data(array('shop','area','buildingNum','roomNum','receiver','receiverPhone','deliveryMode','total'));
+
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $res = $this->db->get('cart')->result_array();
+        if (count($res) == 0){
+            $this->echo_msg(false,'购物车为空');
+            exit();
+        }
+        $total = 0;
+        foreach ($res as $e){
+            $total += $e['subTotal'];
+        }
+
+        $this->db->insert('order',array(
+            'cellphone'=>$this->session->userdata('cellphone'),
+            'shop'=>$this->post_data->shop,
+            'area'=>$this->post_data->area,
+            'buildingNum'=>$this->post_data->buildingNum,
+            'roomNum'=>$this->post_data->roomNum,
+            'receiver'=>$this->post_data->receiverPhone,
+            'receiverPhone'=>$this->post_data->receiverPhone,
+            'deliveryMode'=>$this->post_data->deliveryMode,
+            'total'=>$total,
+            'state'=>'UNPAID',
+            'content'=>json_encode($res)
+        ));
+
+        //删除购物车
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->delete('cart');
+
+        $this->echo_msg(true,'');
+        //var_dump($this->post_data);
+    }
 /*
  * ----------------------------------------------------------------------------------------
  * 以下是private函数，供本类调用
  * ----------------------------------------------------------------------------------------
  */
+
+    /**
+     * function needSession 验证session，不存在就退出
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function needSession(){
+        if ( $this->session->userdata('cellphone') == null ){
+            exit('api false');
+        }else{
+            return;
+        }
+    }
 
     /**
      * function verifySmsCode 验证smscode

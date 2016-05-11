@@ -18,6 +18,7 @@ class Confirm extends CI_Controller{
     }
 
     public function index(){
+        $this->load->model('Cart_model','Cart');
         $this->load->view('confirm_view');
     }
 }

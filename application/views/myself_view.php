@@ -56,19 +56,41 @@
                 </div>
             </div>
             <div class="order-list">
+                <?php
+                $this->db->where('cellphone',$this->session->userdata('cellphone'));
+                $this->db->where('state','UNPAID');
+                $res = $this->db->get('order')->result_array();
+                foreach ($res as $order){
+                    //var_dump($order);
+                ?>
                 <div class="nodo">
 							<span class="order-1">
-								<p class="order-num">订单编号：1234253453</p>
-								<p class="address">收货地址：韵苑22栋503</p>
-								<p class="wrapper clearfix"><span class="left">包含文件：</span><span class="right">1.doc, 2.doc, 3.ppt, 4.ppt,ahdybcszd.doc1.doc, 2.doc, 3.ppt, 4.ppt,ahdybcszd.doc1.doc, 2.doc, 3.ppt, 4.ppt,ahdybcszd.doc</span></p>
+								<p class="order-num">订单编号：<?php echo $order['Id'];?></p>
+								<p class="address">收货地址：<?php if ($order['deliveryMode'] == 'self'){ echo $order['shop'].'(自取)';} else{ echo $order['area'].$order['buildingNum'].'栋'.$order['roomNum'];}?></p>
+								<p class="wrapper clearfix"><span class="left">包含文件：</span><span class="right">
+                                 <?php
+                                 $content = json_decode($order['content']);
+                                 //var_dump($content);
+                                 foreach ($content as $file){
+                                     echo $file->fileName.'<br/>';
+                                 }
+                                 ?></span></p>
 							</span>
+							<?php if ($order['state'] == 'UNPAID'){?>
 							<span class="order-2">
 								<p class="toPay"><span>去付款</span></p>
 								<p class="cancel"><span>取消订单</span></p>
 							</span>
-                    <p class="status">总价：120元&nbsp;&nbsp;&nbsp;&nbsp;收货方式：送货上门&nbsp;&nbsp;&nbsp;&nbsp;支付状态：未支付</p>
+							<?php }?>
+                    <p class="status">总价：<?php echo $order['total']?>&nbsp;&nbsp;&nbsp;&nbsp;收货方式：<?php if ($order['deliveryMode'] == 'self'){ echo '自取';}else{ echo '送货上门';}?>&nbsp;&nbsp;&nbsp;&nbsp;订单状态：
+                        <?php
+                        if ($order['state'] == 'UNPAID'){ echo '未支付';}
+                        ?></p>
                     <hr />
                 </div>
+                <?php } ?>
+
+                
                 <div class="done">
 							<span class="order-1">
 								<p class="order-num">订单编号：1234253453</p>

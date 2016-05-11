@@ -12,7 +12,7 @@ class Order_model extends CI_Model{
     }
 
     public function create_order(){
-
+        
     }
 
     public function update_order_state(){
