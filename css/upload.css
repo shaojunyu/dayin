@@ -125,6 +125,23 @@ nav ul li ul#sign-out li {
 	z-index: 999;
 	transition: top 0.1s;
 }
+.file-info {
+	width: 400px;
+	font-size: 1.2em;
+	height: 80px;
+	line-height: 80px;
+	background-color: #f45551;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 1px;
+	position: fixed;
+	top: 200px;
+	left: 50%;
+	margin-left: -200px;
+	z-index: 999;
+	display: none;
+	border-radius: 5px;
+}
 
 .word {
 	background: url(../images/spite.png) no-repeat;
@@ -240,6 +257,17 @@ nav ul li ul#sign-out li {
 }
 #ul {
 	display: block;
+	line-height: 50px;
+	width: 100%;
+	letter-spacing: 2px;
+	border: 1px solid #7ab8f4;
+	font: normal 100 1.4em/50px "Microsoft Yahei",sans-serif;
+	background-color: #7ab8f4;
+	border-radius: 10px;
+	outline: none;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
 }
 .mystore {
 	width: 100%;

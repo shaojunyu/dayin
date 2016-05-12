@@ -27,6 +27,8 @@
 </header>
 
 <div class="prompt-box"></div> <!-- 表单错误提示框 -->
+<div class="file-info"></div>
+
 
 <div class="nav"><div class="clearfix"><span class="upload" id="clicked">上传文件</span><span class="my-store">我的文库</span></div></div>
 
@@ -53,7 +55,7 @@
                 <i></i>
             </div>
 <?php    }?>
-            <p class="continue-add" id="file"><span id="ul">上传文件</span></p>
+            <p class="continue-add" id="file"><button type="button" id="ul">上传文件</button></p>
         </div>
     </div>
     <div class="mystore clearfix">

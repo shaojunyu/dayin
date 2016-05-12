@@ -1,3 +1,5 @@
+var cancelList = [];
+
 //表单错误提示框显示函数
 function showError(message) {
 	var promptBox = document.querySelector(".prompt-box");
@@ -52,37 +54,7 @@ function centerDiv(sign) {
 
 //取消订单确认
 function cancelSubFunc(order_id, parent) {
-	var coverBg = document.querySelector(".cover");
-	var cancelSubmit = document.querySelector("#cancel-submit");
-	var cancelX = document.querySelector(".cancel-top span");
-	var cancelBtn = document.querySelector(".cancel-btn");
-	showDiv(coverBg, cancelSubmit);
-
-	addHandler(cancelBtn, "click", function() {
-		$.ajax({
-			url: secret("./api/cancelOrder"),
-		    type: "POST",
-	        contentType:"application/json",
-	        dataType:"json",
-	        data: JSON.stringify(order_id),
-	        success:function(data) {
-	            if(data.success) {
-	            	document.querySelector(".order-list").removeChild(parent);
-	                showError("取消成功");
-	            }else {
-	                showError(data.msg);
-	            }
-	        },
-	        error: function(XMLHttpRequest, textStatus, errorThrown){  
-	            showError("取消失败"); 
-	        }
-		});
-		hideDiv(coverBg, cancelSubmit);
-	});
-
-	addHandler(cancelX, "click", function() {
-		hideDiv(coverBg, cancelSubmit);
-	});
+	
 		
 
 }
@@ -203,6 +175,37 @@ $(document).ready(function() {
 	});
 
 	//取消订单
+	var coverBg = document.querySelector(".cover");
+	var cancelSubmit = document.querySelector("#cancel-submit");
+	var cancelX = document.querySelector(".cancel-top span");
+	var cancelBtn = document.querySelector(".cancel-btn");
+
+	addHandler(cancelBtn, "click", function() {
+		$.ajax({
+			url: secret("./api/cancelOrder"),
+		    type: "POST",
+	        contentType:"application/json",
+	        dataType:"json",
+	        data: JSON.stringify(cancelList[0].order_id),
+	        success:function(data) {
+	            if(data.success) {
+	            	document.querySelector(".order-list").removeChild(cancelList[0].parent);
+	                showError("取消成功");
+	            }else {
+	                showError(data.msg);
+	            }
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown){  
+	            showError("取消失败"); 
+	        }
+		});
+		hideDiv(coverBg, cancelSubmit);
+	});
+
+	addHandler(cancelX, "click", function() {
+		cancelList = [];
+		hideDiv(coverBg, cancelSubmit);
+	});
 	var cancel_len = 0;
 	if(cancel) {
 		cancel_len = cancel.length;
@@ -213,7 +216,11 @@ $(document).ready(function() {
 			var parent = self.parentNode.parentNode.parentNode;
 			var order_id = parent.querySelector(".order-num span").innerHTML;
 			order_id = {orderId: order_id};
-			cancelSubFunc(order_id, parent);
+			cancelList[0] = {};
+			cancelList[0].parent = parent;
+			cancelList[0].order_id = order_id;
+			//cancelSubFunc(order_id, parent);
+			showDiv(coverBg, cancelSubmit);
 		});
 	}
 

@@ -142,10 +142,11 @@ var uploader = new plupload.Uploader({
             plupload.each(files, function(file){
                 var isSame = sameName(file.name);
                 if(!isSame) {
-                    up.removeFile(file);
                     showError("文件重复");
+                    up.removeFile(file);
                     return;
                 }
+                stopClick();
                 var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
                 chunkSize = 2097152,                         // Read in chunks of 2MB
                 chunks = Math.ceil(file.size / chunkSize),
@@ -192,12 +193,6 @@ var uploader = new plupload.Uploader({
         BeforeUpload: function(up, file) {
             set_upload_param(up, file.name, true);
         },
-        /*FileFiltered: function(up, file) {
-            var isSame = sameName(file.name);
-            if(!isSame) {
-                up.removeFile(file);
-            }
-        },*/
 
         UploadProgress: function(up, file) { //文件上传中
             newElem[file.name][0].getElementsByTagName("p")[1].innerHTML = "上传中：" + file.percent + "%";
@@ -465,6 +460,17 @@ $(document).ready(function() {
         else {
             showError("请稍后，正在处理中...");
         }
-    });
-    
+    });   
 });
+
+
+function stopClick() {
+    var message = "文件正在上传中，请等到解析完成再上传";
+    var fileInfo = document.querySelector(".file-info");
+    fileInfo.innerHTML = message;
+    fileInfo.style.display = "none";
+    fileInfo.style.display = "block";
+    setTimeout(function() {
+        fileInfo.style.display = "none";
+    }, 3000);
+}
