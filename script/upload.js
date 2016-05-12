@@ -101,7 +101,7 @@ function set_upload_param(up, filename, ret)
     {
         ret = get_signature()
     }
-    //filename = date + '-' + filename;
+    filename = date + '-' + filename;
     g_object_name = key + filename;
     if (filename != '') { 
         suffix = get_suffix(filename);
