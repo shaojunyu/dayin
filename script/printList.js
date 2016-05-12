@@ -182,7 +182,7 @@ $(document).ready(function() {
 			//countMoney(amout, size, isTwoSide, filePages, parent);
 			data = {
 				fileMD5: md5,
-				amout: amount
+				amount: amout
 			};
 			sendMsg(data, "份数", parent);
 		}

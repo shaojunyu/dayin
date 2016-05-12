@@ -142,6 +142,7 @@ var uploader = new plupload.Uploader({
             plupload.each(files, function(file){
                 var isSame = sameName(file.name);
                 if(!isSame) {
+                    up.removeFile(file);
                     return;
                 }
                 var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
@@ -154,7 +155,6 @@ var uploader = new plupload.Uploader({
                 var div = createNew(file.name);
 
                 fileReader.onload = function (e) {
-                    console.log('read chunk nr', currentChunk + 1, 'of', chunks);
                     spark.append(e.target.result); // Append array buffer
                     currentChunk++;
                     
@@ -191,6 +191,12 @@ var uploader = new plupload.Uploader({
         BeforeUpload: function(up, file) {
             set_upload_param(up, file.name, true);
         },
+        /*FileFiltered: function(up, file) {
+            var isSame = sameName(file.name);
+            if(!isSame) {
+                up.removeFile(file);
+            }
+        },*/
 
         UploadProgress: function(up, file) { //文件上传中
             newElem[file.name][0].getElementsByTagName("p")[1].innerHTML = "上传中：" + file.percent + "%";
