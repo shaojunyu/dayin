@@ -176,6 +176,8 @@
                 <option value="0">请选择打印店</option>
                 <option value="东篱阳光图文">东篱阳光图文</option>
                 <option value="韵苑二栋打印社">韵苑二栋打印社</option>
+                <option value="紫菘打印店">紫菘打印店</option>
+                <option value="沁苑打印店">沁苑打印店</option>
             </select>
 
             <div class="door">
@@ -217,6 +219,12 @@
                     <option value="28">28</option>
                 </select>
                 <input type="text" placeholder="宿舍号" class="room">
+                <select name="t" id="time">
+                    <option value="0">送货时间</option>
+                    <option value="1">8:00-11:00</option>
+                    <option value="2">14:00-17:00</option>
+                    <option value="3">18:00-21:30</option>
+                </select>
                 <input type="text" class="receiver" placeholder="收货人">
                 <input type="text" class="phone" placeholder="联系电话">
             </div>

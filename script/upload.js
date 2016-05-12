@@ -233,12 +233,10 @@ var uploader = new plupload.Uploader({
                         showError("请求失败");
                     }
                 });
-                console.log("200");
                 //document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = 'upload to oss success, object name:' + get_uploaded_object_name(file.name) + ' 回调服务器返回的内容是:' + info.response;
             }
             else if (info.status == 203)
             {
-                console.log(info.response);
                 showError("上传失败，请重试");
                 removeC(newElem[file.name][0]);
                 delete newElem[file.name];
@@ -338,7 +336,6 @@ function addFile(filename) {
 
     str = str[0].slice(1);
     str = str.toLowerCase();
-    console.log(str);
     if(str == "docx" || str == "doc") {
         str = "word";
     }
@@ -459,7 +456,6 @@ $(document).ready(function() {
     //去下单
     $(".to-order").click(function() {
         var len = document.querySelectorAll(".scroll-bar div").length - 1;
-        console.log(len);
         if(status_list.length == 0 && len > 0) {
             location.href = "confirm";
         }
