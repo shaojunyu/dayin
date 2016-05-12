@@ -351,6 +351,7 @@ class Api extends CI_Controller{
                 'receiver'=>$this->post_data->receiverPhone,
                 'receiverPhone'=>$this->post_data->receiverPhone,
                 'deliveryMode'=>$this->post_data->deliveryMode,
+                //'deliveryTime'=>$this->post_data->deliveryTime,
                 'total'=>$total,
                 'state'=>'UNPAID',
                 'content'=>json_encode($res)
