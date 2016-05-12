@@ -7,14 +7,14 @@
 </head>
 <body>
 <header class="clearfix">
-    <a href="index.html" class="logo">
+    <a href="http://www.99dayin.com" class="logo">
         <img src="images/logo.png" alt="九九打印">
         <p>九九打印</p>
     </a>
     <nav>
         <ul>
-            <li><a href="/dayin">首页</a></li>
-            <li><a href="base.html" target="_blank">简介</a></li>
+            <li><a href="http://www.99dayin.com">首页</a></li>
+            <li><a href="doc/base.html" target="_blank">简介</a></li>
             <li><a href="upload">我的文库</a></li>
             <li class="person-box">
                 <ul id="sign-out" class="clearfix">
