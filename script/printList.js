@@ -243,13 +243,13 @@ $(document).ready(function() {
 		var value = $(this).val();
 		var status = true;
 		if(value == 1) {
-
+			
 		}
 		else if(value == 2) {
-
+			
 		}
 		else if(value == 3) {
-
+			
 		}
 
 		if(!status) {
