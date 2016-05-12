@@ -74,7 +74,7 @@
         </div>
         <div class="file-list">
             <div class="file-scroll">
-                <div class="word">
+                <!-- <div class="word">
                     <p>abdsbsa.doc</p>
                     <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
                     <i><input type="checkbox" value="1" /></i>
@@ -83,7 +83,8 @@
                     <p>abdsbsa.ppt</p>
                     <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
                     <i><input type="checkbox" value="2" /></i>
-                </div>
+                </div> -->
+                <p style="font-size: 20px;">正在开发中，敬请期待！</p>
             </div>
         </div>
     </div>

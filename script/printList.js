@@ -238,6 +238,28 @@ $(document).ready(function() {
 		sendMsg(data, "备注", parent);
 	});
 
+	//送货时间
+	/*$("#time").change(function() {
+		var value = $(this).val();
+		var status = true;
+		if(value == 1) {
+
+			status = false;
+		}
+		else if(value == 2) {
+
+			status = false;
+		}
+		else if(value == 3) {
+
+			status = false;
+		}
+
+		if(!status) {
+			showError("您的文件将于明天送达");
+		}
+	});*/
+
 	//生成订单
 	$(".pay").click(function() {
 		if($(".pick").prop("checked") == false && $(".todoor").prop("checked") == false ) {
@@ -417,6 +439,16 @@ function test(way) {
 			$(".phone").val("");
 			return;
 		}
+		//送货时间
+		/*var time = $("#time").find("option:selected").text();
+		time = delSpace(time);
+		if(time == "送货时间") {
+			showError("请选择送货时间");
+			return;
+		}
+		else {
+			data.deliveryTime = time;
+		}*/
 	}
 
 	data.total = $(".money").text();
