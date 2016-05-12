@@ -46,6 +46,8 @@ $(document).ready(function() {
 		$(".my-store").attr("id", "");
 		$(".upload-box").css("display", "block");
 		$(".mystore").css("display", "none");
+		$(".to-order").css("display", "block");
+		$(".add-car").css("display", "none");
 	});
 
 	$(".my-store").click(function() {
@@ -53,6 +55,8 @@ $(document).ready(function() {
 		$(".upload").attr("id", "");
 		$(".upload-box").css("display", "none");
 		$(".mystore").css("display", "block");
+		$(".to-order").css("display", "none");
+		$(".add-car").css("display", "block");
 	});
 
 	//文库编号和文件夹的点击切换

@@ -54,14 +54,13 @@
             </div>
 <?php    }?>
             <p class="continue-add" id="file"><span id="ul">上传文件</span></p>
-            <input type="button" class="to-order" value="去下单">
         </div>
     </div>
     <div class="mystore clearfix">
-        <p class="search-box">
+        <!-- <p class="search-box">
             <input type="text" class="search" placeholder="输入文库号查找文库">
             <input type="button" class="join" value="申请加入">
-        </p>
+        </p> -->
         <div class="all-store">
             <p class="every-store">文库编号1</p>
             <p class="every-store">文库编号2</p>
@@ -88,7 +87,8 @@
             </div>
         </div>
     </div>
-
+    <input type="button" class="to-order" value="去下单">
+    <input type="button" class="add-car" value="加入打印车">
     
 </div>
 

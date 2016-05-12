@@ -244,7 +244,7 @@ nav ul li ul#sign-out li {
 .mystore {
 	width: 100%;
 	padding: 0px 2%;
-	height: 700px;
+	height: 640px;
 	display: none;
 }
 .all-store, .folder, .file-list {
@@ -363,7 +363,7 @@ nav ul li ul#sign-out li {
 	cursor: pointer;
 }
 .to-order {
-	width: 55%;
+	width: 30%;
 	margin: 10px auto;
 	text-align: center;
 	color: #fff;
@@ -376,6 +376,22 @@ nav ul li ul#sign-out li {
 	cursor: pointer;
 	border-radius: 5px;
 	outline: none;
+}
+.add-car {
+	width: 30%;
+	margin: 10px auto;
+	text-align: center;
+	color: #fff;
+	background-color: #7ab8f4;
+	border: 1px solid #7ab8f4;
+	display: block;
+	font: normal 100 1.4em/50px "Microsoft Yahei", sans-serif;
+	padding: 0px 10px;
+	letter-spacing: 2px;
+	cursor: pointer;
+	border-radius: 5px;
+	outline: none;
+	display: none;
 }
 
 
