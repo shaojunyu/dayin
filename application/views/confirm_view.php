@@ -54,6 +54,7 @@
     $this->db->where('cellphone',$this->session->userdata('cellphone'));
     $res = $this->db->get('cart')->result_array();
             if (count($res) == 0){
+                $this->load->helper('url');
                 header('Location: '.base_url('/upload'));
                 return;
             }
