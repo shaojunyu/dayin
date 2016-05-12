@@ -16,7 +16,6 @@ var newElem = {};
 var file_status = ["processing", "fail", "done"];
 var status_list = [];
 
-
 function get_signature()
 {
     //可以判断当前expire是否超过了当前时间,如果超过了当前时间,就重新取一下.3s 做为缓冲
@@ -97,12 +96,13 @@ function get_uploaded_object_name(filename)
 function set_upload_param(up, filename, ret)
 {
     var date = new Date();
-    date = date.getSeconds();
+    date = date.getTime();
     if (ret == false)
     {
         ret = get_signature()
     }
-    g_object_name = key + date +filename;
+    //filename = date + '-' + filename;
+    g_object_name = key + filename;
     if (filename != '') { 
         suffix = get_suffix(filename);
         calculate_object_name(filename);
