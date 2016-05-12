@@ -143,6 +143,7 @@ var uploader = new plupload.Uploader({
                 var isSame = sameName(file.name);
                 if(!isSame) {
                     up.removeFile(file);
+                    showError("文件重复");
                     return;
                 }
                 var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
@@ -383,7 +384,6 @@ function sameName(filename) {
     var len = havenName.length;
     for(var i = 0; i < len; i++) {
         if(havenName[i].innerHTML == filename) {
-            showError("文件重复");
             return false;
         }
     }

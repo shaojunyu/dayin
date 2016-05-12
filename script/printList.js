@@ -326,6 +326,7 @@ function delMsg(Data) {
 						var i = m;
 						if(md5 == allDiv[i].getAttribute("data-md5")) {
 							removeC(allDiv[i]);
+							shipment();
 							reSort();
 						}
 					})(i);
