@@ -452,7 +452,8 @@ $(document).ready(function() {
 
     //去下单
     $(".to-order").click(function() {
-        var len = document.querySelectorAll(".scroll-bar div").length;
+        var len = document.querySelectorAll(".scroll-bar div").length - 1;
+        console.log(len);
         if(status_list.length == 0 && len > 0) {
             location.href = "confirm";
         }

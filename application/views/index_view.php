@@ -8,14 +8,14 @@
 <body>
 <div class="head scroll">
     <header class="clearfix">
-        <a href="index.html" class="logo">
+        <a href="www.99dayin.com" class="logo">
             <img src="images/logo.png" alt="九九打印">
             <p>九九打印</p>
         </a>
         <nav>
             <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="base.html" target="_blank">简介</a></li>
+                <li><a href="www.99dayin.com">首页</a></li>
+                <li><a href="doc/base.html" target="_blank">简介</a></li>
                 <?php
                 if (!$this->session->userdata('cellphone')){
                     ?>
