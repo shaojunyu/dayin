@@ -326,7 +326,6 @@ class Api extends CI_Controller{
             foreach ($res as $e){
                 $total += $e['subTotal'];
             }
-
             $this->db->insert('order',array(
                 'cellphone'=>$this->session->userdata('cellphone'),
                 'shop'=>$this->post_data->shop,
@@ -353,6 +352,7 @@ class Api extends CI_Controller{
                 'deliveryMode'=>$this->post_data->deliveryMode,
                 //'deliveryTime'=>$this->post_data->deliveryTime,
                 'total'=>$total,
+                'shop'=>'东篱阳光图文',
                 'state'=>'UNPAID',
                 'content'=>json_encode($res)
             ));

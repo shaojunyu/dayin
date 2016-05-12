@@ -181,7 +181,7 @@ class Cart_model extends CI_Model{
             switch ($item['paperSize']){
                 case 'A4':
                     if ($item['isTwoSides'] == 'YES'){
-                        $price = $paper_count * 0.15;
+                        $price = $paper_count * 0.2;
                     }else{
                         $price = $paper_count * 0.1;
                     }
