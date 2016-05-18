@@ -170,7 +170,7 @@
             <span>收货方式：</span>
 					<span class="delivery">
                         <input type="checkbox" class="todoor" checked="checked" name="deliv" value="todoor">送货上门
-						<input type="checkbox" class="pick" name="deliv" value="pickup">到店自取
+						
 					</span>
             <select name="store" id="print-store">
                 <option value="0">请选择打印店</option>
