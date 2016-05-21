@@ -161,6 +161,18 @@ nav ul li ul#sign-out li {
 	width: 320px;
 	margin: 50px auto;
 	padding-top: 50px;
+	position: relative;
+}
+.manage-store {
+	color: #fff;
+	background-color: #0099ff;
+	display: block;
+	position: absolute;
+	right: -100px;
+	top: 51px;
+	line-height: 30px;
+	font-size: 20px;
+	padding: 5px;
 }
 .nav div {
 	width: 100;
@@ -272,7 +284,7 @@ nav ul li ul#sign-out li {
 .mystore {
 	width: 100%;
 	padding: 0px 2%;
-	height: 640px;
+	height: 700px;
 	display: none;
 }
 .all-store, .folder, .file-list {

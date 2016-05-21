@@ -30,7 +30,13 @@
 <div class="file-info"></div>
 
 
-<div class="nav"><div class="clearfix"><span class="upload" id="clicked">上传文件</span><span class="my-store">我的文库</span></div></div>
+<div class="nav">
+    <div class="clearfix">
+        <span class="upload" id="clicked">上传文件</span>
+        <span class="my-store">我的文库</span>
+    </div>
+    <a href="manage" class="manage-store">管理文库</a>
+</div>
 
 <div class="myself-wrap clearfix">
     <div class="upload-box">
@@ -59,10 +65,10 @@
         </div>
     </div>
     <div class="mystore clearfix">
-        <!-- <p class="search-box">
+        <p class="search-box">
             <input type="text" class="search" placeholder="输入文库号查找文库">
             <input type="button" class="join" value="申请加入">
-        </p> -->
+        </p>
         <div class="all-store">
             <p class="every-store">文库编号1</p>
             <p class="every-store">文库编号2</p>
@@ -76,7 +82,7 @@
         </div>
         <div class="file-list">
             <div class="file-scroll">
-                <!-- <div class="word">
+                <div class="word">
                     <p>abdsbsa.doc</p>
                     <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
                     <i><input type="checkbox" value="1" /></i>
@@ -85,8 +91,7 @@
                     <p>abdsbsa.ppt</p>
                     <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
                     <i><input type="checkbox" value="2" /></i>
-                </div> -->
-                <p style="font-size: 20px;">正在开发中，敬请期待！</p>
+                </div>
             </div>
         </div>
     </div>
