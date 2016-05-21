@@ -389,7 +389,7 @@ $(document).ready(function() {
 	        	type:"POST",
 	        	data:JSON.stringify(data),
 	        	success:function(data) {
-	        		console.log("send");
+	        		//
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
 	        		showError("请求失败");  
@@ -575,7 +575,7 @@ $(document).ready(function() {
 		    submitHandler: function(form){
 	        	var user = $(".idc-user").val();
 		    	var idcode = $(".id-code").val();
-		    	var data = {cellphone:user,idcode:idcode};     	
+		    	var data = {cellphone:user,smscode:idcode};     	
 
 	        	var resp = $.ajax({
 	        		url:secret("./api/loginBySmscode"),
