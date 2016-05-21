@@ -86,6 +86,22 @@ $(document).ready(function() {
 		$(".so").css("display", "none");
 	});
 
+	//退出登录
+	$(".so").click(function() {
+		$.ajax({
+			url: "./api/logout",
+			data:'{}',
+			contentType: 'application/json',
+			type: "POST",
+			success:function(data) {
+	       		location.reload(true);
+	       	},
+	       	error: function(XMLHttpRequest, textStatus, errorThrown){  
+	       		showError("请求失败");
+	   		}
+		});
+	});
+
 	//到店自取显示和隐藏
 	$(".pick").click(function() {
 		if( $(".pick").prop("checked") == true ) {
