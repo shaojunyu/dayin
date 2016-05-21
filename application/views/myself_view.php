@@ -7,7 +7,7 @@
 </head>
 <body>
 <header class="clearfix">
-    <a href="index.html" class="logo">
+    <a href="http://www.99dayin.com" class="logo">
         <img src="images/logo.png" alt="九九打印">
         <p>九九打印</p>
     </a>

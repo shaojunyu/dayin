@@ -169,7 +169,7 @@
         <div class="topay">
             <span>收货方式：</span>
 					<span class="delivery">
-                        <input type="checkbox" class="todoor" checked="checked" name="deliv" value="todoor">送货上门
+                        <input type="checkbox" class="todoor" checked="checked" name="deliv" value="todoor">免费送货上门
 						
 					</span>
             <select name="store" id="print-store">

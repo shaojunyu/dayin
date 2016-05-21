@@ -347,7 +347,7 @@ class Api extends CI_Controller{
                 'area'=>$this->post_data->area,
                 'buildingNum'=>$this->post_data->buildingNum,
                 'roomNum'=>$this->post_data->roomNum,
-                'receiver'=>$this->post_data->receiverPhone,
+                'receiver'=>$this->post_data->receiver,
                 'receiverPhone'=>$this->post_data->receiverPhone,
                 'deliveryMode'=>$this->post_data->deliveryMode,
                 //'deliveryTime'=>$this->post_data->deliveryTime,
