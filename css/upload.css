@@ -168,11 +168,14 @@ nav ul li ul#sign-out li {
 	background-color: #0099ff;
 	display: block;
 	position: absolute;
-	right: -100px;
-	top: 51px;
+	right: -300px;
+	top: 60px;
 	line-height: 30px;
 	font-size: 20px;
-	padding: 5px;
+	padding: 5px 10px;
+	letter-spacing: 1px;
+	border-radius: 4px;
+	outline: none;
 }
 .nav div {
 	width: 100;

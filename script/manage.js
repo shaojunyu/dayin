@@ -14,6 +14,9 @@ now = timestamp = Date.parse(new Date()) / 1000;
 var newElem = {};
 var file_status = ["processing", "fail", "done"];
 var status_list = [];
+var folder = [];
+var del_list = [];
+var nameLists = [];
 
 function get_signature()
 {
@@ -403,7 +406,7 @@ function addHandler(element, type, handler) {
 
 //上传中提示
 function stopClick() {
-    var message = "文件正在上传中，请不要切换文库<br />并等文件解析完成再上传，如有问题请刷新重试";
+    var message = "文件正在上传中，请不要切换文件夹<br />并等文件解析完成再上传，如有问题请刷新重试";
     var fileInfo = document.querySelector(".file-info");
     fileInfo.innerHTML = message;
     fileInfo.style.display = "none";
@@ -457,31 +460,17 @@ $(document).ready(function() {
         });
     });
 
-	//上传文件和我的文库切换
-	$(".upload").click(function() {
-		$(this).attr("id", "clicked");
-		$(".my-store").attr("id", "");
-		$(".upload-box").css("display", "block");
-		$(".mystore").css("display", "none");
-	});
-
-	$(".my-store").click(function() {
-		$(this).attr("id", "clicked");
-		$(".upload").attr("id", "");
-		$(".upload-box").css("display", "none");
-		$(".mystore").css("display", "block");
-	});
-
 	//文库编号和文件夹的点击切换
-	$(".every-store").click(function() {
-		$(".every-store").css({"color":"#336598", "background-color":"#fff"});
-		$(this).css({"color":"#fff", "background-color":"#0099ff"});
-	});
-	
 	$(".list").click(function() {
 		$(".list").css({"background-color":"#fff", "color":"#336598"});
+        $(".file-list").css({"background-color":"#fff", "color":"#336598"});
 		$(this).css({"background-color":"#acd6fe", "color":"#fff"});
 	});
+    $(".file-list").click(function() {
+        $(".list").css({"background-color":"#fff", "color":"#336598"});
+        $(".file-list").css({"background-color":"#fff", "color":"#336598"});
+        $(this).css({"background-color":"#acd6fe", "color":"#fff"});
+    });
 
 
 	//设置div滚动条样式
@@ -584,8 +573,81 @@ $(document).ready(function() {
     	})(i);
     }
 
-    //文件删除
+    //文件夹切换
+    var fileList = document.querySelectorAll(".file-list");
+    for(var i = 0; i < fileList.length; i++) {
+        addHandler(fileList[i], "click", function() {
+            $(".brief").css("display", "none");
+            $(".members").css("display", "none");
+            $(".file-lists").css("display", "block");
+            folder = [];
+            folder[0] = this.querySelector("span").innerHTML;
+        });
+    }
+
+    //获取已有文件夹名
+    var oldFile = document.querySelectorAll(".file-list span");
+    for(var i = 0; i < oldFile.length; i++) {
+        nameLists[i] = oldFile[i].innerHTML;
+    }
+
+    //新建文件夹
     var coverBg = document.querySelector(".cover");
+    var newSubmit = document.querySelector("#new-submit");
+    var newX = document.querySelector(".new-top span");
+    var newBtn = document.querySelector(".new-btn");
+    var newName = document.querySelector(".new-folder-name");
+    var newFolder = document.querySelector(".new-folder");
+    addHandler(newFolder, "click", function() {
+        showDiv(coverBg, newSubmit);
+    });
+    addHandler(newX, "click", function() {
+        hideDiv(coverBg, newSubmit);
+    });
+    addHandler(newBtn, "click", function() {
+        var new_name = delSpace(newName.value);
+        var temp = true;
+        for(var i = 0; i < nameLists.length; i++) {
+            if(new_name == nameLists[i]) {
+                showError("文件夹重名，请重新输入");
+                newName.value = "";
+                temp = false;
+                break;
+            }
+        }
+        if(new_name && temp) {
+            createFolder(new_name);
+            nameLists.push(new_name);
+            newName.value = "";
+            hideDiv(coverBg, newSubmit);
+        }
+        else if(!new_name) {
+            showError("请输入文件夹名");
+        }
+    })
+
+    //删除文件夹
+    var delSubmit = document.querySelector("#del-submit");
+    var delX = document.querySelector(".del-top span");
+    var delBtn = document.querySelector(".del-btn");
+    var delFolder = document.querySelectorAll(".file-list i");
+    if(delFolder) {
+        del_len = delFolder.length;
+    }
+    for(var i = 0; i < del_len; i++) {
+        addHandler(delFolder[i], "click", function() {
+            var self = this;
+            var parent = self.parentNode;
+            //
+            showDiv(coverBg, delSubmit);
+        });
+    }
+    addHandler(delX, "click", function() {
+        del_list = [];
+        hideDiv(coverBg, delSubmit);
+    });
+
+    //文件删除
 	var cancelSubmit = document.querySelector("#cancel-submit");
 	var cancelX = document.querySelector(".cancel-top span");
 	var cancelBtn = document.querySelector(".cancel-btn");
@@ -634,3 +696,42 @@ $(document).ready(function() {
 		hideDiv(coverBg, cancelSubmit);
 	});
 });
+
+//去空格及回车符
+function delSpace(str) {
+    str = str.replace(/[\r\n]/g,"");
+    str = str.split(' ').join('');
+    return str;
+}
+
+//新建文件夹
+function createFolder(fileName) {
+    var p = document.createElement("p");
+    var next = document.querySelector(".new-folder");
+    var parent = document.querySelector(".lists");
+    p.className = "file-list";
+    p.innerHTML = '<span>' + fileName + '</span>' + '<i title="删除文件夹"></i>';
+    parent.insertBefore(p, next);
+    addDel(p);
+    addClick(p);
+}
+
+//添加删除文件夹事件
+function addDel(elem) {
+
+}
+
+//添加文件夹点击事件
+function addClick(elem) {
+    addHandler(elem, "click", function() {
+        $(".list").css({"background-color":"#fff", "color":"#336598"});
+        $(".file-list").css({"background-color":"#fff", "color":"#336598"});
+        elem.style.backgroundColor = "#acd6fe";
+        elem.style.color = "#fff";
+        $(".brief").css("display", "none");
+        $(".members").css("display", "none");
+        $(".file-lists").css("display", "block");
+        folder = [];
+        folder[0] = this.querySelector("span").innerHTML;
+    });
+}

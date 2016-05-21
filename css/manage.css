@@ -137,6 +137,7 @@ nav ul li ul#sign-out li {
 	background-color: rgba(0,0,0,0.7);
 }
 
+/* 删除文件 */
 #cancel-submit {
 	position: absolute;
 	top: 50%;
@@ -198,6 +199,139 @@ nav ul li ul#sign-out li {
 	border-radius: 5px;
 }
 
+/* 删除文件夹 */
+#del-submit {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: none;
+	margin: -120px 0px 0px -275px;
+	width: 550px;
+	height: 240px;
+	z-index: 333;
+	background-color: #fff;
+	border-radius: 5px;
+	-moz-box-shadow:0px 0px 4px #e8e8e8;
+	-webkit-box-shadow:0px 0px 4px #e8e8e8;
+	box-shadow:0px 0px 4px #e8e8e8;
+}
+#del-submit div {
+	width: 100%;
+}
+.del-top {
+	position: relative;
+	line-height: 40px;
+	font-size: 16px;
+	color: #919191;
+	background-color: #ddd;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+.del-top span {
+	display: inline-block;
+	position: absolute;
+	color: #000;
+	right: 10px;
+	z-index: 999;
+	cursor: pointer;
+	padding: 0px 5px;
+}
+.del-info {
+	line-height: 140px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #787878;
+	text-indent: 40px;
+	letter-spacing: 1px;
+}
+.del-sub {
+	background-color: #ddd;
+	line-height: 60px;
+	border-radius: 0px 0px 5px 5px;
+	text-align: center;
+}
+.del-sub a {
+	font-size: 17px;
+	line-height: 30px;
+	display: inline-block;
+	padding: 0px 8px;
+	background-color: #0099ff;
+	color: #fff;
+	border-radius: 5px;
+}
+
+/* 新建文件夹 */
+#new-submit {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: none;
+	margin: -120px 0px 0px -275px;
+	width: 550px;
+	height: 240px;
+	z-index: 333;
+	background-color: #fff;
+	border-radius: 5px;
+	-moz-box-shadow:0px 0px 2px #e8e8e8;
+	-webkit-box-shadow:0px 0px 2px #e8e8e8;
+	box-shadow:0px 0px 2px #e8e8e8;
+}
+#new-submit div {
+	width: 100%;
+}
+.new-top {
+	position: relative;
+	line-height: 40px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #7ab8f4;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 1px solid #7ab8f4;
+	text-align: center;
+}
+.new-top span {
+	display: inline-block;
+	position: absolute;
+	color: #fff;
+	right: 10px;
+	z-index: 999;
+	cursor: pointer;
+	padding: 0px 5px;
+}
+.new-info {
+	line-height: 140px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #7ab8f4;
+	text-indent: 40px;
+	letter-spacing: 1px;
+}
+.new-sub {
+	background-color: #7ab8f4;
+	line-height: 60px;
+	border-radius: 0px 0px 5px 5px;
+	text-align: center;
+}
+.new-sub a {
+	font-size: 17px;
+	line-height: 30px;
+	display: inline-block;
+	padding: 0px 8px;
+	background-color: #3bce0e;
+	letter-spacing: 1px;
+	color: #fff;
+	border-radius: 5px;
+}
+.new-folder-name {
+	width: 230px;
+	line-height: 30px;
+	font-size: 18px;
+	font-family: "Microsoft Yahei", sans-serif;
+	text-indent: 2px;
+	border: 1px solid #7ab8f4;
+}
+
 
 .word {
 	background: url(../images/spite.png) no-repeat;
@@ -224,30 +358,16 @@ nav ul li ul#sign-out li {
 	height: 700px;
 	margin-top: 150px;
 }
-.all-store, .lists, .manage-list {
+.lists, .manage-list {
 	border-right: 1px solid #0099ff;
 	border-top: 1px solid #0099ff;
 	border-bottom: 1px solid #0099ff;
 	float: left;
 	height: 600px;
 }
-.all-store {
-	width: 15%;
-	border-left: 1px solid #0099ff;
-}
-.all-store p {
-	line-height: 50px;
-	font-size: 1.4em;
-	text-align: center;
-	cursor: pointer;
-	color: #336598;
-}
-.all-store p:first-child {
-	background-color: #0099ff;
-	color: #fff;
-}
 .lists {
-	width: 15%;
+	width: 20%;
+	border-left: 1px solid #0099ff;
 }
 .lists p {
 	line-height: 45px;
@@ -260,8 +380,38 @@ nav ul li ul#sign-out li {
 	background-color: #acd6fe;
 	color: #fff;
 }
+.lists p:nth-child(2) {
+	border-bottom: 2px solid #ccc;
+}
+.file-list {
+	position: relative;
+}
+.file-list i {
+	width: 23px;
+	height: 23px;
+	position: absolute;
+	top: 9px;
+	right: 15px;
+	background: url(../images/spite.png) no-repeat;
+	background-position: 0 -47px;
+	cursor: pointer;
+}
+.lists a {
+	display: block;
+	background-color: #0099ff;
+	line-height: 30px;
+	font-size: 20px;
+	color: #fff;
+	border-radius: 4px;
+	padding: 5px 10px;
+	max-width: 140px;
+	width: 140px;
+	margin: 10px auto;
+	letter-spacing: 1px;
+	text-align: center;
+}
 .manage-list {
-	width: 70%;
+	width: 80%;
 	padding: 1% 0.5%;
 }
 .manage-list .manage-scroll {

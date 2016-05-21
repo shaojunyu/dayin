@@ -29,7 +29,7 @@
 		<div class="prompt-box"></div> <!-- 表单错误提示框 -->
 		<div class="file-info"></div>
 		<div class="cover"></div> <!-- 背景模糊遮罩 -->
-		<div id="cancel-submit">
+		<div id="cancel-submit"> <!-- 文件删除 -->
 		    <div class="cancel-top">
 		        确认删除<span>X</span>
 		    </div>
@@ -40,22 +40,40 @@
 		        <a class="cancel-btn" href="javascript:void(0)">确认删除</a>
 		    </div>
 		</div>
+		<div id="new-submit"> <!-- 新建文件夹 -->
+		    <div class="new-top">
+		        新建文件夹<span>X</span>
+		    </div>
+		    <div class="new-info">
+		        新文件夹：<input type="text" class="new-folder-name" placeholder="输入文件夹名称">
+		    </div>
+		    <div class="new-sub">
+		        <a class="new-btn" href="javascript:void(0)">确认</a>
+		    </div>
+		</div>
+		<div id="del-submit"> <!-- 删除文件夹 -->
+		    <div class="del-top">
+		        确认删除<span>X</span>
+		    </div>
+		    <div class="del-info">
+		        确认删除此文件夹？
+		    </div>
+		    <div class="del-sub">
+		        <a class="del-btn" href="javascript:void(0)">确认删除</a>
+		    </div>
+		</div>
 
 		<div class="manage-wrap clearfix">
 			<div class="mymanage clearfix">
-				<div class="all-store">
-					<p class="every-store">文库编号1</p>
-					<p class="every-store">文库编号2</p>
-					<p class="every-store">文库编号3</p>
-				</div>
 				<div class="lists">
 					<p class="list">文库简介</p>
 					<p class="list">文库成员</p>
-					<p class="list">文件列表</p>
+					<p class="file-list"><span>默认文件夹</span><i title="删除文件夹"></i></p>
+					<a href="javascript:void(0)" class="new-folder">新建文件夹</a>
 				</div>
 				<div class="manage-list">
 					<div class="manage-scroll">
-						<p class="brief">创建者：xxx<br />创建时间：2016年5月11日</p>
+						<p class="brief">文库编号：1231242<br />创建者：xxx<br />创建时间：2016年5月11日</p>
 						<div class="members">
 							<div>
 								<p>18062421246</p>
