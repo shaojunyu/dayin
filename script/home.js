@@ -389,7 +389,13 @@ $(document).ready(function() {
 	        	type:"POST",
 	        	data:JSON.stringify(data),
 	        	success:function(data) {
-	        		//
+	        		showError("若未收到验证码请一分钟后重试");
+	        		document.querySelector(".get").disabled = true;
+	        		document.querySelector(".get").style.backgroundColor = "#f69743";
+	        		setTimeout(function() {
+	        			document.querySelector(".get").disabled = false;
+	        			document.querySelector(".get").style.backgroundColor = "#0099ff";
+	        		}, 60000);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
 	        		showError("请求失败");  
@@ -408,7 +414,13 @@ $(document).ready(function() {
 	        	type:"POST",
 	        	data:JSON.stringify(data),
 	        	success:function(data) {
-	        		console.log("data");
+	        		showError("若未收到验证码请一分钟后重试");
+	        		document.querySelector(".send").disabled = true;
+	        		document.querySelector(".send").style.backgroundColor = "#f69743";
+	        		setTimeout(function() {
+	        			document.querySelector(".send").disabled = false;
+	        			document.querySelector(".send").style.backgroundColor = "#0099ff";
+	        		}, 60000);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
 	        		showError("请求失败"); 

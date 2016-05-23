@@ -276,7 +276,7 @@ $(document).ready(function() {
 		}
 	});*/
 
-	//生成订单
+	//提交订单
 	$(".pay").click(function() {
 		if($(".pick").prop("checked") == false && $(".todoor").prop("checked") == false ) {
 			showError("请选择收货方式");
@@ -290,6 +290,7 @@ $(document).ready(function() {
 		}*/
 		
 		showError("提交中，请稍候...");
+
 		if($(".pick").prop("checked") == true) { //到店自取
 			test("get");
 		}
@@ -360,6 +361,7 @@ function delMsg(Data) {
 
 //提交订单
 function submitOrder(Data) {
+	document.querySelector(".pay").disabled = true;
 	$.ajax({
 		url:secret("./api/createOrder"),
 	    contentType:"application/json",
@@ -372,10 +374,12 @@ function submitOrder(Data) {
 	    	}
 	   		else {
 	        	showError(data.msg);
+	        	document.querySelector(".pay").disabled = false;
 	        }
 	    },
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			showError("提交失败，请重试");
+			document.querySelector(".pay").disabled = false;
 		}
 	});
 }
