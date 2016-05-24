@@ -625,11 +625,24 @@ class Api extends CI_Controller{
         if (count($res) == 1){
             $res = $res[0];
             echo json_encode(array('libName'=>$res['name']));
+        }else{
+            $this->echo_msg(false,'文库不存在');
         }
         //var_dump($res);
     }
 
-    //public function
+    public function joinLib(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId'));
+        $remark = '';
+        $this->db->insert('library_users',array(
+            'libraryId'=>$this->post_data->libraryId,
+            'cellphone'=>$this->session->userdata('cellphone'),
+            'state'=>'applying',
+            'remark'=>$this->post_data->remark
+        ));
+        $this->echo_msg(true.false);
+    }
     
 /*
  * ----------------------------------------------------------------------------------------
