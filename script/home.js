@@ -380,6 +380,14 @@ $(document).ready(function() {
 		//发送验证码
 		$(".get").click(function(){
 			var user = $(".idc-user").val();
+			var tel = /^1[3|4|5|7|8]\d{9}$/;
+			if(!user) {
+				showError("请输入手机号");
+				return;
+			}
+			else if(!tel.test(user)) {
+				return;
+			}
 		    var data = {cellphone:user};    	
 
 	        var resp = $.ajax({
@@ -392,9 +400,11 @@ $(document).ready(function() {
 	        		showError("若未收到验证码请一分钟后重试");
 	        		document.querySelector(".get").disabled = true;
 	        		document.querySelector(".get").style.backgroundColor = "#f69743";
+	        		document.querySelector(".get").style.borderColor = "#f69743";
 	        		setTimeout(function() {
 	        			document.querySelector(".get").disabled = false;
 	        			document.querySelector(".get").style.backgroundColor = "#0099ff";
+	        			document.querySelector(".get").style.borderColor = "#0099ff";
 	        		}, 60000);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
@@ -405,6 +415,14 @@ $(document).ready(function() {
 
 		$(".send").click(function(){
 			var user = $("#phone").val();
+			var tel = /^1[3|4|5|7|8]\d{9}$/;
+			if(!user) {
+				showError("请输入手机号");
+				return;
+			}
+			else if(!tel.test(user)) {
+				return;
+			}
 		    var data = {cellphone:user};
 
 	        var resp = $.ajax({
@@ -417,9 +435,11 @@ $(document).ready(function() {
 	        		showError("若未收到验证码请一分钟后重试");
 	        		document.querySelector(".send").disabled = true;
 	        		document.querySelector(".send").style.backgroundColor = "#f69743";
+	        		document.querySelector(".send").style.borderColor = "#f69743";
 	        		setTimeout(function() {
 	        			document.querySelector(".send").disabled = false;
 	        			document.querySelector(".send").style.backgroundColor = "#0099ff";
+	        			document.querySelector(".send").style.borderColor = "#0099ff";
 	        		}, 60000);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
