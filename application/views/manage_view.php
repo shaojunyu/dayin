@@ -108,11 +108,13 @@
 							<?php }//end foreach ($res as $user)?>
 						</div>
 						<div class="file-lists">
-							<div class="word" data-status="processing" data-md5="12312">
-								<p title="ashdau.doc">ashdaus.doc</p>
-								<p>time:1231231231</p>
-								<i></i>
-							</div>
+							<section class="1"> <!-- 按文件夹顺序从1开始递增 -->
+								<div class="word" data-status="processing" data-md5="12312">
+									<p title="ashdau.doc">ashdaus.doc</p>
+									<p>time:1231231231</p>
+									<i></i>
+								</div>
+							</section>
 							<p class="continue-add" id="file"><button type="button" id="ul">上传文件</button></p>
 						</div>
 					</div>

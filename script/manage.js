@@ -24,12 +24,17 @@ function get_signature()
     now = timestamp = Date.parse(new Date()) / 1000; 
     if (expire < now + 3)
     {
+        var libraryId = document.querySelector(".brief span").innerHTML;
+        var data = {
+            libraryId: libraryId,
+            folder: folder[0]
+        };
         $.ajax({
-            url: secret('./api/getUploadToken'),
+            url: secret('./api/getLibUploadToken'),
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            data: '{}',
+            data: JSON.stringify(data),
             async: false,
             success: function(data) {
                 console.log(data);
@@ -381,6 +386,10 @@ function addDelEvent(elem) {
 //提示重名
 function sameName(filename) {
     var havenName = document.querySelectorAll(".file-lists div p:first-child");
+    for(var i = 0; i < nameLists.length; i++) {
+        if()
+    }
+    var havenName = document.querySelectorAll("");
     var len = havenName.length;
     for(var i = 0; i < len; i++) {
         if(havenName[i].innerHTML == filename) {
@@ -666,6 +675,8 @@ $(document).ready(function() {
     addHandler(newBtn, "click", function() {
         var new_name = delSpace(newName.value);
         var temp = true;
+        var data = {};
+        var libraryId = document.querySelector(".brief span").innerHTML;
         for(var i = 0; i < nameLists.length; i++) {
             if(new_name == nameLists[i]) {
                 showError("文件夹重名，请重新输入");
@@ -675,10 +686,24 @@ $(document).ready(function() {
             }
         }
         if(new_name && temp) {
-            createFolder(new_name);
-            nameLists.push(new_name);
-            newName.value = "";
-            hideDiv(coverBg, newSubmit);
+            data.libraryId = libraryId;
+            data.folder = new_name;
+            $.ajax({
+                url: secret("./api/createFolder"),
+                type: "POST",
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify(data),
+                success:function(data) {
+                    createFolder(new_name);
+                    nameLists.push(new_name);
+                    newName.value = "";
+                    hideDiv(coverBg, newSubmit);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){  
+                    showError("新建文件夹失败，请重试");
+                }
+            });
         }
         else if(!new_name) {
             showError("请输入文件夹名");
@@ -697,13 +722,37 @@ $(document).ready(function() {
         addHandler(delFolder[i], "click", function() {
             var self = this;
             var parent = self.parentNode;
-            //
+            del_list[0] = parent.querySelector("span").innerHTML;
+            del_list[1] = parent;
             showDiv(coverBg, delSubmit);
         });
     }
     addHandler(delX, "click", function() {
         del_list = [];
         hideDiv(coverBg, delSubmit);
+    });
+    addHandler(delBtn, "click", function() {
+        var libraryId = document.querySelector(".brief span").innerHTML;
+        var data = {
+            libraryId: libraryId,
+            folder: del_list[0]
+        };
+        $.ajax({
+            url: secret("./api/deteleFolder"),
+            type: "POST",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(data),
+            success:function(data) {
+                del_list[1].parentNode.removeChild(del_list[1]);
+                del_list = [];
+                hideDiv(coverBg, delSubmit);
+                showError("删除成功");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("删除文件夹失败，请重试");
+            }
+        });
     });
 
     //文件删除
@@ -790,7 +839,12 @@ function createFolder(fileName) {
 
 //添加删除文件夹事件
 function addDel(elem) {
-
+    var delFolder = elem.querySelector("i");
+    addHandler(delFolder, "click", function() {
+        del_list[0] = elem.querySelector("span").innerHTML;
+        del_list[1] = elem;
+        showDiv(coverBg, delSubmit);
+    });
 }
 
 //添加文件夹点击事件
