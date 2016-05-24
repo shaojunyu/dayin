@@ -73,11 +73,16 @@
 				</div>
 				<div class="manage-list">
 					<div class="manage-scroll">
-						<p class="brief">文库编号：1231242<br />创建者：xxx<br />创建时间：2016年5月11日</p>
+						<p class="brief">文库编号：<?php echo $libInfo['Id'];?><br />创建者：<?php echo $libInfo['admin'];?><br />创建时间：<?php echo $libInfo['createAt'];?></p>
 						<div class="members">
+						<?php 
+						$this->db->where('libraryId',$libInfo['Id']);
+						$res = $this->db->get('library_users')->result_array();
+						//foreach ($res as $user){
+						?>
 							<div>
-								<p>18062421246</p>
-								<p>加入时间：2016年5月11日</p>
+								<p><?php echo $user['cellphone'];?></p>
+								<p>加入时间：<?php echo $user['upadteAt'];?></p>
 							</div>
 							<div> <!-- 申请的用这个格式 -->
 								<p>18062421246</p>
@@ -85,6 +90,7 @@
 								<a href="javascript:void(0)" class="agree">同意</a>
 								<a href="javascript:void(0)" class="refuse">拒绝</a>
 							</div>
+							<?php //}//end foreach ($res as $user)?>
 						</div>
 						<div class="file-lists">
 							<div class="word" data-status="processing" data-md5="12312">
