@@ -387,8 +387,11 @@ function addDelEvent(elem) {
 function sameName(filename) {
     var havenName = document.querySelectorAll(".file-lists div p:first-child");
     for(var i = 0; i < nameLists.length; i++) {
-        if()
+        if(folder[0] == nameLists[i]) {
+            break;
+        }
     }
+    var section = document.querySelectorAll(".file-lists section")[i];
     var havenName = document.querySelectorAll("");
     var len = havenName.length;
     for(var i = 0; i < len; i++) {

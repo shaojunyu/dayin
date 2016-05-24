@@ -108,7 +108,7 @@
 							<?php }//end foreach ($res as $user)?>
 						</div>
 						<div class="file-lists">
-							<section class="1"> <!-- 按文件夹顺序从1开始递增 -->
+							<section> <!-- 按文件夹顺序均用section包裹起来 -->
 								<div class="word" data-status="processing" data-md5="12312">
 									<p title="ashdau.doc">ashdaus.doc</p>
 									<p>time:1231231231</p>
