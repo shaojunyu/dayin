@@ -573,6 +573,65 @@ $(document).ready(function() {
     	})(i);
     }
 
+    //同意用户加入文库
+    var agree = document.querySelectorAll(".agree");
+    for(var i = 0; i < agree.length; i++) {
+        addHandler(agree[i], "click", function() {
+            var libraryId = document.querySelector(".brief span").innerHTML;
+            var cellphone = this.parentNode.querySelectorAll("p")[0].innerHTML;
+            var self = this;
+            var parent = self.parentNode;
+            var data = {
+                libraryId: libraryId,
+                cellphone: cellphone
+            };
+            $.ajax({
+                url: secret('./api/acceptUser'),
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function(data) {
+                    showError("加入成功");
+                    parent.parentNode.removeChild(parent);
+                    addNewUser(cellphone);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    showError("加入失败，请重试");
+                }
+            });
+        });
+    }
+
+    //拒绝用户加入
+    var refuse = document.querySelectorAll(".refuse");
+    for(var i = 0; i < refuse.length; i++) {
+        addHandler(refuse[i], "click", function() {
+            var libraryId = document.querySelector(".brief span").innerHTML;
+            var cellphone = this.parentNode.querySelectorAll("p")[0].innerHTML;
+            var self = this;
+            var parent = self.parentNode;
+            var data = {
+                libraryId: libraryId,
+                cellphone: cellphone
+            };
+            $.ajax({
+                url: secret('./api/rejectUser'),
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function(data) {
+                    showError("已拒绝");
+                    parent.parentNode.removeChild(parent);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    showError("拒绝失败，请重试");
+                }
+            });
+        });
+    }
+
     //文件夹切换
     var fileList = document.querySelectorAll(".file-list");
     for(var i = 0; i < fileList.length; i++) {
@@ -702,6 +761,19 @@ function delSpace(str) {
     str = str.replace(/[\r\n]/g,"");
     str = str.split(' ').join('');
     return str;
+}
+
+//加入新成员
+function addNewUser(cellphone) {
+    var wrap = document.createElement("div");
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var member = document.querySelector(".members");
+    var firstMember = member.querySelectorAll("div")[0];
+    wrap.innerHTML = '<p>' + cellphone + '</p>加入时间：' + year + '年' + month + '月' + day + '日';
+    member.insertBefore(wrap, firstMember);
 }
 
 //新建文件夹
