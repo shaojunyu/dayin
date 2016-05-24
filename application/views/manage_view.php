@@ -68,7 +68,17 @@
 				<div class="lists">
 					<p class="list">文库简介</p>
 					<p class="list">文库成员</p>
-					<p class="file-list"><span>默认文件夹</span><i title="删除文件夹"></i></p>
+					<?php 
+					//获取文件夹
+					$this->db->where('libraryId',$libInfo['Id']);
+					$this->db->select('folder');
+					$this->db->distinct(true);
+					$res = $this->db->get('library_files')->result_array();
+					//var_dump($res);
+					foreach ($res as $folder){
+					?>
+					<p class="file-list"><span><?php echo $folder['folder'];?></span><i title="删除文件夹"></i></p>
+					<?php }?>
 					<a href="javascript:void(0)" class="new-folder">新建文件夹</a>
 				</div>
 				<div class="manage-list">
@@ -77,20 +87,25 @@
 						<div class="members">
 						<?php 
 						$this->db->where('libraryId',$libInfo['Id']);
+						$this->db->order_by('Id','DESC');
 						$res = $this->db->get('library_users')->result_array();
-						//foreach ($res as $user){
+						foreach ($res as $user){
 						?>
+							<?php if ($user['state'] == 'accepted') {?>
 							<div>
 								<p><?php echo $user['cellphone'];?></p>
-								<p>加入时间：<?php echo $user['upadteAt'];?></p>
+								<p>加入时间：<?php echo $user['updateAt'];?></p>
 							</div>
+							<?php }?>
+							<?php if ($user['state'] == 'applying'){?>
 							<div> <!-- 申请的用这个格式 -->
-								<p>18062421246</p>
-								<p>申请时间：2016年5月30日</p>
+								<p><?php echo $user['cellphone'];?></p>
+								<p>申请时间：<?php echo $user['createAt'];?></p>
 								<a href="javascript:void(0)" class="agree">同意</a>
 								<a href="javascript:void(0)" class="refuse">拒绝</a>
 							</div>
-							<?php //}//end foreach ($res as $user)?>
+							<?php }?>
+							<?php }//end foreach ($res as $user)?>
 						</div>
 						<div class="file-lists">
 							<div class="word" data-status="processing" data-md5="12312">

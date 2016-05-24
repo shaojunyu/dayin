@@ -441,8 +441,196 @@ class Api extends CI_Controller{
             }
         }else{
             $this->echo_msg(false,'未支付');
+            
         }
     }
+
+    /**
+     * function acceptUser 同意用户加入
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function acceptUser(){
+    	$this->needSession();
+    	$this->check_post_data(array('libraryId','cellphone'));
+    	$this->db->where('cellphone',$this->post_data->cellphone);
+    	$this->db->where('libraryId',$this->post_data->libraryId);
+    	$this->db->update('library_users',array('state'=>'accepted'));
+        $this->echo_msg(true,'');
+    }
+
+
+    /**
+     * function rejectUser 拒绝用户加入
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function rejectUser(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','cellphone'));
+        $this->db->where('cellphone',$this->post_data->cellphone);
+        $this->db->where('libraryId',$this->post_data->libraryId);
+        $this->db->update('library_users',array('state'=>'rejected'));
+        $this->echo_msg(true,'');
+    }
+
+    /**
+     * function createFolder 创建文件夹
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function createFolder(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','folder'));
+        $this->db->insert('library_files',array(
+            'libraryId'=>$this->post_data->libraryId,
+            'folder'=>$this->post_data->folder
+            ));
+        $this->echo_msg(true);
+    }
+
+    /**
+     * function deteleFolder 删除文件夹
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function deteleFolder(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','folder'));
+        $this->db->where('libraryId',$this->post_data->libraryId);
+        $this->db->where('folder',$this->post_data->folder);
+        $this->db->delete('library_files');
+        $this->echo_msg(true);
+    }
+
+    /**
+     * 文库文件上传token获取
+     */
+    public function getLibUploadToken(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','folder'));
+        //查询folder是否存在
+        $this->db->where('libraryId',$this->post_data->libraryId);
+        $this->db->where('folder',$this->post_data->folder);
+        $this->db->get('library_files');
+        if ($this->db->affected_rows() == 0){
+            $this->echo_msg(false,'文件夹不存在');
+            exit();
+        }
+
+        require_once APPPATH.'third_party/oss_php_sdk_20140625/sdk.class.php';
+        $id= 'GtzMAvDTnxg72R04';
+        $key= 'VhD2czcwLVAaE7DReDG4uEVSgtaSYK';
+        $host = 'http://99dayin.oss-cn-hangzhou.aliyuncs.com';
+        $callback_body = '{"callbackUrl":"http://hook.99dayin.com/uploadcallback","callbackHost":"hook.99dayin.com","callbackBody":"filename=${object}&size=${size}&mimeType=${mimeType}&height=${imageInfo.height}&width=${imageInfo.width}","callbackBodyType":"application/x-www-form-urlencoded"}';
+        $base64_callback_body = base64_encode($callback_body);
+        $now = time();
+        $expire = 30; //设置该policy超时时间是10s. 即这个policy过了这个有效时间，将不能访问
+        $end = $now + $expire;
+        $expiration = $this->gmt_iso8601($end);
+
+        $oss_sdk_service = new alioss($id, $key, $host);
+        $dir = 'library/'.$this->post_data->libraryId.'/'.$this->post_data->folder.'/';
+
+        //最大文件大小.用户可以自己设置
+        $condition = array(0=>'content-length-range', 1=>0, 2=>1048576000);
+        $conditions[] = $condition;
+
+        //表示用户上传的数据,必须是以$dir开始, 不然上传会失败,这一步不是必须项,只是为了安全起见,防止用户通过policy上传到别人的目录
+        $start = array(0=>'starts-with', 1=>'$key', 2=>$dir);
+        $conditions[] = $start;
+
+
+        //这里默认设置是２０２０年.注意了,可以根据自己的逻辑,设定expire 时间.达到让前端定时到后面取signature的逻辑
+        $arr = array('expiration'=>$expiration,'conditions'=>$conditions);
+        //echo json_encode($arr);
+        //return;
+        $policy = json_encode($arr);
+        $base64_policy = base64_encode($policy);
+        $string_to_sign = $base64_policy;
+        $signature = base64_encode(hash_hmac('sha1', $string_to_sign, $key, true));
+
+        $response = array();
+        $response['accessid'] = $id;
+        $response['host'] = $host;
+        $response['policy'] = $base64_policy;
+        $response['signature'] = $signature;
+        $response['expire'] = $end;
+        $response['callback'] = $base64_callback_body;
+        //这个参数是设置用户上传指定的前缀
+        $response['dir'] = $dir;
+        echo json_encode($response);
+    }
+
+    /**
+     * function libUploadACK 文库文件上传完成回调
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function libUploadACK(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','folder','fileName','fileMD5'));
+        $this->db->insert('library_files',array(
+            'fileName'=>$this->post_data->fileName,
+            'fileMD5'=>$this->post_data->fileMD5,
+            'libraryId'=>$this->post_data->libraryId,
+            'folder'=>$this->post_data->folder
+        ));
+        $this->db->insert('user_upload',array(
+            'cellphone'=>$this->session->userdata('cellphone'),
+            'fileName'=>$this->post_data->fileName,
+            'fileMD5'=>$this->post_data->fileMD5
+        ));
+        $this->echo_msg(true);
+    }
+
+    public function deleteLibFile(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','folder','fileName'));
+        $this->db->where('libraryId',$this->post_data->libraryId);
+        $this->db->where('folder',$this->post_data->folder);
+        $this->db->where('fileName',$this->post_data->fileName);
+        $this->db->delete('library_files');
+        $this->echo_msg(true);
+    }
+
+    public function getLibFiles(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId','folder'));
+        $this->db->where('libraryId',$this->post_data->libraryId);
+        $this->db->where('folder',$this->post_data->folder);
+        $this->db->where('fileName <>',null);
+        $res = $this->db->get('library_files')->result_array();
+        echo json_encode($res);
+    }
+
+    /**
+     * function searchLib 查找文库
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function searchLib(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId'));
+        //$remark = '';
+        $this->db->select('name');
+        $this->db->where('Id',$this->post_data->libraryId);
+        $res = $this->db->get('library')->result_array();
+        if (count($res) == 1){
+            $res = $res[0];
+            echo json_encode(array('libName'=>$res['name']));
+        }
+        //var_dump($res);
+    }
+
+    //public function
+    
 /*
  * ----------------------------------------------------------------------------------------
  * 以下是private函数，供本类调用
@@ -497,6 +685,12 @@ class Api extends CI_Controller{
             if (!isset($this->post_data->$key)){
                 $this->echo_msg('false','参数不完整');
                 exit();
+            }
+            if (isset($this->post_data->$key)){
+                if ($this->post_data->$key == null){
+                    $this->echo_msg('false','参数不完整');
+                    exit();
+                }
             }
         }
         return true;
