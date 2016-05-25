@@ -322,7 +322,7 @@ function createNew(name) {
     var newelem = document.createElement("div");
     var parent = getFolder();
     newelem.innerHTML = '<p>' + name + '</p>' + '<p>校验中...' + '</p>';
-    parent.append(newelem);
+    parent.appendChild(newelem);
     newElem[name] = [];
     newElem[name][0] = newelem;
     return newelem;
@@ -334,7 +334,7 @@ function createStatus(name, md5) {
     var parent = getFolder();
     newelem.innerHTML = '<p>' + name + '</p>' + '<p>后台解析中...' + '</p>';
     newelem.setAttribute("data-status", file_status[0]);
-    parent.append(newelem);
+    parent.appendChild(newelem);
     newElem[name] = [];
     newElem[name][0] = newelem;
     newElem[name][1] = md5;
@@ -377,7 +377,7 @@ function addFile(filename) {
     newelem.setAttribute("title", filename);
     newelem.className = str;
     newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + '</p>' + '<i></i>';    
-    parent.append(newelem);
+    parent.appendChild(newelem);
     addDelEvent(newelem);
 }
 
