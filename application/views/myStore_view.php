@@ -28,44 +28,60 @@
 
 <div class="prompt-box"></div> <!-- 表单错误提示框 -->
 <div class="file-info"></div>
-
+<div class="cover"></div> <!-- 背景模糊遮罩 -->
+<div id="apply"> <!-- 申请加入 -->
+    <div class="apply-top">
+        申请加入<span>X</span>
+    </div>
+    <div class="apply-info">
+        备注（非必填）：<input type="text" class="remark" placeholder="不超过10个字">
+    </div>
+    <div class="apply-sub">
+        <a class="apply-btn" href="javascript:void(0)">确认</a>
+    </div>
+</div>
 
 <div class="nav">
     <div class="clearfix">
-        <a href="javascript:void(0)" class="upload" id="clicked">上传文件</a>
-        <a href="myStore" class="my-store">我的文库</a>
+        <a href="upload" class="upload">上传文件</a>
+        <a href="javascript:void(0)" class="my-store" id="clicked">我的文库</a>
     </div>
     <a href="manage" class="manage-store">管理文库</a>
 </div>
 
 <div class="myself-wrap clearfix">
-    <div class="upload-box">
-        <div class="scroll-bar clearfix">
-    <?php
-    $this->db->where('cellphone',$this->session->userdata('cellphone'));
-    $res = $this->db->get('cart')->result_array();
-    foreach ($res as $item){
-        if (strripos($item['fileName'],'.doc')){
-            $class = 'word';
-        }elseif (strripos($item['fileName'],'.ppt')){
-            $class = 'ppt';
-        }else{
-            $class = 'pdf';
-        }
-        //var_dump($item);
-    ?>
-
-            <div class="<?php echo $class;?>" data-status="<?php if ($item['pages'] > 0){}else{echo 'processing';}?>" data-md5="<?php echo $item['fileMD5'];?>">
-                <p><?php echo $item['fileName'];?></p>
-                <p>上传时间：<?php echo $item['createAt'];?></p>
-                <i></i>
+    <div class="mystore clearfix">
+        <p class="search-box">
+            <input type="text" class="search" placeholder="输入文库号查找文库">
+            <input type="button" class="join" value="申请加入">
+        </p>
+        <div class="all-store">
+            <p class="every-store">文库1</p>
+            <p class="every-store">文库2</p>
+            <p class="every-store">文库3</p>
+        </div>
+        <div class="folder">
+            <p class="every-folder">文件夹1</p>
+            <p class="every-folder">文件夹2</p>
+            <p class="every-folder">文件夹3</p>
+            <p class="every-folder">文件夹4</p>
+        </div>
+        <div class="file-list">
+            <div class="file-scroll">
+                <div class="word">
+                    <p>abdsbsa.doc</p>
+                    <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                    <i><input type="checkbox" value="1" /></i>
+                </div>
+                <div class="ppt">
+                    <p>abdsbsa.ppt</p>
+                    <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                    <i><input type="checkbox" value="2" /></i>
+                </div>
             </div>
-<?php    }?>
-            <p class="continue-add" id="file"><button type="button" id="ul">上传文件</button></p>
         </div>
     </div>
-    
-    <input type="button" class="to-order" value="去下单">
+    <input type="button" class="add-car" value="加入打印车">
     
 </div>
 
@@ -104,8 +120,6 @@
 <script type="text/javascript" src="script/plupload.full.min.js"></script>
 <script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/spark-md5.min.js"></script>
 <script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/md5.js"></script>
-
-<script type="text/javascript" src="script/upload.js"></script>
-<script type="text/javascript" src="script/myself.js"></script>
+<script type="text/javascript" src="script/mystore.js"></script>
 </body>
 </html>

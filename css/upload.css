@@ -183,7 +183,7 @@ nav ul li ul#sign-out li {
 	padding: 5px;
 	border-radius: 2em;
 }
-.nav div span {
+.nav div a {
 	display: inline-block;
 	float: left;
 	width: 50%;
@@ -287,7 +287,7 @@ nav ul li ul#sign-out li {
 .mystore {
 	width: 100%;
 	padding: 0px 2%;
-	height: 700px;
+	height: 500px;
 	display: none;
 }
 .all-store, .folder, .file-list {
@@ -295,7 +295,7 @@ nav ul li ul#sign-out li {
 	border-top: 1px solid #0099ff;
 	border-bottom: 1px solid #0099ff;
 	float: left;
-	height: 600px;
+	height: 440px;
 }
 .all-store {
 	width: 15%;

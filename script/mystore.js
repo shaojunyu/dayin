@@ -56,31 +56,24 @@ $(document).ready(function() {
         });
     });
 
-	//删除打印车文件
-	var del = document.querySelectorAll(".scroll-bar i");
-	for(var i = 0; i < del.length; i++) {
-		addHandler(del[i], "click", function() {
-			var md5 = $(this).attr("data-md5");
-			var data = {fileMD5: md5};
-			$.ajax({
-				url: secret("./api/deleteItem"),
-	        	contentType: "application/json",
-	        	dataType: "json",
-	        	type: "POST",
-	        	data: JSON.stringify(data),
-	        	success: function(data) {
-	        		$(this).remove();
-	        	},
-	        	error: function(XMLHttpRequest, textStatus, errorThrown) {
-	        		showError("删除失败");
-	        	}
-			});
-		});
-	}
+	//上传文件和我的文库切换
+	$(".mystore").css("display", "block");
+	$(".add-car").css("display", "block");
+
+	//文库编号和文件夹的点击切换
+	$(".every-store").click(function() {
+		$(".every-store").css({"color":"#336598", "background-color":"#fff"});
+		$(this).css({"color":"#fff", "background-color":"#0099ff"});
+	});
+	
+	$(".every-folder").click(function() {
+		$(".every-folder").css({"background-color":"#fff", "color":"#336598"});
+		$(this).css({"background-color":"#acd6fe", "color":"#fff"});
+	});
 
 
 	//设置div滚动条样式
-	$(".scroll-bar").slimScroll({
+	$(".file-scroll").slimScroll({
 	    height: '420px', //容器高度,默认250px
 	    size: '7px', //滚动条宽度,默认7px
 	    color: '#ffcc00', //滚动条颜色,默认#000000
