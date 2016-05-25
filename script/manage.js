@@ -385,6 +385,8 @@ function addFile(filename) {
 var delList = [];
 function addDelEvent(elem) {
     var i = elem.querySelector("i");
+    var coverBg = document.querySelector(".cover");
+    var cancelSubmit = document.querySelector("#cancel-submit");
     addHandler(i, "click", function() {
 		var self = this;
 		var parent = self.parentNode;
@@ -536,6 +538,7 @@ $(document).ready(function() {
             var file_name = status_list[0].querySelector("p:first-child").innerHTML;
             var md5 = newElem[file_name][1];
             var status = {fileMD5: md5};
+            console.log(status_list);
             $.ajax({
                 url: secret('./api/getProgess'),
                 type: 'POST',
@@ -840,6 +843,14 @@ $(document).ready(function() {
 	});
 });
 
+//判断对象是否为空
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    return false;
+  }
+  return true;
+}
+
 //去空格及回车符
 function delSpace(str) {
     str = str.replace(/[\r\n]/g,"");
@@ -879,6 +890,8 @@ function createFolder(fileName) {
 
 //添加删除文件夹事件
 function addDel(elem) {
+    var coverBg = document.querySelector(".cover");
+    var delSubmit = document.querySelector("#del-submit");
     var delFolder = elem.querySelector("i");
     addHandler(delFolder, "click", function() {
         del_list[0] = elem.querySelector("span").innerHTML;
