@@ -658,7 +658,7 @@ class Api extends CI_Controller{
      */
     private function needSession(){
         if ( $this->session->userdata('cellphone') == null ){
-            exit('api false');
+            exit('api false,need session');
         }else{
             return;
         }
