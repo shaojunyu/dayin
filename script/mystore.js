@@ -31,6 +31,32 @@ function addHandler(element, type, handler) {
 	}
 }
 
+//显示浮层
+function showDiv(cover, sign) {
+	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
+	var offsetH = (pageH - sign.offsetHeight) / 2;
+	cover.style.display = "block";
+	sign.style.display = "block";
+}
+//隐藏浮层
+function hideDiv(cover, sign) {
+	cover.style.display = "none";
+	sign.style.display = "none";
+}
+//居中显示浮层
+function centerDiv(sign) {
+	var pageW = document.documentElement.clientWidth || document.body.clientWidth;
+	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
+	sign.style.left = (pageW - sign.offsetWidth) / 2 + "px";
+}
+
+//去空格及回车符
+function delSpace(str) {
+    str = str.replace(/[\r\n]/g,"");
+    str = str.split(' ').join('');
+    return str;
+}
+
 $(document).ready(function() {
 	//导航栏个人中心二级菜单显示和隐藏
 	$("#sign-out").mouseover(function() {
@@ -59,6 +85,80 @@ $(document).ready(function() {
 	//上传文件和我的文库切换
 	$(".mystore").css("display", "block");
 	$(".add-car").css("display", "block");
+
+	//申请加入
+	var coverBg = document.querySelector(".cover");
+    var apply = document.querySelector("#apply");
+    var applyX = document.querySelector(".apply-top span");
+    var applyBtn = document.querySelector(".apply-btn");
+    var remarkInfo = document.querySelector(".remark");
+    var join = document.querySelector(".join");
+    var search = document.querySelector(".search");
+    addHandler(join, "click", function() {
+    	showError("文库查询中，请稍候");
+    	var libraryId = search.value;
+    	libraryId = delSpace(libraryId);
+    	var dat = {
+    		libraryId: libraryId
+    	};
+    	$.ajax({
+            url: secret("./api/searchLib"),
+            type: "POST",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(dat),
+            success:function(data) {
+            	document.querySelector(".lib-name").innerHTML = data.libName;
+                showDiv(coverBg, apply);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("新建文件夹失败，请重试");
+            }
+        });
+    });
+    addHandler(newX, "click", function() {
+        hideDiv(coverBg, newSubmit);
+    });
+    addHandler(newBtn, "click", function() {
+        var new_name = delSpace(newName.value);
+        var temp = true;
+        var data = {};
+        var libraryId = document.querySelector(".brief span").innerHTML;
+        for(var i = 0; i < nameLists.length; i++) {
+            if(new_name == nameLists[i]) {
+                showError("文件夹重名，请重新输入");
+                newName.value = "";
+                temp = false;
+                break;
+            }
+        }
+        if(new_name && temp) {
+            data.libraryId = libraryId;
+            data.folder = new_name;
+            $.ajax({
+                url: secret("./api/createFolder"),
+                type: "POST",
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify(data),
+                success:function(data) {
+                    nameLists.push(new_name);
+                    createFolder(new_name);
+                    newName.value = "";
+                    hideDiv(coverBg, newSubmit);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){  
+                    showError("新建文件夹失败，请重试");
+                }
+            });
+        }
+        else if(!new_name) {
+            showError("请输入文件夹名");
+        }
+    })
+
+
+
 
 	//文库编号和文件夹的点击切换
 	$(".every-store").click(function() {
