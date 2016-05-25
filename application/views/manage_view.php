@@ -15,7 +15,7 @@
 				<ul>
 					<li><a href="http://www.99dayin.com">首页</a></li>
 					<li><a href="doc/base.html" target="_blank">简介</a></li>
-					<li><a href="upload">我的文库</a></li>
+					<li><a href="library">我的文库</a></li>
 					<li class="person-box">
 						<ul id="sign-out" class="clearfix">
 							<li><a href="myself" class="person">个人中心</a></li>

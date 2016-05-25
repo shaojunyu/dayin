@@ -25,7 +25,7 @@
                     <a href="javascript:void(0)" class="sign_up">注册</a>
                 </li>
                 <?php } else{?>
-                <li><a href="upload">我的文库</a></li>
+                <li><a href="library">我的文库</a></li>
                 <li class="person-box">
                     <ul id="sign-out" class="clearfix">
                         <li><a href="myself" class="person">个人中心</a></li>

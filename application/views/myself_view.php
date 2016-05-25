@@ -15,7 +15,7 @@
         <ul>
             <li><a href="/dayin">首页</a></li>
             <li><a href="base.html" target="_blank">简介</a></li>
-            <li><a href="upload">我的文库</a></li>
+            <li><a href="library">我的文库</a></li>
             <li class="person-box">
                 <ul id="sign-out" class="clearfix">
                     <li><a href="javascript:void(0)" class="person">个人中心</a></li>
