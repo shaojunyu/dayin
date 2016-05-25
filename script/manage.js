@@ -351,7 +351,7 @@ function removeC(elem) {
 function addFile(filename) {
     var reg = /\.(\w+)$/;
     var str = filename.match(reg);
-    var date = new Date();
+    /*var date = new Date();
     var hours = date.getHours();
     var seconds = date.getMinutes();
 
@@ -360,7 +360,7 @@ function addFile(filename) {
     }
     if(seconds < 10) {
         seconds = '0' + seconds;
-    }
+    }*/
 
     str = str[0].slice(1);
     str = str.toLowerCase();
@@ -373,10 +373,12 @@ function addFile(filename) {
 
     var newelem = document.createElement("div");
     var parent = getFolder();
+    console.log(parent);
+    console.log(folder[0]);
     newelem.setAttribute("data-md5", newElem[filename][1]);
     newelem.setAttribute("title", filename);
     newelem.className = str;
-    newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + '</p>' + '<i></i>';    
+    newelem.innerHTML = '<p>' + filename + '</p>' + '<i></i>';    
     parent.appendChild(newelem);
     addDelEvent(newelem);
 }
@@ -486,11 +488,6 @@ $(document).ready(function() {
         $(".file-list").css({"background-color":"#fff", "color":"#336598"});
 		$(this).css({"background-color":"#acd6fe", "color":"#fff"});
 	});
-    $(".file-list").click(function() {
-        $(".list").css({"background-color":"#fff", "color":"#336598"});
-        $(".file-list").css({"background-color":"#fff", "color":"#336598"});
-        $(this).css({"background-color":"#acd6fe", "color":"#fff"});
-    });
 
 
 	//设置div滚动条样式
@@ -669,11 +666,24 @@ $(document).ready(function() {
     for(var i = 0; i < fileList.length; i++) {
         (function(i) {
             addHandler(fileList[i], "click", function() {
+                if(status_list.length) {
+                    showError("请等文件解析完成再切换文件夹");
+                    return;
+                }
+                else if(!isEmptyObject(newElem)) {
+                    showError("请等文件解析完成再切换文件夹");
+                    return;
+                }
                 $(".brief").css("display", "none");
                 $(".members").css("display", "none");
                 $(".file-lists").css("display", "block");
-                for(var j = 0; j < section.length; j++) {
-                    section[j].style.display = "none";
+                $(".list").css({"background-color":"#fff", "color":"#336598"});
+                $(".file-list").css({"background-color":"#fff", "color":"#336598"});
+                this.style.backgroundColor = "#acd6fe";
+                this.style.color = "#fff";
+                var section_now = document.querySelectorAll("section");
+                for(var j = 0; j < section_now.length; j++) {
+                    section_now[j].style.display = "none";
                 }
                 section[i].style.display = "block";
                 folder = [];
@@ -781,6 +791,9 @@ $(document).ready(function() {
                 del_list = [];
                 hideDiv(coverBg, delSubmit);
                 showError("删除成功");
+                document.querySelectorAll(".lists list")[0].style.backgroundColor = "#acd6fe";
+                document.querySelectorAll(".lists list")[0].style.color = "#fff";
+                document.querySelector(".brief").style.display = "block";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("删除文件夹失败，请重试");
@@ -903,6 +916,14 @@ function addDel(elem) {
 //添加文件夹点击事件
 function addClick(elem) {
     addHandler(elem, "click", function() {
+        if(status_list.length) {
+            showError("请等文件解析完成再切换文件夹");
+            return;
+        }
+        else if(!isEmptyObject(newElem)) {
+            showError("请等文件解析完成再切换文件夹");
+            return;
+        }
         $(".list").css({"background-color":"#fff", "color":"#336598"});
         $(".file-list").css({"background-color":"#fff", "color":"#336598"});
         elem.style.backgroundColor = "#acd6fe";
