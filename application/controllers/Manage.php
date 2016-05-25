@@ -17,7 +17,7 @@ class Manage extends CI_Controller{
 	
 	public function index() {
 		//var_dump($this->session->userdata());
-		$this->db->where('admin',$this->session->userdata('cellphone'));
+		$this->db->like('admin',$this->session->userdata('cellphone'));
 		$res = $this->db->get('library')->result_array();
 		if (count($res) == 1) {
 			$res = $res[0];
