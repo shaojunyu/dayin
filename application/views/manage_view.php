@@ -83,7 +83,7 @@
 				</div>
 				<div class="manage-list">
 					<div class="manage-scroll">
-						<p class="brief">文库编号：<span><?php echo $libInfo['Id'];?></span><br />创建者：<?php echo $libInfo['admin'];?><br />创建时间：<?php echo $libInfo['createAt'];?></p>
+						<p class="brief">文库编号：<span><?php echo $libInfo['Id'];?></span><br />文库名：xxx<br />管理员：<?php echo $libInfo['admin'];?><br />创建时间：<?php echo $libInfo['createAt'];?></p>
 						<div class="members">
 						<?php 
 						$this->db->where('libraryId',$libInfo['Id']);
