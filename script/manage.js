@@ -24,12 +24,17 @@ function get_signature()
     now = timestamp = Date.parse(new Date()) / 1000; 
     if (expire < now + 3)
     {
+        var libraryId = document.querySelector(".brief span").innerHTML;
+        var data = {
+            libraryId: libraryId,
+            folder: folder[0]
+        };
         $.ajax({
-            url: secret('./api/getUploadToken'),
+            url: secret('./api/getLibUploadToken'),
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            data: '{}',
+            data: JSON.stringify(data),
             async: false,
             success: function(data) {
                 console.log(data);
@@ -205,9 +210,15 @@ var uploader = new plupload.Uploader({
             {
                 var filename = file.name;
                 var fileMd5 = newElem[filename][1];
-                var data = {fileName: filename, fileMD5: fileMd5};
+                var libraryId = document.querySelector(".brief span").innerHTML;
+                var data = {
+                    libraryId: libraryId,
+                    folder: folder[0],
+                    fileMD5: fileMd5, 
+                    fileName: filename
+                };
                 $.ajax({
-                    url: secret('./api/uploadACK'),
+                    url: secret('./api/libUploadACK'),
                     type: 'POST',
                     data: JSON.stringify(data),
                     dataType: 'json',
@@ -252,6 +263,17 @@ var uploader = new plupload.Uploader({
 });
 
 uploader.init();
+
+//获取当前文件夹的section
+function getFolder() {
+    for(var i = 0; i < nameLists.length; i++) {
+        if(folder[0] == nameLists[i]) {
+            break;
+        }
+    }
+    var section = document.querySelectorAll(".file-lists section")[i];
+    return section;
+}
 
 //发送文件md5值
 function sendMD5(md5) {
@@ -298,10 +320,9 @@ function showError(message) {
 //上传过程创建的进度div
 function createNew(name) {
     var newelem = document.createElement("div");
-    var next = document.querySelector("#file");
-    var parent = document.querySelector(".file-lists");
+    var parent = getFolder();
     newelem.innerHTML = '<p>' + name + '</p>' + '<p>校验中...' + '</p>';
-    parent.insertBefore(newelem, next);
+    parent.append(newelem);
     newElem[name] = [];
     newElem[name][0] = newelem;
     return newelem;
@@ -310,11 +331,10 @@ function createNew(name) {
 //解析过程的进度div
 function createStatus(name, md5) {
     var newelem = document.createElement("div");
-    var next = document.querySelector("#file");
-    var parent = document.querySelector(".file-lists");
+    var parent = getFolder();
     newelem.innerHTML = '<p>' + name + '</p>' + '<p>后台解析中...' + '</p>';
     newelem.setAttribute("data-status", file_status[0]);
-    parent.insertBefore(newelem, next);
+    parent.append(newelem);
     newElem[name] = [];
     newElem[name][0] = newelem;
     newElem[name][1] = md5;
@@ -323,7 +343,7 @@ function createStatus(name, md5) {
 
 //移除div
 function removeC(elem) {
-    var parent = document.querySelector(".file-lists");
+    var parent = getFolder();
     parent.removeChild(elem);
 }
 
@@ -352,13 +372,12 @@ function addFile(filename) {
     }
 
     var newelem = document.createElement("div");
-    var next = document.querySelector("#file");
-    var parent = document.querySelector(".file-lists");
+    var parent = getFolder();
     newelem.setAttribute("data-md5", newElem[filename][1]);
     newelem.setAttribute("title", filename);
     newelem.className = str;
     newelem.innerHTML = '<p>' + filename + '</p>' + '<p>上传时间：' + date.toLocaleDateString() + ' ' + hours + ':' + seconds + '</p>' + '<i></i>';    
-    parent.insertBefore(newelem, next);
+    parent.append(newelem);
     addDelEvent(newelem);
 }
 
@@ -369,18 +388,17 @@ function addDelEvent(elem) {
     addHandler(i, "click", function() {
 		var self = this;
 		var parent = self.parentNode;
-		var md5 = parent.getAttribute("data-md5");
-		md5 = {fileMD5: md5};
 		delList[0] = {};
 		delList[0].parent = parent;
-		delList[0].md5 = md5;
+		delList[0].fileName = parent.querySelectorAll("p")[0].innerHTML;
 		showDiv(coverBg, cancelSubmit);
     });
 }
 
 //提示重名
 function sameName(filename) {
-    var havenName = document.querySelectorAll(".file-lists div p:first-child");
+    var section = getFolder();
+    var havenName = section.querySelectorAll("div p:first-child");
     var len = havenName.length;
     for(var i = 0; i < len; i++) {
         if(havenName[i].innerHTML == filename) {
@@ -488,6 +506,7 @@ $(document).ready(function() {
 	    disableFadeOut: false //是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
 	});
 
+    //初始给所有文件添加删除事件
     var uploadBox = document.querySelector(".file-lists");
     var uploadFile = uploadBox.querySelectorAll("div");
     if(uploadFile) {
@@ -573,15 +592,62 @@ $(document).ready(function() {
     	})(i);
     }
 
-    //文件夹切换
-    var fileList = document.querySelectorAll(".file-list");
-    for(var i = 0; i < fileList.length; i++) {
-        addHandler(fileList[i], "click", function() {
-            $(".brief").css("display", "none");
-            $(".members").css("display", "none");
-            $(".file-lists").css("display", "block");
-            folder = [];
-            folder[0] = this.querySelector("span").innerHTML;
+    //同意用户加入文库
+    var agree = document.querySelectorAll(".agree");
+    for(var i = 0; i < agree.length; i++) {
+        addHandler(agree[i], "click", function() {
+            var libraryId = document.querySelector(".brief span").innerHTML;
+            var cellphone = this.parentNode.querySelectorAll("p")[0].innerHTML;
+            var self = this;
+            var parent = self.parentNode;
+            var data = {
+                libraryId: libraryId,
+                cellphone: cellphone
+            };
+            $.ajax({
+                url: secret('./api/acceptUser'),
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function(data) {
+                    showError("加入成功");
+                    parent.parentNode.removeChild(parent);
+                    addNewUser(cellphone);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    showError("加入失败，请重试");
+                }
+            });
+        });
+    }
+
+    //拒绝用户加入
+    var refuse = document.querySelectorAll(".refuse");
+    for(var i = 0; i < refuse.length; i++) {
+        addHandler(refuse[i], "click", function() {
+            var libraryId = document.querySelector(".brief span").innerHTML;
+            var cellphone = this.parentNode.querySelectorAll("p")[0].innerHTML;
+            var self = this;
+            var parent = self.parentNode;
+            var data = {
+                libraryId: libraryId,
+                cellphone: cellphone
+            };
+            $.ajax({
+                url: secret('./api/rejectUser'),
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function(data) {
+                    showError("已拒绝");
+                    parent.parentNode.removeChild(parent);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    showError("拒绝失败，请重试");
+                }
+            });
         });
     }
 
@@ -590,6 +656,29 @@ $(document).ready(function() {
     for(var i = 0; i < oldFile.length; i++) {
         nameLists[i] = oldFile[i].innerHTML;
     }
+
+    //文件夹切换
+    var fileList = document.querySelectorAll(".file-list");
+    var section = document.querySelectorAll("section");
+    for(var j = 0; j < section.length; j++) {
+        section[j].style.display = "none";
+    }
+    for(var i = 0; i < fileList.length; i++) {
+        (function(i) {
+            addHandler(fileList[i], "click", function() {
+                $(".brief").css("display", "none");
+                $(".members").css("display", "none");
+                $(".file-lists").css("display", "block");
+                for(var j = 0; j < section.length; j++) {
+                    section[j].style.display = "none";
+                }
+                section[i].style.display = "block";
+                folder = [];
+                folder[0] = this.querySelector("span").innerHTML;
+            });
+        })(i);
+    }
+
 
     //新建文件夹
     var coverBg = document.querySelector(".cover");
@@ -607,6 +696,8 @@ $(document).ready(function() {
     addHandler(newBtn, "click", function() {
         var new_name = delSpace(newName.value);
         var temp = true;
+        var data = {};
+        var libraryId = document.querySelector(".brief span").innerHTML;
         for(var i = 0; i < nameLists.length; i++) {
             if(new_name == nameLists[i]) {
                 showError("文件夹重名，请重新输入");
@@ -616,10 +707,24 @@ $(document).ready(function() {
             }
         }
         if(new_name && temp) {
-            createFolder(new_name);
-            nameLists.push(new_name);
-            newName.value = "";
-            hideDiv(coverBg, newSubmit);
+            data.libraryId = libraryId;
+            data.folder = new_name;
+            $.ajax({
+                url: secret("./api/createFolder"),
+                type: "POST",
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify(data),
+                success:function(data) {
+                    nameLists.push(new_name);
+                    createFolder(new_name);
+                    newName.value = "";
+                    hideDiv(coverBg, newSubmit);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){  
+                    showError("新建文件夹失败，请重试");
+                }
+            });
         }
         else if(!new_name) {
             showError("请输入文件夹名");
@@ -638,13 +743,46 @@ $(document).ready(function() {
         addHandler(delFolder[i], "click", function() {
             var self = this;
             var parent = self.parentNode;
-            //
+            del_list[0] = parent.querySelector("span").innerHTML;
+            del_list[1] = parent;
             showDiv(coverBg, delSubmit);
         });
     }
     addHandler(delX, "click", function() {
         del_list = [];
         hideDiv(coverBg, delSubmit);
+    });
+    addHandler(delBtn, "click", function() {
+        var libraryId = document.querySelector(".brief span").innerHTML;
+        var parent = document.querySelector(".file-lists");
+        var section = document.querySelectorAll("section");
+        var data = {
+            libraryId: libraryId,
+            folder: del_list[0]
+        };
+        $.ajax({
+            url: secret("./api/deteleFolder"),
+            type: "POST",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(data),
+            success:function(data) {
+                for(var k = 0; k < nameLists.length; k++) {
+                    if(nameLists[k] == del_list[0]) {
+                        nameLists.splice(k,1);
+                        parent.removeChild(section[k]);
+                        break;
+                    }
+                }
+                del_list[1].parentNode.removeChild(del_list[1]);
+                del_list = [];
+                hideDiv(coverBg, delSubmit);
+                showError("删除成功");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("删除文件夹失败，请重试");
+            }
+        });
     });
 
     //文件删除
@@ -660,25 +798,30 @@ $(document).ready(function() {
 		addHandler(cancel[i], "click", function() {
 			var self = this;
 			var parent = self.parentNode;
-			var md5 = parent.getAttribute("data-md5");
-			md5 = {fileMD5: md5};
 			delList[0] = {};
 			delList[0].parent = parent;
-			delList[0].md5 = md5;
+			delList[0].fileName = parent.querySelectorAll("p")[0].innerHTML;
 			showDiv(coverBg, cancelSubmit);
 		});
 	}
 
 	addHandler(cancelBtn, "click", function() {
+        var section = getFolder();
+        var libraryId = document.querySelector(".brief span").innerHTML;
+        var data = {
+            libraryId: libraryId,
+            folder: folder[0],
+            fileName: delList[0].fileName
+        };
 		$.ajax({
-			url: secret("./api/deleteItem"),
+			url: secret("./api/deleteLibFile"),
 		    type: "POST",
 	        contentType:"application/json",
 	        dataType:"json",
-	        data: JSON.stringify(delList[0].md5),
+	        data: JSON.stringify(data),
 	        success:function(data) {
 	            if(data.success) {
-	            	document.querySelector(".file-lists").removeChild(delList[0].parent);
+	            	section.removeChild(delList[0].parent);
 	                showError("删除成功");
 	            }else {
 	                showError(data.msg);
@@ -704,6 +847,19 @@ function delSpace(str) {
     return str;
 }
 
+//加入新成员
+function addNewUser(cellphone) {
+    var wrap = document.createElement("div");
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var member = document.querySelector(".members");
+    var firstMember = member.querySelectorAll("div")[0];
+    wrap.innerHTML = '<p>' + cellphone + '</p>加入时间：' + year + '年' + month + '月' + day + '日';
+    member.insertBefore(wrap, firstMember);
+}
+
 //新建文件夹
 function createFolder(fileName) {
     var p = document.createElement("p");
@@ -712,13 +868,23 @@ function createFolder(fileName) {
     p.className = "file-list";
     p.innerHTML = '<span>' + fileName + '</span>' + '<i title="删除文件夹"></i>';
     parent.insertBefore(p, next);
+    var section = document.createElement("section");
+    var file_lists = document.querySelector(".file-lists");
+    var next = document.getElementById("file");
+    section.style.display = "none";
+    file_lists.insertBefore(section, next);
     addDel(p);
     addClick(p);
 }
 
 //添加删除文件夹事件
 function addDel(elem) {
-
+    var delFolder = elem.querySelector("i");
+    addHandler(delFolder, "click", function() {
+        del_list[0] = elem.querySelector("span").innerHTML;
+        del_list[1] = elem;
+        showDiv(coverBg, delSubmit);
+    });
 }
 
 //添加文件夹点击事件
@@ -731,6 +897,17 @@ function addClick(elem) {
         $(".brief").css("display", "none");
         $(".members").css("display", "none");
         $(".file-lists").css("display", "block");
+        var section = document.querySelectorAll("section");
+        var folderName = elem.querySelector("span").innerHTML;
+        for(var i = 0; i < nameLists.length; i++) {
+            if(folderName == nameLists[i]) {
+                break;
+            }
+        }
+        for(var j = 0; j < section.length; j++) {
+            section[j].style.display = "none";
+        }
+        section[i].style.display = "block";
         folder = [];
         folder[0] = this.querySelector("span").innerHTML;
     });
