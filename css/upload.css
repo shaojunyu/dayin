@@ -383,6 +383,7 @@ nav ul li ul#sign-out li {
 .all-store {
 	width: 15%;
 	border-left: 1px solid #0099ff;
+	overflow: scroll;
 }
 .all-store p {
 	line-height: 50px;
@@ -397,6 +398,7 @@ nav ul li ul#sign-out li {
 }
 .folder {
 	width: 15%;
+	overflow: scroll;
 }
 .folder p {
 	line-height: 45px;
