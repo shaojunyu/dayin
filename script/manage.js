@@ -791,8 +791,8 @@ $(document).ready(function() {
                 del_list = [];
                 hideDiv(coverBg, delSubmit);
                 showError("删除成功");
-                document.querySelectorAll(".lists list")[0].style.backgroundColor = "#acd6fe";
-                document.querySelectorAll(".lists list")[0].style.color = "#fff";
+                document.querySelectorAll(".lists .list")[0].style.backgroundColor = "#acd6fe";
+                document.querySelectorAll(".lists .list")[0].style.color = "#fff";
                 document.querySelector(".brief").style.display = "block";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
