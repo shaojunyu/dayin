@@ -631,6 +631,12 @@ class Api extends CI_Controller{
         //var_dump($res);
     }
 
+    /**
+     * function joinLib 加入文库申请
+     * @param
+     * @return
+     * @author yushaojun
+     */
     public function joinLib(){
         $this->needSession();
         $this->check_post_data(array('libraryId'));
@@ -642,6 +648,16 @@ class Api extends CI_Controller{
             'remark'=>$this->post_data->remark
         ));
         $this->echo_msg(true.false);
+    }
+
+    /**
+     * function addToCart 文库文件加入到购物车
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function addToCart(){
+        
     }
     
 /*

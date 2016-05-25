@@ -121,8 +121,15 @@
 								$this->db->where('fileName <>', null);
 								$res = $this->db->get('library_files')->result_array();
 								foreach ($res as $file){
+									if (strripos($file['fileName'],'.doc')){
+										$class = 'word';
+									}elseif (strripos($file['fileName'],'.ppt')){
+										$class = 'ppt';
+									}else{
+										$class = 'pdf';
+									}
 								?>
-								<div class="word" data-status="" data-md5="<?php echo $file['fileMD5'];?>">
+								<div class="<?php echo $class;?>" data-status="" data-md5="<?php echo $file['fileMD5'];?>">
 									<p title="<?php echo $file['fileName'];?>"><?php echo $file['fileName'];?></p>
 									<i></i>
 								</div>
