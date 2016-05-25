@@ -34,10 +34,11 @@
         申请加入<span>X</span>
     </div>
     <div class="apply-info">
-        备注（非必填）：<input type="text" class="remark" placeholder="不超过10个字">
+        <p>文库名：<span class="lib-name">xxx</span></p>
+        备注（有助于管理员识别）：<input type="text" class="remark" placeholder="不超过15个字（选填）">
     </div>
     <div class="apply-sub">
-        <a class="apply-btn" href="javascript:void(0)">确认</a>
+        <a class="apply-btn" href="javascript:void(0)">发送请求</a>
     </div>
 </div>
 

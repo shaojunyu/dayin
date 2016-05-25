@@ -880,7 +880,7 @@ function addNewUser(cellphone) {
     var day = date.getDate();
     var member = document.querySelector(".members");
     var firstMember = member.querySelectorAll("div")[0];
-    wrap.innerHTML = '<p>' + cellphone + '</p>加入时间：' + year + '年' + month + '月' + day + '日';
+    wrap.innerHTML = '<p>' + cellphone + '</p>' + '<p>加入时间：' + year + '年' + month + '月' + day + '日</p>';
     member.insertBefore(wrap, firstMember);
 }
 

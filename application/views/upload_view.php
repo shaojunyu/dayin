@@ -33,7 +33,7 @@
 <div class="nav">
     <div class="clearfix">
         <a href="javascript:void(0)" class="upload" id="clicked">上传文件</a>
-        <a href="myStore" class="my-store">我的文库</a>
+        <a href="library" class="my-store">我的文库</a>
     </div>
     <a href="manage" class="manage-store">管理文库</a>
 </div>

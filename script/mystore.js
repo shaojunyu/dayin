@@ -5,7 +5,7 @@ function showError(message) {
 	promptBox.style.top = "0px";
 	setTimeout(function() {
 		promptBox.style.top = "-80px";
-	}, 2000);
+	}, 1500);
 }
 
 //加密函数
@@ -95,6 +95,11 @@ $(document).ready(function() {
     var join = document.querySelector(".join");
     var search = document.querySelector(".search");
     addHandler(join, "click", function() {
+    	if(!delSpace(search.value)) {
+    		showError("请输入文库编号");
+    		search.value = "";
+    		return;
+    	}
     	showError("文库查询中，请稍候");
     	var libraryId = search.value;
     	libraryId = delSpace(libraryId);
@@ -108,54 +113,53 @@ $(document).ready(function() {
             dataType:"json",
             data: JSON.stringify(dat),
             success:function(data) {
+            	if(data.msg == "文库不存在") {
+            		showError("文库不存在，请输入正确编号");
+            		search.value = "";
+            		return;
+            	}
             	document.querySelector(".lib-name").innerHTML = data.libName;
                 showDiv(coverBg, apply);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
-                showError("新建文件夹失败，请重试");
+                showError("文库查询失败，请重试");
             }
         });
     });
-    addHandler(newX, "click", function() {
-        hideDiv(coverBg, newSubmit);
+    addHandler(applyX, "click", function() {
+        hideDiv(coverBg, apply);
     });
-    addHandler(newBtn, "click", function() {
-        var new_name = delSpace(newName.value);
-        var temp = true;
-        var data = {};
-        var libraryId = document.querySelector(".brief span").innerHTML;
-        for(var i = 0; i < nameLists.length; i++) {
-            if(new_name == nameLists[i]) {
-                showError("文件夹重名，请重新输入");
-                newName.value = "";
-                temp = false;
-                break;
+    addHandler(applyBtn, "click", function() {
+    	var libraryId = search.value;
+    	libraryId = delSpace(libraryId);
+    	var remark = remarkInfo.value;
+    	if(remark.length > 15) {
+    		showError("备注信息不得多于15字");
+    		remarkInfo.value = "";
+    		return;
+    	}
+    	else if(!remark || delSpace(remark).length == 0) {
+    		remark = "";
+    	}
+    	var data = {
+    		libraryId: libraryId,
+    		remark: remark
+    	};
+        $.ajax({
+            url: secret("./api/joinLib"),
+            type: "POST",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(data),
+            success:function(data) {
+                showError("请求已发出，等待审核");
+                hideDiv(coverBg, apply);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("请求失败，请重试");
             }
-        }
-        if(new_name && temp) {
-            data.libraryId = libraryId;
-            data.folder = new_name;
-            $.ajax({
-                url: secret("./api/createFolder"),
-                type: "POST",
-                contentType:"application/json",
-                dataType:"json",
-                data: JSON.stringify(data),
-                success:function(data) {
-                    nameLists.push(new_name);
-                    createFolder(new_name);
-                    newName.value = "";
-                    hideDiv(coverBg, newSubmit);
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown){  
-                    showError("新建文件夹失败，请重试");
-                }
-            });
-        }
-        else if(!new_name) {
-            showError("请输入文件夹名");
-        }
-    })
+        });
+    });
 
 
 

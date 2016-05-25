@@ -85,11 +85,12 @@ img {
 	padding: 0px 5px;
 }
 .apply-info {
-	line-height: 140px;
+	height: 150px;
 	font-size: 18px;
 	font-weight: 600;
 	color: #7ab8f4;
-	text-indent: 40px;
+	padding-left: 40px;
+	padding-top: 40px;
 	letter-spacing: 1px;
 }
 .apply-sub {

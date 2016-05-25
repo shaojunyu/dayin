@@ -100,7 +100,7 @@
 							<?php if ($user['state'] == 'applying'){?>
 							<div> <!-- 申请的用这个格式 -->
 								<p><?php echo $user['cellphone'];?></p>
-								<p>申请时间：<?php echo $user['createAt'];?></p>
+								<p>备注：xxxxx</p>
 								<a href="javascript:void(0)" class="agree">同意</a>
 								<a href="javascript:void(0)" class="refuse">拒绝</a>
 							</div>
