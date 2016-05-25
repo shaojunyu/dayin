@@ -73,9 +73,9 @@
 					$this->db->where('libraryId',$libInfo['Id']);
 					$this->db->select('folder');
 					$this->db->distinct(true);
-					$res = $this->db->get('library_files')->result_array();
+					$folder_res = $this->db->get('library_files')->result_array();
 					//var_dump($res);
-					foreach ($res as $folder){
+					foreach ($folder_res as $folder){
 					?>
 					<p class="file-list"><span><?php echo $folder['folder'];?></span><i title="删除文件夹"></i></p>
 					<?php }?>
@@ -108,13 +108,27 @@
 							<?php }//end foreach ($res as $user)?>
 						</div>
 						<div class="file-lists">
+							<?php
+							//var_dump($folder_res);
+							foreach ($folder_res as $folder) {
+							//}
+							?>
 							<section> <!-- 按文件夹顺序均用section包裹起来 -->
-								<div class="word" data-status="processing" data-md5="12312">
-									<p title="ashdau.doc">ashdaus.doc</p>
-									<p>time:1231231231</p>
+								<?php
+								$folder_name = $folder['folder'];
+								$this->db->where('libraryId', $libInfo['Id']);
+								$this->db->where('folder', $folder['folder']);
+								$this->db->where('fileName <>', null);
+								$res = $this->db->get('library_files')->result_array();
+								foreach ($res as $file){
+								?>
+								<div class="word" data-status="" data-md5="<?php echo $file['fileMD5'];?>">
+									<p title="<?php echo $file['fileName'];?>"><?php echo $file['fileName'];?></p>
 									<i></i>
 								</div>
+								<?php }//end foreach ($res as $file)?>
 							</section>
+							<?php } //end foreach ($folder_res as $folder)?>
 							<p class="continue-add" id="file"><button type="button" id="ul">上传文件</button></p>
 						</div>
 					</div>
