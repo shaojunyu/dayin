@@ -657,7 +657,13 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function addToCart(){
-        
+        $this->needSession();
+        $this->check_post_data(array('files'));
+        $files = $this->post_data->files;
+        foreach ($files as $file){
+            $this->load->model('Cart_model','Cart');
+            $this->Cart->add_item($file->fileName,$file->fileMD5);
+        }
     }
     
 /*
