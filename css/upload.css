@@ -155,7 +155,7 @@ header .logo:active {
 /* nav */
 nav {
 	float: right;
-	margin-right: 7em;
+	margin-right: 5em;
 }
 nav ul li {
 	float: left;
@@ -173,7 +173,7 @@ nav ul li a:hover {
 }
 nav ul li.person-box {
 	margin-top: 15px;
-	width: 150px;
+	width: 97px;
 	height: 80px;
 }
 nav ul li.person-box a {
@@ -247,18 +247,13 @@ nav ul li ul#sign-out li {
 	position: relative;
 }
 .manage-store {
-	color: #fff;
 	background-color: #0099ff;
-	display: block;
-	position: absolute;
-	right: -300px;
-	top: 60px;
-	line-height: 30px;
-	font-size: 20px;
-	padding: 5px 10px;
-	letter-spacing: 1px;
-	border-radius: 4px;
-	outline: none;
+	color: #fff;
+	padding: 6px;
+	margin-top: -3px;
+}
+.manage-store:hover {
+	color: #fff;
 }
 .nav div {
 	width: 100;
@@ -372,6 +367,11 @@ nav ul li ul#sign-out li {
 	padding: 0px 2%;
 	height: 500px;
 	display: none;
+}
+.library-list li {
+	float: none;
+	padding: 0;
+	margin: 0;
 }
 .all-store, .folder, .file-list {
 	border-right: 1px solid #0099ff;

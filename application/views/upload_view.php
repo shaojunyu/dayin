@@ -22,6 +22,12 @@
                     <li><a href="javascript:void(0)" class="so">退出登录</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="manage" class="manage-store">管理文库</a>
+                <ul class="library-list">
+                    <li><a href="文库链接">文库一</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </header>
@@ -35,7 +41,6 @@
         <a href="javascript:void(0)" class="upload" id="clicked">上传文件</a>
         <a href="library" class="my-store">我的文库</a>
     </div>
-    <a href="manage" class="manage-store">管理文库</a>
 </div>
 
 <div class="myself-wrap clearfix">
