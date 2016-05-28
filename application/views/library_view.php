@@ -67,26 +67,30 @@ $libs = $this->db->get("library")->result_array();
                 }
             ?>
         </div>
-        <div class="folder">
-            <p class="every-folder">文件夹1</p>
-            <p class="every-folder">文件夹2</p>
-            <p class="every-folder">文件夹3</p>
-            <p class="every-folder">文件夹4</p>
-        </div>
-        <div class="file-list">
-            <div class="file-scroll">
-                <div class="word">
-                    <p>abdsbsa.doc</p>
-                    <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
-                    <i><input type="checkbox" value="1" /></i>
-                </div>
-                <div class="ppt">
-                    <p>abdsbsa.ppt</p>
-                    <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
-                    <i><input type="checkbox" value="2" /></i>
+        <section class="文库编号"> <!-- 每个文库用一个section包裹, class为文库编号 -->
+            <div class="folder">
+                <p class="every-folder">文件夹1</p>
+                <p class="every-folder">文件夹2</p>
+                <p class="every-folder">文件夹3</p>
+                <p class="every-folder">文件夹4</p>
+            </div>
+            <div class="file-list">
+                <div class="file-scroll">
+                    <span data-filename="文件夹名"> <!-- 每个文件夹的文件用一个span包裹 -->
+                        <div class="word">
+                            <p>abdsbsa.doc</p>
+                            <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                            <i><input type="checkbox" value="1" /></i>
+                        </div>
+                        <div class="ppt">
+                            <p>abdsbsa.ppt</p>
+                            <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                            <i><input type="checkbox" value="2" /></i>
+                        </div>
+                    </span>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
     <input type="button" class="add-car" value="加入打印车">
     

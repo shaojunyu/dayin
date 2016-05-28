@@ -422,7 +422,7 @@ nav ul li ul#sign-out li {
 .file-scroll div:hover {
 	background-color: #acd6fe;
 }
-.file-scroll p {
+.file-scroll div p {
 	display: inline-block;
 	width: 100%;
 	float: left;
