@@ -19,7 +19,7 @@ class Manage extends CI_Controller{
 		//var_dump($this->session->userdata());
 		$this->db->like('admin',$this->session->userdata('cellphone'));
 		$res = $this->db->get('library')->result_array();
-		if (count($res) == 1) {
+		if (count($res) >= 1) {
 			$res = $res[0];
 			//var_dump($res);
 			$this->load->view('manage_view',array('libInfo'=>$res));

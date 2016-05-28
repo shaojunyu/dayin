@@ -83,7 +83,7 @@
 				</div>
 				<div class="manage-list">
 					<div class="manage-scroll">
-						<p class="brief">文库编号：<span><?php echo $libInfo['Id'];?></span><br />文库名：xxx<br />管理员：<?php echo $libInfo['admin'];?><br />创建时间：<?php echo $libInfo['createAt'];?></p>
+						<p class="brief">文库编号：<span><?php echo $libInfo['Id'];?></span><br />文库名：<?php echo $libInfo['name'];?><br />管理员：<?php echo $libInfo['admin'];?><br />创建时间：<?php echo $libInfo['createAt'];?></p>
 						<div class="members">
 						<?php 
 						$this->db->where('libraryId',$libInfo['Id']);
@@ -94,13 +94,13 @@
 							<?php if ($user['state'] == 'accepted') {?>
 							<div>
 								<p><?php echo $user['cellphone'];?></p>
-								<p>加入时间：<?php echo $user['updateAt'];?></p>
+								<p>备注：<?php echo $user['remark'];?></p>
 							</div>
 							<?php }?>
 							<?php if ($user['state'] == 'applying'){?>
 							<div> <!-- 申请的用这个格式 -->
 								<p><?php echo $user['cellphone'];?></p>
-								<p>备注：xxxxx</p>
+								<p>备注：<?php echo $user['remark'];?></p>
 								<a href="javascript:void(0)" class="agree">同意</a>
 								<a href="javascript:void(0)" class="refuse">拒绝</a>
 							</div>
