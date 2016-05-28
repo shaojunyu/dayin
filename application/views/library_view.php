@@ -49,11 +49,7 @@
     </div>
     <a href="manage" class="manage-store">管理文库</a>
 </div>
-<?php
-$this->db->where("isOpen","true");
-$libs = $this->db->get("library")->result_array();
-//var_dump($libs);
-?>
+
 <div class="myself-wrap clearfix">
     <div class="mystore clearfix">
         <p class="search-box">
@@ -61,36 +57,24 @@ $libs = $this->db->get("library")->result_array();
             <input type="button" class="join" value="申请加入">
         </p>
         <div class="all-store">
-            <?php
-                foreach ($libs as $lib){
-                    echo '<p class=every-store>'.$lib['name'].'</p>';
-                }
-            ?>
         </div>
-        <section class="文库编号"> <!-- 每个文库用一个section包裹, class为文库编号 -->
+        <section class=""> <!-- 每个文库用一个section包裹, class为文库编号 -->
             <div class="folder">
-                <p class="every-folder">文件夹1</p>
-                <p class="every-folder">文件夹2</p>
-                <p class="every-folder">文件夹3</p>
-                <p class="every-folder">文件夹4</p>
             </div>
             <div class="file-list">
                 <div class="file-scroll">
-                    <span data-filename="文件夹名"> <!-- 每个文件夹的文件用一个span包裹 -->
+                    <span data-filename=""> <!-- 每个文件夹的文件用一个span包裹 -->
                         <div class="word">
-                            <p>abdsbsa.doc</p>
-                            <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
+                            <p></p>
+                            <p>最后修改时间：<?php ?></p>
                             <i><input type="checkbox" value="1" /></i>
-                        </div>
-                        <div class="ppt">
-                            <p>abdsbsa.ppt</p>
-                            <p>最后修改时间：2016/4/26 23:59 大小：300kb</p>
-                            <i><input type="checkbox" value="2" /></i>
                         </div>
                     </span>
                 </div>
             </div>
         </section>
+
+
     </div>
     <input type="button" class="add-car" value="加入打印车">
     
