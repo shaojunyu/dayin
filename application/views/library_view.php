@@ -49,7 +49,11 @@
     </div>
     <a href="manage" class="manage-store">管理文库</a>
 </div>
-
+<?php
+$this->db->where("isOpen","true");
+$libs = $this->db->get("library")->result_array();
+//var_dump($libs);
+?>
 <div class="myself-wrap clearfix">
     <div class="mystore clearfix">
         <p class="search-box">
@@ -57,9 +61,11 @@
             <input type="button" class="join" value="申请加入">
         </p>
         <div class="all-store">
-            <p class="every-store">文库1</p>
-            <p class="every-store">文库2</p>
-            <p class="every-store">文库3</p>
+            <?php
+                foreach ($libs as $lib){
+                    echo '<p class=every-store>'.$lib['name'].'</p>';
+                }
+            ?>
         </div>
         <div class="folder">
             <p class="every-folder">文件夹1</p>
