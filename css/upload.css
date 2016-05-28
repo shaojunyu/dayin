@@ -155,7 +155,7 @@ header .logo:active {
 /* nav */
 nav {
 	float: right;
-	margin-right: 5em;
+	margin-right: 6em;
 }
 nav ul li {
 	float: left;
@@ -372,6 +372,34 @@ nav ul li ul#sign-out li {
 	float: none;
 	padding: 0;
 	margin: 0;
+	display: block;
+	height: 39px;
+	width: 140px;
+	margin: 3px 0px;
+	background-color: #0099ff;
+}
+.library-list li a {
+	color: #fff;
+	font-size: 17px;
+	line-height: 39px;
+	display: block;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.library-list li a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+.manage-wrapper {
+	position: relative;
+}
+.library-list {
+	display: none;
+	position: absolute;
+	left: 0;
 }
 section {
 	display: none;

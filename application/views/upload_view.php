@@ -22,10 +22,11 @@
                     <li><a href="javascript:void(0)" class="so">退出登录</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="manage" class="manage-store">管理文库</a>
+            <li class="manage-wrapper">
+                <a href="javascript:void(0)" class="manage-store">管理文库</a>
                 <ul class="library-list">
-                    <li><a href="文库链接">文库一</a></li>
+                    <li><a href="#">文库一</a></li>
+                    <li><a href="#">文库二</a></li>
                 </ul>
             </li>
         </ul>
