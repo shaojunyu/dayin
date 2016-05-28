@@ -59,6 +59,28 @@ function delSpace(str) {
     return str;
 }
 
+//创建文库列表
+function createLibrary(elem) {
+    var wrap = document.querySelector(".library-wrapper");
+    var len = elem.length;
+    var p;
+    var str = "";
+    var libId = "";
+    var inner = "";
+    for(var i = 0; i < len; i++) {
+        libId = elem[i].getAttribute("data-libraryid");
+        inner = elem[i].innerHTML;
+        p = document.createElement("p");
+        p.setAttribute("data-libraryid",libId);
+        p.innerHTML = inner;
+        if(i == 0) {
+            p.style.color = "#fff";
+            p.style.backgroundColor = "#0099ff";
+        }
+        wrap.appendChild(p);
+    }
+}
+
 $(document).ready(function() {
 	//导航栏个人中心二级菜单显示和隐藏
 	$("#sign-out").mouseover(function() {
@@ -181,19 +203,16 @@ $(document).ready(function() {
     var everyStore = document.querySelectorAll(".every-store");
     var section = document.querySelectorAll("section");
     var folder = document.querySelectorAll(".every-folder");
-    var storeLen = everyStore.length;
     var index = 0;
     //初始显示文库
     now_library[0] = section[0];
+
+    //创建文库列表
+    createLibrary(everyStore);
+    var libList = document.querySelectorAll(".library-wrapper p");
+    var storeLen = libList.length;
+
     //文库初始样式
-    if(storeLen) {
-        everyStore[0].style.color = "#fff";
-        everyStore[0].style.backgroundColor = "#0099ff";
-        for(var i = 0; i < storeLen; i++) {
-            everyStore[i].style.top = index + "px";
-            index += 50;
-        }
-    }
     if(section) {
         section[0].style.display = "block";
     }
@@ -210,7 +229,10 @@ $(document).ready(function() {
     //切换文库
     if(storeLen) {
         for(var l = 0; l < storeLen; l++) {
-            addHandler(everyStore[l], "click", function() {
+            addHandler(libList[l], "click", function() {
+                $(".library-wrapper p").css({"color":"#336598", "background-color":"#fff"});
+                this.style.color = "#fff";
+                this.style.backgroundColor = "#0099ff";
                 var library_id = this.getAttribute("data-libraryid");
                 var section_show;
                 for(var m = 0; m < section.length; m++) {
@@ -253,16 +275,11 @@ $(document).ready(function() {
 
 
 	//文库编号和文件夹的点击切换
-	$(".every-store").click(function() {
+	/*$(".every-store").click(function() {
 		$(".every-store").css({"color":"#336598", "background-color":"#fff"});
 		$(this).css({"color":"#fff", "background-color":"#0099ff"});
 	});
-	
-	/*$(".every-folder").click(function() {
-		$(".every-folder").css({"background-color":"#fff", "color":"#336598"});
-		$(this).css({"background-color":"#acd6fe", "color":"#fff"});
-	});*/
-
+*/
 
 	//设置div滚动条样式
 	$(".file-scroll").slimScroll({

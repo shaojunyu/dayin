@@ -46,6 +46,21 @@ img {
 	background-color: rgba(0,0,0,0.7);
 }
 
+.library-wrapper {
+	height: 439px;
+	float: left;
+	width: 200px;
+	overflow: auto;
+}
+.library-wrapper p {
+	line-height: 50px;
+	font-size: 1.4em;
+	text-align: center;
+	cursor: pointer;
+	color: #336598;
+	width: 200px;
+}
+
 /* 申请加入 */
 #apply {
 	position: absolute;
@@ -418,17 +433,7 @@ section {
 	height: 440px;
 }
 .every-store {
-	width: 200px;
-	overflow: auto;
-	float: left;
-	line-height: 50px;
-	font-size: 1.4em;
-	text-align: center;
-	cursor: pointer;
-	color: #336598;
-	position: absolute;
-	top: 0;
-	left: -200px;
+	display: none;
 }
 .library {
 	margin-left: 200px;
