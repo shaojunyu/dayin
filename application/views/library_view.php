@@ -57,22 +57,121 @@
             <input type="button" class="join" value="申请加入">
         </p>
         <div class="all-store">
-        </div>
-        <section class=""> <!-- 每个文库用一个section包裹, class为文库编号 -->
-            <div class="folder">
-            </div>
-            <div class="file-list">
-                <div class="file-scroll">
-                    <span data-filename=""> <!-- 每个文件夹的文件用一个span包裹 -->
-                        <div class="word">
-                            <p></p>
-                            <p>最后修改时间：<?php ?></p>
-                            <i><input type="checkbox" value="1" /></i>
+            <div class="library"> <!-- 每个文库用class为library的div包裹 -->
+                <p class="every-store" data-libraryid="1000">文库1</p>
+                <section data-libraryid="1000"> <!-- 如果文库为空也也要加上section，里面不放东西就行 -->
+                    <div class="folder">
+                        <p class="every-folder">文件夹1</p>
+                        <p class="every-folder">文件夹2</p>
+                        <p class="every-folder">文件夹3</p>
+                        <p class="every-folder">文件夹4</p>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-scroll">
+                            <span data-filename="文件夹1"> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="word">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
+
+                            <span data-filename="文件夹2"> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="ppt">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
+
+                            <span data-filename="文件夹3"> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="pdf">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
+
+                            <span data-filename="文件夹4"> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="word">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                                <div class="word">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
                         </div>
-                    </span>
-                </div>
+                    </div>
+                </section>
             </div>
-        </section>
+
+            <div class="library"> <!-- 每个文库用class为library的div包裹 -->
+                <p class="every-store" data-libraryid="1001">文库2</p>
+                <section data-libraryid="1001">
+                    <div class="folder">
+                        <p class="every-folder">文件夹2</p>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-scroll">
+                            <span data-filename=""> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="word">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="library"> <!-- 每个文库用class为library的div包裹 -->
+                <p class="every-store" data-libraryid="1002">文库3</p>
+                <section data-libraryid="1002">
+                    <div class="folder">
+                        <p class="every-folder">文件夹3</p>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-scroll">
+                            <span data-filename=""> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="word">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="library"> <!-- 每个文库用class为library的div包裹 -->
+                <p class="every-store" data-libraryid="1003">文库4</p>
+                <section data-libraryid="1003">
+                    <div class="folder">
+                        <p class="every-folder">文件夹4</p>
+                    </div>
+                    <div class="file-list">
+                        <div class="file-scroll">
+                            <span data-filename=""> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <div class="word">
+                                    <p></p>
+                                    <p>最后修改时间：<?php ?></p>
+                                    <i><input type="checkbox" value="1" /></i>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            
+        </div>
+        
 
 
     </div>

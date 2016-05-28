@@ -373,31 +373,45 @@ nav ul li ul#sign-out li {
 	padding: 0;
 	margin: 0;
 }
-.all-store, .folder, .file-list {
+section {
+	display: none;
+}
+.file-scroll span {
+	display: none;
+}
+.folder {
 	border-right: 1px solid #0099ff;
-	border-top: 1px solid #0099ff;
-	border-bottom: 1px solid #0099ff;
+	border-left: 1px solid #0099ff;
 	float: left;
 	height: 440px;
 }
-.all-store {
-	width: 15%;
-	border-left: 1px solid #0099ff;
-	overflow: auto;
+.file-list {
+	float: left;
+	height: 440px;
 }
-.all-store p {
+.every-store {
+	width: 200px;
+	overflow: auto;
+	float: left;
 	line-height: 50px;
 	font-size: 1.4em;
 	text-align: center;
 	cursor: pointer;
 	color: #336598;
+	position: absolute;
+	top: 0;
+	left: -200px;
 }
-.all-store p:first-child {
-	background-color: #0099ff;
-	color: #fff;
+.library {
+	margin-left: 200px;
+	position: relative;
+}
+.all-store {
+	height: 441px;
+	border: 1px solid #0099ff;
 }
 .folder {
-	width: 15%;
+	width: 17%;
 	overflow: auto;
 }
 .folder p {
@@ -412,7 +426,7 @@ nav ul li ul#sign-out li {
 	color: #fff;
 }
 .file-list {
-	width: 70%;
+	width: 83%;
 	padding: 1% 0.5%;
 }
 .file-list .file-scroll {

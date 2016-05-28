@@ -1,3 +1,5 @@
+var now_library = []; //当前文库
+
 //表单错误提示框显示函数
 function showError(message) {
 	var promptBox = document.querySelector(".prompt-box");
@@ -161,7 +163,79 @@ $(document).ready(function() {
         });
     });
 
+    //初始样式设置
+    var everyStore = document.querySelectorAll(".every-store");
+    var section = document.querySelectorAll("section");
+    var folder = document.querySelectorAll(".every-folder");
+    var storeLen = everyStore.length;
+    var index = 0;
+    //初始显示文库
+    now_library[0] = section[0];
+    //文库初始样式
+    if(storeLen) {
+        everyStore[0].style.color = "#fff";
+        everyStore[0].style.backgroundColor = "#0099ff";
+        for(var i = 0; i < storeLen; i++) {
+            everyStore[i].style.top = index + "px";
+            index += 50;
+        }
+    }
+    if(section) {
+        section[0].style.display = "block";
+    }
 
+    //文件夹初始样式
+    var folders;
+    for(var m = 0; m < section.length; m++) {
+        folders = section[m].querySelectorAll(".every-folder");
+        folders[0].style.color = "#fff";
+        folders[0].style.backgroundColor = "#acd6fe";
+        section[m].querySelectorAll("span")[0].style.display = "inline";
+    }
+
+    //切换文库
+    if(storeLen) {
+        for(var l = 0; l < storeLen; l++) {
+            addHandler(everyStore[l], "click", function() {
+                var library_id = this.getAttribute("data-libraryid");
+                var section_show;
+                for(var m = 0; m < section.length; m++) {
+                    if(section[m].getAttribute("data-libraryid") == library_id) {
+                        section_show = section[m];
+                    }
+                    section[m].style.display = "none";
+                }
+                section_show.style.display = "block";
+                now_library[0] = section_show;
+            });
+        }
+    }
+
+    //点击文件夹切换
+    var folder_len = folder.length;
+    for(var n = 0; n < folder_len; n++) {
+        addHandler(folder[n], "click", function() {
+            var parent = this.parentNode;
+            var brother = parent.querySelectorAll(".every-folder");
+            var folderName = this.innerHTML;
+            var span = now_library[0].querySelectorAll("span");
+            for(var i = 0; i < span.length; i++) {
+                if(span[i].getAttribute("data-filename") == folderName) {
+                    span[i].style.display = "inline";
+                }
+                else {
+                    span[i].style.display = "none";
+                }
+            }
+            for(var l = 0; l < brother.length; l++) {
+                brother[l].style.color = "#336598";
+                brother[l].style.backgroundColor = "#fff";
+            }
+            this.style.color = "#fff";
+            this.style.backgroundColor = "#acd6fe";
+        });
+    }
+    
 
 
 	//文库编号和文件夹的点击切换
@@ -170,10 +244,10 @@ $(document).ready(function() {
 		$(this).css({"color":"#fff", "background-color":"#0099ff"});
 	});
 	
-	$(".every-folder").click(function() {
+	/*$(".every-folder").click(function() {
 		$(".every-folder").css({"background-color":"#fff", "color":"#336598"});
 		$(this).css({"background-color":"#acd6fe", "color":"#fff"});
-	});
+	});*/
 
 
 	//设置div滚动条样式
