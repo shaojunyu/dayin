@@ -22,13 +22,23 @@
                     <li><a href="javascript:void(0)" class="so">退出登录</a></li>
                 </ul>
             </li>
-            <li class="manage-wrapper">
-                <a href="javascript:void(0)" class="manage-store">管理文库</a>
-                <ul class="library-list">
-                    <li><a href="#">文库一</a></li>
-                    <li><a href="#">文库二</a></li>
-                </ul>
-            </li>
+            <?php
+            if ($this->session->userdata('role') == 'LIBADMIN'){
+                $this->db->like('admin',$this->session->userdata('cellphone'));
+                $res = $this->db->get('library')->result_array();
+                ?>
+                <li class="manage-wrapper">
+                    <a href="javascript:void(0)" class="manage-store">管理文库</a>
+                    <ul class="library-list">
+                        <?php
+                        foreach ($res as $lib){
+                            echo '<li><a href="./manage?libraryId='.$lib['Id'].'">'.$lib['name'].'</a></li>';
+                            //<li><a href="#">文库二</a></li>
+                        }
+                        ?>
+                    </ul>
+                </li>
+            <?php }?>
         </ul>
     </nav>
 </header>
@@ -65,59 +75,64 @@
         <div class="all-store">
             <div class="library-wrapper"></div>
 
+
+            <?php
+            $this->db->where('isOpen','true');
+            $res = $this->db->get('library')->result_array();
+            //var_dump($res);
+            foreach ($res as $lib){
+            ?>
             <div class="library"> <!-- 每个文库用class为library的div包裹 -->
-                <p class="every-store" data-libraryid="1000">文库1</p>
-                <section data-libraryid="1000"> <!-- 如果文库为空也也要加上section，里面不放东西就行 -->
+                <p class="every-store" data-libraryid="<?php echo $lib['Id']?>"><?php echo $lib['name'];?></p>
+                <section data-libraryid="<?php echo $lib['Id']?>"> <!-- 如果文库为空也也要加上section，里面不放东西就行 -->
                     <div class="folder">
-                        <p class="every-folder">文件夹1</p>
-                        <p class="every-folder">文件夹2</p>
-                        <p class="every-folder">文件夹3</p>
-                        <p class="every-folder">文件夹4</p>
+                        <?php
+                        $this->db->where('libraryId', $lib['Id']);
+                        $this->db->select('folder');
+                        $this->db->distinct(true);
+                        $folder_res = $this->db->get('library_files')->result_array();
+                        foreach ($folder_res as $folder){
+                            echo '<p class="every-folder">'.$folder['folder'].'</p>';
+                        }
+                        ?>
                     </div>
                     <div class="file-list">
                         <div class="file-scroll">
-                            <span data-filename="文件夹1"> <!-- 每个文件夹的文件用一个span包裹 -->
-                                <div class="word">
-                                    <p></p>
-                                    <p>最后修改时间：<?php ?></p>
+                            <?php
+                            foreach ($folder_res as $folder){
+                            ?>
+                            <span data-filename="<?php echo $folder['folder'];?>"> <!-- 每个文件夹的文件用一个span包裹 -->
+                                <?php
+                                $this->db->where('libraryId', $lib['Id']);
+                                $this->db->where('folder', $folder['folder']);
+                                $this->db->where('fileName <>', null);
+                                $file_res = $this->db->get('library_files')->result_array();
+                                foreach ($file_res as $file){
+                                if (strripos($file['fileName'],'.doc')){
+                                    $class = 'word';
+                                }elseif (strripos($file['fileName'],'.ppt')){
+                                    $class = 'ppt';
+                                }else{
+                                    $class = 'pdf';
+                                }
+                                ?>
+                                <div class="<?php echo $class;?>">
+                                    <p fileMD5="<?php echo $file['fileMD5'];?>"><?php echo $file['fileName'];?></p>
                                     <i><input type="checkbox" value="1" /></i>
                                 </div>
+                                <?php }?>
                             </span>
-
-                            <span data-filename="文件夹2"> <!-- 每个文件夹的文件用一个span包裹 -->
-                                <div class="ppt">
-                                    <p></p>
-                                    <p>最后修改时间：<?php ?></p>
-                                    <i><input type="checkbox" value="1" /></i>
-                                </div>
-                            </span>
-
-                            <span data-filename="文件夹3"> <!-- 每个文件夹的文件用一个span包裹 -->
-                                <div class="pdf">
-                                    <p></p>
-                                    <p>最后修改时间：<?php ?></p>
-                                    <i><input type="checkbox" value="1" /></i>
-                                </div>
-                            </span>
-
-                            <span data-filename="文件夹4"> <!-- 每个文件夹的文件用一个span包裹 -->
-                                <div class="word">
-                                    <p></p>
-                                    <p>最后修改时间：<?php ?></p>
-                                    <i><input type="checkbox" value="1" /></i>
-                                </div>
-                                <div class="word">
-                                    <p></p>
-                                    <p>最后修改时间：<?php ?></p>
-                                    <i><input type="checkbox" value="1" /></i>
-                                </div>
-                            </span>
+                            <?php }//end foreach ($folder_res as $folder){?>
                         </div>
                     </div>
                 </section>
             </div>
+            <?php }?>
 
-            
+
+
+
+
         </div>
         
 

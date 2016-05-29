@@ -15,18 +15,30 @@ class Manage extends CI_Controller{
 		//获取文库信息
 	}
 	
-	public function index() {
-		//var_dump($this->session->userdata());
-		$this->db->like('admin',$this->session->userdata('cellphone'));
-		$res = $this->db->get('library')->result_array();
-		if (count($res) >= 1) {
-			$res = $res[0];
-			//var_dump($res);
-			$this->load->view('manage_view',array('libInfo'=>$res));
-		}else{
-			header('Location: '.base_url('upload'));
+	public function index()
+	{
+		//var_dump($this->session->userdata())
+		if ($this->input->get('libraryId')) {
+			$libraryId = $this->input->get('libraryId');
+			$this->db->where('Id', $libraryId);
+			$this->db->like('admin', $this->session->userdata('cellphone'));
+			$res = $this->db->get('library')->result_array();
+			if (count($res) >= 1) {
+				$res = $res[0];
+				$this->load->view('manage_view', array('libInfo' => $res));
+			} else {
+				header('Location: ' . base_url('upload'));
+			}
+		} else {
+			$this->db->like('admin', $this->session->userdata('cellphone'));
+			$res = $this->db->get('library')->result_array();
+			if (count($res) >= 1) {
+				$res = $res[0];
+				$this->load->view('manage_view', array('libInfo' => $res));
+			} else {
+				header('Location: ' . base_url('upload'));
+			}
 		}
-		
 	}
 	
 	
