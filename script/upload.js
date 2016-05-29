@@ -16,6 +16,14 @@ var newElem = {};
 var file_status = ["processing", "fail", "done"];
 var status_list = [];
 
+//判断对象是否为空
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    return false;
+  }
+  return true;
+}
+
 function get_signature()
 {
     //可以判断当前expire是否超过了当前时间,如果超过了当前时间,就重新取一下.3s 做为缓冲
@@ -451,7 +459,7 @@ $(document).ready(function() {
     //去下单
     $(".to-order").click(function() {
         var len = document.querySelectorAll(".scroll-bar div").length - 1;
-        if(status_list.length == 0 && len > 0) {
+        if(status_list.length == 0 && len > 0 && isEmptyObject(newElem)) {
             location.href = "confirm";
         }
         else if(len == 0) {
