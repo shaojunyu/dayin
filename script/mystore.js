@@ -1,4 +1,5 @@
 var now_library = []; //当前文库
+var print_car = []; //打印车
 
 //表单错误提示框显示函数
 function showError(message) {
@@ -79,6 +80,59 @@ function createLibrary(elem) {
         }
         wrap.appendChild(p);
     }
+}
+
+//填充打印车
+function addFileLists() {
+    var reg = /\.(\w+)$/;
+    var newelem;
+    var parent;
+    var str = "";
+    for(var i = 0; i < print_car.length; i++) {
+        str = print_car[i].fileName.match(reg)
+        str = str[0].slice(1);
+        str = str.toLowerCase();
+        if(str == "docx" || str == "doc") {
+            str = "word";
+        }
+        else if(str == "pptx" || str == "ppt") {
+            str = "ppt";
+        }
+        newelem = document.createElement("div");
+        parent = document.querySelector(".file-wrap");
+        newelem.setAttribute("data-fileMD5", print_car[i].fileMD5);
+        newelem.className = str;
+        newelem.innerHTML = '<p>' + print_car[i].fileName + '</p>' + '<i></i>';  
+        parent.appendChild(newelem);
+        addDelEvent(newelem);
+    }
+}
+
+//添加删除事件
+function addDelEvent(elem) {
+    var i = elem.querySelector("i");
+    var bit = document.querySelector(".file-wrap");
+    var checkBox = document.querySelectorAll(".add-to-printcar");
+    var checkFalse;
+    addHandler(i, "click", function() {
+        showError("移除中...");
+        var md5 = this.parentNode.getAttribute("data-fileMD5");
+        var parent = this.parentNode;
+        for(var i = 0; i < print_car.length; i++) {
+            if(print_car[i]["fileMD5"] == md5) {
+                print_car.splice(i, 1);
+            }
+        }
+        for(var j = 0; j < checkBox.length; j++) {
+            checkFalse = checkBox[j].parentNode.parentNode.querySelector("p").getAttribute("data-fileMD5");
+            if(checkFalse == md5) {
+                checkBox[j].checked = false;
+                break;
+            }
+        }
+        bit.removeChild(parent);
+        showError("已移出购物车");
+    });
 }
 
 $(document).ready(function() {
@@ -185,6 +239,8 @@ $(document).ready(function() {
         });
     });
 
+
+
     //管理文库
     var manage_store = document.querySelector(".manage-store");
     var library_list = document.querySelector(".library-list");
@@ -271,15 +327,69 @@ $(document).ready(function() {
             this.style.backgroundColor = "#acd6fe";
         });
     }
+
+    //选择打印车文件
+    $(".add-to-printcar").click(function() {
+        var fileMD5 = $(this).parent().parent().find("p").attr("data-fileMD5");
+        if( $(this).prop("checked") == true ) {
+            /*$(".pick").prop("checked", false);*/
+            var fileName = $(this).parent().parent().find("p").html();
+            var file = {
+                "fileName": fileName,
+                "fileMD5": fileMD5
+            };
+            print_car.push(file);
+        }
+        else {
+            for(var i = 0; i < print_car.length; i++) {
+                if(print_car[i]["fileMD5"] == fileMD5) {
+                    print_car.splice(i, 1);
+                }
+            }
+        }
+    });
+
+    //点击打印车
+    var printcar_list = document.querySelector(".printcar-list");
+    var printcarX = document.querySelector(".list-title span");
+    var printcarBtn = document.querySelector(".print-btn");
+    var addCar = document.querySelector(".add-car");
+    var fileWrap = document.querySelector(".file-wrap");
+
+    addHandler(addCar, "click", function() {
+        if(print_car.length == 0)  {
+            showError("请选择要打印的文件");
+            return;
+        }
+        showDiv(coverBg, printcar_list);
+        fileWrap.innerHTML = "";
+        addFileLists(); //填充打印车文件
+    });
+    addHandler(printcarX, "click", function() {
+        hideDiv(coverBg, printcar_list);
+    });
+    addHandler(printcarBtn, "click", function() {
+        var data = {
+            files: print_car
+        };
+        $.ajax({
+            url: secret("./api/addToCart"),
+            type: "POST",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(data),
+            success:function(data) {
+                location.href = "confirm";
+                hideDiv(coverBg, printcar_list);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("请求失败，请重试");
+            }
+        });
+    });
+
+
     
-
-
-	//文库编号和文件夹的点击切换
-	/*$(".every-store").click(function() {
-		$(".every-store").css({"color":"#336598", "background-color":"#fff"});
-		$(this).css({"color":"#fff", "background-color":"#0099ff"});
-	});
-*/
 
 	//设置div滚动条样式
 	$(".file-scroll").slimScroll({
@@ -295,4 +405,18 @@ $(document).ready(function() {
 	    allowPageScroll: false, //滚动条滚动到顶部或底部时是否允许页面滚动,默认false
 	    disableFadeOut: false //是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
 	});
+
+    $(".file-wrap").slimScroll({
+        height: '280px', //容器高度,默认250px
+        size: '7px', //滚动条宽度,默认7px
+        color: '#ffcc00', //滚动条颜色,默认#000000
+        alwaysVisible: true, //是否禁用隐藏滚动条,默认false
+        distance: '10px', //距离边框距离,位置由position参数决定,默认1px
+        railVisible: true, //滚动条背景轨迹,默认false
+        railColor: '#222', //滚动条背景轨迹颜色,默认#333333
+        railOpacity: 0.3, //滚动条背景轨迹透明度,默认0.2
+        wheelStep: 20, //滚动条滚动值,默认20
+        allowPageScroll: false, //滚动条滚动到顶部或底部时是否允许页面滚动,默认false
+        disableFadeOut: false //是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
+    });
 });

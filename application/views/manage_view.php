@@ -22,6 +22,23 @@
 							<li><a href="javascript:void(0)" class="so">退出登录</a></li>
 						</ul>
 					</li>
+					<?php
+		            if ($this->session->userdata('role') == 'LIBADMIN'){
+		                $this->db->like('admin',$this->session->userdata('cellphone'));
+		                $res = $this->db->get('library')->result_array();
+		                ?>
+		                <li class="manage-wrapper">
+		                    <a href="javascript:void(0)" class="manage-store">管理文库</a>
+		                    <ul class="library-list">
+		                        <?php
+		                        foreach ($res as $lib){
+		                            echo '<li><a href="./manage?libraryId='.$lib['Id'].'">'.$lib['name'].'</a></li>';
+		                            //<li><a href="#">文库二</a></li>
+		                        }
+		                        ?>
+		                    </ul>
+		                </li>
+		            <?php }?>
 				</ul>
 			</nav>
 		</header>

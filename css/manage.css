@@ -72,7 +72,7 @@ header .logo:active {
 /* nav */
 nav {
 	float: right;
-	margin-right: 7em;
+	margin-right: 6em;
 }
 nav ul li {
 	float: left;
@@ -90,7 +90,7 @@ nav ul li a:hover {
 }
 nav ul li.person-box {
 	margin-top: 15px;
-	width: 150px;
+	width: 97px;
 	height: 80px;
 }
 nav ul li.person-box a {
@@ -106,6 +106,49 @@ nav ul li ul#sign-out li {
 	font-size: 1em;
 	margin: 2px 0px 0px 0px;
 	padding: 0;
+}
+
+.manage-wrapper {
+	position: relative;
+}
+.manage-store {
+	background-color: #0099ff;
+	color: #fff;
+	padding: 6px;
+	margin-top: -3px;
+}
+.manage-store:hover {
+	color: #fff;
+}
+.library-list li {
+	float: none;
+	padding: 0;
+	margin: 0;
+	display: block;
+	height: 39px;
+	width: 140px;
+	margin: 3px 0px;
+	background-color: #0099ff;
+}
+.library-list li a {
+	color: #fff;
+	font-size: 17px;
+	line-height: 39px;
+	display: block;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.library-list li a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+.library-list {
+	display: none;
+	position: absolute;
+	left: 0;
 }
 
 /* prompt-box */

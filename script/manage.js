@@ -482,6 +482,20 @@ $(document).ready(function() {
         });
     });
 
+    //管理文库
+    var manage_store = document.querySelector(".manage-store");
+    var library_list = document.querySelector(".library-list");
+
+    addHandler(manage_store, "click", function(e) {
+        e = e || window.event;
+        e.stopPropagation();
+        e.cancelBubble = true;
+        library_list.style.display = "block";
+    });
+    addHandler(document, "click", function() {
+        library_list.style.display = "none";
+    });
+
 	//文库编号和文件夹的点击切换
 	$(".list").click(function() {
 		$(".list").css({"background-color":"#fff", "color":"#336598"});

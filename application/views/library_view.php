@@ -58,6 +58,19 @@
         <a class="apply-btn" href="javascript:void(0)">发送请求</a>
     </div>
 </div>
+<div class="printcar-list"> <!-- 打印车列表 -->
+    <div class="list-title">
+        打印车列表<span>X</span>
+    </div>
+    <div class="file-list-scroll">
+        <div class="file-wrap">
+            
+        </div>
+    </div>
+    <div class="printcar-sub">
+        <a class="print-btn" href="javascript:void(0)">去下单</a>
+    </div>
+</div>
 
 <div class="nav">
     <div class="clearfix">
@@ -117,8 +130,8 @@
                                 }
                                 ?>
                                 <div class="<?php echo $class;?>">
-                                    <p fileMD5="<?php echo $file['fileMD5'];?>"><?php echo $file['fileName'];?></p>
-                                    <i><input type="checkbox" value="1" /></i>
+                                    <p data-fileMD5="<?php echo $file['fileMD5'];?>"><?php echo $file['fileName'];?></p>
+                                    <i><input class="add-to-printcar" type="checkbox" value="1" /></i>
                                 </div>
                                 <?php }?>
                             </span>
@@ -129,14 +142,7 @@
             </div>
             <?php }?>
 
-
-
-
-
         </div>
-        
-
-
     </div>
     <input type="button" class="add-car" value="加入打印车">
     
