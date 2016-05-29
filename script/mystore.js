@@ -379,7 +379,7 @@ $(document).ready(function() {
             dataType:"json",
             data: JSON.stringify(data),
             success:function(data) {
-                location.href = "confirm";
+                location.href = "upload";
                 hideDiv(coverBg, printcar_list);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  

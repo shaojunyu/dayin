@@ -64,11 +64,11 @@
     </div>
     <div class="file-list-scroll">
         <div class="file-wrap">
-            
+
         </div>
     </div>
     <div class="printcar-sub">
-        <a class="print-btn" href="javascript:void(0)">去下单</a>
+        <a class="print-btn" href="javascript:void(0)">查看打印车</a>
     </div>
 </div>
 
@@ -144,7 +144,7 @@
 
         </div>
     </div>
-    <input type="button" class="add-car" value="加入打印车">
+    <input type="button" class="add-car" value="添加到打印车">
     
 </div>
 
