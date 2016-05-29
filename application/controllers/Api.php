@@ -664,6 +664,7 @@ class Api extends CI_Controller{
             $this->load->model('Cart_model','Cart');
             $this->Cart->add_item($file->fileName,$file->fileMD5);
         }
+        $this->echo_msg(true);
     }
     
 /*
