@@ -152,7 +152,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             type: "POST",
             success:function(data) {
-                location.reload(true);
+                location.href = "http://www.99dayin.com";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("请求失败");
@@ -245,15 +245,17 @@ $(document).ready(function() {
     var manage_store = document.querySelector(".manage-store");
     var library_list = document.querySelector(".library-list");
 
-    addHandler(manage_store, "click", function(e) {
-        e = e || window.event;
-        e.stopPropagation();
-        e.cancelBubble = true;
-        library_list.style.display = "block";
-    });
-    addHandler(document, "click", function() {
-        library_list.style.display = "none";
-    });
+    if(manage_store) {
+        addHandler(manage_store, "click", function(e) {
+            e = e || window.event;
+            e.stopPropagation();
+            e.cancelBubble = true;
+            library_list.style.display = "block";
+        });
+        addHandler(document, "click", function() {
+            library_list.style.display = "none";
+        });
+    }
 
     //初始样式设置
     var everyStore = document.querySelectorAll(".every-store");
