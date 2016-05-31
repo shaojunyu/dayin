@@ -93,7 +93,8 @@
             //开放文库
             $this->db->where('isOpen','true');
             $res = $this->db->get('library')->result_array();
-            //加入文库
+//            var_dump($res);
+            //加入的文库
             $this->db->where('cellphone',$this->session->userdata('cellphone'));
             $this->db->where('state','accepted');
             $r = $this->db->get('library_users')->result_array();

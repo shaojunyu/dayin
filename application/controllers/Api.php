@@ -63,6 +63,7 @@ class Api extends CI_Controller{
     public function logout(){
         $this->session->sess_destroy();
         $this->echo_msg(true);
+//        header("location: ".base_url());
     }
 
     public function loginBySmscode(){
