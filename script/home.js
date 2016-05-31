@@ -1,3 +1,6 @@
+var judgeSignin = true;
+var judgeSignup = true;
+
 //封装了页面滚动的函数及变量
 var scrollAnimate = (function() {
 	//滚动速度, 越大速度越慢
@@ -379,6 +382,13 @@ $(document).ready(function() {
 	if($(".sign_in")) {
 		//发送验证码
 		$(".get").click(function(){
+			if(!judgeSignin) {
+				return;
+			}
+			else {
+				judgeSignin = false;
+			}
+
 			var user = $(".idc-user").val();
 			var tel = /^1[3|4|5|7|8]\d{9}$/;
 			if(!user) {
@@ -405,6 +415,7 @@ $(document).ready(function() {
 	        			document.querySelector(".get").disabled = false;
 	        			document.querySelector(".get").style.backgroundColor = "#0099ff";
 	        			document.querySelector(".get").style.borderColor = "#0099ff";
+	        			judgeSignin = true;
 	        		}, 60000);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
@@ -414,6 +425,12 @@ $(document).ready(function() {
 		});
 
 		$(".send").click(function(){
+			if(!judgeSignup) {
+				return;
+			}
+			else {
+				judgeSignup = false;
+			}
 			var user = $("#phone").val();
 			var tel = /^1[3|4|5|7|8]\d{9}$/;
 			if(!user) {
@@ -440,6 +457,7 @@ $(document).ready(function() {
 	        			document.querySelector(".send").disabled = false;
 	        			document.querySelector(".send").style.backgroundColor = "#0099ff";
 	        			document.querySelector(".send").style.borderColor = "#0099ff";
+	        			judgeSignup = true;
 	        		}, 60000);
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
