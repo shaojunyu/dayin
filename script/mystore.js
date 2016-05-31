@@ -152,7 +152,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             type: "POST",
             success:function(data) {
-                location.reload(true);
+                location.href = "http://www.99dayin.com";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("请求失败");
