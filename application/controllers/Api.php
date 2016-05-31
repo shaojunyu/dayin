@@ -621,6 +621,7 @@ class Api extends CI_Controller{
         //$remark = '';
         $this->db->select('name');
         $this->db->where('Id',$this->post_data->libraryId);
+        $this->db->where('isOpen','false');
         $res = $this->db->get('library')->result_array();
         if (count($res) == 1){
             $res = $res[0];

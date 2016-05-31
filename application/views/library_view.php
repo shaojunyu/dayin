@@ -90,9 +90,24 @@
 
 
             <?php
+            //开放文库
             $this->db->where('isOpen','true');
             $res = $this->db->get('library')->result_array();
+            //加入文库
+            $this->db->where('cellphone',$this->session->userdata('cellphone'));
+            $this->db->where('state','accepted');
+            $r = $this->db->get('library_users')->result_array();
+            foreach ($r as $lib){
+                $id = $lib['libraryId'];
+                $this->db->where('isOpen','false');
+                $this->db->where('Id',$id);
+                $mylib = $this->db->get('library')->result_array();
+                if (count($mylib) == 1) {
+                    $res[] = $mylib[0];
+                }
+            }
             //var_dump($res);
+
             foreach ($res as $lib){
             ?>
             <div class="library"> <!-- 每个文库用class为library的div包裹 -->

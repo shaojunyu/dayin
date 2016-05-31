@@ -100,7 +100,12 @@
 				</div>
 				<div class="manage-list">
 					<div class="manage-scroll">
-						<p class="brief">文库编号：<span><?php echo $libInfo['Id'];?></span><br />文库名：<?php echo $libInfo['name'];?><br />管理员：<?php echo $libInfo['admin'];?><br />创建时间：<?php echo $libInfo['createAt'];?></p>
+						<p class="brief">文库编号：<span><?php echo $libInfo['Id'];?></span><br />
+							文库名：<?php echo $libInfo['name'];?><br />
+							管理员：<?php echo $libInfo['admin'];?><br />
+							创建时间：<?php echo $libInfo['createAt'];?><br />
+							文库类型：<?php echo $libInfo['isOpen']=='true' ? '公开文库' : '私密文库';?>
+						</p>
 						<div class="members">
 						<?php 
 						$this->db->where('libraryId',$libInfo['Id']);
