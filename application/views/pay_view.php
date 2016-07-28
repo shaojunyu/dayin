@@ -37,7 +37,7 @@
     &copy;武汉巧然电子科技有限公司
 </footer>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/md5.js"></script>
+<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
 <script type="text/javascript" src="script/pay.js"></script>
 </body>
 </html>

@@ -119,7 +119,7 @@
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="script/plupload.full.min.js"></script>
 <script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/spark-md5.min.js"></script>
-<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/md5.js"></script>
+<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
 
 <script type="text/javascript" src="script/upload.js"></script>
 <script type="text/javascript" src="script/myself.js"></script>
