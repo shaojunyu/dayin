@@ -85,6 +85,17 @@
     
 </div>
 
+<div class="file-show-box">
+    <div class="control">
+        <button class="prev">上一页</button>
+        <button class="next">下一页</button>
+        <input type="text" class="curPage"> / <span class="tolPage"></span>
+        <button class="jumpTo">跳页</button>
+        <span class="cancel">x</span>
+    </div>
+    <div class="pdfView"></div>
+</div>
+
 <footer class="clearfix">
         <div class="footbox">
             <p><a href="doc/base.html" target="_blank">关于文库</a></p>
@@ -118,8 +129,9 @@
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="script/plupload.full.min.js"></script>
-<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/spark-md5.min.js"></script>
+<script type="text/javascript" src="script/spark-md5.min.js"></script>
 <script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+<script type="text/javascript" src="script/pdf.js"></script>
 
 <script type="text/javascript" src="script/upload.js"></script>
 <script type="text/javascript" src="script/myself.js"></script>

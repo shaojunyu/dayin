@@ -669,7 +669,60 @@ section {
 	display: none;
 }
 
-
+/* pdf */
+.file-show-box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 333;
+	width: 100%;
+	display: none;
+}
+.control {
+	width: 100%;
+	padding: 30px 0px;
+	background-color: rgba(0,0,0,.9);
+	text-align: center;
+	position: relative;
+	font-family: "Microsoft Yahei", sans-serif;
+	font-size: 16px;
+	position: relative;
+	color: #fff;
+}
+.control span.cancel {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	color: #fff;
+	font-size: 25px;
+	padding: 8px 12px;
+	line-height: 25px;
+	cursor: pointer;
+}
+.control input {
+	width: 45px;
+}
+.control input, .control button {
+	font-size: 16px;
+	text-align: center;
+	outline: none;
+	line-height: 25px;
+	border-width: 0px;
+	margin: 0 5px;
+}
+.control button {
+	width: 70px;
+	cursor: pointer;
+}
+.pdfView {
+	width: 100%;
+	background-color: rgba(0,0,0,.9);
+}
+.pdfView canvas {
+	width: 60%;
+	display: block;
+	margin: 0 auto;
+}
 
 
 /* footer */
