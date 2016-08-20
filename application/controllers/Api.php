@@ -5,6 +5,8 @@
  * Date: 5/7/2016
  * Time: 11:14 PM
  */
+use OSS\OssClient;
+use OSS\Core\OssException;
 
 class Api extends CI_Controller{
     private $post_data;
@@ -667,6 +669,36 @@ class Api extends CI_Controller{
             $this->Cart->add_item($file->fileName,$file->fileMD5);
         }
         $this->echo_msg(true);
+    }
+
+    /**
+     * function getPreview获取预览地址
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function getPreview(){
+        $this->needSession();
+        $this->check_post_data(array('fileMD5'));
+        $fileMD5 = $this->post_data->fileMD5;
+
+        $this->db->where('fileMD5',$fileMD5);
+        $res = $this->db->get('file_info')->result_array();
+        //var_dump($res);
+        if (count($res) == 1){
+            $res = $res[0];
+            $pdf = $res['pdfFile'];
+            require_once APPPATH.'third_party/aliyun-oss-php-sdk-2.0.5/autoload.php';
+            $accessKeyId = "GtzMAvDTnxg72R04";
+            $accessKeySecret = "VhD2czcwLVAaE7DReDG4uEVSgtaSYK";
+            $endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+            $ossClient = new OssClient($accessKeyId, $accessKeySecret, $endpoint);
+
+            $timeout = 3600; // URL的有效期是3600秒
+            $signedUrl = $ossClient->signUrl('99dayin', $pdf, $timeout);
+            echo $signedUrl;
+
+        }
     }
     
 /*
