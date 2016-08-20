@@ -392,15 +392,30 @@ $(document).ready(function() {
 
 
     //在线预览
+    var url = "";
     $(".view").click(function() {
         //获取pdf格式文件
-
+        var fileMD5 = $(this).prev().attr("data-fileMD5");
+        var data = { fileMD5: fileMD5 };
+        $.ajax({
+            url: secret("./api/getPreview"),
+            type: "POST",
+            contentType:"application/json",
+            dataType:"json",
+            data: JSON.stringify(data),
+            success:function(data) {
+                console.log(data);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("请求失败，请重试");
+            }
+        });
         $(".file-show-box").css("display", "block");
     });
     $(".pdfView").css("min-height", $(window).height()+"px");
     PDFJS.workerSrc = "script/pdf.worker.js";
     //传入pdf文件地址
-    //var newPDF = attPreLoad("http://localhost:8080/pdf/Python.pdf");
+    //var newPDF = attPreLoad(url);
 
     $('body').delegate('.next','click',function(){
         newPDF.nextPage();
