@@ -594,7 +594,7 @@ section {
 	color: #336598;
 	padding-left: 40px;
 	position: relative;
-	padding-right: 35px;
+	padding-right: 75px;
 }
 .file-scroll div i {
 	width: 23px;
@@ -603,6 +603,14 @@ section {
 	top: 12px;
 	right: 10px;
 	cursor: pointer;
+}
+.file-scroll div .view {
+	position: absolute;
+	left: 43px;
+	bottom: 5px;
+	line-height: 23px;
+	z-index: 11;
+	color: #336598;
 }
 .file-scroll input[type=checkbox] {
 	width: 20px;

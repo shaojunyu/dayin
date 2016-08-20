@@ -147,11 +147,20 @@
                                 ?>
                                 <div class="<?php echo $class;?>">
                                     <p data-fileMD5="<?php echo $file['fileMD5'];?>"><?php echo $file['fileName'];?></p>
+                                    <a href="javascript:;" class="view">预览</a>
                                     <i><input class="add-to-printcar" type="checkbox" value="1" /></i>
                                 </div>
                                 <?php }?>
                             </span>
                             <?php }//end foreach ($folder_res as $folder){?>
+                        
+                            <!-- <span data-filename="hhh.word" style="display: block;">
+                                <div class="word">
+                                    <p data-fileMD5="safa">hhh.word</p>
+                                    <a href="javascript:;" class="view">预览</a>
+                                    <i><input class="add-to-printcar" type="checkbox" value="1" /></i>
+                                </div>
+                            </span> -->
                         </div>
                     </div>
                 </section>
@@ -162,6 +171,18 @@
     </div>
     <input type="button" class="add-car" value="添加到打印车">
     
+</div>
+
+
+<div class="file-show-box">
+    <div class="control">
+        <button class="prev">上一页</button>
+        <button class="next">下一页</button>
+        <input type="text" class="curPage"> / <span class="tolPage"></span>
+        <button class="jumpTo">跳页</button>
+        <span class="cancel">x</span>
+    </div>
+    <div class="pdfView"></div>
 </div>
 
 <footer class="clearfix">
@@ -197,8 +218,9 @@
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="script/plupload.full.min.js"></script>
-<script type="text/javascript" src="http://7xnadt.com1.z0.glb.clouddn.com/spark-md5.min.js"></script>
+<script type="text/javascript" src="script/spark-md5.min.js"></script>
 <script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+<script type="text/javascript" src="script/pdf.js"></script>
 <script type="text/javascript" src="script/mystore.js"></script>
 </body>
 </html>
