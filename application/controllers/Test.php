@@ -7,6 +7,10 @@
  */
 class Test extends CI_Controller{
     public function index(){
+
+        if (preg_match("/mobile/i",$_SERVER['HTTP_USER_AGENT'])){
+            echo($_SERVER['HTTP_USER_AGENT']);
+        }
 //      $this->load->model('user_model');
 //      $user = new User_model();
 //

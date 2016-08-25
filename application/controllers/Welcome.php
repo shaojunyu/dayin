@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('index_view');
+		if (preg_match("/mobile/i",$_SERVER['HTTP_USER_AGENT'])){
+			$this->load->view('mobile/choose_view');
+		}else{
+			$this->load->view('index_view');
+		}
+
 	}
 }
