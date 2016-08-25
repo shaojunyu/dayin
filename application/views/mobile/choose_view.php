@@ -7,9 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
-	<link rel="stylesheet" href="../css/mobile/reset.css">
-	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
-	<script type="text/javascript" src="../script/mobile/choose.js"></script>
+	<link rel="stylesheet" href="css/mobile/reset.css">
 	<style type="text/css">
 		body {
 			background-color: #6bc8f1;
@@ -64,7 +62,7 @@
 <body>
 	<div class="header">
 		<div>
-			<i><img src="../images/mobile/logo.png"></i>
+			<i><img src="images/mobile/logo.png"></i>
 		</div>
 		<p>四年打印</p>
 	</div>
@@ -74,5 +72,7 @@
 		<a href="javascript:;" class="yes">已注册，绑定账号</a>
 	</div>
 
+	<script type="text/javascript" src="script/mobile/zepto.min.js"></script>
+	
 </body>
 </html>
