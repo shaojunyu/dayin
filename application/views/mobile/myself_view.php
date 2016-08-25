@@ -114,6 +114,24 @@
 			</div>
 		<?php }?>
 	</div>
+
+	<!-- 确认取消 -->
+	<div class="cover"></div>
+	<div class="cancel-box clearfix">
+		<p>取消订单</p>
+		<p class="text">是否要取消该订单？</p>
+		<div><a href="javascript:;" class="return">返回</a></div>
+		<div><a href="javascript:;" class="cancel-btn">确认取消</a></div>
+	</div>
+
+	<!-- 去支付 -->
+	<div class="cover"></div>
+	<div class="pay-box clearfix">
+		<p>支付订单</p>
+		<p class="text">选择一种支付方式</p>
+		<div><a href="javascript:;" class="wexin">微信支付</a></div>
+		<div><a href="javascript:;" class="zhifubao">支付宝支付</a></div>
+	</div>
 	
 	<div class="menu clearfix">
 		<a href="library"><div class="library">文库</div></a>

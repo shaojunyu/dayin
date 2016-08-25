@@ -40,4 +40,46 @@ $(function () {
 			$(".done-info").show();
 		}
 	});
+
+	//取消订单
+	var cancelData;
+	$(".cancel").click(function () {
+		var parent = $(this)[0].parentNode.parentNode.parentNode;
+		var orderId = parent.getAttribute("data-orderId");
+		cancelData = {
+			orderId: orderId
+		};
+		$(".cover").show();
+		$(".cancel-box").show();
+	});
+	$(".return").click(function () {
+		$(".cover").hide();
+		$(".cancel-box").hide();
+	});
+	$(".cancel-btn").click(function () {
+		$.ajax({
+			url: secret("../api/cancelOrder"),
+		    type: "POST",
+	        contentType:"application/json",
+	        dataType: "json",
+	        data: JSON.stringify(cancelData),
+	        success: function(data) {
+	            if(data.success) {
+	            	parent.parentNode.removeChild(parent);
+	            }
+	            $(".cover").hide();
+				$(".cancel-box").hide();
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown){  
+	            alert("请求失败"); 
+	            $(".cover").hide();
+				$(".cancel-box").hide();
+	        }
+		});
+	});
+
+	//去支付
+	$(".pay").click(function () {
+		
+	});
 });
