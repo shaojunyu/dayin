@@ -18,10 +18,10 @@
 	<div class="library-box clearfix">  <!-- 文库1级页面 -->
 		<?php
 		foreach ($myLib as $lib){
-			echo '<div class="library-wrap">';
+			echo '<a href="javascript:;"><div class="library-wrap">';
 			echo '<img src="../images/mobile/book.png">';
 			echo '<p>'.$lib['name'].'<br><span>'.$lib['Id'].'</span></p>';
-			echo '</div>';
+			echo '</div></a>';
 		}
 
 		foreach ($applyingLib as $lib){
@@ -58,42 +58,28 @@
 		<a href="javascript:;" class="apply-add">申请加入该文库</a>
 	</div>
 
-	<div class="library-info-box clearfix" style="display: none;">  <!-- 文库详情 -->
-		<div class="floders">
-			<a href="javascript:;" class="floder click-floder">考研听力</a>
-			<a href="javascript:;" class="floder">考研听力</a>
-			<a href="javascript:;" class="floder">考研听力</a>
-			<a href="javascript:;" class="floder">考研听力</a>
-		</div>
-		<div class="files">
-			<div class="file clearfix">
-				<div class="file-name">
-					<p>听力专项训练1.word</p>
-					<span class="size">16KB</span>
-				</div>
-				<div class="check-box">
-					<a href="javascript:;" class="check"></a>
-				</div>
-			</div>
-			<div class="file clearfix">
-				<div class="file-name">
-					<p>听力专项训练1.word</p>
-					<span class="size">16KB</span>
-				</div>
-				<div class="check-box">
-					<a href="javascript:;" class="check"></a>
-				</div>
-			</div>
-		</div>
+	<div class="library-info-box clearfix">  <!-- 文库详情 -->
+		
+	</div>
+
+	<div class="hack"></div>
+
+	<!-- 文件加载中 -->
+	<div class="loading">
+		<p>文库加载中...</p>
 	</div>
 
 	<a href="javascript:;" class="return"></a>  <!-- 返回上一级 -->
 	<a href="javascript:;" class="addto-car">加入打印车 (10)</a>
 	
 	<div class="menu clearfix"> <!-- 底部菜单 -->
-		<div class="library">文库</div>
-		<div class="print-car"></div>
-		<div class="person">我的</div>
+		<a href="javascript:;"><div class="library">文库</div></a>
+		<a href="javascript:;"><div class="print-car"></div></a>
+		<a href="javascript:;"><div class="person">我的</div></a>
 	</div>
+
+	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+	<script type="text/javascript" src="../script/mobile/library.js"></script>
 </body>
 </html>

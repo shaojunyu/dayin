@@ -215,11 +215,12 @@ header input {
 	width: 100%;
 	height: 90%;
 	min-height: 90%;
+	display: none;
 }
-.floders, .files {
+.folders, .files {
 	float: left;
 }
-.floders {
+.folders {
 	width: 28%;
 	text-align: center;
 	background-color: #e5e5e5;
@@ -229,7 +230,7 @@ header input {
 	-webkit-box-sizing:border-box;
 	padding-bottom: 6.5rem;
 }
-.floder {
+.folder {
 	display: block;
 	line-height: 3.5rem;
 	font-size: 1rem;
@@ -241,14 +242,14 @@ header input {
 	-o-text-overflow: ellipsis;
 	overflow: hidden;
 }
-.floder:active {
+.folder:active {
 	color: #56a0ad;
 }
-.click-floder {
+.click-folder {
 	color: #fff;
 	background-color: #56a0ad;
 }
-.click-floder:active {
+.click-folder:active {
 	color: #fff;
 }
 .files {
@@ -297,9 +298,37 @@ header input {
 	-o-text-overflow: ellipsis;
 	overflow: hidden;
 }
-.file span {
+/* .file span {
 	font-size: 0.75rem;
 	margin-left: 0.5rem;
+} */
+
+/* loading */
+.loading {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background-color: rgba(0,0,0,0.7);
+	text-align: center;
+	display: none;
+}
+.loading p {
+	font-size: 1.3rem;
+	margin-top: 50%;
+	color: #fff;
+}
+
+/* hack */
+.hack {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -11;
+	width: 28%;
+	background-color: #e5e5e5;
 }
 
 /* return */
