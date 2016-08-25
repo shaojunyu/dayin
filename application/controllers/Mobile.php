@@ -63,7 +63,17 @@ class Mobile extends CI_Controller{
             //申请中的文库
             $this->db->where('cellphone', $this->session->userdata('cellphone'));
             $this->db->where('state', 'applying');
-            $applyingLib = $this->db->get('library_users')->result_array();
+            $r = $this->db->get('library_users')->result_array();
+            $applyingLib = array();
+            foreach ($r as $lib){
+                $id = $lib['libraryId'];
+                $this->db->where('isOpen', 'false');
+                $this->db->where('Id', $id);
+                $mylib = $this->db->get('library')->result_array();
+                if (count($mylib) == 1) {
+                    $applyingLib[] = $mylib[0];
+                }
+            }
 
             //var_dump($applyingLib);
             $this->load->view('mobile/library_view', array('myLib' => $res, 'applyingLib' => $applyingLib));
