@@ -423,6 +423,7 @@ header input {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	padding-bottom: 10px;
+	display: none;
 }
 .added p {
 	text-align: center;
