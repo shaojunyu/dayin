@@ -131,7 +131,7 @@
         <div class="ewm">
             <img src="images/ewm.png">
         </div>
-        <p class="copyright">&copy;2016 九九打印版权所有 鄂ICP备15018392号</p>
+        <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
     </footer>
 </div>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
