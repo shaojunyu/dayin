@@ -424,6 +424,7 @@ header input {
 	border-radius: 5px;
 	padding-bottom: 10px;
 	display: none;
+	z-index: 999;
 }
 .added p {
 	text-align: center;

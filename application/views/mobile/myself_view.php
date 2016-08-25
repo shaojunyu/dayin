@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>我的订单</title>
+	<title>个人中心</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
@@ -23,9 +23,9 @@
 	<p class="order">订单</p>
 
 	<div class="order-status clearfix">
-		<div class="wait-pay click">待付款</div>
-		<div class="processing">处理中</div>
-		<div class="done">已完成</div>
+		<a href="javascript:;"><div class="wait-pay click" data-index="1">待付款</div></a>
+		<a href="javascript:;"><div class="processing" data-index="2">处理中</div></a>
+		<a href="javascript:;"><div class="done" data-index="3">已完成</div></a>
 	</div>
 
 	<div class="wait-info order-box">   <!-- 待付款 -->
@@ -36,7 +36,7 @@
 		foreach ($res as $order){
 			//var_dump($order);
 		?>
-		<div class="order-info">
+		<div class="order-info" data-orderId="xxx">
 			<div class="file-info-box clearfix">
 				<div class="file-info">
 					<p><?php
@@ -48,10 +48,11 @@
 				</div>
 				<div class="money">¥<?php echo $order['total'];?></div>
 			</div>
-			<div class="other-info clearfix">
+			<div class="other-info waitting-to-pay clearfix">
 				<div>未付款</div>
 				<div><?php echo $order['shop'];?></div>
-				<div><a href="javascript:;">去支付</a></div>
+				<div><a href="javascript:;" class="cancel">取消订单</a></div>
+				<div><a href="javascript:;" class="pay">去支付</a></div>
 			</div>
 		</div>
 		<?php }?>
@@ -119,5 +120,9 @@
 		<a href="confirm"><div class="print-car"></div></a>
 		<a href="javascript:;"><div class="person">我的</div></a>
 	</div>
+
+	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+	<script type="text/javascript" src="../script/mobile/myself.js"></script>
 </body>
 </html>

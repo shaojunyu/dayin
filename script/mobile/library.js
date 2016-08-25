@@ -238,12 +238,27 @@ $(function () {
             data: JSON.stringify(data),
             success: function(data) {
             	isAdding = false;
-                console.log(data);
+            	if(data.success) {
+	            	$(".added").show();
+	            	$(".cover").show();
+	            }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
             	isAdding = false;  
                 alert("请求失败，请重试");
             }
         });
+	});
+
+	//继续选择文件
+	$(".continue").click(function () {
+		$(".cover").hide();
+		$(".added").hide();
+		$(".library-info-box").css("display", "none");
+		$(".return").css("display", "none");
+		$(".library-box").css("display", "block");
+		$(".hack").css("display", "none");
+		$(".library-info-box").html("");
+		$(".addto-car").hide();
 	});
 });

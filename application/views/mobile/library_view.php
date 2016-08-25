@@ -72,7 +72,7 @@
 	<!-- 加入购物车后的弹出框 -->
 	<div class="added clearfix">
 		<p>已加入购物车</p>
-		<div><a href="javascript:;">继续添加文件</a></div>
+		<div><a href="javascript:;" class="continue">继续添加文件</a></div>
 		<div><a href="confirm">去购物车</a></div>
 	</div>
 
