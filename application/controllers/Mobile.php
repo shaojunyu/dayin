@@ -29,6 +29,7 @@ class Mobile extends CI_Controller{
     }
 
     public function confirm(){
+
         if (!$this->session->userdata('cellphone')){
             header('Location: '.base_url());
         }else{
