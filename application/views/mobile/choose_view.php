@@ -69,7 +69,7 @@
 
 	<div class="choose">
 		<a href="mobile/signup" class="no">未注册，开始注册</a>
-		<a href="javascript:;" class="yes">已注册，绑定账号</a>
+		<a href="mobile/login" class="yes">已注册，绑定账号</a>
 	</div>
 
 	<script type="text/javascript" src="script/mobile/zepto.min.js"></script>
