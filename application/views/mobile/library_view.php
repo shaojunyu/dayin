@@ -23,7 +23,7 @@
 			echo '<p>'.$lib['name'].'<br><span>'.$lib['Id'].'</span></p>';
 			echo '</div></a>';
 		}
-
+		
 		foreach ($applyingLib as $lib){
 			echo '<div class="library-wrap apply-status">  <!-- 申请中 -->';
 			echo '<img src="../images/mobile/apply.png">';
