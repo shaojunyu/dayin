@@ -68,7 +68,7 @@
 	</div>
 
 	<div class="choose">
-		<a href="signup" class="no">未注册，开始注册</a>
+		<a href="mobile/signup" class="no">未注册，开始注册</a>
 		<a href="javascript:;" class="yes">已注册，绑定账号</a>
 	</div>
 
