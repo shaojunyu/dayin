@@ -16,23 +16,22 @@
 	</header>
 
 	<div class="library-box clearfix">  <!-- 文库1级页面 -->
-		<div class="library-wrap">
-			<img src="../images/mobile/book.png">
-			<p>官方文库<br><span>000001</span></p>
-		</div>
-		<div class="library-wrap">
-			<img src="../images/mobile/book.png">
-			<p>官方文库<br><span>000001</span></p>
-		</div>
-		<div class="library-wrap">
-			<img src="../images/mobile/book.png">
-			<p>机械1405班文库<br><span>000001</span></p>
-		</div>
-		<div class="library-wrap apply-status">  <!-- 申请中 -->
-			<img src="../images/mobile/apply.png">
-			<p>机械1405班文库<br><span>000001</span></p>
-			<span class="apply">申请中</span>
-		</div>
+		<?php
+		foreach ($myLib as $lib){
+			echo '<div class="library-wrap">';
+			echo '<img src="../images/mobile/book.png">';
+			echo '<p>'.$lib['name'].'<br><span>'.$lib['Id'].'</span></p>';
+			echo '</div>';
+		}
+
+		foreach ($applyingLib as $lib){
+			echo '<div class="library-wrap apply-status">  <!-- 申请中 -->';
+			echo '<img src="../images/mobile/apply.png">';
+			echo '<p>'.$lib['name'].'<br><span>'.$lib['Id'].'</span></p>';
+			echo '<span class="apply">申请中</span>';
+			echo '</div>';
+		}
+		?>
 	</div>
 
 	<div class="cover"></div>
