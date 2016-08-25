@@ -64,6 +64,10 @@
 						}
 					}
 				}
+				if(!$item['subTotal']){
+					//$this->load->model('Cart_model','Cart');
+					$item['subTotal'] = $this->Cart->calculate_price($item['fileMD5'])['subTotal'];
+				}
 				//var_dump($item);
 
 			?>
