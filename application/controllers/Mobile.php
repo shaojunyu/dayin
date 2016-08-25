@@ -36,22 +36,23 @@ class Mobile extends CI_Controller{
         }
     }
 
-    public function library(){
-        if (!$this->session->userdata('cellphone')){
-            header('Location: '.base_url());
-        }else{
+    public function library()
+    {
+        if (!$this->session->userdata('cellphone')) {
+            header('Location: ' . base_url());
+        } else {
             //开放文库
-            $this->db->where('isOpen','true');
+            $this->db->where('isOpen', 'true');
             $res = $this->db->get('library')->result_array();
 //            var_dump($res);
             //加入的文库
-            $this->db->where('cellphone',$this->session->userdata('cellphone'));
-            $this->db->where('state','accepted');
+            $this->db->where('cellphone', $this->session->userdata('cellphone'));
+            $this->db->where('state', 'accepted');
             $r = $this->db->get('library_users')->result_array();
-            foreach ($r as $lib){
+            foreach ($r as $lib) {
                 $id = $lib['libraryId'];
-                $this->db->where('isOpen','false');
-                $this->db->where('Id',$id);
+                $this->db->where('isOpen', 'false');
+                $this->db->where('Id', $id);
                 $mylib = $this->db->get('library')->result_array();
                 if (count($mylib) == 1) {
                     $res[] = $mylib[0];
@@ -59,12 +60,12 @@ class Mobile extends CI_Controller{
             }
 
             //申请中的文库
-            $this->db->where('cellphone',$this->session->userdata('cellphone'));
-            $this->db->where('state','applying');
+            $this->db->where('cellphone', $this->session->userdata('cellphone'));
+            $this->db->where('state', 'applying');
             $applyingLib = $this->db->get('library_users')->result_array();
 
             //var_dump($applyingLib);
-            $this->load->view('mobile/library_view',array('myLib'=>$res,'applyingLib'=>$applyingLib));
+            $this->load->view('mobile/library_view', array('myLib' => $res, 'applyingLib' => $applyingLib));
         }
 
     }

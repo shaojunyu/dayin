@@ -700,6 +700,34 @@ class Api extends CI_Controller{
 
         }
     }
+
+    /**
+     * ----------------------------------------------------------------------------------
+     * 移动端接口
+     */
+
+    /**
+     * function getLibInfo
+     * @param
+     * @return json
+     * @author yushaojun
+     */
+    public function getLibFiles_m(){
+        $this->needSession();
+        $this->check_post_data(array('libraryId'));
+        $libId = $this->post_data->libraryId;
+        $this->db->where('libraryId',$libId);
+        $res = $this->db->get('library_files')->result_array();
+
+        $libFiles = array();
+        if (count($res) > 0){
+            foreach ($res as $file){
+                $libFiles[$file['folder']][] = array('fileName'=>$file['fileName'],'fileMD5'=>$file['fileMD5']);
+                //$libFiles[$file]
+            }
+        }
+        echo json_encode($libFiles);
+    }
     
 /*
  * ----------------------------------------------------------------------------------------
