@@ -8,6 +8,8 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
 	<link rel="stylesheet" href="../css/mobile/reset.css">
+	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="../script/mobile/choose.js"></script>
 	<style type="text/css">
 		body {
 			background-color: #6bc8f1;
@@ -68,7 +70,7 @@
 	</div>
 
 	<div class="choose">
-		<a href="javascript:;" class="no">未注册，开始注册</a>
+		<a href="signup" class="no">未注册，开始注册</a>
 		<a href="javascript:;" class="yes">已注册，绑定账号</a>
 	</div>
 

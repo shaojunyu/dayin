@@ -8,7 +8,7 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/weui/0.4.2/style/weui.css">
-	<link rel="stylesheet" type="text/css" href="../css/mobile/logup.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/signup.css">
 </head>
 <body>
 	<div class="header">
@@ -28,31 +28,35 @@
 			</div>
 		</div>
 		<div class="weui_cells weui_cells_form">
-		    <div class="weui_cell">
+		    <div class="weui_cell phone-box">
 		        <div class="weui_cell_bd weui_cell_primary">
-		            <input class="weui_input" type="tel" placeholder="输入您的手机号">
+		            <input class="weui_input phone" type="tel" placeholder="输入您的手机号">
 		        </div>
 		    </div>
 		</div>
 		<div class="code-box clearfix">
 			<div class="weui_cells weui_cells_form">
-			    <div class="weui_cell">
+			    <div class="weui_cell smscode-box">
 			        <div class="weui_cell_bd weui_cell_primary">
-			            <input class="weui_input" type="text" placeholder="手机验证码">
+			            <input class="weui_input smscode" type="text" placeholder="手机验证码">
 			        </div>
 			    </div>
 			</div>
 			<a href="javascript:;" class="get">获取短信验证码</a>
 		</div>
 		<div class="weui_cells weui_cells_form">
-		    <div class="weui_cell">
+		    <div class="weui_cell password-box">
 		        <div class="weui_cell_bd weui_cell_primary">
-		            <input class="weui_input" type="password" placeholder="请设置您的8-12位密码">
+		            <input class="weui_input password" type="password" placeholder="请设置您的密码(至少8位)">
 		        </div>
 		    </div>
 		</div>
 		<a href="javascript:;" class="weui_btn weui_btn_primary sbm">确认注册</a>
 	</form>
+
+	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+	<script type="text/javascript" src="../script/mobile/signup.js"></script>
 
 </body>
 </html>

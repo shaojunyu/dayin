@@ -15,7 +15,7 @@
 		<a href="javascript:;" class="search-btn">搜索</a>
 	</header>
 
-	<div class="library-box clearfix" style="display: none;">  <!-- 文库1级页面 -->
+	<div class="library-box clearfix">  <!-- 文库1级页面 -->
 		<div class="library-wrap">
 			<img src="../images/mobile/book.png">
 			<p>官方文库<br><span>000001</span></p>
@@ -59,7 +59,7 @@
 		<a href="javascript:;" class="apply-add">申请加入该文库</a>
 	</div>
 
-	<div class="library-info-box clearfix">  <!-- 文库详情 -->
+	<div class="library-info-box clearfix" style="display: none;">  <!-- 文库详情 -->
 		<div class="floders">
 			<a href="javascript:;" class="floder click-floder">考研听力</a>
 			<a href="javascript:;" class="floder">考研听力</a>

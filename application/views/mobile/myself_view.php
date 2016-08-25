@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
-	<link rel="stylesheet" type="text/css" href="../css/mobile/person.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/myself.css">
 </head>
 <body>
 	<header class="clearfix">

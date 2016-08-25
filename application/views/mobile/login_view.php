@@ -50,12 +50,16 @@
 		}
 		.weui_cell {
 			padding: 7px;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
 		}
 		.weui_cells {
 			margin-top: 7px;
 		}
 		.weui_cell input {
 			font-size: 1.1rem;
+			color: #56a0ad;
 		}
 		.code-box {
 			height: auto;
@@ -101,17 +105,17 @@
 
 	<form class="log-box">
 		<div class="weui_cells weui_cells_form">
-		    <div class="weui_cell">
+		    <div class="weui_cell phone-box">
 		        <div class="weui_cell_bd weui_cell_primary">
-		            <input class="weui_input" type="tel" placeholder="输入您的手机号">
+		            <input class="weui_input phone" type="tel" placeholder="输入您的手机号">
 		        </div>
 		    </div>
 		</div>
 		<div class="code-box clearfix">
 			<div class="weui_cells weui_cells_form">
-			    <div class="weui_cell">
+			    <div class="weui_cell smscode-box">
 			        <div class="weui_cell_bd weui_cell_primary">
-			            <input class="weui_input" type="text" placeholder="手机验证码">
+			            <input class="weui_input smscode" type="text" placeholder="手机验证码">
 			        </div>
 			    </div>
 			</div>
@@ -120,5 +124,8 @@
 		<a href="javascript:;" class="weui_btn weui_btn_primary sbm">确认登录</a>
 	</form>
 
+	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+	<script type="text/javascript" src="../script/mobile/login.js"></script>
 </body>
 </html>

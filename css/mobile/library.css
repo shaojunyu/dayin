@@ -311,6 +311,7 @@ header input {
 	left: 0;
 	background: url(../../images/mobile/return.png) no-repeat;
 	background-size: 100% 100%;
+	display: none;
 }
 
 /* addto-car */

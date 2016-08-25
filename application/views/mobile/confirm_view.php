@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
-	<link rel="stylesheet" type="text/css" href="css/mobile/printCar.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/confirm.css">
 </head>
 <body>
 	<header class="clearfix">
@@ -32,7 +32,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -42,7 +42,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -50,7 +50,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -58,7 +58,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -80,7 +80,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -90,7 +90,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -98,7 +98,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -106,7 +106,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -127,7 +127,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -137,7 +137,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -145,7 +145,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -153,7 +153,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -174,7 +174,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -184,7 +184,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -192,7 +192,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -200,7 +200,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -221,7 +221,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -231,7 +231,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -239,7 +239,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -247,7 +247,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -268,7 +268,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -278,7 +278,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -286,7 +286,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -294,7 +294,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -315,7 +315,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page">1</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box select-page">
 						<a href="javascript:;">1</a>
 						<a href="javascript:;">2</a>
@@ -325,7 +325,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default direction">竖</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">竖</a>
 						<a href="javascript:;">横</a>
@@ -333,7 +333,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default pos-and-neg">正面</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">正面</a>
 						<a href="javascript:;">双面</a>
@@ -341,7 +341,7 @@
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default page-size">A4</a>
-					<div class="jt"><img src="images/mobile/jiantou.png"></div>
+					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
 						<a href="javascript:;">B5</a>
@@ -366,7 +366,7 @@
 				<a href="javascript:;" class="option">E打印店</a>
 			</div>
 			<div class="icon">
-				<img src="images/mobile/jiantou.png">
+				<img src="../images/mobile/jiantou.png">
 			</div>
 		</div>
 		<a href="javascript:;" class="to-pay">去支付 ¥10.55</a>
