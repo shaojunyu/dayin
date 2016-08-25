@@ -15,7 +15,7 @@
 		<span>文档</span>
 		<span>每页印刷</span>
 		<span>排版设置</span>
-		<span>正反打印</span>
+		<span>单双打印</span>
 		<span>纸张大小</span>
 		<span>份数</span>
 	</header>
@@ -73,6 +73,7 @@
 				</div>
 				<div class="file-info">
 					<p class="file-name"><?php echo $item['fileName'];?></p>
+					<span>共 <?php echo $item['pages'];?> 页</span>
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page"><?php echo $item['pptPerPage'];?></a>
@@ -132,7 +133,7 @@
 				<img src="../images/mobile/jiantou.png">
 			</div>
 		</div>
-		<a href="javascript:;" class="to-pay">去支付 ¥10.55</a>
+		<a href="javascript:;" class="to-pay">去下单 ¥10.55</a>
 	</form>
 
 	<div class="menu clearfix"> <!-- 底部菜单 -->
@@ -140,5 +141,10 @@
 		<a href="javascript:;"><div class="print-car"></div></a>
 		<a href="myself"><div class="person">我的</div></a>
 	</div>
+
+	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
+	<script type="text/javascript" src="../script/mobile/touch.js"></script>
+	<script type="text/javascript" src="../script/mobile/confirm.js"></script>
 </body>
 </html>
