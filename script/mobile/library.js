@@ -196,8 +196,9 @@ $(function () {
             dataType:"json",
             data: JSON.stringify(data),
             success:function(data) {
-            	console.log(data);
-                //applySuccess(data);
+            	if(data.success == "1") {
+            		window.location.href = "../mobile/library";
+            	}
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 alert("请求失败，请重试");
@@ -236,12 +237,13 @@ $(function () {
             dataType: "json",
             data: JSON.stringify(data),
             success: function(data) {
+            	isAdding = false;
                 console.log(data);
             },
-            error: function(XMLHttpRequest, textStatus, errorThrown){  
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+            	isAdding = false;  
                 alert("请求失败，请重试");
             }
         });
 	});
-
 });
