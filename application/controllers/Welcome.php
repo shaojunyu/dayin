@@ -20,8 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->helper('url');
 		if (preg_match("/mobile/i",$_SERVER['HTTP_USER_AGENT'])){
-			$this->load->view('mobile/choose_view');
+			header('Location: '.base_url('mobile'));
 		}else{
 			$this->load->view('index_view');
 		}

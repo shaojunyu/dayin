@@ -6,6 +6,11 @@
  * Time: 1:17 PM
  */
 class Mobile extends CI_Controller{
+
+    public function index(){
+        $this->load->view('mobile/choose_view');
+    }
+
     public function login(){
         $this->load->view('mobile/login_view');
     }
@@ -15,10 +20,28 @@ class Mobile extends CI_Controller{
     }
 
     public function myself(){
-        $this->load->view('mobile/myself_view');
+        if (!$this->session->userdata('cellphone')){
+            header('Location: '.base_url());
+        }else{
+            $this->load->view('mobile/myself_view');
+        }
+
+    }
+
+    public function confirm(){
+        if (!$this->session->userdata('cellphone')){
+            header('Location: '.base_url());
+        }else{
+            $this->load->view('mobile/confirm_view');
+        }
     }
 
     public function library(){
-        $this->load->view('mobile/library_view');
+        if (!$this->session->userdata('cellphone')){
+            header('Location: '.base_url());
+        }else{
+            $this->load->view('mobile/library_view');
+        }
+
     }
 }
