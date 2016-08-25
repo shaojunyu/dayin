@@ -36,7 +36,7 @@
 		foreach ($res as $order){
 			//var_dump($order);
 		?>
-		<div class="order-info" data-orderId="xxx">
+		<div class="order-info" data-orderId="<?php echo $order['Id'];?>">
 			<div class="file-info-box clearfix">
 				<div class="file-info">
 					<p><?php

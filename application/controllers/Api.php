@@ -702,6 +702,28 @@ class Api extends CI_Controller{
     }
 
     /**
+     * function createLib 创建文库
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function createLib(){
+        $this->needSession();
+        $this->check_post_data(array('libraryName'));
+        $libName = $this->post_data->libraryName;
+        $this->db->insert('library',array(
+            'name'=>$libName,
+            'admin'=>$this->session->userdata('cellphone'),
+            'isOpen'=>'false'
+        ));
+        if ($this->db->affected_rows() == 1){
+            $this->echo_msg(true);
+        }else{
+            $this->echo_msg(false);
+        }
+    }
+
+    /**
      * ----------------------------------------------------------------------------------
      * 移动端接口
      */
