@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
-	<link rel="stylesheet" type="text/css" href="css/mobile/library.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/library.css">
 </head>
 <body>
 	<header>
@@ -17,19 +17,19 @@
 
 	<div class="library-box clearfix" style="display: none;">  <!-- 文库1级页面 -->
 		<div class="library-wrap">
-			<img src="images/mobile/book.png">
+			<img src="../images/mobile/book.png">
 			<p>官方文库<br><span>000001</span></p>
 		</div>
 		<div class="library-wrap">
-			<img src="images/mobile/book.png">
+			<img src="../images/mobile/book.png">
 			<p>官方文库<br><span>000001</span></p>
 		</div>
 		<div class="library-wrap">
-			<img src="images/mobile/book.png">
+			<img src="../images/mobile/book.png">
 			<p>机械1405班文库<br><span>000001</span></p>
 		</div>
 		<div class="library-wrap apply-status">  <!-- 申请中 -->
-			<img src="images/mobile/apply.png">
+			<img src="../images/mobile/apply.png">
 			<p>机械1405班文库<br><span>000001</span></p>
 			<span class="apply">申请中</span>
 		</div>
@@ -39,7 +39,7 @@
 	<div class="application">  <!-- 申请加入弹出框 -->
 		<a href="javascript:;" class="cancel"></a>
 		<div class="title">
-			<img src="images/mobile/book.png">
+			<img src="../images/mobile/book.png">
 			<p>马原复习资料2016</p>
 		</div>
 		<div class="all-info">

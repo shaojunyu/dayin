@@ -8,20 +8,20 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/weui/0.4.2/style/weui.css">
-	<link rel="stylesheet" type="text/css" href="css/mobile/logup.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/logup.css">
 </head>
 <body>
 	<div class="header">
 		<div>
-			<i><img src="images/mobile/logo.png"></i>
+			<i><img src="../images/mobile/logo.png"></i>
 		</div>
 		<p>四年打印</p>
 	</div>
 
 	<form class="log-box">
 		<div class="select-school">
-			<a href="javascript:;" class="choose-default pos-and-neg">选择您的学校</a>
-			<div class="jt"><img src="images/mobile/jiantou.png"></div>
+			<a href="javascript:;" class="choose-default">选择您的学校</a>
+			<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 			<div class="select-box">
 				<a href="javascript:;">华中科技大学</a>
 				<a href="javascript:;">武汉大学</a>

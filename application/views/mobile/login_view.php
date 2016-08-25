@@ -8,7 +8,7 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
 	<link rel="stylesheet" href="https://cdn.bootcss.com/weui/0.4.2/style/weui.css">
-	<link rel="stylesheet" type="text/css" href="css/mobile/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/reset.css">
 	<style type="text/css">
 		body {
 			background-color: #6bc8f1;
@@ -94,7 +94,7 @@
 <body>
 	<div class="header">
 		<div>
-			<i><img src="images/mobile/logo.png"></i>
+			<i><img src="../images/mobile/logo.png"></i>
 		</div>
 		<p>四年打印</p>
 	</div>

@@ -7,12 +7,12 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
-	<link rel="stylesheet" type="text/css" href="css/mobile/person.css">
+	<link rel="stylesheet" type="text/css" href="../css/mobile/person.css">
 </head>
 <body>
 	<header class="clearfix">
 		<div>
-			<img src="images/mobile/tx.png">
+			<img src="../images/mobile/tx.png">
 		</div>
 		<div>
 			<span>账号：18062421246</span><br>

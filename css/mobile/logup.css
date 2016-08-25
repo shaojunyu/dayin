@@ -76,21 +76,64 @@ form {
 	margin: 35px auto;
 	width: 85%;
 }
-.school-box {
+.select-school {
 	position: relative;
 }
-.school {
-	width: 100%;
-	font-size: 1.1rem;
-	padding: 6px 0;
-	background-color: #fff;
-	text-indent: 3px;
-/*     appearance: none;
--moz-appearance: none;
--webkit-appearance: none; */
+.select-school .jt {
+	width: 11%;
+	height: 2.2rem;
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: 1px solid #fff;
+	background-color: #6bc8f1;
+	text-align: center;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 }
-.school option {
+.jt img {
+	width: 95%;
+	margin-top: 0.5rem;
+}
+.select-school a {
+	color: #56a0ad;
+	display: block;
+	text-indent: 3px;
+}
+.choose-default {
 	width: 100%;
+	line-height: 2.2rem;
+	height: 2.2rem;
+	text-indent: 1px;
+	font-size: 1.1rem;
+	background-color: #fff;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.select-box {
+	position: absolute;
+	width: 100%;
+	top: 2.2rem;
+	left: 0;
+	font-size: 1.1rem;
+	text-align: center;
+	border: 1px solid #e4e4e4;
+	background-color: #fff;
+	z-index: 555;
+	display: none;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.select-box a {
+	line-height: 2rem;
+	text-align: left;
+}
+.select-box a:hover {
+	background-color: #e4e4e4;
+	color: #56a0ad;
 }
 .weui_cell {
 	padding: 7px;
