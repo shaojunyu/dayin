@@ -38,6 +38,7 @@ class Mobile extends CI_Controller{
         if (!$this->session->userdata('cellphone')){
             header('Location: '.base_url());
         }else{
+            $this->load->model('Cart_model','Cart');
             $this->load->view('mobile/confirm_view');
         }
     }
