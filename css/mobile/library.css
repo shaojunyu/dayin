@@ -1,0 +1,399 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "Helvetica Neue", Helvetica, STHeiTi, "Microsoft YaHei", sans-serif;
+}
+a, img {
+    -webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;   /* 禁止选中文本 */
+    user-select: none;
+}
+html {
+	font-size: 62.5%;
+}
+a {
+	text-decoration: none;
+	color: #000000;
+}
+a:active {
+	color: #000000;
+}
+input {
+	border-width: 0px;
+	outline: none;
+}
+button {
+	border-width: 0px;
+}
+img {
+	border: none;
+}
+
+/* 清浮动 */
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+	zoom: 1;
+}
+
+/* header */
+header {
+	width: 100%;
+	padding: 1rem 0;
+	text-indent: 18%;
+	background: #6bc8f1 url(../images/mobile/search.png) no-repeat 8% center;
+	background-size: 7%;
+}
+::-moz-placeholder {
+	color: #fff;
+}
+::-webkit-input-placeholder {
+	color:#fff;
+}
+:-ms-input-placeholder {
+	color:#fff;
+}
+header input {
+	width: 60%;
+	border: 1px solid #fff;
+	background-color: #6bc8f1;
+	color: #fff;
+	text-indent: 3px;
+	line-height: 1.6rem;
+	font-size: 1.05rem;
+}
+.search-btn {
+	background-color: #6bc8f1;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	color: #fff;
+	padding-left: 3.5%;
+	padding-right: 3.5%;
+	font-size: 1.1rem;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	text-align: center;
+}
+.search-btn:active {
+	color: #fff;
+}
+
+/* library-box */
+.library-box {
+	width: 100%;
+	margin-bottom: 4rem;
+}
+.library-wrap {
+	float: left;
+	width: 33.3%;
+	text-align: center;
+	padding: 10px 0 5px 0;
+	color: #56a0ad;
+}
+.library-wrap img {
+	width: 65%;
+}
+.library-wrap p {
+	font-size: 0.96rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.library-wrap p span {
+	font-size: 0.85rem;
+}
+.apply-status {
+	position: relative;
+}
+.apply-status p, .apply-status p span {
+	color: #d6d6d6!important;
+}
+.apply {
+	width: 50%;
+	line-height: 2rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -25%;
+	margin-top: -1rem;
+	color: #56a0ad;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+/* application */
+.cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #d1e5e9;
+	opacity: 0.7;
+	z-index: 222;
+	display: none;
+}
+.application {
+	width: 88%;
+	background-color: #fff;
+	position: absolute;
+	left: 6%;
+	top: 5rem;
+	z-index: 333;
+	padding: 20px 0;
+	color: #56a0ad;
+	border: 1px solid #6bc8f1;
+	display: none;
+}
+.cancel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3rem;
+	height: 3rem;
+	background: url(../images/mobile/cancel.png) no-repeat center;
+	background-size: 12px;
+	z-index: 444;
+}
+.title {
+	width: 100%;
+	text-align: center;
+}
+.title img {
+	width: 30%;
+}
+.title p {
+	font-size: 1rem;
+	font-weight: 600;
+}
+.all-info {
+	width: 72%;
+	margin: 10px auto;
+	padding-bottom: 20px;
+}
+.all-info div {
+	width: 100%;
+	margin-bottom: 3px;
+}
+.all-info div p {
+	float: left;
+	line-height: 1.4rem;
+}
+.all-info div p:nth-child(1) {
+	width: 38%;
+	font-size: 1rem;
+	font-weight: 600;
+}
+.all-info div p:nth-child(2) {
+	width: 62%;
+	font-size: 0.9rem;
+}
+.apply-add {
+	display: block;
+	width: 70%;
+	margin: 0 auto;
+	background-color: #56a0ad;
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: 600;
+	line-height: 3.2rem;
+	text-align: center;
+}
+.apply-add:active {
+	color: #fff;
+}
+
+/* library-info-box */
+.library-info-box {
+	width: 100%;
+	height: 90%;
+	min-height: 90%;
+}
+.floders, .files {
+	float: left;
+}
+.floders {
+	width: 28%;
+	text-align: center;
+	background-color: #e5e5e5;
+	min-height: 100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	padding-bottom: 6.5rem;
+}
+.floder {
+	display: block;
+	line-height: 3.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	border-bottom: 1px solid #fff;
+	color: #56a0ad;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.floder:active {
+	color: #56a0ad;
+}
+.click-floder {
+	color: #fff;
+	background-color: #56a0ad;
+}
+.click-floder:active {
+	color: #fff;
+}
+.files {
+	width: 72%;
+}
+.file {
+	width: 100%;
+	height: 3.5rem;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	border: 1px solid #e4e4e4;
+	margin-bottom: 1px;
+	color: #6bc8f1;
+}
+.file-name, .check-box {
+	float: left;
+}
+.file-name {
+	width: 83%;
+}
+.check-box {
+	width: 17%;
+	text-align: center;
+}
+.check {
+	width: 1.3rem;
+	height: 1.3rem;
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #6bc8f1;
+	margin-top: 1rem;
+}
+.check-click {
+	background: url(../image/check.png) no-repeat center;
+	background-size: 0.82rem;
+}
+.file p {
+	font-size: 0.96rem;
+	text-indent: 3rem;
+	background: url(../image/file.png) no-repeat .5rem center;
+	background-size: 2rem;
+	line-height: 2.3rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.file span {
+	font-size: 0.75rem;
+	margin-left: 0.5rem;
+}
+
+/* return */
+.return {
+	width: 28%;
+	height: 3rem;
+	position: fixed;
+	bottom: 3rem;
+	left: 0;
+	background: url(../image/return.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+/* addto-car */
+.addto-car {
+	display: none;
+	position: fixed;
+	bottom: 3rem;
+	right: 0;
+	width: 34%;
+	height: 3rem;
+	line-height: 3rem;
+	text-align: center;
+	font-size: 0.95rem;
+	color: #fff;
+	background-color: #56a0ad;
+}
+.addto-car:active {
+	color: #fff;
+}
+
+/* menu */
+.menu {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 111;
+}
+.menu div {
+	float: left;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.library, .person, .print-car {
+	line-height: 3rem;
+	height: 3rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 1.1rem;
+	border-top: 1px solid #fff;
+}
+.library, .person {
+	width: 39%;
+	text-indent: 20%;
+}
+.person, .print-car {
+	color: #fff;
+}
+.library {
+	background: #eee url(../image/library.png) no-repeat 20% center;
+	background-size: 22%;
+	color: #3991a0;
+}
+.print-car {
+	width: 22%;
+	background: #6bc8f1 url(../image/print-car.png) no-repeat center;
+	background-size: 55%;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+.person {
+	background: #6bc8f1 url(../image/person-n.png) no-repeat;
+	background-size: 15%;
+	background-position: 20% center;
+}
+
+
+@media screen and (min-width: 320px) {
+    html {font-size: 14px;}
+}
+@media screen and (min-width: 360px) {
+    html {font-size: 16px;}
+}
+@media screen and (min-width: 400px) {
+    html {font-size: 18px;}
+}
+@media screen and (min-width: 440px) {
+    html {font-size: 20px;}
+}
+@media screen and (min-width: 480px) {
+    html {font-size: 22px;}
+}
+@media screen and (min-width: 640px) {
+    html {font-size: 28px;}
+}

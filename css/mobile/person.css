@@ -1,0 +1,244 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: "Helvetica Neue", Helvetica, STHeiTi, "Microsoft YaHei", sans-serif;
+}
+a, img {
+    -webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */
+}
+html, body {
+    width: 100%;
+}
+html {
+	font-size: 62.5%;
+}
+a {
+	text-decoration: none;
+	color: #000000;
+}
+a:active {
+	color: #000000;
+}
+input {
+	border-width: 0px;
+	outline: none;
+}
+button {
+	border-width: 0px;
+}
+img {
+	border: none;
+}
+
+/* 清浮动 */
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+	zoom: 1;
+}
+
+/* header */
+header {
+	width: 100%;
+	padding: 30px 0 20px 0;
+	background-color: #3991a0;
+}
+header div {
+	float: left;
+}
+header div:nth-child(1) {
+	width: 43%;
+}
+header div:nth-child(2) {
+	width: 57%;
+	margin-top: 20px;
+	color: #fff;
+	font-size: 1rem;
+}
+header img {
+	width: 50%;
+	margin-left: 40%;
+}
+
+.order {
+	background-color: #eee;
+	width: 100%;
+	text-align: center;
+	color: #3991a0;
+	font-size: 1.2rem;
+	line-height: 2rem;
+	font-weight: 600;
+	border-bottom: 1px solid #a0a0a0;
+}
+
+/* order-status */
+.order-status {
+	width: 100%;
+	margin-top: 1px;
+	border-bottom: 1px solid #d2d2d2;
+}
+.order-status div {
+	width: 33.3%;
+	background-color: #eee;
+	color: #3991a0;
+	text-align: center;
+	font-size: 1.1rem;
+	font-weight: 600;
+	float: left;
+	line-height: 3rem;
+}
+/* 点击3个div时切换样式 */
+.click {
+	background-color: #6bc8f1!important;
+	color: #fff!important;
+}
+
+/* order-info */
+.processing-info {
+	display: none;
+}
+.order-info {
+	width: 100%;
+	color: #6bc8f1;
+	border: 1px solid #e4e4e4;
+	margin-bottom: 1px;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.order-box {
+	margin-bottom: 4rem;
+}
+.file-info-box {
+	width: 100%;
+}
+.file-info-box div {
+	float: left;
+}
+.file-info {
+	padding: 5px 0;
+	width: 76%;
+	background: url(../image/file.png) no-repeat 5px center;
+	background-size: 30px auto;
+}
+.file-info p {
+	text-indent: 40px;
+}
+.file-info p:nth-child(1) {
+	font-size: 1.1rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+.file-info p:nth-child(2) {
+	font-size: 0.9rem;
+}
+.money {
+	width: 24%;
+	line-height: 3rem;
+	font-size: 1.3rem;
+}
+.other-info {
+	width: 100%;
+}
+.other-info div {
+	float: left;
+	text-align: center;
+	font-weight: 600;
+	font-size: 1.1rem;
+	line-height: 2.3rem;
+}
+.other-info div:nth-child(1), .other-info div:nth-child(3) {
+	width: 25%;
+}
+.other-info div:nth-child(2) {
+	width: 50%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/* 待付款 */
+.wait-info .other-info a {
+	display: inline-block;
+	width: 95%;
+	text-align: center;
+	color: #fff;
+	background-color: #6bc8f1;
+	border-radius: 5px;
+	margin-bottom: 2px;
+}
+
+/* 已完成 */
+.done-info {
+	display: none;
+}
+
+/* menu */
+.menu {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 111;
+}
+.menu div {
+	float: left;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.library, .person, .print-car {
+	line-height: 3rem;
+	height: 3rem;
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 1.1rem;
+}
+.library, .person {
+	width: 39%;
+	text-indent: 20%;
+}
+.library, .print-car {
+	color: #fff;
+}
+.library {
+	background: #6bc8f1 url(../image/library-n.png) no-repeat 20% center;
+	background-size: 22%;
+}
+.print-car {
+	width: 22%;
+	background: #6bc8f1 url(../image/print-car.png) no-repeat center;
+	background-size: 55%;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+.person {
+	color: #3991a0;
+	background: #eee url(../image/person.png) no-repeat;
+	background-size: 15%;
+	background-position: 20% center;
+}
+
+@media screen and (min-width: 320px) {
+    html {font-size: 14px;}
+}
+@media screen and (min-width: 360px) {
+    html {font-size: 16px;}
+}
+@media screen and (min-width: 400px) {
+    html {font-size: 18px;}
+}
+@media screen and (min-width: 440px) {
+    html {font-size: 20px;}
+}
+@media screen and (min-width: 480px) {
+    html {font-size: 22px;}
+}
+@media screen and (min-width: 640px) {
+    html {font-size: 28px;}
+}

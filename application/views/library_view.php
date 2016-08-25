@@ -182,7 +182,7 @@
         <button class="jumpTo">跳页</button>
         <span class="cancel">x</span>
     </div>
-    <div class="pdfView"></div>
+    <div class="scroll"><div class="pdfView"></div></div>
 </div>
 
 <footer class="clearfix">

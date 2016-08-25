@@ -393,6 +393,7 @@ $(document).ready(function() {
 
     //在线预览
     var url = "";
+    var newPDF = "";
     $(".view").click(function() {
         //获取pdf格式文件
         var fileMD5 = $(this).prev().attr("data-fileMD5");
@@ -401,21 +402,20 @@ $(document).ready(function() {
             url: secret("./api/getPreview"),
             type: "POST",
             contentType:"application/json",
-            dataType:"json",
             data: JSON.stringify(data),
-            success:function(data) {
-                console.log(data);
+            success:function(urlData) {
+                url = urlData;
+                //传入url开始渲染
+                newPDF = attPreLoad(url);
+                $(".file-show-box").css("display", "block");
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("请求失败，请重试");
             }
         });
-        $(".file-show-box").css("display", "block");
     });
     $(".pdfView").css("min-height", $(window).height()+"px");
     PDFJS.workerSrc = "script/pdf.worker.js";
-    //传入pdf文件地址
-    //var newPDF = attPreLoad(url);
 
     $('body').delegate('.next','click',function(){
         newPDF.nextPage();
@@ -428,10 +428,8 @@ $(document).ready(function() {
     });
     $('body').delegate('.cancel','click',function(){
         $(".file-show-box").css("display", "none");
-        //newPDF.destroy();
+        newPDF.destroy();
     }); 
-
-    //点击预览
 
 
 	//设置div滚动条样式
@@ -451,6 +449,20 @@ $(document).ready(function() {
 
     $(".file-wrap").slimScroll({
         height: '280px', //容器高度,默认250px
+        size: '7px', //滚动条宽度,默认7px
+        color: '#ffcc00', //滚动条颜色,默认#000000
+        alwaysVisible: true, //是否禁用隐藏滚动条,默认false
+        distance: '10px', //距离边框距离,位置由position参数决定,默认1px
+        railVisible: true, //滚动条背景轨迹,默认false
+        railColor: '#222', //滚动条背景轨迹颜色,默认#333333
+        railOpacity: 0.3, //滚动条背景轨迹透明度,默认0.2
+        wheelStep: 20, //滚动条滚动值,默认20
+        allowPageScroll: false, //滚动条滚动到顶部或底部时是否允许页面滚动,默认false
+        disableFadeOut: false //是否禁用鼠标在内容处一定时间不动隐藏滚动条,当设置alwaysVisible为true时该参数无效,默认false
+    });
+
+    $(".scroll").slimScroll({
+        height: $(window).height() - 85 + 'px', //容器高度,默认250px
         size: '7px', //滚动条宽度,默认7px
         color: '#ffcc00', //滚动条颜色,默认#000000
         alwaysVisible: true, //是否禁用隐藏滚动条,默认false
@@ -548,8 +560,7 @@ function attPreLoad(url){
         },
         destroy: function(){
             $('.pdfView').empty();
-            $('.pdfView').css("display", "none");
-            $('.control').css("display", "none");
+            $('.file-show-box').css("display", "none");
             pdfDoc.destroy();
         }
     };
