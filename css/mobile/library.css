@@ -183,17 +183,16 @@ header input {
 	margin-bottom: 3px;
 }
 .all-info div p {
-	float: left;
 	line-height: 1.4rem;
+	text-align: center;
+}
+.library-id {
+	font-size: 1rem;
+	font-weight: 500;
 }
 .all-info div p:nth-child(1) {
-	width: 38%;
 	font-size: 1rem;
 	font-weight: 600;
-}
-.all-info div p:nth-child(2) {
-	width: 62%;
-	font-size: 0.9rem;
 }
 .apply-add {
 	display: block;
@@ -214,8 +213,14 @@ header input {
 .library-info-box {
 	width: 100%;
 	height: 90%;
-	min-height: 90%;
 	display: none;
+}
+.library-info-box div:nth-child(2) {
+	display: block;
+}
+.files {
+	display: none;
+	padding-bottom: 6.5rem;
 }
 .folders, .files {
 	float: left;

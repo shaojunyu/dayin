@@ -115,9 +115,9 @@
 	</div>
 	
 	<div class="menu clearfix">
-		<div class="library">文库</div>
-		<div class="print-car"></div>
-		<div class="person">我的</div>
+		<a href="library"><div class="library">文库</div></a>
+		<a href="confirm"><div class="print-car"></div></a>
+		<a href="javascript:;"><div class="person">我的</div></a>
 	</div>
 </body>
 </html>
