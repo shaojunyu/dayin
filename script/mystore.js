@@ -432,6 +432,60 @@ $(document).ready(function() {
     }); 
 
 
+    //申请自建文库
+    $(".create").click(function () {
+        var libraryName = $.trim($(".library-name").val());
+        if(libraryName === "") {
+            showError("请输入要建立的文库名");
+            return;
+        }
+        $(".create-lib-name").html(libraryName);
+        $(".cover").show();
+        $("#apply-create").show();
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        $(".time").html("申请时间："+year+"年"+month+"月"+day+"日");
+    });
+    //取消
+    $(".create-top span").click(function () {
+        $(".cover").hide();
+        $("#apply-create").hide();
+    });
+    //确认建立
+    $(".create-btn").click(function () {
+        var libraryName = $(".create-lib-name").html();
+        var data = {
+            libraryName: libraryName
+        };
+        //发送请求
+        $.ajax({
+            url: secret("./api/createLib"),
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function(dataLib) {
+                $(".cover").hide();
+                $("#apply-create").hide();
+                if(dataLib.msg) {
+                    showError(dataLib.msg);
+                    return;
+                }
+                showError("建立成功");
+                setTimeout(function () {
+                    window.location.href = "library";
+                }, 1000);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("请求失败，请重试");
+                $(".cover").hide();
+                $("#apply-create").hide();
+            }
+        });
+    });
+
+
 	//设置div滚动条样式
 	$(".file-scroll").slimScroll({
 	    height: '420px', //容器高度,默认250px

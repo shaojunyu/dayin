@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>九九打印-打印设定</title>
+    <title>四年打印-打印设定</title>
     <link rel="stylesheet" href="css/printList.css">
 </head>
 <body>
 <header class="clearfix">
     <a href="http://www.99dayin.com" class="logo">
-        <img src="images/logo.png" alt="九九打印">
-        <p>九九打印</p>
+        <img src="images/logo.png" alt="四年打印">
+        <p>四年打印</p>
     </a>
     <nav>
         <ul>
@@ -169,7 +169,8 @@
         <div class="topay">
             <span>收货方式：</span>
 					<span class="delivery">
-                        <input type="checkbox" class="todoor" checked="checked" name="deliv" value="todoor">免费送货上门
+                        <!-- <input type="checkbox" class="todoor" checked="checked" name="deliv" value="todoor">免费送货上门 -->
+                        到店自取
 						
 					</span>
             <select name="store" id="print-store">
@@ -260,9 +261,9 @@
             <p><a href="doc/aboutUs.html" target="_blank">官方贴吧</a></p>
         </div>
         <div class="ewm">
-            <img src="images/ewm.png">
+            <img src="images/ewm.jpg">
         </div>
-        <p class="copyright">&copy;2016 九九打印版权所有 鄂ICP备15018392号</p>
+        <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
     </footer>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>

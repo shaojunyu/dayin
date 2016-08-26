@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>九九打印</title>
+    <title>四年打印</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="head scroll">
     <header class="clearfix">
         <a href="http://www.99dayin.com" class="logo">
-            <img src="images/logo.png" alt="九九打印">
-            <p>九九打印</p>
+            <img src="images/logo.png" alt="四年打印">
+            <p>四年打印</p>
         </a>
         <nav>
             <ul>
@@ -129,7 +129,7 @@
             <p><a href="doc/aboutUs.html" target="_blank">官方贴吧</a></p>
         </div>
         <div class="ewm">
-            <img src="images/ewm.png">
+            <img src="images/ewm.jpg">
         </div>
         <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
     </footer>

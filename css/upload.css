@@ -133,6 +133,73 @@ img {
 	border: 1px solid #7ab8f4;
 }
 
+/* 申请自建 */
+#apply-create {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: none;
+	margin: -120px 0px 0px -275px;
+	width: 550px;
+	height: 240px;
+	z-index: 333;
+	background-color: #fff;
+	border-radius: 5px;
+	-moz-box-shadow:0px 0px 2px #e8e8e8;
+	-webkit-box-shadow:0px 0px 2px #e8e8e8;
+	box-shadow:0px 0px 2px #e8e8e8;
+}
+#apply-create div {
+	width: 100%;
+}
+.create-top {
+	position: relative;
+	line-height: 40px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #7ab8f4;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 1px solid #7ab8f4;
+	text-align: center;
+}
+.create-top span {
+	display: inline-block;
+	position: absolute;
+	color: #fff;
+	right: 10px;
+	z-index: 999;
+	cursor: pointer;
+	padding: 0px 5px;
+}
+.create-info {
+	height: 150px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #7ab8f4;
+	padding-left: 40px;
+	padding-top: 40px;
+	letter-spacing: 1px;
+}
+.create-sub {
+	background-color: #7ab8f4;
+	line-height: 60px;
+	border-radius: 0px 0px 5px 5px;
+	text-align: center;
+}
+.create-info p {
+	margin-bottom: 10px;
+}
+.create-sub a {
+	font-size: 17px;
+	line-height: 30px;
+	display: inline-block;
+	padding: 0px 8px;
+	background-color: #3bce0e;
+	letter-spacing: 1px;
+	color: #fff;
+	border-radius: 5px;
+}
+
 /* 打印列表 */
 .printcar-list {
 	position: absolute;
@@ -258,6 +325,9 @@ header .logo:active {
 }
 .logo p, .logo img {
 	float: left;
+}
+.logo img {
+	width: 40px;
 }
 .logo p {
 	color: rgba(0,0,0,0.6);
@@ -482,6 +552,7 @@ nav ul li ul#sign-out li {
 	padding: 0px 2%;
 	height: 500px;
 	display: none;
+	position: relative;
 }
 .library-list li {
 	float: none;
@@ -635,6 +706,37 @@ section {
 	text-indent: 3px;
 }
 .join {
+	background-color: #0099ff;
+	font-size: 1.2em;
+	color: #fff;
+	padding: 3px;
+	line-height: 25px;
+	border: 1px solid #0099ff;
+	border-radius: 3px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.mystore p.apply-box {
+	position: absolute;
+	top: -40px;
+	right: 50px;
+	text-align: right;
+	line-height: 30px;
+	padding-right: 2%;
+}
+.apply-box input {
+	font-family: "Microsoft Yahei", sans-serif;
+}
+.library-name {
+	border: 1px solid #0099ff;
+	font-size: 1.1em;
+	color: #0099ff;
+	height: 31px;
+	width: 200px;
+	vertical-align: middle;
+	text-indent: 3px;
+}
+.create {
 	background-color: #0099ff;
 	font-size: 1.2em;
 	color: #fff;

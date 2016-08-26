@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>九九打印</title>
+    <title>四年打印</title>
     <link rel="stylesheet" href="css/upload.css">
 </head>
 <body>
 <header class="clearfix">
     <a href="http://www.99dayin.com" class="logo">
-        <img src="images/logo.png" alt="九九打印">
-        <p>九九打印</p>
+        <img src="images/logo.png" alt="四年打印">
+        <p>四年打印</p>
     </a>
     <nav>
         <ul>
@@ -55,7 +55,19 @@
         备注（有助于管理员识别）：<input type="text" class="remark" placeholder="不超过15个字（选填）">
     </div>
     <div class="apply-sub">
-        <a class="apply-btn" href="javascript:void(0)">发送请求</a>
+        <a class="apply-btn" href="javascript:;">发送请求</a>
+    </div>
+</div>
+<div id="apply-create"> <!-- 申请自建文库 -->
+    <div class="create-top">
+        申请建立<span>X</span>
+    </div>
+    <div class="create-info">
+        <p>申请文库名：<span class="create-lib-name">xxx</span></p>
+        <p class="time">申请时间：</p>
+    </div>
+    <div class="create-sub">
+        <a class="create-btn" href="javascript:;">确认建立</a>
     </div>
 </div>
 <div class="printcar-list"> <!-- 打印车列表 -->
@@ -68,7 +80,7 @@
         </div>
     </div>
     <div class="printcar-sub">
-        <a class="print-btn" href="javascript:void(0)">查看打印车</a>
+        <a class="print-btn" href="javascript:;">查看打印车</a>
     </div>
 </div>
 
@@ -81,6 +93,10 @@
 
 <div class="myself-wrap clearfix">
     <div class="mystore clearfix">
+        <p class="apply-box">
+            <input type="text" class="library-name" placeholder="输入文库名(自建文库)">
+            <input type="button" class="create" value="申请建立">
+        </p>
         <p class="search-box">
             <input type="text" class="search" placeholder="输入文库号查找文库">
             <input type="button" class="join" value="申请加入">
@@ -211,9 +227,9 @@
             <p><a href="doc/aboutUs.html" target="_blank">官方贴吧</a></p>
         </div>
         <div class="ewm">
-            <img src="images/ewm.png">
+            <img src="images/ewm.jpg">
         </div>
-        <p class="copyright">&copy;2016 九九打印版权所有 鄂ICP备15018392号</p>
+        <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
     </footer>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>

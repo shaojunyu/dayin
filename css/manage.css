@@ -62,6 +62,9 @@ header .logo:active {
 .logo p, .logo img {
 	float: left;
 }
+.logo img {
+	width: 40px;
+}
 .logo p {
 	color: rgba(0,0,0,0.6);
 	font-size: 1.428em;
