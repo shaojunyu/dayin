@@ -278,10 +278,10 @@ $(document).ready(function() {
 
 	//提交订单
 	$(".pay").click(function() {
-		if($(".pick").prop("checked") == false && $(".todoor").prop("checked") == false ) {
+		/*if($(".pick").prop("checked") == false && $(".todoor").prop("checked") == false ) {
 			showError("请选择收货方式");
 			return;
-		}
+		}*/
 		//列表中是否有文件
 		/*var fileNum = document.querySelectorAll(".scroll-box div");
 		if(fileNum.length <= 1) {
@@ -290,13 +290,14 @@ $(document).ready(function() {
 		}*/
 		
 		showError("提交中，请稍候...");
+		test("get");
 
-		if($(".pick").prop("checked") == true) { //到店自取
+		/*if($(".pick").prop("checked") == true) { //到店自取
 			test("get");
 		}
 		else if($(".todoor").prop("checked") == true) { //送货上门
 			test("send");
-		}
+		}*/
 	});
 
 	//删除订单

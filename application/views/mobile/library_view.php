@@ -61,7 +61,7 @@
 	</div>
 
 	<a href="javascript:;" class="return"></a>  <!-- 返回上一级 -->
-	<a href="javascript:;" class="addto-car">加入打印车 (0)</a>
+	<a href="javascript:;" class="addto-car">加入购物车 (0)</a>
 	
 	<div class="menu clearfix"> <!-- 底部菜单 -->
 		<a href="javascript:;"><div class="library">文库</div></a>

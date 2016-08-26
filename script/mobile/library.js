@@ -14,7 +14,7 @@ function addFolder(data) {
 	car = 0;
 	$(".library-box").css("display", "none");
 	$(".addto-car").show();
-	$(".addto-car").html("加入打印车 ("+car+")");
+	$(".addto-car").html("加入购物车 ("+car+")");
 	var i = 0;
 	var folder = "";
 	var files = "";
@@ -70,12 +70,12 @@ function addClick() {
 		if($(this).hasClass("check-click")) {
 			$(this).removeClass("check-click");
 			car--;
-			$(".addto-car").html("加入打印车 ("+car+")");
+			$(".addto-car").html("加入购物车 ("+car+")");
 			return;
 		}
 		$(this).addClass("check-click");
 		car++;
-		$(".addto-car").html("加入打印车 ("+car+")");
+		$(".addto-car").html("加入购物车 ("+car+")");
 	});
 }
 

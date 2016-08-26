@@ -219,7 +219,7 @@ nav ul li ul#sign-out li {
 	border-color: #32659a;
 }
 .door {
-	display: inline-block;
+	display: none;
 }
 .door select, .door input {
 	height: 30px;
@@ -256,7 +256,6 @@ nav ul li ul#sign-out li {
 	margin-left: 30px;
 	font-size: 1.1em;
 	color: #32659a;
-	display: none;
 }
 
 

@@ -127,7 +127,7 @@
 	<!-- 去支付 -->
 	<div class="cover"></div>
 	<div class="pay-box clearfix">
-		<p>支付订单</p>
+		<p>支付订单<a href="javascript:;" class="hide-pay-box">X</a></p>
 		<p class="text">选择一种支付方式</p>
 		<div><a href="javascript:;" class="wexin">微信支付</a></div>
 		<div><a href="javascript:;" class="zhifubao">支付宝支付</a></div>

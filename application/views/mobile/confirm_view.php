@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header class="clearfix">
-		<a href="javascript:;" class="select-all">全选</a>
+		<!-- <a href="javascript:;" class="select-all">全选</a> -->
 		<span>文档</span>
 		<span>每页印刷</span>
 		<span>排版设置</span>
@@ -73,9 +73,9 @@
 
 			?>
 			<div class="file-set-box clearfix" data-md5="<?php echo $item['fileMD5'];?>">
-				<div class="check-box">
+				<!-- <div class="check-box">
 					<a href="javascript:;" class="check"></a>
-				</div>
+				</div> -->
 				<div class="file-info">
 					<p class="file-name"><?php echo $item['fileName'];?></p>
 					<span>共 <?php echo $item['pages'];?> 页</span>
@@ -111,7 +111,7 @@
 					<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 					<div class="select-box">
 						<a href="javascript:;">A4</a>
-						<a href="javascript:;">B5</a>
+						<a href="javascript:;">B4</a>
 					</div>
 				</div>
 				<div class="copies-box">
@@ -138,8 +138,11 @@
 				<img src="../images/mobile/jiantou.png">
 			</div>
 		</div>
-		<a href="javascript:;" class="to-pay">提交订单 ¥0.00</a>
+		<a href="javascript:;" class="to-pay">提交订单 ¥<span>0.00</span></a>
 	</form>
+
+	<!-- 弹出消息 -->
+	<div class="prompt-box"></div>
 
 	<div class="menu clearfix"> <!-- 底部菜单 -->
 		<a href="library"><div class="library">文库</div></a>

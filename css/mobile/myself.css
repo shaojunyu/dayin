@@ -252,6 +252,18 @@ header img {
 	border-radius: 5px 5px 0 0;
 	border-bottom: 1px solid #e5e5e5;
 	margin-bottom: 20px;
+	position: relative;
+}
+.pay-box .hide-pay-box {
+	position: absolute;
+	width: 1.6rem;
+	height: 1.6rem;
+	top: 0.4rem;
+	right: 0.4rem;
+	text-align: center;
+	line-height: 1.6rem;
+	color: #000;
+	background-color: #fff;
 }
 .text {
 	margin-left: 20px;

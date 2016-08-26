@@ -8,8 +8,6 @@ function secret(url) {
 	return url;
 }
 
-
-
 $(function () {
 	$(".order-status a").click(function () {
 		var prev = $(".click").attr("data-index");
@@ -43,8 +41,9 @@ $(function () {
 
 	//取消订单
 	var cancelData;
+	var parent;
 	$(".cancel").click(function () {
-		var parent = $(this)[0].parentNode.parentNode.parentNode;
+		parent = $(this)[0].parentNode.parentNode.parentNode;
 		var orderId = parent.getAttribute("data-orderId");
 		cancelData = {
 			orderId: orderId
@@ -80,6 +79,14 @@ $(function () {
 
 	//去支付
 	$(".pay").click(function () {
-		
+		$(".pay-box").show();
+		$(".cover").show();
 	});
+
+	//取消支付
+	$(".hide-pay-box").click(function () {
+		$(".pay-box").hide();
+		$(".cover").hide();
+	});
+
 });
