@@ -212,6 +212,10 @@ $(function () {
 		if(isAdding) {
 			return;
 		}
+		//判断是否有选中文件
+		if($(".check-click").get().length === 0) {
+			return;
+		}
 		isAdding = true;
 		var choose = $(".check-click");
 		var shoppingCart = [];

@@ -26,11 +26,11 @@
 			$this->load->model('Cart_model','Cart');
 			$this->db->where('cellphone',$this->session->userdata('cellphone'));
 			$res = $this->db->get('cart')->result_array();
-			if (count($res) == 0){
+			/*if (count($res) == 0){
 				$this->load->helper('url');
 				header('Location: '.base_url('/upload'));
 				return;
-			}
+			}*/
 			$i = 1;
 			foreach ($res as $item) {
 				if (strripos($item['fileName'], '.doc')) {
@@ -78,7 +78,7 @@
 				</div> -->
 				<div class="file-info">
 					<p class="file-name"><?php echo $item['fileName'];?></p>
-					<span>共 <?php echo $item['pages'];?> 页</span>
+					<span>共 <span class="pages"><?php echo $item['pages'];?></span> 页</span>
 				</div>
 				<div class="choose-box">
 					<a href="javascript:;" class="choose-default per-page"><?php echo $item['pptPerPage'];?></a>

@@ -112,6 +112,18 @@ function compTotal() {
 }
 
 $(function () {
+	//判断是否从后台获取了页码
+	$(".pages").each(function (index, item) {
+		if(item.innerHTML === "") {
+			window.location.href = "../mobile/confirm";
+		}
+	});
+
+	//判断打印车是否为空
+	if($(".file-set-box").get().length === 0) {
+		showMsg("购物车为空");
+	}
+
 	//判断是否为word文档
 	$(".file-name").each(function (index, item) {
 		if(item.innerHTML.indexOf("doc") !== -1 || item.innerHTML.indexOf("docx") !== -1) {
@@ -210,6 +222,10 @@ $(function () {
 	//提交订单
 	var isSubmit = false;
 	$(".to-pay").tap(function () {
+		if($(".file-set-box").get().length === 0) {
+			showMsg("购物车为空");
+			return;
+		}
 		if(isSubmit) {
 			return;
 		}
