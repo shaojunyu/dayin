@@ -8,13 +8,13 @@
 <body>
 <div class="head scroll">
     <header class="clearfix">
-        <a href="http://www.99dayin.com" class="logo">
+        <a href="http://dayin.4nian.cc" class="logo">
             <img src="images/logo.png" alt="四年打印">
             <p>四年打印</p>
         </a>
         <nav>
             <ul>
-                <li><a href="http://www.99dayin.com">首页</a></li>
+                <li><a href="http://dayin.4nian.cc">首页</a></li>
                 <li><a href="doc/base.html" target="_blank">简介</a></li>
                 <?php
                 if (!$this->session->userdata('cellphone')){
