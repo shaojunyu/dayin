@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'www.99dayin.com';
+$config['base_url'] = 'http://dayin.4nian.cc/';
 
 /*
 |--------------------------------------------------------------------------
