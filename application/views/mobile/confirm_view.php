@@ -66,7 +66,8 @@
 				}
 				if(!$item['subTotal']){
 					//$this->load->model('Cart_model','Cart');
-					$item['subTotal'] = $this->Cart->calculate_price($item['fileMD5'])['subTotal'];
+					$price_info = $this->Cart->calculate_price($item['fileMD5']);
+					$item['subTotal'] = $price_info['subTotal'];
 				}
 				//var_dump($item);
 
@@ -116,7 +117,7 @@
 				<div class="copies-box">
 					<input type="tel" class="copies" value="<?php echo $item['amount'];?>">
 				</div>
-				<div class="price">小计：¥<?php echo $item['subTotal'];?></div>
+				<div class="price">小计：¥<span class="sub-price"><?php echo $item['subTotal'];?></span></div>
 			</div>
 			<?php } //end foreach?>
 
@@ -137,7 +138,7 @@
 				<img src="../images/mobile/jiantou.png">
 			</div>
 		</div>
-		<a href="javascript:;" class="to-pay">去下单 ¥10.55</a>
+		<a href="javascript:;" class="to-pay">提交订单 ¥0.00</a>
 	</form>
 
 	<div class="menu clearfix"> <!-- 底部菜单 -->
