@@ -72,7 +72,7 @@
 				//var_dump($item);
 
 			?>
-			<div class="file-set-box clearfix">
+			<div class="file-set-box clearfix" data-md5="xxx">
 				<div class="check-box">
 					<a href="javascript:;" class="check"></a>
 				</div>
