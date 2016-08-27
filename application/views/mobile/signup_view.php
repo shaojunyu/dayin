@@ -54,6 +54,9 @@
 		<a href="javascript:;" class="weui_btn weui_btn_primary sbm">确认注册</a>
 	</form>
 
+	<!-- 弹出消息 -->
+	<div class="prompt-box"></div>
+
 	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
 	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
 	<script type="text/javascript" src="../script/mobile/signup.js"></script>

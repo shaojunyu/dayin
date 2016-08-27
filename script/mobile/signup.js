@@ -90,6 +90,21 @@ function showError(box, input, err) {
 	input.val(err);
 }
 
+//消息显示框显示
+function showMsg(msg) {
+	$(".prompt-box").html(msg);
+	$(".prompt-box").show();
+	setTimeout(function () {
+		hideMsg();
+	}, 2000);
+}
+
+//消息显示框隐藏
+function hideMsg() {
+	$(".prompt-box").html("");
+	$(".prompt-box").hide();
+}
+
 //1分钟后重试
 function getDisable() {
 	var time = 59;
@@ -235,13 +250,15 @@ $(function () {
 			type: "POST",
 			data: JSON.stringify(data),
 			success: function(data) {
-				console.log(data);
 				if(data.success) {
-
+					window.location.href = "../mobile/library";
+				}
+				else {
+					showMsg(data.msg);
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){  
-				alert("请求失败"); 
+				showMsg("请求失败"); 
 			}
 		});
 	});
