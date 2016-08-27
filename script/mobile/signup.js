@@ -5,7 +5,7 @@ var formMathod = {};
 formMathod.phoneReg = /^1[3|4|5|7|8]\d{9}$/;
 formMathod.phoneCheck = function(input) { //参数为表单元素
 	var val = input.value.split("-").join("");
-	if(val.length === 0) {
+	if(val.length === 0 || val === "请输入手机号!" || val === "手机号输入有误!") {
 		return "请输入手机号!";
 	}
 	else if(val.length !== 11 || !formMathod.phoneReg.test(val)) {
@@ -19,10 +19,11 @@ formMathod.phoneCheck = function(input) { //参数为表单元素
 formMathod.passwdRegZH = /^[^\u4E00-\u9FA5]{5,20}$/;
 formMathod.passwdRegQJ = /^[^\uFF00-\uFFFF]{5,20}$/;
 formMathod.passwdRegSp = /\s/;
+var passwdErr = ["密码不能为空!","密码长度不得小于8!","密码不能含有中文!","密码不能含有空格!","密码不能含有全角字符!"];
 formMathod.passwdCheck = function(input) { //验证非中文和全角
 	var val = input.value;
 	var msg = "";
-	if(val.length === 0) {
+	if(val.length === 0 || val === passwdErr[0] || val === passwdErr[1] || val === passwdErr[2] || val === passwdErr[3] || val === passwdErr[4]) {
 		msg = "密码不能为空!";
 	}
 	else if(val.length < 8) {
