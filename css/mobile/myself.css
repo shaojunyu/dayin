@@ -310,6 +310,28 @@ header img {
 	margin-bottom: 2px;
 }
 
+/* 二维码 */
+.ewm {
+	width: 85%;
+	position: absolute;
+	top: 8rem;
+	left: 7.5%;
+	z-index: 999;
+	display: none;
+	text-align: center;
+}
+.ewm-pic {
+	width: 80%;
+}
+.ewm p {
+	width: 100%;
+	background-color: #6bc8f1;
+	color: #fff;
+	padding: 5px 0;
+	font-size: 1.2rem;
+	margin-top: 20px;
+}
+
 /* 已完成 */
 .done-info {
 	display: none;

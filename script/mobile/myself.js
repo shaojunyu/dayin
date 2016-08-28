@@ -8,6 +8,14 @@ function secret(url) {
 	return url;
 }
 
+//生成二维码
+function createEwm(data) {
+	$(".ewm-pic").attr("src", "http://qr.liantu.com/api.php?text="+data.msg.wx_pub_qr);
+	$(".cover").show();
+	$(".ewm").show();
+	$(".pay-box").hide();
+}
+
 $(function () {
 	$(".order-status a").click(function () {
 		var prev = $(".click").attr("data-index");
@@ -115,7 +123,7 @@ $(function () {
 
 
 	//微信支付
-	$(".wexin").tap(function () {
+	$(".wexin").click(function () {
 		var data = {
 			orderId: orderId
 		};
@@ -126,7 +134,9 @@ $(function () {
 	        dataType: "json",
 	        data: JSON.stringify(data),
 	        success: function(data) {
-	            console.log(data);
+	            if(data.success) {
+	            	createEwm(data);
+	            }
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
 	            alert("请求失败");
