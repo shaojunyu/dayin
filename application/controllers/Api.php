@@ -750,6 +750,62 @@ class Api extends CI_Controller{
         }
         echo json_encode($libFiles);
     }
+
+    /**
+     * function wxPayQr 微信支付二维码
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public function wxPayQr(){
+        require_once APPPATH.'third_party/pingpp/init.php';
+        $api_key = 'sk_live_bOz9YlaOHrS7dFw9yYlUif7R';
+        $app_id = 'app_SO0anHPWznHCbL0y';
+
+        $this->needSession();
+        $this->check_post_data(array('orderId'));
+        $orderId = $this->post_data->orderId;
+        $this->db->where('Id',$orderId);
+        $this->db->where('cellphone',$this->session->userdata('cellphone'));
+        $this->db->where('state','UNPAID');
+        $res = $this->db->get('order')->result_array();
+        if (count($res) != 1){
+            http_response_code(400);
+            exit('bad request');
+        }
+        //获取订单信息
+        $res = $res[0];
+        $total = $res['total'];
+
+        \pingpp\Pingpp::setApiKey($api_key);
+        $extra = array(
+            'product_id' => 'print'
+        );
+        try{
+            $ch = Pingpp\Charge::create(array(
+                'subject' => '99打印在线支付',
+                'body' => '文档打印',
+                'amount'=>$total * 100,
+                'order_no'=>$orderId.time(),
+                'currency'  => 'cny',
+                'extra'     => $extra,
+                'channel'   => 'wx_pub_qr',
+                'client_ip' => '127.0.0.1',
+                'app'       => array('id' => $app_id)
+            ));
+            //$this->pingpp_charge = $ch;
+            //var_dump($ch->__toArray());
+            //更新数据库
+            $this->db->where('Id',$orderId);
+            $this->db->where('cellphone',$this->session->userdata('cellphone'));
+            $this->db->update('order',array('pingppId'=>$ch->__toArray()['id']));
+            $ch_array = $ch->__toArray();
+            $this->echo_msg(true,array('wx_pub_qr'=>$ch_array['credential']['wx_pub_qr']));
+        }catch (\Pingpp\Error\Base $e) {
+            header('Status: ' . $e->getHttpStatus());
+            echo($e->getHttpBody());
+        }
+    }
     
 /*
  * ----------------------------------------------------------------------------------------
