@@ -61,8 +61,8 @@
 	<div class="processing-info order-box">   <!-- 处理中 -->
 		<?php
 		$this->db->where('cellphone',$this->session->userdata('cellphone'));
-		$this->db->where('state','PRINTED');
-		//$this->db->or_where('state','UNPRINTED');
+		$this->db->where('state','PAID');
+		$this->db->or_where('state','UNPRINTED');
 		$res = $this->db->get('order')->result_array();
 		foreach ($res as $order){
 		?>
