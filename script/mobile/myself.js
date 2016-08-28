@@ -8,9 +8,25 @@ function secret(url) {
 	return url;
 }
 
+//消息显示框显示
+function showMsg(msg) {
+	$(".prompt-box").html(msg);
+	$(".prompt-box").show();
+	setTimeout(function () {
+		hideMsg();
+	}, 3000);
+}
+
+//消息显示框隐藏
+function hideMsg() {
+	$(".prompt-box").html("");
+	$(".prompt-box").hide();
+}
+
 //生成二维码
 function createEwm(data) {
 	$(".ewm-pic").attr("src", "http://qr.liantu.com/api.php?text="+data.msg.wx_pub_qr);
+	$(".we-cancel").show();
 	$(".cover").show();
 	$(".ewm").show();
 	$(".pay-box").hide();
@@ -56,14 +72,14 @@ $(function () {
 			type: "POST",
 			success:function(data) {
 	    		if(data.msg) {
-	    			alert(data.msg);
+	    			showMsg(data.msg);
 	    		}
 	    		else {
 	    			window.location.href = "../mobile";
 	    		}
 	       	},
 	    	error: function(XMLHttpRequest, textStatus, errorThrown){  
-	    		alert("请求失败，请刷新重试");
+	    		showMsg("请求失败，请刷新重试");
 	   		}
 		});
 	});
@@ -99,7 +115,7 @@ $(function () {
 				$(".cancel-box").hide();
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
-	            alert("请求失败"); 
+	            showMsg("请求失败"); 
 	            $(".cover").hide();
 				$(".cancel-box").hide();
 	        }
@@ -124,6 +140,7 @@ $(function () {
 
 	//微信支付
 	$(".wexin").click(function () {
+		showMsg("请稍候");
 		var data = {
 			orderId: orderId
 		};
@@ -139,8 +156,15 @@ $(function () {
 	            }
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
-	            alert("请求失败");
+	            showMsg("请求失败");
 	        }
 		});
+	});
+
+	//取消支付
+	$(".we-cancel").click(function () {
+		$(".cover").hide();
+		$(".ewm").hide();
+		$(this).hide();
 	});
 });

@@ -69,6 +69,9 @@
 		<a href="myself"><div class="person">我的</div></a>
 	</div>
 
+	<!-- 弹出消息 -->
+	<div class="prompt-box"></div>
+
 	<!-- 加入购物车后的弹出框 -->
 	<div class="added clearfix">
 		<p>已加入购物车</p>

@@ -275,25 +275,57 @@ $(function () {
 
 	//初始化总价
 	compTotal();
-});
 
-/*
-	$.ajax({
-		url: secret("../api/createOrder"),
-	    contentType: "application/json",
-	    dataType: "json",
-	    type: "POST",
-	    data: JSON.stringify(data),
-	    success:function(data) {
-	    	if(data.success) {
-				
-	    	}
-	   		else {
-	        	
-	        }
-	    },
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-			showMsg("提交失败，请重试");
-		}
+	//删除文件
+	var fileMd5 = "";
+	var delBox = "";
+	$(".del").tap(function () {
+		delBox = $(this).parent().parent();
+		fileMd5 = delBox.attr("data-md5");
+		$(".cover").show();
+		$(".cancel-box").show();
 	});
-*/
+
+	//取消
+	$(".hide-cancel-box").click(function () {
+		$(".cancel-box").hide();
+		$(".cover").hide();
+		fileMd5 = "";
+		delBox = "";
+	});
+	$(".cancel").click(function () {
+		$(".cancel-box").hide();
+		$(".cover").hide();
+		fileMd5 = "";
+		delBox = "";
+	});
+
+	//确定删除
+	$(".submit").click(function () {
+		var data = {
+			fileMD5: fileMd5
+		};
+		$.ajax({
+			url: secret("../api/deleteItem"),
+		    contentType: "application/json",
+		    dataType: "json",
+		    type: "POST",
+		    data: JSON.stringify(data),
+		    success: function(data) {
+		    	$(".cover").hide();
+		    	$(".cancel-box").hide();
+		    	$(".content")[0].removeChild(delBox[0]);
+		    	compTotal();
+		    	if(data.success) {
+		    		showMsg(data.msg);
+		    	}
+		    	else {
+		    		showMsg(data.msg);
+		    	}
+		    },
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				showMsg("请求失败");
+			}
+		});
+	});
+});
