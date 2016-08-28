@@ -47,7 +47,7 @@
 		<div class="weui_cells weui_cells_form">
 		    <div class="weui_cell password-box">
 		        <div class="weui_cell_bd weui_cell_primary">
-		            <input class="weui_input password" type="password" placeholder="请设置您的密码(至少8位)">
+		            <input class="weui_input password" type="password" placeholder="请设置您的密码(至少6位)">
 		        </div>
 		    </div>
 		</div>
