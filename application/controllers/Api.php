@@ -794,7 +794,7 @@ class Api extends CI_Controller{
                 'app'       => array('id' => $app_id)
             ));
             //$this->pingpp_charge = $ch;
-            //var_dump($ch->__toArray());
+            var_dump($ch);
             //更新数据库
             $ch_array = $ch->__toArray();
             $this->db->where('Id',$orderId);
@@ -802,9 +802,11 @@ class Api extends CI_Controller{
             $this->db->update('order',array('pingppId'=>$ch_array['id']));
 
             $this->echo_msg(true,array('wx_pub_qr'=>$ch_array['credential']['wx_pub_qr']));
-        }catch (\Pingpp\Error\Base $e) {
-            header('Status: ' . $e->getHttpStatus());
+        }catch (Exception $e) {
+            var_dump($e);
+            /*header('Status: ' . $e->getHttpStatus());
             echo($e->getHttpBody());
+            echo 'fail';*/
         }
     }
     
