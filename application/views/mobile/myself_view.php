@@ -16,7 +16,7 @@
 		</div>
 		<div>
 			<span>账号：<?php echo $this->session->userdata('cellphone');?></span><br>
-			<span></span>
+			<a href="javascript:;" class="sign-out">退出登录</a>
 		</div>
 	</header>
 

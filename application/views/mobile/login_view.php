@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>注册</title>
+	<title>登录</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
@@ -47,6 +47,9 @@
 			margin: 0 auto;
 			width: 85%;
 			padding-top: 57px;
+		}
+		.log-box {
+			display: none;
 		}
 		.weui_cell {
 			padding: 7px;
@@ -93,6 +96,22 @@
 			font-size: 1.3rem;
 			margin-top: 25px;
 		}
+		.sbm-passwd {
+			background-color: #3991a0;
+			letter-spacing: 12px;
+			font-size: 1.3rem;
+			margin-top: 45px;
+		}
+		.log-passwd-box {
+			position: relative;
+		}
+		.smscode-login {
+			color: #fff;
+			display: block;
+			margin-top: 5px;
+			position: absolute;
+			right: 0px;
+		}
 	</style>
 </head>
 <body>
@@ -102,6 +121,25 @@
 		</div>
 		<p>四年打印</p>
 	</div>
+
+	<form class="log-passwd-box">
+		<div class="weui_cells weui_cells_form">
+		    <div class="weui_cell phone-passwd-box">
+		        <div class="weui_cell_bd weui_cell_primary">
+		            <input class="weui_input phone-passwd" type="tel" placeholder="输入您的手机号">
+		        </div>
+		    </div>
+		</div>
+		<div class="weui_cells weui_cells_form">
+		    <div class="weui_cell passwd-box">
+		        <div class="weui_cell_bd weui_cell_primary">
+		            <input class="weui_input passwd" type="password" placeholder="请设置您的密码(至少8位)">
+		        </div>
+		    </div>
+		</div>
+		<a href="javascript:;" class="smscode-login">验证码登录>></a>
+		<a href="javascript:;" class="weui_btn weui_btn_primary sbm-passwd">确认登录</a>
+	</form>
 
 	<form class="log-box">
 		<div class="weui_cells weui_cells_form">
@@ -121,7 +159,7 @@
 			</div>
 			<a href="javascript:;" class="get">获取短信验证码</a>
 		</div>
-		<a href="javascript:;" class="weui_btn weui_btn_primary sbm">确认登录</a>
+		<a href="javascript:;" class="weui_btn weui_btn_primary sbm">验证码登录</a>
 	</form>
 
 	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>

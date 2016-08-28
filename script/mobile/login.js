@@ -15,6 +15,40 @@ formMathod.phoneCheck = function(input) { //参数为表单元素
 	return true;
 };
 
+//密码验证
+formMathod.passwdRegZH = /^[^\u4E00-\u9FA5]{5,20}$/;
+formMathod.passwdRegQJ = /^[^\uFF00-\uFFFF]{5,20}$/;
+formMathod.passwdRegSp = /\s/;
+var passwdErr = ["密码不能为空!","密码长度不得小于8!","密码不能含有中文!","密码不能含有空格!","密码不能含有全角字符!"];
+formMathod.passwdCheck = function(input) { //验证非中文和全角
+	var val = input.value;
+	var msg = "";
+	if(val.length === 0 || val === passwdErr[0] || val === passwdErr[1] || val === passwdErr[2] || val === passwdErr[3] || val === passwdErr[4]) {
+		msg = "密码不能为空!";
+	}
+	else if(val.length < 8) {
+		msg = "密码长度不得小于8!";
+	}
+	else if(!formMathod.passwdRegZH.test(val)) {
+		msg = "密码不能含有中文!";
+	}
+	else if(formMathod.passwdRegSp.test(val)) {
+		msg = "密码不能含有空格!";
+	}
+	else if(!formMathod.passwdRegQJ.test(val)) {
+		msg = "密码不能含有全角字符!";
+	}
+
+	if(msg === "") {
+		return true;
+	}
+	else {
+		input.value = "";
+		return msg;
+	}
+};
+
+
 //加密函数
 function secret(url) {
 	var date = new Date();
@@ -54,6 +88,83 @@ function getDisable() {
 
 $(function () {
 	//手机输入处理
+	$(".phone-passwd").focus(function() { //获得焦点
+		if($(this).css("color") == "red") {
+			hideError($(".phone-passwd-box"), $(this));
+			return;
+		}
+		$(this).val($(this).val().split("-").join(""));
+	});
+	$(".phone-passwd").blur(function() { //失去焦点
+		var val = $.trim($(this).val());
+		var str = "";
+		if(val.length > 3 && val.length <= 7) {
+			str = str.concat(val.substr(0, 3), "-", val.substr(3));
+		}
+		else if(val.length > 7) {
+			str = str.concat(val.substr(0, 3), "-", val.substr(3, 4), "-", val.substr(7));
+		}
+		$(this).val(str || val);
+	});
+
+	//密码输入处理
+	$(".passwd").focus(function() { //获得焦点
+		$(this).attr("type", "password");
+		if($(this).css("color") == "red") {
+			hideError($(".passwd-box"), $(this));
+		}
+	});
+
+	//密码登录
+	$(".sbm-passwd").click(function () {
+		//验证手机号是否正确
+		var isPhoneOk = formMathod.phoneCheck($(".phone-passwd")[0]);
+		if(typeof isPhoneOk === "string") {
+			showError($(".phone-passwd-box"), $(".phone-passwd"), isPhoneOk);
+			return;
+		}
+
+		//验证密码
+		var isPasswordOk = formMathod.passwdCheck($(".passwd")[0]);
+		if(typeof isPasswordOk === "string") {
+			$(".passwd").attr("type", "text");
+			showError($(".passwd-box"), $(".passwd"), isPasswordOk);
+			return;
+		}
+
+		//密码登录
+		var data = {
+			cellphone: $.trim($(".phone-passwd").val()).split("-").join(""),
+			password: $(".passwd").val()
+		};
+		$.ajax({
+	        url: secret("../api/login"),
+	        contentType: "application/json",
+	        dataType: "json",
+	        type: "POST",
+	        data: JSON.stringify(data),
+	        success: function(data) {
+	        	if(data.success) {
+	        		window.location.href = "../mobile/library";
+	        	}
+				else {
+	        		alert(data.msg);
+	        	}
+	        },
+		    error: function(XMLHttpRequest, textStatus, errorThrown){  
+		        alert("请求失败，请刷新重试"); 
+		    }
+	    });
+	});
+
+	//切换到验证码登录
+	$(".smscode-login").click(function () {
+		$(".log-passwd-box").hide();
+		$(".log-box").show();
+	});
+
+
+	//验证码登录手机输入处理
 	$(".phone").focus(function() { //获得焦点
 		if($(this).css("color") == "red") {
 			hideError($(".phone-box"), $(this));
@@ -113,7 +224,7 @@ $(function () {
 	    });
 	});
 
-	//注册
+	//验证码登录
 	$(".sbm").click(function () {
 		//验证手机号是否正确
 		var isPhoneOk = formMathod.phoneCheck($(".phone")[0]);
@@ -129,7 +240,7 @@ $(function () {
 			return;
 		}
 
-		//发送注册请求
+		//发送验证码登录请求
 		var user = $(".phone").val().split("-").join("");
 		var passw = $(".password").val();
 		var data = {

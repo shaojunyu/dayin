@@ -39,6 +39,27 @@ $(function () {
 		}
 	});
 
+	//退出登录
+	$(".sign-out").click(function() {
+		$.ajax({
+			url: "../api/logout",
+			data:'{}',
+			contentType: 'application/json',
+			type: "POST",
+			success:function(data) {
+	    		if(data.msg) {
+	    			alert(data.msg);
+	    		}
+	    		else {
+	    			window.location.href = "../mobile";
+	    		}
+	       	},
+	    	error: function(XMLHttpRequest, textStatus, errorThrown){  
+	    		alert("请求失败，请刷新重试");
+	   		}
+		});
+	});
+
 	//取消订单
 	var cancelData;
 	var parent;
