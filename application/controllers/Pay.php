@@ -57,7 +57,7 @@ class Pay extends CI_Controller{
                 break;
             case 'alipay_pc_direct':
                 $extra = array(
-                    'success_url' => 'http://www.99dayin.com/myself');
+                    'success_url' => 'http://dayin.4nian.cc/myself');
                 break;
             default:
                 $extra = array();
