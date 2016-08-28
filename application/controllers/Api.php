@@ -796,10 +796,11 @@ class Api extends CI_Controller{
             //$this->pingpp_charge = $ch;
             //var_dump($ch->__toArray());
             //更新数据库
+            $ch_array = $ch->__toArray();
             $this->db->where('Id',$orderId);
             $this->db->where('cellphone',$this->session->userdata('cellphone'));
-            $this->db->update('order',array('pingppId'=>$ch->__toArray()['id']));
-            $ch_array = $ch->__toArray();
+            $this->db->update('order',array('pingppId'=>$ch_array['id']));
+
             $this->echo_msg(true,array('wx_pub_qr'=>$ch_array['credential']['wx_pub_qr']));
         }catch (\Pingpp\Error\Base $e) {
             header('Status: ' . $e->getHttpStatus());
