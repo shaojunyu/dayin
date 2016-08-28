@@ -36,7 +36,7 @@
 		foreach ($res as $order){
 			//var_dump($order);
 		?>
-		<div class="order-info" data-orderId="<?php echo $order['Id'];?>">
+		<div class="order-info" data-orderid="<?php echo $order['Id'];?>">
 			<div class="file-info-box clearfix">
 				<div class="file-info">
 					<p><?php
@@ -140,6 +140,7 @@
 	</div>
 
 	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
+	<script type="text/javascript" src="../script/mobile/touch.js"></script>
 	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
 	<script type="text/javascript" src="../script/mobile/myself.js"></script>
 </body>

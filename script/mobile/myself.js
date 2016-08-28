@@ -99,15 +99,38 @@ $(function () {
 	});
 
 	//去支付
+	var orderId = "";
 	$(".pay").click(function () {
 		$(".pay-box").show();
 		$(".cover").show();
+		orderId = $(this).parent().parent().parent().attr("data-orderid");
 	});
 
 	//取消支付
 	$(".hide-pay-box").click(function () {
 		$(".pay-box").hide();
 		$(".cover").hide();
+		orderId = "";
 	});
 
+
+	//微信支付
+	$(".wexin").tap(function () {
+		var data = {
+			orderId: orderId
+		};
+		$.ajax({
+			url: secret("../api/wxPayQr"),
+		    type: "POST",
+	        contentType:"application/json",
+	        dataType: "json",
+	        data: JSON.stringify(data),
+	        success: function(data) {
+	            console.log(data);
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown){  
+	            alert("请求失败");
+	        }
+		});
+	});
 });
