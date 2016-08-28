@@ -794,7 +794,7 @@ class Api extends CI_Controller{
                 'app'       => array('id' => $app_id)
             ));
             //$this->pingpp_charge = $ch;
-            var_dump($ch);
+            //var_dump($ch);
             //更新数据库
             $ch_array = $ch->__toArray();
             $this->db->where('Id',$orderId);
