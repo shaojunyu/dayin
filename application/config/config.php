@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-//$config['base_url'] = 'http://dayin.4nian.cc/';
+$config['base_url'] = 'http://dayin.4nian.cc/';
 
 /*
 |--------------------------------------------------------------------------
