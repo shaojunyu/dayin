@@ -34,6 +34,11 @@ class User_model extends CI_Model{
 
     }
 
+    public function wetchat_login($cellphone){
+        $this->userInfo2session($cellphone);
+        return true;
+    }
+
     public function signup($cellphone,$password,$school){
         $this->db->where('cellphone',$cellphone);
         $res = $this->db->get('user')->result_array();

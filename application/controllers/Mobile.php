@@ -10,6 +10,7 @@ class Mobile extends CI_Controller{
     {
         parent::__construct();
         $this->load->helper('url');
+
     }
 
     public function index(){
@@ -18,6 +19,41 @@ class Mobile extends CI_Controller{
 
     public function login(){
         $this->load->view('mobile/login_view');
+    }
+
+    public function wechat_login(){
+        $code = $this->input->get('code');
+        if (!empty($code)){
+            //echo $code;
+            //获取token
+            $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd781831d64bb0674&secret=3bcc9249cce5cba968e79f232abf228e&code='.$code.'&grant_type=authorization_code ';
+            $ch  = curl_init($url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $data = curl_exec($ch);
+            $data = json_decode($data);
+            curl_close($ch);
+            if (isset($data->errcode)){
+                echo '<h1>invalid code!请重试</h1>';
+            }else{
+                $openid = $data->openid;
+                //检查openid是否存在
+                $this->db->where('openid',$openid);
+                $res = $this->db->get('user')->result_array();
+                //var_dump($res);
+                if (count($res) == 1){//直接登陆
+                    $res = $res[0];
+                    $cellphone = $res['cellphone'];
+                    $this->User->wetchat_login($cellphone);
+                    header('Location: ' . base_url('/mobile/library'));
+                }else{
+                    //绑定页面
+                    $this->load->view('mobile/authorize_view',['openid'=>$openid]);
+                }
+            }
+        }else{
+            echo '<h1>参数错误</h1>';
+            exit();
+        }
     }
 
     public function signup(){
