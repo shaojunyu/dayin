@@ -14,7 +14,11 @@ class Mobile extends CI_Controller{
     }
 
     public function index(){
-        $this->load->view('mobile/choose_view');
+        if ($this->session->userdata('cellphone')){
+            header('Location: ' . base_url('/mobile/library'));
+        }else{
+            $this->load->view('mobile/choose_view');
+        }
     }
 
     public function login(){
