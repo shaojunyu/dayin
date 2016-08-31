@@ -709,10 +709,12 @@ class Api extends CI_Controller{
      */
     public function createLib(){
         $this->needSession();
-        $this->check_post_data(array('libraryName'));
+        $this->check_post_data(array('libraryName','introduction'));
         $libName = $this->post_data->libraryName;
+        $introduction = $this->post_data->introduction;
         $this->db->insert('library',array(
             'name'=>$libName,
+            'introduction'=>$introduction,
             'admin'=>$this->session->userdata('cellphone'),
             'isOpen'=>'false'
         ));
