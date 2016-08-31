@@ -196,7 +196,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function confirmMD5(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('fileMD5'));
         $this->db->where('fileMD5',$this->post_data->fileMD5);
         $this->db->get('file_info')->result_array();
@@ -214,7 +214,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function uploadACK(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('fileName','fileMD5'));
         //文件加入购物车
         $this->load->model('Cart_model','Cart');
@@ -238,7 +238,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function deleteItem(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('fileMD5'));
         $this->load->model('Cart_model','Cart');
         if ($this->Cart->delete_item($this->post_data->fileMD5)) {
@@ -255,7 +255,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function printSettings(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('fileMD5'));
         $this->load->model('Cart_model','Cart');
         $res = false;
@@ -289,7 +289,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function getProgess(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('fileMD5'));
         $this->db->where('fileMD5',$this->post_data->fileMD5);
         $res = $this->db->get('file_info')->result_array();
@@ -314,7 +314,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function createOrder(){
-        $this->needSession();
+        $this->needLogin();
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $res = $this->db->get('cart')->result_array();
         if (count($res) == 0){
@@ -380,7 +380,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function cancelOrder(){
-    	$this->needSession();
+    	$this->needLogin();
     	$this->check_post_data(array('orderId'));
         $this->db->where('Id',$this->post_data->orderId);
         $this->db->where('state !=','PAID');
@@ -396,7 +396,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function copyOrder(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('orderId'));
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $this->db->where('Id',$this->post_data->orderId);
@@ -430,7 +430,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function isPaid(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('orderId'));
         $this->db->where('cellphone',$this->session->userdata('cellphone'));
         $this->db->where('Id',$this->post_data->orderId);
@@ -455,7 +455,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function acceptUser(){
-    	$this->needSession();
+    	$this->needLogin();
     	$this->check_post_data(array('libraryId','cellphone'));
     	$this->db->where('cellphone',$this->post_data->cellphone);
     	$this->db->where('libraryId',$this->post_data->libraryId);
@@ -471,7 +471,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function rejectUser(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','cellphone'));
         $this->db->where('cellphone',$this->post_data->cellphone);
         $this->db->where('libraryId',$this->post_data->libraryId);
@@ -486,7 +486,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function createFolder(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','folder'));
         $this->db->insert('library_files',array(
             'libraryId'=>$this->post_data->libraryId,
@@ -502,7 +502,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function deteleFolder(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','folder'));
         $this->db->where('libraryId',$this->post_data->libraryId);
         $this->db->where('folder',$this->post_data->folder);
@@ -514,7 +514,7 @@ class Api extends CI_Controller{
      * 文库文件上传token获取
      */
     public function getLibUploadToken(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','folder'));
         //查询folder是否存在
         $this->db->where('libraryId',$this->post_data->libraryId);
@@ -576,7 +576,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function libUploadACK(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','folder','fileName','fileMD5'));
         $this->db->insert('library_files',array(
             'fileName'=>$this->post_data->fileName,
@@ -593,7 +593,7 @@ class Api extends CI_Controller{
     }
 
     public function deleteLibFile(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','folder','fileName'));
         $this->db->where('libraryId',$this->post_data->libraryId);
         $this->db->where('folder',$this->post_data->folder);
@@ -603,7 +603,7 @@ class Api extends CI_Controller{
     }
 
     public function getLibFiles(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId','folder'));
         $this->db->where('libraryId',$this->post_data->libraryId);
         $this->db->where('folder',$this->post_data->folder);
@@ -619,7 +619,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function searchLib(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId'));
         //$remark = '';
         $this->db->select('name');
@@ -642,7 +642,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function joinLib(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId'));
         //check
         $this->db->whre('libraryId',$this->post_data->libraryId);
@@ -669,7 +669,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function addToCart(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('files'));
         $files = $this->post_data->files;
         foreach ($files as $file){
@@ -686,7 +686,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function getPreview(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('fileMD5'));
         $fileMD5 = $this->post_data->fileMD5;
 
@@ -716,7 +716,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function createLib(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryName','introduction'));
         $libName = $this->post_data->libraryName;
         $introduction = $this->post_data->introduction;
@@ -745,7 +745,7 @@ class Api extends CI_Controller{
      * @author yushaojun
      */
     public function getLibFiles_m(){
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('libraryId'));
         $libId = $this->post_data->libraryId;
         $this->db->where('libraryId',$libId);
@@ -772,7 +772,7 @@ class Api extends CI_Controller{
         $api_key = 'sk_live_bOz9YlaOHrS7dFw9yYlUif7R';
         $app_id = 'app_SO0anHPWznHCbL0y';
 
-        $this->needSession();
+        $this->needLogin();
         $this->check_post_data(array('orderId'));
         $orderId = $this->post_data->orderId;
         $this->db->where('Id',$orderId);
@@ -819,6 +819,26 @@ class Api extends CI_Controller{
             echo 'fail';*/
         }
     }
+
+    /*
+     * ----------------------------------
+     * 微信登陆
+     */
+
+    /**
+     * function code_to_token
+     * @param 通过code换取网页授权access_token
+     * @return
+     * @author yushaojun
+     */
+    public function code_to_token(){
+        $this->check_post_data(array('code'));
+        $code = $this->post_data->code;
+        $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd781831d64bb0674&secret=3bcc9249cce5cba968e79f232abf228e&code='.$code.'&grant_type=authorization_code ';
+        $ch  = curl_init($url);
+        $data = curl_exec($ch);
+        echo $data;
+    }
     
 /*
  * ----------------------------------------------------------------------------------------
@@ -827,12 +847,12 @@ class Api extends CI_Controller{
  */
 
     /**
-     * function needSession 验证session，不存在就退出
+     * function needLogin 验证session，不存在就退出
      * @param
      * @return
      * @author yushaojun
      */
-    private function needSession(){
+    private function needLogin(){
         if ( $this->session->userdata('cellphone') == null ){
             exit('api false,need session');
         }else{
