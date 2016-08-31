@@ -63,7 +63,8 @@
         申请建立<span>X</span>
     </div>
     <div class="create-info">
-        <p>申请文库名：<span class="create-lib-name">xxx</span></p>
+        <p>申请文库名：<input type="text" class="library-name" placeholder="输入文库名"></p>
+        <p>文库简介：<input type="text" class="introduction" placeholder="对文库的简介（选填）"></p>
         <p class="time">申请时间：</p>
     </div>
     <div class="create-sub">
@@ -94,8 +95,8 @@
 <div class="myself-wrap clearfix">
     <div class="mystore clearfix">
         <p class="apply-box">
-            <input type="text" class="library-name" placeholder="输入文库名(自建文库)">
-            <input type="button" class="create" value="申请建立">
+            <!-- <input type="text" class="library-name" placeholder="输入文库名(自建文库)"> -->
+            <input type="button" class="create" value="申请建立文库">
         </p>
         <p class="search-box">
             <input type="text" class="search" placeholder="输入文库号查找文库">

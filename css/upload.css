@@ -177,7 +177,7 @@ img {
 	font-weight: 600;
 	color: #7ab8f4;
 	padding-left: 40px;
-	padding-top: 40px;
+	padding-top: 20px;
 	letter-spacing: 1px;
 }
 .create-sub {
@@ -690,7 +690,7 @@ section {
 .mystore p.search-box {
 	text-align: right;
 	line-height: 30px;
-	padding-right: 50px;
+	padding-right: 150px;
 	margin: 0px 0px 15px 0px;
 }
 .search-box input {
@@ -718,23 +718,25 @@ section {
 }
 .mystore p.apply-box {
 	position: absolute;
-	top: -40px;
-	right: 50px;
+	right: 10px;
 	text-align: right;
 	line-height: 30px;
 	padding-right: 2%;
 }
-.apply-box input {
+input {
 	font-family: "Microsoft Yahei", sans-serif;
 }
-.library-name {
+.library-name, .introduction {
 	border: 1px solid #0099ff;
-	font-size: 1.1em;
+	font-size: 18px;
 	color: #0099ff;
 	height: 31px;
 	width: 200px;
 	vertical-align: middle;
 	text-indent: 3px;
+}
+.introduction {
+	width: 400px;
 }
 .create {
 	background-color: #0099ff;

@@ -279,6 +279,9 @@ $(document).ready(function() {
     var folders;
     for(var m = 0; m < section.length; m++) {
         folders = section[m].querySelectorAll(".every-folder");
+        if(folders.length === 0) {
+            continue;
+        }
         folders[0].style.color = "#fff";
         folders[0].style.backgroundColor = "#acd6fe";
         section[m].querySelectorAll("span")[0].style.display = "inline";
@@ -434,12 +437,6 @@ $(document).ready(function() {
 
     //申请自建文库
     $(".create").click(function () {
-        var libraryName = $.trim($(".library-name").val());
-        if(libraryName === "") {
-            showError("请输入要建立的文库名");
-            return;
-        }
-        $(".create-lib-name").html(libraryName);
         $(".cover").show();
         $("#apply-create").show();
         var date = new Date();
@@ -448,6 +445,17 @@ $(document).ready(function() {
         var day = date.getDate();
         $(".time").html("申请时间："+year+"年"+month+"月"+day+"日");
     });
+    /*$(".create").click(function () {
+        var libraryName = $.trim($(".library-name").val());
+        if(libraryName === "") {
+            showError("请输入要建立的文库名");
+            return;
+        }
+        $(".create-lib-name").html(libraryName);
+        $(".cover").show();
+        $("#apply-create").show();
+        
+    });*/
     //取消
     $(".create-top span").click(function () {
         $(".cover").hide();
@@ -455,9 +463,18 @@ $(document).ready(function() {
     });
     //确认建立
     $(".create-btn").click(function () {
-        var libraryName = $(".create-lib-name").html();
+        var libraryName = $.trim($(".library-name").val());
+        var introduction = $.trim($(".introduction").val());
+        if(libraryName === "") {
+            showError("请输入要建立的文库名");
+            return;
+        }
+        if(introduction === "") {
+            introduction = " ";
+        }
         var data = {
-            libraryName: libraryName
+            libraryName: libraryName,
+            introduction: introduction
         };
         //发送请求
         $.ajax({
@@ -466,10 +483,11 @@ $(document).ready(function() {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function(dataLib) {
+                var data = JSON.parse(dataLib);
                 $(".cover").hide();
                 $("#apply-create").hide();
-                if(dataLib.msg) {
-                    showError(dataLib.msg);
+                if(data.msg) {
+                    showError(data.msg);
                     return;
                 }
                 showError("建立成功");
