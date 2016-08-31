@@ -29,13 +29,11 @@ class Mobile extends CI_Controller{
             $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd781831d64bb0674&secret=3bcc9249cce5cba968e79f232abf228e&code='.$code.'&grant_type=authorization_code ';
             $ch  = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $data = curl_exec($ch);
             $data = json_decode($data);
             curl_close($ch);
-            if (isset($data->errcode)){
-                echo '<h1>invalid code!请重试</h1>';
-                exit();
-            }else{
+            if (isset($data->openid)){
                 $openid = $data->openid;
                 //检查openid是否存在
                 $this->db->where('openid',$openid);
@@ -50,6 +48,9 @@ class Mobile extends CI_Controller{
                     //绑定页面
                     $this->load->view('mobile/authorize_view',array('openid'=>$openid));
                 }
+            }else{
+                echo '<h1>invalid code!请重试</h1>';
+                exit();
             }
         }else{
             echo '<h1>参数错误</h1>';
