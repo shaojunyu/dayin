@@ -48,9 +48,6 @@
 			width: 85%;
 			padding-top: 57px;
 		}
-		.log-box {
-			display: none;
-		}
 		.weui_cell {
 			padding: 7px;
 			-webkit-box-sizing: border-box;
