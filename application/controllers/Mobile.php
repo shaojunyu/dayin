@@ -47,7 +47,7 @@ class Mobile extends CI_Controller{
                     header('Location: ' . base_url('/mobile/library'));
                 }else{
                     //绑定页面
-                    $this->load->view('mobile/authorize_view',['openid'=>$openid]);
+                    $this->load->view('mobile/authorize_view',array('openid'=>$openid));
                 }
             }
         }else{

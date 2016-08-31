@@ -843,7 +843,7 @@ class Api extends CI_Controller{
     public function bind_wechat(){
         $this->check_post_data(array('openid','cellphone'));
         $this->db->where('cellphone',$this->post_data->cellphone);
-        $this->db->update('user',['openid'=>$this->post_data->openid]);
+        $this->db->update('user',array('openid'=>$this->post_data->openid));
         if ($this->db->affected_rows() == 1){
             $this->echo_msg(true);
         }

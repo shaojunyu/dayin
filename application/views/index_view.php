@@ -78,13 +78,12 @@
             <div class="school-box">
                 <label>学校：</label>
                 <select class="school">
-                    <option value="华中科技大学">华中科技大学</option>
-                    <option value="武汉大学">武汉大学</option>
-                    <option value="华中师范大学">华中师范大学</option>
-                    <option value="中南财经政法大学">中南财经政法大学</option>
-                    <option value="武汉理工大学">武汉理工大学</option>
-                    <option value="中国地质大学">中国地质大学</option>
-                    <option value="华中农业大学">华中农业大学</option>
+                    <?php
+                    $res = $this->db->get('school')->result_array();
+                    foreach ($res as $school){
+                        echo '<option value="'.$school['schoolName'].'">'.$school['schoolName'].'</option>';
+                    }
+                    ?>
                 </select>
             </div>
             <input type="submit" class="submit-up" value="确 认">
