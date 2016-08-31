@@ -8,6 +8,22 @@ function secret(url) {
 	return url;
 }
 
+//消息显示框显示
+function showMsg(msg) {
+	$(".prompt-box").html(msg);
+	$(".prompt-box").show();
+	setTimeout(function () {
+		hideMsg();
+	}, 1500);
+}
+
+//消息显示框隐藏
+function hideMsg() {
+	$(".prompt-box").html("");
+	$(".prompt-box").hide();
+}
+
+
 //填充文件夹和文件
 var car = 0;
 function addFolder(data) {
@@ -103,6 +119,7 @@ $(function () {
 		if($(this).hasClass("apply-status")) {
 			return;
 		}
+		showMsg("文档加载中");
 		var libraryId = $(this).find("span").html();
 		var data = {
 			libraryId: libraryId
@@ -114,12 +131,11 @@ $(function () {
 	        type: "POST",
 	        data: JSON.stringify(data),
 	        success: function(data) {
-	        	$(".loading").css("display", "block");
 	        	addFolder(data);
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
 	        	 $(".loading").css("display", "none");
-	        	 alert("请求失败");
+	        	 showMsg("请求失败");
 	    	}
 	    });
 	});
@@ -165,7 +181,7 @@ $(function () {
 	            }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
-                alert("请求失败");
+                showMsg("请求失败");
             }
         });
 	});
@@ -201,7 +217,7 @@ $(function () {
             	}
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
-                alert("请求失败，请重试");
+                showMsg("请求失败，请重试");
             }
         });
 	});
@@ -249,7 +265,7 @@ $(function () {
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
             	isAdding = false;  
-                alert("请求失败，请重试");
+                showMsg("请求失败，请重试");
             }
         });
 	});

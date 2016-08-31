@@ -133,11 +133,16 @@
 		<div><a href="javascript:;" class="zhifubao">支付宝支付</a></div>
 	</div>
 
+	<!-- 弹出消息 -->
+	<div class="prompt-box"></div>
+
 	<!-- 二维码 -->
 	<div class="ewm">
 		<img class="ewm-pic" src="">
-		<p>长按二维码进行支付</p>
+		<p>长按二维码，识别图中二维码支付</p>
 	</div>
+
+	<a href="javascript:;" class="we-cancel">X</a>
 	
 	<div class="menu clearfix">
 		<a href="library"><div class="library">文库</div></a>

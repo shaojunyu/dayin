@@ -117,7 +117,7 @@
 				<div class="copies-box">
 					<input type="tel" class="copies" value="<?php echo $item['amount'];?>">
 				</div>
-				<div class="price">小计：¥<span class="sub-price"><?php echo $item['subTotal'];?></span></div>
+				<div class="price">小计：¥<span class="sub-price"><?php echo $item['subTotal'];?></span><a href="javascript:;" class="del">删除</a></div>
 			</div>
 			<?php } //end foreach?>
 
@@ -148,6 +148,15 @@
 		<a href="library"><div class="library">文库</div></a>
 		<a href="javascript:;"><div class="print-car"></div></a>
 		<a href="myself"><div class="person">我的</div></a>
+	</div>
+
+	<!-- 去支付 -->
+	<div class="cover"></div>
+	<div class="cancel-box clearfix">
+		<p>删除确认<a href="javascript:;" class="hide-cancel-box">X</a></p>
+		<p class="text">确认删除该文件？</p>
+		<div><a href="javascript:;" class="cancel">取消</a></div>
+		<div><a href="javascript:;" class="submit">确定</a></div>
 	</div>
 
 	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>

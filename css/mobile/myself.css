@@ -328,12 +328,48 @@ header img {
 	background-color: #6bc8f1;
 	color: #fff;
 	padding: 5px 0;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	margin-top: 20px;
+}
+
+/* we-cancel */
+.we-cancel {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 999;
+	color: #fff;
+	background-color: #6bc8f1;
+	width: 2.5rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	text-align: center;
+	font-size: 1.4rem;
+}
+.we-cancel:active {
+	color: #fff;
 }
 
 /* 已完成 */
 .done-info {
+	display: none;
+}
+
+/* prompt-box */
+.prompt-box {
+	width: 80%;
+	font-size: 1.2rem;
+	height: 5rem;
+	line-height: 5rem;
+	background-color: #f69743;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 1px;
+	position: fixed;
+	top: 3.5rem;
+	left: 10%;
+	z-index: 999;
 	display: none;
 }
 
