@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>绑定账号</title>
+	<title>绑定微信登录</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
