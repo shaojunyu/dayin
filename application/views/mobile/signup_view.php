@@ -23,8 +23,12 @@
 			<a href="javascript:;" class="choose-default">选择您的学校</a>
 			<div class="jt"><img src="../images/mobile/jiantou.png"></div>
 			<div class="select-box">
-				<a href="javascript:;">华中科技大学</a>
-				<a href="javascript:;">武汉大学</a>
+				<?php
+				$res = $this->db->get('school')->result_array();
+				foreach ($res as $school){
+					echo '<a href="javascript:;">'.$school['schoolName'].'</a>';
+				}
+				?>
 			</div>
 		</div>
 		<div class="weui_cells weui_cells_form">

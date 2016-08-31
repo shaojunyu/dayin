@@ -34,6 +34,7 @@ class Mobile extends CI_Controller{
             curl_close($ch);
             if (isset($data->errcode)){
                 echo '<h1>invalid code!请重试</h1>';
+                exit();
             }else{
                 $openid = $data->openid;
                 //检查openid是否存在

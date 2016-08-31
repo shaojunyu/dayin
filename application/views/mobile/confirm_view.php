@@ -128,6 +128,13 @@
 		<div class="select clearfix">
 			<a href="javascript:;" class="default">选择一个打印店</a>
 			<div class="option-box">
+				<?php
+				$this->db->where('school',$this->session->userdata('school'));
+				$res = $this->db->get('shop')->result_array();
+				foreach ($res as $shop){
+					echo '<a href="javascript:;" class="option">'.$shop['shopName'].'</a>';
+				}
+				?>
 				<a href="javascript:;" class="option">A打印店</a>
 				<a href="javascript:;" class="option">B打印店</a>
 				<a href="javascript:;" class="option">C打印店</a>

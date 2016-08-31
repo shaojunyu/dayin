@@ -175,10 +175,13 @@
 					</span>
             <select name="store" id="print-store">
                 <option value="0">请选择打印店</option>
-                <option value="东篱阳光图文">东篱阳光图文</option>
-                <option value="韵苑二栋打印社">韵苑二栋打印社</option>
-                <option value="紫菘打印店">紫菘打印店</option>
-                <option value="沁苑打印店">沁苑打印店</option>
+                <?php
+                    $this->db->where('school',$this->session->userdata('school'));
+                    $res = $this->db->get('shop')->result_array();
+                    foreach ($res as $shop){
+                        echo '<option value="'.$shop['shopName'].'">'.$shop['shopName'].'</option>';
+                    }
+                ?>
             </select>
 
             <div class="door">
