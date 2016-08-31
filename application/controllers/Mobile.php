@@ -49,9 +49,9 @@ class Mobile extends CI_Controller{
             header('Location: ' . base_url());
         } else {
             //开放文库
-            $this->db->where('isOpen', 'true');
+            $this->db->where('isOpen','true');
+            $this->db->not_like('admin',$this->session->userdata('cellphone'));
             $res = $this->db->get('library')->result_array();
-//            var_dump($res);
             //加入的文库
             $this->db->where('cellphone', $this->session->userdata('cellphone'));
             $this->db->where('state', 'accepted');
@@ -65,6 +65,19 @@ class Mobile extends CI_Controller{
                     $res[] = $mylib[0];
                 }
             }
+            //自建的文库
+            $this->db->like('admin',$this->session->userdata('cellphone'));
+            $r = $this->db->get('library')->result_array();
+            foreach ($r as $lib){
+                $id = $lib['Id'];
+                $this->db->where('isOpen','false');
+                $this->db->where('Id',$id);
+                $mylib = $this->db->get('library')->result_array();
+                if (count($mylib) == 1) {
+                    $res[] = $mylib[0];
+                }
+            }
+
 
             //申请中的文库
             $this->db->where('cellphone', $this->session->userdata('cellphone'));

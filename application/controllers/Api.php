@@ -644,6 +644,14 @@ class Api extends CI_Controller{
     public function joinLib(){
         $this->needSession();
         $this->check_post_data(array('libraryId'));
+        //check
+        $this->db->whre('libraryId',$this->post_data->libraryId);
+        $this->db->like('admin',$this->session->userdata('cellphone'));
+        $res = $this->db->get('library')->result_array();
+        if (count($res) > 0){
+            $this->echo_msg(false,"无法申请！");
+            exit();
+        }
         $remark = '';
         $this->db->insert('library_users',array(
             'libraryId'=>$this->post_data->libraryId,
@@ -651,7 +659,7 @@ class Api extends CI_Controller{
             'state'=>'applying',
             'remark'=>$this->post_data->remark
         ));
-        $this->echo_msg(true.false);
+        $this->echo_msg(true);
     }
 
     /**

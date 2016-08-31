@@ -109,7 +109,9 @@
             <?php
             //开放文库
             $this->db->where('isOpen','true');
+            $this->db->not_like('admin',$this->session->userdata('cellphone'));
             $res = $this->db->get('library')->result_array();
+
 //            var_dump($res);
             //加入的文库
             $this->db->where('cellphone',$this->session->userdata('cellphone'));
@@ -124,8 +126,20 @@
                     $res[] = $mylib[0];
                 }
             }
+            //自建的文库
+            $this->db->like('admin',$this->session->userdata('cellphone'));
+            $r = $this->db->get('library')->result_array();
+            foreach ($r as $lib){
+                $id = $lib['Id'];
+                $this->db->where('isOpen','false');
+                $this->db->where('Id',$id);
+                $mylib = $this->db->get('library')->result_array();
+                if (count($mylib) == 1) {
+                    $res[] = $mylib[0];
+                }
+            }
             //var_dump($res);
-
+            //$res = array_unique($res);
             foreach ($res as $lib){
             ?>
             <div class="library"> <!-- 每个文库用class为library的div包裹 -->
