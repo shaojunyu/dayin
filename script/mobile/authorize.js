@@ -73,6 +73,31 @@ function GetRequest() {
 	return theRequest;
 }
 
+//发送openid
+function sendOpenId(cellphone) {
+	var openid = $("meta").eq(1).attr("openid");
+	var data = {
+		openid: openid,
+		cellphone: cellphone
+	};
+
+	$.ajax({
+	    url: secret("../../api/bind_wechat"),
+	    contentType: "application/json",
+	    dataType: "json",
+	    type: "POST",
+	    data: JSON.stringify(data),
+	    success: function(data) {
+	    	if(data.success === true) {
+	        	window.location.href = "../../mobile/library";
+	    	}
+	    },
+	    error: function(XMLHttpRequest, textStatus, errorThrown){  
+	        alert("请求失败");	 
+	    }
+	});
+}
+
 //隐藏错误提示
 function hideError(box, input) {
 	input.css("color", "#56a0ad");
@@ -149,7 +174,7 @@ $(function () {
 		};
 
 		$.ajax({
-	        url: secret("../api/sendSmscode"),
+	        url: secret("../../api/sendSmscode"),
 	        contentType: "application/json",
 	        dataType: "json",
 	        type: "POST",
@@ -189,15 +214,14 @@ $(function () {
 			smscode: smscode
 		};
 		$.ajax({
-			url: secret("../api/loginBySmscode"),
+			url: secret("../../api/loginBySmscode"),
 			contentType: "application/json",
 			dataType: "json",
 			type: "POST",
 			data: JSON.stringify(data),
 			success: function(data) {
-				console.log(data);
 				if(data.success) {
-					window.location.href = "../mobile/library";
+					sendOpenId(user);
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){  

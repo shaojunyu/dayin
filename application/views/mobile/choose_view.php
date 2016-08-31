@@ -70,7 +70,7 @@
 	<div class="choose">
 		<a href="mobile/signup" class="no">未注册，开始注册</a>
 		<a href="mobile/login" class="yes">已注册，登录</a>
-		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd781831d64bb0674&redirect_uri=http%3A%2F%2Fdayin.4nian.cc%2Fauthorize&response_type=code&scope=snsapi_userinfo#wechat_redirect" class="binding">绑定微信登录</a>
+		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd781831d64bb0674&redirect_uri=http://dayin.4nian.cc/mobile/wechat_login/&response_type=code&scope=snsapi_userinfo#wechat_redirect" class="binding">微信登录</a>
 	</div>
 
 	<script type="text/javascript" src="script/mobile/zepto.min.js"></script>
