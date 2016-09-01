@@ -135,11 +135,6 @@
 					echo '<a href="javascript:;" class="option">'.$shop['shopName'].'</a>';
 				}
 				?>
-				<a href="javascript:;" class="option">A打印店</a>
-				<a href="javascript:;" class="option">B打印店</a>
-				<a href="javascript:;" class="option">C打印店</a>
-				<a href="javascript:;" class="option">D打印店</a>
-				<a href="javascript:;" class="option">E打印店</a>
 			</div>
 			<div class="icon">
 				<img src="../images/mobile/jiantou.png">

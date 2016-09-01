@@ -137,7 +137,7 @@
                                 echo '已支付，正在等待打印';
                                 //echo
                             }else if ($order['state'] == 'PRINTED'){
-                                echo '已打印完成，正在配送中';
+                                echo '已打印完成，等待收货';
                             }else if ($order['state'] == 'UNPAID'){
                                 echo '未支付';
                             }

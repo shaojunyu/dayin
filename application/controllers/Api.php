@@ -645,7 +645,7 @@ class Api extends CI_Controller{
         $this->needLogin();
         $this->check_post_data(array('libraryId'));
         //check
-        $this->db->whre('libraryId',$this->post_data->libraryId);
+        $this->db->where('Id',$this->post_data->libraryId);
         $this->db->like('admin',$this->session->userdata('cellphone'));
         $res = $this->db->get('library')->result_array();
         if (count($res) > 0){
@@ -749,6 +749,7 @@ class Api extends CI_Controller{
         $this->check_post_data(array('libraryId'));
         $libId = $this->post_data->libraryId;
         $this->db->where('libraryId',$libId);
+        $this->db->where('fileName <>',null);
         $res = $this->db->get('library_files')->result_array();
 
         $libFiles = array();

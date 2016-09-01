@@ -112,7 +112,6 @@ class Mobile extends CI_Controller{
             $r = $this->db->get('library')->result_array();
             foreach ($r as $lib){
                 $id = $lib['Id'];
-                $this->db->where('isOpen','false');
                 $this->db->where('Id',$id);
                 $mylib = $this->db->get('library')->result_array();
                 if (count($mylib) == 1) {
