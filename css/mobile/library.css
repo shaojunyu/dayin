@@ -275,6 +275,7 @@ header input {
 }
 .file-name {
 	width: 83%;
+	position: relative;
 }
 .check-box {
 	width: 17%;
@@ -303,10 +304,14 @@ header input {
 	-o-text-overflow: ellipsis;
 	overflow: hidden;
 }
-/* .file span {
-	font-size: 0.75rem;
-	margin-left: 0.5rem;
-} */
+.file-name a {
+	position: absolute;
+	top: 1.8rem;
+	left: 3rem;
+	padding: 2px 5px;
+	font-size: 0.8rem;
+	color: #6bc8f1;
+}
 
 /* loading */
 .loading {
@@ -464,6 +469,62 @@ header input {
 	left: 10%;
 	z-index: 999;
 	display: none;
+}
+
+
+/* pdf */
+.file-show-box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 333;
+	width: 100%;
+	overflow: hidden;
+	display: none;
+}
+.control {
+	width: 100%;
+	padding: 2rem 0;
+	background-color: rgba(0,0,0,.9);
+	text-align: center;
+	position: relative;
+	font-size: 1rem;
+	color: #fff;
+}
+.control span.cancel-pdf {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	color: #fff;
+	font-size: 1.5rem;
+	padding: 4px 12px;
+	line-height: 1.8rem;
+	cursor: pointer;
+}
+.control input {
+	width: 1.7rem;
+}
+.control input, .control button {
+	font-size: 1rem;
+	text-align: center;
+	outline: none;
+	line-height: 2rem;
+	border-width: 0px;
+	margin: 0 5px;
+}
+.control button {
+	width: 4rem;
+	cursor: pointer;
+}
+.pdfView {
+	width: 100%;
+	background-color: rgba(0,0,0,.9);
+	overflow-x: scroll;
+}
+.pdfView canvas {
+	width: 230%;
+	display: block;
+	margin: 0 auto;
 }
 
 @media screen and (min-width: 320px) {

@@ -79,8 +79,21 @@
 		<div><a href="confirm">去购物车</a></div>
 	</div>
 
+	<!-- pdf预览 -->
+	<div class="file-show-box">
+	    <div class="control">
+	        <button class="prev">上一页</button>
+	        <button class="next">下一页</button>
+	        <input type="text" class="curPage"> / <span class="tolPage"></span>
+	        <button class="jumpTo">跳页</button>
+	        <span class="cancel-pdf">x</span>
+	    </div>
+	    <div class="scroll"><div class="pdfView"></div></div>
+	</div>
+
 	<script type="text/javascript" src="../script/mobile/zepto.min.js"></script>
 	<script type="text/javascript" src="http://ob0826to9.bkt.clouddn.com/md5.js"></script>
 	<script type="text/javascript" src="../script/mobile/library.js"></script>
+	<script type="text/javascript" src="../script/pdf.js"></script>
 </body>
 </html>

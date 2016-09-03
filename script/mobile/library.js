@@ -46,7 +46,7 @@ function addFolder(data) {
 
 		files += '<div class="files" data-index='+i+'>';
 		for(var j = 0; j < data[key].length; j++) {
-			files += '<div class="file clearfix"'+' data-filemd5='+data[key][j].fileMD5+'><div class="file-name"><p>'+data[key][j].fileName+'</p></div><div class="check-box"><a href="javascript:;" class="check"></a></div></div>';
+			files += '<div class="file clearfix"'+' data-filemd5='+data[key][j].fileMD5+'><div class="file-name"><p>'+data[key][j].fileName+'</p><a href="javascript:;" class="view">预览</a></div><div class="check-box"><a href="javascript:;" class="check"></a></div></div>';
 		}
 		files += '</div>';
 	}
@@ -60,6 +60,8 @@ function addFolder(data) {
 	addClick();
 }
 
+var newPDF;
+var url;
 //给文件夹添加点击事件
 function addClick() {
 	//点击文件夹进入相应文件夹
@@ -94,7 +96,124 @@ function addClick() {
 		$(".addto-car").html("加入购物车 ("+car+")");
 	});
 
+	//文件预览
+	$(".view").click(function() {
+        //获取pdf格式文件
+        var fileMD5 = $(this).parent().parent().attr("data-filemd5");
+        var data = { fileMD5: fileMD5 };
+        $.ajax({
+            url: secret("../api/getPreview"),
+            type: "POST",
+            contentType:"application/json",
+            data: JSON.stringify(data),
+            success:function(urlData) {
+                url = urlData;
+                //传入url开始渲染
+                newPDF = attPreLoad(url);
+                $(".file-show-box").css("display", "block");
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showMsg("请求失败，请重试");
+            }
+        });
+    });
+
 	hideMsg();
+}
+
+
+//在线预览pdf文件
+function attPreLoad(url){
+    var pdfDoc = null,
+        scale = 1.5,
+        pageNum = 1,
+        pageCount = 1,
+        timestamp = new Date().getTime(),
+        pageRendering = false,
+        pageNumPending = null,
+        canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d'),
+        iUrl = url;
+
+        /*这里是动态生成canvas的部分，因为打开多个pdf可能会存在绘制重叠的bug*/ 
+        canvas.id = "canvas-" + timestamp; 
+        $('.pdfView').append(canvas);
+
+    showPdfWait("文件加载中，请稍候...");
+
+    function renderPage(num){
+        pageRendering = true;
+        pdfDoc.getPage(num).then(function(page){
+            var viewport = page.getViewport(scale);
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+            var renderTask = page.render(renderContext);
+            //完成准备, 可以开始显示
+            renderTask.promise.then(function () {
+                $(".prompt-box").css("top", "-80px");
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+            });
+            //当前页
+            $('.curPage').val(pageNum);
+        });
+    }
+    function queueRenderPage(num) {
+        if (pageRendering) {
+            pageNumPending = num;
+        } else {
+            renderPage(num);
+        }
+    }
+    PDFJS.getDocument(iUrl).then(function (pdfDoc_) {
+        pdfDoc = pdfDoc_;
+        pageCount = pdfDoc.numPages;
+        //总页数
+        $('.tolPage').html(pageCount);
+        // Initial/first page rendering
+        renderPage(pageNum);
+    });
+    return {
+        prevPage: function() {
+            if (pageNum > 1) {
+                pageNum--;
+                queueRenderPage(pageNum);
+            }
+        },
+        nextPage: function() {
+            if (pageNum < pageCount) {
+                pageNum++;
+                queueRenderPage(pageNum);
+            } 
+        },
+        jumpPage: function(){
+            var newPage = Number($(".curPage").val());
+            if(newPage >= 1 && newPage <= pageCount) {
+                pageNum = newPage;
+                pageRendering = false;
+                queueRenderPage(pageNum);
+            } else {
+                $('.curPage').val(pageNum);
+            }
+        },
+        destroy: function(){
+            $('.pdfView').empty();
+            $('.file-show-box').css("display", "none");
+            pdfDoc.destroy();
+        }
+    };
+}
+
+//信息提示框显示函数
+function showPdfWait(message) {
+    showMsg(message);
 }
 
 //申请加入弹出框的显示
@@ -283,4 +402,22 @@ $(function () {
 		$(".library-info-box").html("");
 		$(".addto-car").hide();
 	});
+
+	//在线预览
+    $(".pdfView").css("min-height", $(window).height()+"px");
+    PDFJS.workerSrc = "../script/pdf.worker.js";
+
+    $('body').delegate('.next','click',function(){
+        newPDF.nextPage();
+    });
+    $('body').delegate('.prev','click',function(){
+        newPDF.prevPage();
+    });
+    $('body').delegate('.jumpTo','click',function(){
+        newPDF.jumpPage();
+    });
+    $('body').delegate('.cancel-pdf','click',function(){
+        $(".file-show-box").css("display", "none");
+        newPDF.destroy();
+    }); 
 });
