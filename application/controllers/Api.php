@@ -695,7 +695,11 @@ class Api extends CI_Controller{
         //var_dump($res);
         if (count($res) == 1){
             $res = $res[0];
-            $pdf = $res['pdfFile'];
+            if ($res['pdfFile'] == null){
+                $pdf = $res['fileName'];
+            }else{
+                $pdf = $res['pdfFile'];
+            }
             require_once APPPATH.'third_party/aliyun-oss-php-sdk-2.0.5/autoload.php';
             $accessKeyId = "GtzMAvDTnxg72R04";
             $accessKeySecret = "VhD2czcwLVAaE7DReDG4uEVSgtaSYK";
