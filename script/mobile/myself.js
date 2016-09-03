@@ -166,5 +166,6 @@ $(function () {
 		$(".cover").hide();
 		$(".ewm").hide();
 		$(this).hide();
+		window.location.href = "../mobile/myself";
 	});
 });
