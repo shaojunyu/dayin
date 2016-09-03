@@ -116,6 +116,12 @@ class Api extends CI_Controller{
      */
     public function sendSmscode(){
         if ($this->check_post_data(array('cellphone'))){
+            $this->db->where('cellphone',$this->post_data->cellphone);
+            $this->db->get('user');
+            if($this->db->affected_rows() == 0){
+                $this->echo_msg(false,'haomaweizhuce');
+                exit();
+            }
             require_once APPPATH.'third_party/bmob/lib/BmobSms.class.php';
             try {
                 $bmobSms = new BmobSms();
