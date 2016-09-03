@@ -93,6 +93,8 @@ function addClick() {
 		car++;
 		$(".addto-car").html("加入购物车 ("+car+")");
 	});
+
+	hideMsg();
 }
 
 //申请加入弹出框的显示

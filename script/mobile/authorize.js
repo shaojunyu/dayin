@@ -59,19 +59,6 @@ function secret(url) {
 	return url;
 }
 
-//获取url后的参数
-function GetRequest() {
-	var url = location.search; //获取url中"?"符后的字串
-	var theRequest = new Object();
-	if (url.indexOf("?") != -1) {
-		var str = url.substr(1);
-		strs = str.split("&");
-		for(var i = 0; i < strs.length; i++) {
-			theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
-		}
-	}
-	return theRequest;
-}
 
 //发送openid
 function sendOpenId(cellphone) {
@@ -93,7 +80,7 @@ function sendOpenId(cellphone) {
 	    	}
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown){  
-	        alert("请求失败");	 
+	        showMsg("请求失败");	 
 	    }
 	});
 }
@@ -108,6 +95,21 @@ function hideError(box, input) {
 function showError(box, input, err) {
 	input.css("color", "red");
 	input.val(err);
+}
+
+//消息显示框显示
+function showMsg(msg) {
+	$(".prompt-box").html(msg);
+	$(".prompt-box").show();
+	setTimeout(function () {
+		hideMsg();
+	}, 2000);
+}
+
+//消息显示框隐藏
+function hideMsg() {
+	$(".prompt-box").html("");
+	$(".prompt-box").hide();
 }
 
 //1分钟后重试
@@ -183,9 +185,15 @@ $(function () {
 	        	if(data.success === true) {
 	        		getDisable();
 	        	}
+	        	else {
+	        		showMsg("未注册，跳转中..");
+	        		setTimeout(function () {
+	        			window.location.href = "../../mobile/signup";
+	        		}, 1500);
+	        	}
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
-	        	 
+	        	 showMsg("请求失败");
 	    	}
 	    });
 	});
@@ -225,7 +233,7 @@ $(function () {
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){  
-				alert("请求失败"); 
+				showMsg("请求失败"); 
 			}
 		});
 	});

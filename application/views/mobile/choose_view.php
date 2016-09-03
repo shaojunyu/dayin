@@ -56,6 +56,7 @@
 			text-align: center;
 			line-height: 3rem;
 			border-radius: 5px;
+			letter-spacing: 4px;
 		}
 	</style>
 </head>
@@ -68,9 +69,8 @@
 	</div>
 
 	<div class="choose">
-		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd781831d64bb0674&redirect_uri=http://dayin.4nian.cc/mobile/wechat_login/&response_type=code&scope=snsapi_userinfo#wechat_redirect" class="binding">微信登录</a>
-		<a href="mobile/signup" class="no">未注册，开始注册</a>
-		<a href="mobile/login" class="yes">已注册，登录</a>
+		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd781831d64bb0674&redirect_uri=http://dayin.4nian.cc/mobile/wechat_login/&response_type=code&scope=snsapi_userinfo#wechat_redirect" class="binding">登录</a>
+		<a href="mobile/signup" class="no">注册</a>
 	</div>
 
 	<script type="text/javascript" src="script/mobile/zepto.min.js"></script>
