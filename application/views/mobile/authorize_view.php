@@ -3,7 +3,7 @@
 <head lang="en">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta openid="<?php echo $openid;?>">
-	<title>微信登录</title>
+	<title>绑定手机号</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
