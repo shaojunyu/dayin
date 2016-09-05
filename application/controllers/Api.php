@@ -116,10 +116,39 @@ class Api extends CI_Controller{
      */
     public function sendSmscode(){
         if ($this->check_post_data(array('cellphone'))){
+//            $this->db->where('cellphone',$this->post_data->cellphone);
+//            $this->db->get('user');
+//            if($this->db->affected_rows() == 0){
+//                $this->echo_msg(false,'haomaweizhuce');
+//                exit();
+//            }
+            require_once APPPATH.'third_party/bmob/lib/BmobSms.class.php';
+            try {
+                $bmobSms = new BmobSms();
+                $res = $bmobSms->sendSmsVerifyCode($this->post_data->cellphone,'register');
+                $this->echo_msg(true,'验证码发送成功');
+                exit();
+            } catch (Exception $e) {
+                $this->echo_msg(false,$e->__toString());
+                exit();
+            }
+        }else{
+            $this->echo_msg(false,'参数不完整');
+        }
+    }
+
+    /**
+     * function sendSmscode_bind
+     * @param
+     * @return
+     * @author yushaojun
+     */
+    public  function sendSmscode_bind(){
+        if ($this->check_post_data(array('cellphone'))){
             $this->db->where('cellphone',$this->post_data->cellphone);
             $this->db->get('user');
             if($this->db->affected_rows() == 0){
-                $this->echo_msg(false,'haomaweizhuce');
+                $this->echo_msg(false,'手机号未注册');
                 exit();
             }
             require_once APPPATH.'third_party/bmob/lib/BmobSms.class.php';
