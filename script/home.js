@@ -371,7 +371,7 @@ $(document).ready(function() {
 				contentType: 'application/json',
 				type: "POST",
 				success:function(data) {
-	        		location.href = "http://www.99dayin.com";
+	        		location.href = "http://dayin.4nian.cc";
 	        	},
 	        	error: function(XMLHttpRequest, textStatus, errorThrown){  
 	        		showError("请求失败");
@@ -634,12 +634,13 @@ $(document).ready(function() {
 	        		type:"POST",
 	        		data:JSON.stringify(data),
 	        		success:function(data) {
-	        			if(data.success) {
+	        			location.reload(true);
+	        			/*if(data.success) {
 	        				location.reload(true);
 	        			}
 	        			else {
 	        				showError(data.msg);
-	        			}
+	        			}*/
 	        		},
 		        	error: function(XMLHttpRequest, textStatus, errorThrown){  
 		        		showError("请求失败"); 
