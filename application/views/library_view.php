@@ -179,6 +179,8 @@
                                 <div class="<?php echo $class;?>">
                                     <p data-fileMD5="<?php echo $file['fileMD5'];?>"><?php echo $file['fileName'];?></p>
                                     <a href="javascript:;" class="view">预览</a>
+                                    <a href="javascript:;" class="download">下载</a>
+                                    <a href="javascript:;" class="download-click" style="position: absolute; z-index: -1;"></a>
                                     <i><input class="add-to-printcar" type="checkbox" value="1" /></i>
                                 </div>
                                 <?php }?>
