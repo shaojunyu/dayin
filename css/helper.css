@@ -127,6 +127,12 @@ nav ul li a:hover {
 	line-height: 50px;
 	padding: 5px;
 }
+.container article h1 {
+	text-align: center;
+	font-size: 22px;
+	font-weight: 500;
+	width: 100%;
+}
 .container article h2 {
 	font-size: 22px;
 	color: #0099ff;

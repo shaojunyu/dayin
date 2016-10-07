@@ -11,8 +11,11 @@
 </head>
 <body>
 	<header>
-		<input type="tel" class="search-input" placeholder="输入文库号添加到文库">
-		<a href="javascript:;" class="search-btn">搜索</a>
+		<div class="head">
+			<input type="tel" class="search-input" placeholder="输入文库号添加到文库">
+			<a href="javascript:;" class="search-btn">搜索</a>
+		</div>
+		<p>赶紧问学委班级文库编号,马上加入,课件再也不用愁啦!</p>
 	</header>
 
 	<div class="library-box clearfix">  <!-- 文库1级页面 -->

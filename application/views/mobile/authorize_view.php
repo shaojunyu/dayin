@@ -117,7 +117,7 @@
 		<div>
 			<i><img src="../../images/mobile/logo.png"></i>
 		</div>
-		<p>四年打印</p>
+		<p>学习云</p>
 	</div>
 
 	<form class="log-box">

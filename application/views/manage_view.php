@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>四年打印</title>
+	<title>学习云</title>
 	<link rel="stylesheet" href="css/manage.css">
 </head>
 <body>
 	<header class="clearfix">
 			<a href="http://dayin.4nian.cc" class="logo">
-				<img src="images/logo.png" alt="四年打印">
-				<p>四年打印</p>
+				<img src="images/logo.png" alt="学习云">
+				<p>学习云</p>
 			</a>
 			<nav>
 				<ul>
@@ -167,35 +167,35 @@
 		</div>
 
 		<footer class="clearfix">
-			<div class="footbox">
-				<p><a href="doc/base.html" target="_blank">关于文库</a></p>
-				<p><a href="doc/base.html" target="_blank">文库简介</a></p>
-				<p><a href="doc/base.html" target="_blank">使用说明</a></p>
-				<p><a href="doc/base.html" target="_blank">鼓励分享</a></p>
-			</div>
-			<div class="footbox">
-				<p><a href="doc/orderServe.html" target="_blank">订单服务</a></p>
-				<p><a href="doc/orderServe.html" target="_blank">购买指南</a></p>
-				<p><a href="doc/orderServe.html" target="_blank">支付方式</a></p>
-				<p><a href="doc/orderServe.html" target="_blank">送货政策</a></p>
-			</div>
-			<div class="footbox">
-				<p><a href="doc/company.html" target="_blank">关于公司</a></p>
-				<p><a href="doc/company.html" target="_blank">公司简介</a></p>
-				<p><a href="doc/company.html" target="_blank">加入我们</a></p>
-				<p><a href="doc/company.html" target="_blank">联系我们</a></p>
-			</div>
-			<div class="footbox">
-				<p><a href="doc/aboutUs.html" target="_blank">关于我们</a></p>
-				<p><a href="doc/aboutUs.html" target="_blank">新浪微博</a></p>
-				<p><a href="doc/aboutUs.html" target="_blank">官方微博</a></p>
-				<p><a href="doc/aboutUs.html" target="_blank">官方贴吧</a></p>
-			</div>
-			<div class="ewm">
-				<img src="images/ewm.jpg">
-			</div>
-			<p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
-		</footer>
+        <div class="footbox">
+            <p><a href="doc/base.html" target="_blank">关于文库</a></p>
+            <p><a href="doc/base.html" target="_blank">文库简介</a></p>
+            <p><a href="doc/base.html" target="_blank">使用说明</a></p>
+            <p><a href="doc/base.html" target="_blank">鼓励分享</a></p>
+        </div>
+        <div class="footbox">
+            <p><a href="javascript:;" target="_blank">订单服务</a></p>
+            <p><a href="javascript:;" target="_blank">购买指南</a></p>
+            <p><a href="javascript:;" target="_blank">支付方式</a></p>
+            <p><a href="javascript:;" target="_blank">送货政策</a></p>
+        </div>
+        <div class="footbox">
+            <p><a href="javascript:;" target="_blank">关于公司</a></p>
+            <p><a href="javascript:;" target="_blank">公司简介</a></p>
+            <p><a href="javascript:;" target="_blank">加入我们</a></p>
+            <p><a href="javascript:;" target="_blank">联系我们</a></p>
+        </div>
+        <div class="footbox">
+            <p><a href="javascript:;" target="_blank">关于我们</a></p>
+            <p><a href="javascript:;" target="_blank">新浪微博</a></p>
+            <p><a href="javascript:;" target="_blank">官方微博</a></p>
+            <p><a href="javascript:;" target="_blank">官方贴吧</a></p>
+        </div>
+        <div class="ewm">
+            <img src="images/ewm.jpg">
+        </div>
+        <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
+    </footer>
 		<script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 		<script type="text/javascript" src="script/jquery.slimscroll.min.js"></script>
 		<script type="text/javascript" src="script/plupload.full.min.js"></script>

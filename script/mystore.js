@@ -509,6 +509,7 @@ $(document).ready(function() {
         var fileMD5 = $(this).prev().prev().attr("data-fileMD5");
         var fileName = $(this).prev().prev().html();
         var data = { fileMD5: fileMD5 };
+
         $.ajax({
             url: secret("./api/getPreview"),
             type: "POST",
@@ -516,12 +517,14 @@ $(document).ready(function() {
             data: JSON.stringify(data),
             success:function(urlData) {
                 url = urlData;
-                $(".download-click").attr({
+                SaveToDisk(url, fileName);
+                /*$(".download-click").attr({
                     "href": url,
                     "download": fileName
                 });
-                document.querySelector(".download-click").click();
-            },
+                document.querySelector(".download-click").click();*/
+/*                document.getElementById('my_iframe').src = url;
+*/            },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("请求失败，请重试");
             }
@@ -668,4 +671,36 @@ function showPdfWait(message) {
     var promptBox = document.querySelector(".prompt-box");
     promptBox.innerHTML = message;
     promptBox.style.top = "0px";
+}
+
+
+//下载
+function SaveToDisk(fileURL, fileName) {
+    // for non-IE
+    if (!window.ActiveXObject) {
+        var save = document.createElement('a');
+        save.href = fileURL;
+        save.target = '_blank';
+        save.download = fileName || 'unknown';
+       
+        try {
+             var evt = new MouseEvent('click', {
+                'view': window,
+                'bubbles': true,
+                'cancelable': false
+            });
+            save.dispatchEvent(evt);
+            (window.URL || window.webkitURL).revokeObjectURL(save.href);
+        } catch (e) {
+            window.open(fileURL, fileName);
+        }
+    }
+
+    // for IE < 11
+    else if ( !! window.ActiveXObject && document.execCommand)     {
+        var _window = window.open(fileURL, '_blank');
+        _window.document.close();
+        _window.document.execCommand('SaveAs', true, fileName || fileURL);
+        _window.close();
+    }
 }

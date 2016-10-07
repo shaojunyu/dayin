@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>四年打印</title>
+    <title>学习云</title>
     <link rel="stylesheet" href="css/upload.css">
 </head>
 <body>
 <header class="clearfix">
     <a href="http://dayin.4nian.cc" class="logo">
-        <img src="images/logo.png" alt="四年打印">
-        <p>四年打印</p>
+        <img src="images/logo.png" alt="学习云">
+        <p>学习云</p>
     </a>
     <nav>
         <ul>
@@ -94,22 +94,22 @@
             <p><a href="doc/base.html" target="_blank">鼓励分享</a></p>
         </div>
         <div class="footbox">
-            <p><a href="doc/orderServe.html" target="_blank">订单服务</a></p>
-            <p><a href="doc/orderServe.html" target="_blank">购买指南</a></p>
-            <p><a href="doc/orderServe.html" target="_blank">支付方式</a></p>
-            <p><a href="doc/orderServe.html" target="_blank">送货政策</a></p>
+            <p><a href="javascript:;" target="_blank">订单服务</a></p>
+            <p><a href="javascript:;" target="_blank">购买指南</a></p>
+            <p><a href="javascript:;" target="_blank">支付方式</a></p>
+            <p><a href="javascript:;" target="_blank">送货政策</a></p>
         </div>
         <div class="footbox">
-            <p><a href="doc/company.html" target="_blank">关于公司</a></p>
-            <p><a href="doc/company.html" target="_blank">公司简介</a></p>
-            <p><a href="doc/company.html" target="_blank">加入我们</a></p>
-            <p><a href="doc/company.html" target="_blank">联系我们</a></p>
+            <p><a href="javascript:;" target="_blank">关于公司</a></p>
+            <p><a href="javascript:;" target="_blank">公司简介</a></p>
+            <p><a href="javascript:;" target="_blank">加入我们</a></p>
+            <p><a href="javascript:;" target="_blank">联系我们</a></p>
         </div>
         <div class="footbox">
-            <p><a href="doc/aboutUs.html" target="_blank">关于我们</a></p>
-            <p><a href="doc/aboutUs.html" target="_blank">新浪微博</a></p>
-            <p><a href="doc/aboutUs.html" target="_blank">官方微博</a></p>
-            <p><a href="doc/aboutUs.html" target="_blank">官方贴吧</a></p>
+            <p><a href="javascript:;" target="_blank">关于我们</a></p>
+            <p><a href="javascript:;" target="_blank">新浪微博</a></p>
+            <p><a href="javascript:;" target="_blank">官方微博</a></p>
+            <p><a href="javascript:;" target="_blank">官方贴吧</a></p>
         </div>
         <div class="ewm">
             <img src="images/ewm.jpg">

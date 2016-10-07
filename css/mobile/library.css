@@ -48,6 +48,10 @@ img {
 header {
 	width: 100%;
 	padding: 1rem 0;
+	background-color: #6bc8f1;
+}
+.head {
+	width: 100%;
 	text-indent: 18%;
 	background: #6bc8f1 url(../../images/mobile/search.png) no-repeat 8% center;
 	background-size: 7%;
@@ -69,6 +73,13 @@ header input {
 	text-indent: 3px;
 	line-height: 1.6rem;
 	font-size: 1.05rem;
+}
+header p {
+	line-height: 1.2rem;
+	color: #000;
+	font-size: 0.9rem;
+	text-align: center;
+	padding-top: 0.5rem;
 }
 .search-btn {
 	background-color: #6bc8f1;

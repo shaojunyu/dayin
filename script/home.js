@@ -1,7 +1,7 @@
 var judgeSignin = true;
 var judgeSignup = true;
 
-//封装了页面滚动的函数及变量
+/*//封装了页面滚动的函数及变量
 var scrollAnimate = (function() {
 	//滚动速度, 越大速度越慢
 	var scroll_speed = 5;
@@ -96,7 +96,7 @@ var scrollAnimate = (function() {
 		scrollMove: scrollMove,
 		resetLocat: resetLocat
 	};
-})();
+})();*/
 
 //为onload事件添加多个回调函数
 function addLoadEvent(func){
@@ -129,32 +129,22 @@ function addHandler(element, type, handler) {
 function showDiv(cover, sign) {
 	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
 	var offsetH = (pageH - sign.offsetHeight) / 2;
-	if((scrollAnimate.count % 2) == 1) {
-		sign.style.top = pageH + offsetH + "px";
-	}
-	else {
-		sign.style.top = offsetH + "px";
-	}
+
+	sign.style.top = offsetH + "px";
+
 	cover.style.display = "block";
 	sign.style.display = "block";
-	scrollAnimate.timer = 1;
 }
 //隐藏浮层
 function hideDiv(cover, sign) {
 	cover.style.display = "none";
 	sign.style.display = "none";
-	scrollAnimate.timer = 0;
 }
 //居中显示浮层
 function centerDiv(sign) {
 	var pageW = document.documentElement.clientWidth || document.body.clientWidth;
 	var pageH = document.documentElement.clientHeight || document.body.clientHeight;
-	if((scrollAnimate.count % 2) == 0) {
-		sign.style.top = (pageH - sign.offsetHeight) / 2 + "px";
-	}
-	else {
-		sign.style.top = pageH + (pageH - sign.offsetHeight) / 2 + "px";
-	}
+	sign.style.top = (pageH - sign.offsetHeight) / 2 + "px";
 	sign.style.left = (pageW - sign.offsetWidth) / 2 + "px";
 }
 
@@ -185,8 +175,8 @@ else if(isIE(7)) {
 }
 
 addLoadEvent(function(){
-	var scroll = document.querySelectorAll(".scroll"); //要滚动的页面
-	var down = document.querySelector(".down"); //点击后向下滚动的图片
+	/*var scroll = document.querySelectorAll(".scroll"); //要滚动的页面
+	var down = document.querySelector(".down"); //点击后向下滚动的图片*/
 	var signIn = document.querySelector(".sign_in"); //点击的登录按钮
 	var signUp = document.querySelector(".sign_up"); //点击的注册按钮
 	var cover = document.querySelector(".cover"); //登录模糊背景
@@ -227,7 +217,7 @@ addLoadEvent(function(){
 			location.href = "upload";
 		});
 	}
-	setTimeout(function reset(){
+	/*setTimeout(function reset(){
 		var srcH = document.documentElement.clientHeight || document.body.clientHeight;
 
 		scrollAnimate.bodyH = srcH;
@@ -235,10 +225,10 @@ addLoadEvent(function(){
 			scrollAnimate.resetLocat(scroll);
 		}
 		setTimeout(reset, 100);
-	},100);
+	},100);*/
 
 	//方向键事件
-	addHandler(document, "keydown", function(e) {
+	/*addHandler(document, "keydown", function(e) {
 		e = e || window.event;
 		var currKey = e.keyCode || e.which;
 
@@ -261,9 +251,9 @@ addLoadEvent(function(){
 			scrollAnimate.scrollMove(scroll, 1);
 		}
 	});
-
+*/
 	//滚轮事件
-	addHandler(window, "mousewheel", function(e) {
+	/*addHandler(window, "mousewheel", function(e) {
 		var isUp = 0;
 		e = e || window.event;
 		if(e.wheelDelta) {
@@ -301,7 +291,7 @@ addLoadEvent(function(){
 	//给箭头添加点击事件
 	addHandler(down, "click", function() {
 		scrollAnimate.scrollMove(scroll, 1);
-	});
+	});*/
 
 	//登录框显示隐藏
 	if(signIn){

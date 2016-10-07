@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>四年打印在线支付</title>
+    <title>学习云在线支付</title>
     <link rel="stylesheet" type="text/css" href="css/pay.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
         <span class="r"></span>
         <p class="money">￥<?php echo $charge->__toArray()['amount'] / 100;?></p>
         <hr />
-        <p class="online">四年打印在线支付</p>
+        <p class="online">学习云在线支付</p>
         <p class="order-num">订单编号：<span><?php echo $orderId;?></span></p>
         <hr />
         <p class="trade clearfix">

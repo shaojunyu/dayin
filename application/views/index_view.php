@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>四年打印</title>
+    <title>学习云</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="head scroll">
     <header class="clearfix">
         <a href="http://dayin.4nian.cc" class="logo">
-            <img src="images/logo.png" alt="四年打印">
-            <p>四年打印</p>
+            <img src="images/logo.png" alt="学习云">
+            <p>学习云</p>
         </a>
         <nav>
             <ul>
@@ -92,12 +92,12 @@
 
     <div class="print">
         <img src="images/desc.png">
-        <a href="javascript:void(0)" id="print-btn">Print</a>
+        <a href="javascript:void(0)" id="print-btn">Enter</a>
     </div>
-
-    <img src="images/newhand.gif" class="down">
+<!-- 
+    <img src="images/newhand.gif" class="down"> -->
 </div>
-
+<!-- 
 <div class="bottom scroll">
     <div class="newhand">
         <img src="images/step.png" alt="">
@@ -130,8 +130,9 @@
         <div class="ewm">
             <img src="images/ewm.jpg">
         </div>
-        <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
-    </footer>
+        
+    </footer> -->
+    <p class="copyright">&copy;2016 四年生活版权所有 鄂ICP备15018392号</p>
 </div>
 <script type="text/javascript" src="script/jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="script/jquery.validate.min.js"></script>

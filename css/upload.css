@@ -701,6 +701,9 @@ section {
 	padding-right: 150px;
 	margin: 0px 0px 15px 0px;
 }
+.mystore p.search-box span {
+	font-size: 16px;
+}
 .search-box input {
 	font-family: "Microsoft Yahei", sans-serif;
 }
