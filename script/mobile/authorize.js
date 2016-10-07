@@ -139,13 +139,13 @@ $(function () {
 		};
 
 		$.ajax({
-	        url: secret("../../api/sendSmscode"),
+	        url: secret("../../api/sendSmscode_bind"),
 	        contentType: "application/json",
 	        dataType: "json",
 	        type: "POST",
 	        data: JSON.stringify(data),
 	        success: function(data) {
-	        	if(data.success === true) {
+	        	if(data.success == true) {
 	        		getDisable();
 	        	}
 	        	else {

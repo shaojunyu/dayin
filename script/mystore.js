@@ -152,7 +152,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             type: "POST",
             success:function(data) {
-                location.href = "http://www.99dayin.com";
+                window.location.href = "http://dayin.4nian.cc";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("请求失败");
@@ -499,6 +499,31 @@ $(document).ready(function() {
                 showError("请求失败，请重试");
                 $(".cover").hide();
                 $("#apply-create").hide();
+            }
+        });
+    });
+
+    //下载
+    $(".download").click(function() {
+        //获取pdf格式文件
+        var fileMD5 = $(this).prev().prev().attr("data-fileMD5");
+        var fileName = $(this).prev().prev().html();
+        var data = { fileMD5: fileMD5 };
+        $.ajax({
+            url: secret("./api/getPreview"),
+            type: "POST",
+            contentType:"application/json",
+            data: JSON.stringify(data),
+            success:function(urlData) {
+                url = urlData;
+                $(".download-click").attr({
+                    "href": url,
+                    "download": fileName
+                });
+                document.querySelector(".download-click").click();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                showError("请求失败，请重试");
             }
         });
     });

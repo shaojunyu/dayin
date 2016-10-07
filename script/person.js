@@ -76,7 +76,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             type: "POST",
             success:function(data) {
-                location.href = "http://www.99dayin.com";
+                window.location.href = "http://dayin.4nian.cc";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
                 showError("请求失败");
