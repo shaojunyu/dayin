@@ -185,10 +185,20 @@ class Cart_model extends CI_Model{
                         $price =  $paper_count * 0.15;
                     }else{
                         $price = $paper_count * 0.1;
-                   }
+                    }
+                    if ($paper_count == 1){
+                        $price = 0.1;
+                    }
                     break;
                 case 'B4':
-                    $price = $paper_count * 0.4;
+                    if ($item['isTwoSides'] == 'YES'){
+                        $price =  $paper_count * 0.2;
+                    }else{
+                        $price = $paper_count * 0.4;
+                    }
+                    if ($paper_count == 1){
+                        $price = 0.4;
+                    }
                     break;
                 default:
                     $price = $paper_count * 0.15;
