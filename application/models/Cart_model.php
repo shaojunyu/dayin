@@ -186,20 +186,20 @@ class Cart_model extends CI_Model{
                     }else{
                         $price = $paper_count * 0.1;
                     }
-                    if ($paper_count == 1){
+                    if ($item['pages'] == 1){
                         $price = 0.1;
                     }
                     break;
                 case 'B4':
-                    $price = ceil($item['pages']  / $item['pptPerPage']) * 0.2;
-//                    if ($item['isTwoSides'] == 'YES'){
-//                        $price =  $paper_count * 0.4;
-//                    }else{
-//                        $price = $paper_count * 0.2;
-//                    }
-//                    if ($paper_count == 1){
-//                        $price = 0.4;
-//                    }
+//                    $price = ceil($item['pages']  / $item['pptPerPage']) * 0.2;
+                    if ($item['isTwoSides'] == 'YES'){
+                        $price =  $paper_count * 0.4;
+                    }else{
+                        $price = $paper_count * 0.2;
+                    }
+                    if (ceil($item['pages']  / $item['pptPerPage']) == 1){
+                        $price = 0.2;
+                    }
                     break;
                 default:
                     $price = $paper_count * 0.15;
