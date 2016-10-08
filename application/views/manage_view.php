@@ -23,9 +23,9 @@
 						</ul>
 					</li>
 					<?php
-		            if ($this->session->userdata('role') == 'LIBADMIN'){
-		                $this->db->like('admin',$this->session->userdata('cellphone'));
-		                $res = $this->db->get('library')->result_array();
+					$this->db->like('admin',$this->session->userdata('cellphone'));
+					$res = $this->db->get('library')->result_array();
+		            if (count($res) > 0){
 		                ?>
 		                <li class="manage-wrapper">
 		                    <a href="javascript:void(0)" class="manage-store">管理文库</a>

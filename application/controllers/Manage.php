@@ -8,9 +8,9 @@ class Manage extends CI_Controller{
 			header('Location: '.base_url());
 		}
 		
-		if ($this->session->userdata('role') != 'LIBADMIN') {
-			header('Location: '.base_url('upload'));
-		}
+//		if ($this->session->userdata('role') != 'LIBADMIN') {
+//			header('Location: '.base_url('upload'));
+//		}
 		
 		//获取文库信息
 	}
@@ -27,7 +27,7 @@ class Manage extends CI_Controller{
 				$res = $res[0];
 				$this->load->view('manage_view', array('libInfo' => $res));
 			} else {
-				header('Location: ' . base_url('upload'));
+				header('Location: ' . base_url('library'));
 			}
 		} else {
 			$this->db->like('admin', $this->session->userdata('cellphone'));
@@ -36,7 +36,7 @@ class Manage extends CI_Controller{
 				$res = $res[0];
 				$this->load->view('manage_view', array('libInfo' => $res));
 			} else {
-				header('Location: ' . base_url('upload'));
+				header('Location: ' . base_url('library'));
 			}
 		}
 	}
