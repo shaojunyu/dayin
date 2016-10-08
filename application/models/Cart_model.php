@@ -181,11 +181,11 @@ class Cart_model extends CI_Model{
             $paper_count = ceil($item['pages']  / $item['pptPerPage']);
             switch ($item['paperSize']){
                 case 'A4':
-                    //if ($item['isTwoSides'] == 'YES'){
+                    if ($item['isTwoSides'] == 'YES'){
                         $price =  $paper_count * 0.1;
-                    //}else{
-                    //    $price = $paper_count * 0.1;
-                   //}
+                    }else{
+                        $price = $paper_count * 0.15;
+                   }
                     break;
                 case 'B4':
                     $price = $paper_count * 0.4;
@@ -193,6 +193,7 @@ class Cart_model extends CI_Model{
                 default:
                     $price = $paper_count * 0.15;
             }
+
             $sub_total = $price * $item['amount'];
 
             //更新数据库
