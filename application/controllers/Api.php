@@ -158,7 +158,7 @@ class Api extends CI_Controller{
                 $this->echo_msg(true,'验证码发送成功');
                 exit();
             } catch (Exception $e) {
-                $this->echo_msg(false,$e->__toString());
+                $this->echo_msg(false,'发送失败，请稍后重试！');
                 exit();
             }
         }else{
