@@ -197,6 +197,9 @@ $(function () {
 	        	if(data.success === true) {
 	        		getDisable();
 	        	}
+	        	else {
+	        		showMsg(data.msg);
+	        	}
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
 	        	 alert("请求失败");
