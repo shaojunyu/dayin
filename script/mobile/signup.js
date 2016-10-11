@@ -188,7 +188,7 @@ $(function () {
 		};
 
 		$.ajax({
-	        url: secret("../api/sendSmscode"),
+	        url: secret("../api/sendSmscode_signup"),
 	        contentType: "application/json",
 	        dataType: "json",
 	        type: "POST",
