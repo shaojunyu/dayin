@@ -145,14 +145,11 @@ $(function () {
 	        type: "POST",
 	        data: JSON.stringify(data),
 	        success: function(data) {
-	        	if(data.success == true) {
+	        	if(data.success === true) {
 	        		getDisable();
 	        	}
 	        	else {
-	        		showMsg("未注册，跳转中..");
-	        		setTimeout(function () {
-	        			window.location.href = "../../mobile/signup";
-	        		}, 1500);
+	        		showMsg(data.msg);
 	        	}
 	        },
 	        error: function(XMLHttpRequest, textStatus, errorThrown){  
