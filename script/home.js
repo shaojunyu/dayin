@@ -214,7 +214,7 @@ addLoadEvent(function(){
 			sO.style.display = "none";
 		});
 		addHandler(print, "click", function() {
-			location.href = "upload";
+			location.href = "library";
 		});
 	}
 	/*setTimeout(function reset(){

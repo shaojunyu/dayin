@@ -77,7 +77,7 @@
                 <i></i>
             </div>
 <?php    }?>
-            <p class="continue-add" id="file"><button type="button" id="ul">上传文件</button></p>
+            <p class="continue-add" id="file"><button type="button" id="ul">上传自己的文件去打印</button></p>
         </div>
     </div>
     
