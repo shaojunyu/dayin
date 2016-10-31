@@ -90,8 +90,8 @@
 	<div class="done-info order-box">   <!-- 已完成 -->
 		<?php
 		$this->db->where('cellphone',$this->session->userdata('cellphone'));
-		$this->db->where('state','DONE');
-		$this->db->or_where('state','PRINTED');
+		// $this->db->where('state','DONE');
+		$this->db->where('state','PRINTED');
 		$res = $this->db->get('order')->result_array();
 		foreach ($res as $order){
 			?>
