@@ -73,7 +73,7 @@ ul, li {
 
 
 body {
-	background: url('./bg.png') no-repeat;
+	background: url('../../images/mobile/bg.png') no-repeat;
 	background-size: 100% 100%;
 	background-attachment:fixed;
 }
@@ -81,8 +81,8 @@ body {
 header {
 	width: 60%;
 	margin: 2rem auto;
-	padding-top: 4rem;
-	padding-bottom: 3rem;
+	padding-top: 3rem;
+	padding-bottom: 2rem;
 }
 header img {
 	width: 100%;
