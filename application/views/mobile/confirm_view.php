@@ -20,6 +20,8 @@
 		<span>份数</span>
 	</header>
 
+	<p class="warn">注意：印刷试卷请设置大小为B4</p>
+
 	<div class="main">
 		<div class="content">
 			<?php

@@ -29,6 +29,7 @@
 <div class="prompt-box"></div> <!-- 表单错误提示框 -->
 
 <div class="container">
+    <p class="warn">注意：印刷试卷请设置大小为B4</p>
     <div class="internal-box">
         <p class="title">打<br />印<br />列<br />表</p>
         <div class="top">

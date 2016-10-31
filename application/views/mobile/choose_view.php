@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp">
-	<link rel="stylesheet" href="css/mobile/reset.css">
+	<link rel="stylesheet" href="css/mobile/choose.css">
 	<style type="text/css">
 		body {
 			background-color: #6bc8f1;
@@ -61,19 +61,21 @@
 	</style>
 </head>
 <body>
-	<div class="header">
-		<div>
-			<i><img src="images/mobile/logo.png"></i>
-		</div>
-		<p>学习云</p>
-	</div>
+	<header>
+		<img src="./images/mobile/new.png">
+	</header>
 
-	<div class="choose">
-		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd781831d64bb0674&redirect_uri=http://dayin.4nian.cc/mobile/wechat_login/&response_type=code&scope=snsapi_userinfo#wechat_redirect" class="binding">登录</a>
-		<a href="mobile/signup" class="no">注册</a>
+	<div class="content">
+		<a href="./mobile/login">
+			<p>密码登录<span>使用账号密码登录，适合移动端</span></p>
+		</a>
+		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd781831d64bb0674&redirect_uri=http://dayin.4nian.cc/mobile/wechat_login/&response_type=code&scope=snsapi_userinfo#wechat_redirect">
+			<p>微信登录<span>适合在微信里登录，方便快捷</span></p>
+		</a>
+		<a href="./mobile/signup" class="signup">注册</a>
 	</div>
-
-	<script type="text/javascript" src="script/mobile/zepto.min.js"></script>
+<!-- 
+	<script type="text/javascript" src="script/mobile/zepto.min.js"></script> -->
 	
 </body>
 </html>
